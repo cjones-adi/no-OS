@@ -389,27 +389,27 @@ int max17616_get_operation_state(struct max17616_dev *dev, bool *enabled);
 int max17616_set_current_limit_mode(struct max17616_dev *dev,
 				    enum max17616_current_limit_mode clmode);
 int max17616_get_current_limit_mode(struct max17616_dev *dev,
-				     enum max17616_current_limit_mode *clmode);
+				    enum max17616_current_limit_mode *clmode);
 int max17616_set_istart_ratio(struct max17616_dev *dev,
-			       enum max17616_istart_ratio ratio);
+			      enum max17616_istart_ratio ratio);
 int max17616_get_istart_ratio(struct max17616_dev *dev,
-			       enum max17616_istart_ratio *istart_ratio);
+			      enum max17616_istart_ratio *istart_ratio);
 int max17616_set_overcurrent_timeout(struct max17616_dev *dev,
-				      enum max17616_overcurrent_timeout timeout);
+				     enum max17616_overcurrent_timeout timeout);
 int max17616_get_overcurrent_timeout(struct max17616_dev *dev,
-				      enum max17616_overcurrent_timeout *timeout);
+				     enum max17616_overcurrent_timeout *timeout);
 int max17616_set_overcurrent_limit(struct max17616_dev *dev,
-				    enum max17616_overcurrent_limit limit);
+				   enum max17616_overcurrent_limit limit);
 int max17616_get_overcurrent_limit(struct max17616_dev *dev,
-				    enum max17616_overcurrent_limit *istlim);
+				   enum max17616_overcurrent_limit *istlim);
 
 /* VOUT UV fault limit configuration functions */
 int max17616_set_vout_uv_fault_limit_config(struct max17616_dev *dev,
-					     enum max17616_nominal_voltage voltage,
-					     enum max17616_pgood_threshold threshold);
+		enum max17616_nominal_voltage voltage,
+		enum max17616_pgood_threshold threshold);
 int max17616_get_vout_uv_fault_limit_config(struct max17616_dev *dev,
-					     enum max17616_nominal_voltage *voltage,
-					     enum max17616_pgood_threshold *threshold);
+		enum max17616_nominal_voltage *voltage,
+		enum max17616_pgood_threshold *threshold);
 
 /* PMBus capability function */
 int max17616_read_capability(struct max17616_dev *dev, uint8_t *capability);
