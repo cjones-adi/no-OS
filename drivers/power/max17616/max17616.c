@@ -563,8 +563,8 @@ int max17616_get_operation_state(struct max17616_dev *dev, bool *enabled)
 	if (!dev || !enabled)
 		return -EINVAL;
 
-	int ret = max17616_read_byte(dev,MAX17616_CMD(MAX17616_OPERATION),
-				   &operation);
+	int ret = max17616_read_byte(dev, MAX17616_CMD(MAX17616_OPERATION),
+				     &operation);
 
 	if (ret == 0)
 		*enabled = (operation & 0x80) ? true : false;
@@ -808,8 +808,8 @@ int max17616_set_overcurrent_limit(struct max17616_dev *dev,
  * @return 0 on success, negative error code otherwise
  */
 int max17616_set_vout_uv_fault_limit_config(struct max17616_dev *dev,
-					     enum max17616_nominal_voltage voltage,
-					     enum max17616_pgood_threshold threshold)
+		enum max17616_nominal_voltage voltage,
+		enum max17616_pgood_threshold threshold)
 {
 	uint8_t reg_value;
 
@@ -817,7 +817,8 @@ int max17616_set_vout_uv_fault_limit_config(struct max17616_dev *dev,
 		return -EINVAL;
 
 	/* Validate enum values */
-	if (voltage > MAX17616_NOMINAL_72V || threshold > MAX17616_PGOOD_MINUS_30_PERCENT)
+	if (voltage > MAX17616_NOMINAL_72V
+	    || threshold > MAX17616_PGOOD_MINUS_30_PERCENT)
 		return -EINVAL;
 
 	/* Combine voltage selection (bits 4:2) and PGOOD threshold (bits 1:0) */
@@ -835,8 +836,8 @@ int max17616_set_vout_uv_fault_limit_config(struct max17616_dev *dev,
  * @return 0 on success, negative error code otherwise
  */
 int max17616_get_vout_uv_fault_limit_config(struct max17616_dev *dev,
-					     enum max17616_nominal_voltage *voltage,
-					     enum max17616_pgood_threshold *threshold)
+		enum max17616_nominal_voltage *voltage,
+		enum max17616_pgood_threshold *threshold)
 {
 	uint8_t raw_value;
 	int ret;
