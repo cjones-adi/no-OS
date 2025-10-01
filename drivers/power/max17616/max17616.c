@@ -613,7 +613,7 @@ int max17616_get_current_limit_mode(struct max17616_dev *dev,
 /**
  * @brief Set current limit mode
  * @param dev - Device structure
- * @param mode - Current limit mode setting
+ * @param clmode - Current limit mode setting
  * @return 0 on success, negative error code otherwise
  */
 int max17616_set_current_limit_mode(struct max17616_dev *dev,

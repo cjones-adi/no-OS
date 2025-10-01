@@ -387,7 +387,7 @@ int max17616_get_operation_state(struct max17616_dev *dev, bool *enabled);
 
 /* Manufacturer-specific command functions */
 int max17616_set_current_limit_mode(struct max17616_dev *dev,
-				    enum max17616_current_limit_mode mode);
+				    enum max17616_current_limit_mode clmode);
 int max17616_get_current_limit_mode(struct max17616_dev *dev,
 				    enum max17616_current_limit_mode *clmode);
 int max17616_set_istart_ratio(struct max17616_dev *dev,
