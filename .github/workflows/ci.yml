@@ -1,0 +1,149 @@
+name: CI
+
+on:
+  push:
+    branches: 
+      - main
+      - staging/*
+      - next_stable
+      - '20*'
+  pull_request:
+    branches:
+      - main
+      - next_stable
+      - '20*'
+
+env:
+  # Global environment variables
+  NUM_JOBS: 4
+
+jobs:
+  # Code style checking with astyle
+  astyle:
+    name: Code Style Check
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 50
+        # For PR, we need to fetch the target branch for comparison
+        ref: ${{ github.event.pull_request.head.sha }}
+        
+    - name: Fetch target branch
+      if: github.event_name == 'pull_request'
+      run: |
+        git fetch origin ${{ github.event.pull_request.base.ref }}:${{ github.event.pull_request.base.ref }}
+        
+    - name: Install astyle
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y astyle
+        
+    - name: Set environment variables
+      run: |
+        echo "TARGET_BRANCH=${{ github.event.pull_request.base.ref }}" >> $GITHUB_ENV
+        echo "BUILD_TYPE=astyle" >> $GITHUB_ENV
+        
+    - name: Run astyle check
+      run: ./ci/run_build.sh
+
+  # Static analysis with cppcheck  
+  cppcheck:
+    name: Static Analysis
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 50
+        ref: ${{ github.event.pull_request.head.sha }}
+        
+    - name: Fetch target branch
+      if: github.event_name == 'pull_request'
+      run: |
+        git fetch origin ${{ github.event.pull_request.base.ref }}:${{ github.event.pull_request.base.ref }}
+        
+    - name: Install cppcheck
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y cppcheck
+        
+    - name: Set environment variables
+      run: |
+        echo "TARGET_BRANCH=${{ github.event.pull_request.base.ref }}" >> $GITHUB_ENV
+        echo "BUILD_TYPE=cppcheck" >> $GITHUB_ENV
+        
+    - name: Run cppcheck analysis
+      run: ./ci/run_build.sh
+
+  # Build drivers
+  drivers:
+    name: Build Drivers
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 50
+        
+    - name: Install build dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential gcc-arm-none-eabi
+        
+    - name: Set environment variables
+      run: |
+        echo "BUILD_TYPE=drivers" >> $GITHUB_ENV
+        
+    - name: Build drivers
+      run: ./ci/run_build.sh
+
+  # Documentation build and deployment
+  documentation:
+    name: Documentation
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 50
+        token: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+        
+    - name: Install documentation dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y doxygen graphviz
+        pip install sphinx sphinx-rtd-theme breathe
+        
+    - name: Set environment variables
+      run: |
+        echo "BUILD_TYPE=documentation" >> $GITHUB_ENV
+        echo "UPDATE_GH_DOCS=${{ github.ref == 'refs/heads/main' && '1' || '0' }}" >> $GITHUB_ENV
+        echo "GITHUB_DOC_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
+        echo "REPO_SLUG=${{ github.repository }}" >> $GITHUB_ENV
+        echo "BUILD_SOURCEBRANCH=${{ github.ref }}" >> $GITHUB_ENV
+        
+    - name: Build documentation
+      run: ./ci/run_build.sh
+      
+    - name: Upload documentation artifacts
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: documentation
+        path: |
+          doc/doxygen/build/
+          doc/sphinx/build/
+        retention-days: 30
