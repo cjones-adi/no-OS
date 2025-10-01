@@ -1,5 +1,5 @@
 Evaluating the MAX17616
-======================
+=======================
 
 .. no-os-doxygen::
 
@@ -92,7 +92,7 @@ monitored in the example.
 
 In order to build the basic example make sure you have the following
 configuration in the Makefile
-`Makefile <GitHub link TBD>`_
+`Basic Example Makefile <GitHub link TBD>`_
 
 .. code-block:: bash
 
@@ -121,7 +121,7 @@ This example initializes the IIO device and calls the IIO app as shown in:
 
 In order to build the IIO project make sure you have the following
 configuration in the
-`Makefile <GitHub Link TBD>`_
+`IIO Example Makefile <GitHub Link TBD>`_
 
 .. code-block:: bash
 
