@@ -140,10 +140,10 @@ jobs:
       
     - name: Upload documentation artifacts
       if: always()
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: documentation
         path: |
-          doc/doxygen/build/
-          doc/sphinx/build/
+          doc/sphinx/_build/
+          doc/doxygen/html/
         retention-days: 30

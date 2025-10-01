@@ -41,7 +41,7 @@ jobs:
         sudo apt-get install -y build-essential gcc-arm-none-eabi
         
     - name: Cache build dependencies
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: |
           ~/.cache
@@ -63,7 +63,7 @@ jobs:
         
     - name: Upload build artifacts
       if: always()
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: build-${{ matrix.platform }}
         path: |
