@@ -1,5 +1,5 @@
 MAX17616 no-OS driver
-====================
+=====================
 
 .. no-os-doxygen::
 
@@ -28,14 +28,14 @@ Applications
 ------------
 
 MAX17616
--------
+--------
 
 * Input Voltage and Output Overcurrent Protections
 * Loss of Ground Protection
 * Surge Protection
 
 MAX17616 Device Configuration
-----------------------------
+-----------------------------
 
 Driver Initialization
 ---------------------
@@ -65,7 +65,7 @@ Measurements for each output channel can be read using the
 voltage, input current, temperature, and output power.
 
 MAX17616 Driver Initialization Example
--------------------------------------
+--------------------------------------
 
 .. code-block:: bash
 
@@ -89,13 +89,13 @@ MAX17616 Driver Initialization Example
 		goto error;
 
 MAX17616 no-OS IIO support
--------------------------
+--------------------------
 
 The MAX17616 IIO driver comes on top of the MAX17616 driver and offers support
 for interfacing IIO clients through libiio.
 
 MAX17616 IIO Device Configuration
---------------------------------
+---------------------------------
 
 Channels
 --------
@@ -169,7 +169,7 @@ Debug Attributes
 The device has no debug attributes implemented.
 
 MAX17616 IIO Driver Initialization Example
------------------------------------------
+------------------------------------------
 
 .. code-block:: bash
 
