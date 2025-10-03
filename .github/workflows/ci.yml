@@ -116,6 +116,51 @@ jobs:
     - name: Build drivers
       run: ./ci/run_build.sh
 
+  # Unit tests with Ceedling
+  unit-tests:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 50
+
+    - name: Setup Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.0'
+        bundler-cache: false
+
+    - name: Install Ceedling and dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential gcc gcov lcov
+        gem install ceedling -v 0.31.1
+
+    - name: Run unit tests and generate coverage
+      run: |
+        # Find all test directories containing project.yml files
+        find tests -name "project.yml" -type f | while read project_file; do
+          test_dir=$(dirname "$project_file")
+          echo "Running tests in: $test_dir"
+          cd "$test_dir"
+          # Run tests with coverage (gcov:all includes test execution)
+          ceedling gcov:all utils:gcov
+          cd - > /dev/null
+        done
+
+    - name: Upload test results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: unit-test-results
+        path: |
+          tests/**/build/artifacts/test/
+          tests/**/build/artifacts/gcov/
+        retention-days: 30
+
   # Documentation build and deployment
   documentation:
     name: Documentation
