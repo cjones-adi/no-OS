@@ -38,6 +38,8 @@
 #include "basic_example.h"
 #elif defined (IIO_EXAMPLE)
 #include "iio_example.h"
+#elif defined (ESH_EXAMPLE)
+#include "esh_example.h"
 #endif
 
 int main()

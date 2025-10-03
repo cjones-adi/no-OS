@@ -42,3 +42,8 @@ SRCS += $(NO-OS)/util/no_os_lf256fifo.c		\
 
 INCS += $(DRIVERS)/power/max17616/max17616.h
 SRCS += $(DRIVERS)/power/max17616/max17616.c
+
+# Include ESH library linker script if ESH_EXAMPLE is enabled
+ifeq (y,$(strip $(ESH_EXAMPLE)))
+LIB_LDSCRIPTS += $(LIBRARIES_PATH)/esh/esh_linker.ld
+endif

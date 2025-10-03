@@ -1,6 +1,6 @@
-# Ensure exactly one of BASIC_EXAMPLE or IIO_EXAMPLE is selected
-ifeq (,$(filter y,$(strip $(IIO_EXAMPLE)) $(strip $(BASIC_EXAMPLE))))
-$(error You must select exactly one example: BASIC_EXAMPLE or IIO_EXAMPLE)
+# Ensure exactly one of BASIC_EXAMPLE, IIO_EXAMPLE, or ESH_EXAMPLE is selected
+ifeq (,$(filter y,$(strip $(IIO_EXAMPLE)) $(strip $(BASIC_EXAMPLE)) $(strip $(ESH_EXAMPLE))))
+$(error You must select exactly one example: BASIC_EXAMPLE, IIO_EXAMPLE, or ESH_EXAMPLE)
 endif
 
 # Count how many examples are selected
@@ -9,6 +9,9 @@ ifneq (,$(findstring y,$(strip $(IIO_EXAMPLE))))
 example_count := $(shell expr $(example_count) + 1)
 endif
 ifneq (,$(findstring y,$(strip $(BASIC_EXAMPLE))))
+example_count := $(shell expr $(example_count) + 1)
+endif
+ifneq (,$(findstring y,$(strip $(ESH_EXAMPLE))))
 example_count := $(shell expr $(example_count) + 1)
 endif
 
@@ -28,6 +31,13 @@ ifeq (y,$(strip $(BASIC_EXAMPLE)))
 CFLAGS += -DBASIC_EXAMPLE=1
 SRCS += $(PROJECT)/src/examples/basic/basic_example.c
 INCS += $(PROJECT)/src/examples/basic/basic_example.h
+endif
+
+ifeq (y,$(strip $(ESH_EXAMPLE)))
+LIBRARIES += esh
+CFLAGS += -DESH_EXAMPLE=1
+SRCS += $(PROJECT)/src/examples/esh/esh_example.c
+INCS += $(PROJECT)/src/examples/esh/esh_example.h
 endif
 
 ifeq (y, $(strip $(IIOD)))

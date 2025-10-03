@@ -1,7 +1,7 @@
 /***************************************************************************//**
- *   @file   no_os_esh.h
- *   @brief  Header file for the esh No-OS interface.
- *   @author Ciprian Regus (ciprian.regus@analog.com)
+ *   @file   esh_example.h
+ *   @brief  Header file for max17616 esh example.
+ *   @author Carlos Jones (carlosjr.jones@analog.com)
 ********************************************************************************
  * Copyright 2025(c) Analog Devices, Inc.
  *
@@ -19,7 +19,7 @@
  *    contributors may be used to endorse or promote products derived from this
  *    software without specific prior written permission.
  *
- * THIS SOFTWARE IS PROVIDED BY ANALOG DEVICES, INC. “AS IS” AND ANY EXPRESS OR
+ * THIS SOFTWARE IS PROVIDED BY ANALOG DEVICES, INC. "AS IS" AND ANY EXPRESS OR
  * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
  * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO
  * EVENT SHALL ANALOG DEVICES, INC. BE LIABLE FOR ANY DIRECT, INDIRECT,
@@ -30,14 +30,9 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *******************************************************************************/
-#ifndef __NO_OS_ESH_H__
-#define __NO_OS_ESH_H__
+#ifndef __ESH_EXAMPLE_H__
+#define __ESH_EXAMPLE_H__
 
-void prompt();
-void initial_setup();
+int example_main(void);
 
-/* Functions from no_os_esh.c that may be used by applications */
-void esh_write_char(char c);
-int esh_read_char(void);
-
-#endif // __NO_OS_ESH_H__
+#endif /* __ESH_EXAMPLE_H__ */
