@@ -156,7 +156,7 @@ jobs:
           echo "Running tests in: $test_dir"
           cd "$test_dir"
           # Run tests with coverage (gcov:all includes test execution)
-          ceedling gcov:all utils:gcov
+          ceedling gcov:all
           cd - > /dev/null
         done
 
