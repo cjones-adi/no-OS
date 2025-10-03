@@ -136,14 +136,22 @@ jobs:
     - name: Install Ceedling and dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y build-essential gcc gcov lcov
+        sudo apt-get install -y build-essential gcc lcov
         gem install ceedling -v 0.31.1
 
     - name: Run unit tests and generate coverage
       run: |
+        set -e  # Exit on any error
+        
         # Find all test directories containing project.yml files
-        find tests -name "project.yml" -type f | while read project_file; do
-          test_dir=$(dirname "$project_file")
+        test_dirs=$(find tests -name "project.yml" -type f -exec dirname {} \;)
+        
+        if [ -z "$test_dirs" ]; then
+          echo "No test directories found with project.yml files"
+          exit 1
+        fi
+        
+        for test_dir in $test_dirs; do
           echo "Running tests in: $test_dir"
           cd "$test_dir"
           # Run tests with coverage (gcov:all includes test execution)
