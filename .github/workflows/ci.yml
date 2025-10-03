@@ -137,7 +137,7 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install -y build-essential gcc lcov
-        gem install ceedling -v 0.31.1
+        gem install ceedling
 
     - name: Run unit tests and generate coverage
       run: |
