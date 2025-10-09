@@ -32,13 +32,17 @@
 *******************************************************************************/
 #include "common_data.h"
 #include "no_os_delay.h"
-#include "no_os_print_log.h"
 #include "no_os_esh.h"
 #include "max17616.h"
 #include "esh_example.h"
 #include "shell.h"
-#include "printf.h"
+#include <stdio.h>
 #include <stdlib.h>
+#include "printf.h"
+
+/* Replace logging macros with ESH-compatible versions */
+#define pr_info(fmt, args...) printf(fmt, ##args)
+#define pr_err(fmt, args...) printf("ERROR: " fmt, ##args)
 
 /* Global device handle */
 static struct max17616_dev *max17616_dev;
@@ -608,6 +612,22 @@ ADD_CMD(operation, "Get/set operation state", cmd_operation);
 ADD_CMD(settings, "Display all device settings", cmd_settings);
 ADD_CMD(clear, "Clear all faults", cmd_clear_faults);
 
+static struct no_os_uart_desc *uart_desc_global = NULL;
+
+void set_uart_for_esh(struct no_os_uart_desc *uart_desc) {
+    uart_desc_global = uart_desc;
+}
+
+void esh_write_char_direct(char c) {
+    if (uart_desc_global) {
+        no_os_uart_write(uart_desc_global, (uint8_t*)&c, 1);
+    }
+}
+
+int esh_read_char_direct(void) {
+    return getchar();
+}
+
 int example_main(void)
 {
 	struct no_os_uart_desc *uart_desc;
@@ -617,7 +637,15 @@ int example_main(void)
 	if (ret)
 		return ret;
 
+	set_uart_for_esh(uart_desc);  // Give ESH access to UART
 	no_os_uart_stdio(uart_desc);
+
+	/* Setup esh read/write functions early so pr_info works */
+	initial_setup();
+	/* Override with direct UART read/write */
+	set_write_char(esh_write_char_direct);
+	set_read_char(esh_read_char_direct);
+
 	pr_info("\e[2J\e[H");
 	pr_info("MAX17616 ESH example.\r\n");
 
@@ -629,9 +657,6 @@ int example_main(void)
 
 	pr_info("MAX17616 device initialized successfully.\r\n");
 	pr_info("Starting shell interface...\r\n");
-	
-	/* Setup esh read/write functions */
-	initial_setup();
 	
 	/* Use the built-in esh prompt function */
 	prompt();
