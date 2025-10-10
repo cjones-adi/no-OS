@@ -209,16 +209,30 @@ jobs:
         fi
 
         # Clean the variables of any whitespace/newlines
-        ERRORS=$(echo "$ERRORS" | tr -d '\n\r' | grep -o '[0-9]*' || echo "0")
-        WARNINGS=$(echo "$WARNINGS" | tr -d '\n\r' | grep -o '[0-9]*' || echo "0")
-        STYLE=$(echo "$STYLE" | tr -d '\n\r' | grep -o '[0-9]*' || echo "0")
-        PERFORMANCE=$(echo "$PERFORMANCE" | tr -d '\n\r' | grep -o '[0-9]*' || echo "0")
+        ERRORS=$(echo "$ERRORS" | tr -d '\n\r' | grep -o '^[0-9]*$' || echo "0")
+        WARNINGS=$(echo "$WARNINGS" | tr -d '\n\r' | grep -o '^[0-9]*$' || echo "0")
+        STYLE=$(echo "$STYLE" | tr -d '\n\r' | grep -o '^[0-9]*$' || echo "0")
+        PERFORMANCE=$(echo "$PERFORMANCE" | tr -d '\n\r' | grep -o '^[0-9]*$' || echo "0")
 
         # Ensure we have valid numbers
         ERRORS=${ERRORS:-0}
         WARNINGS=${WARNINGS:-0}
         STYLE=${STYLE:-0}
         PERFORMANCE=${PERFORMANCE:-0}
+
+        # Validate numbers are reasonable
+        if [ "$ERRORS" -lt 0 ] || [ "$ERRORS" -gt 10000 ]; then
+          ERRORS=0
+        fi
+        if [ "$WARNINGS" -lt 0 ] || [ "$WARNINGS" -gt 10000 ]; then
+          WARNINGS=0
+        fi
+        if [ "$STYLE" -lt 0 ] || [ "$STYLE" -gt 10000 ]; then
+          STYLE=0
+        fi
+        if [ "$PERFORMANCE" -lt 0 ] || [ "$PERFORMANCE" -gt 10000 ]; then
+          PERFORMANCE=0
+        fi
 
         # Calculate total safely
         TOTAL_ISSUES=$((ERRORS + WARNINGS + STYLE + PERFORMANCE))
@@ -228,11 +242,25 @@ jobs:
         echo "CPPCHECK_STYLE=$STYLE" >> $GITHUB_ENV
         echo "CPPCHECK_PERFORMANCE=$PERFORMANCE" >> $GITHUB_ENV
         echo "CPPCHECK_TOTAL=$TOTAL_ISSUES" >> $GITHUB_ENV
+        
+        # Debug output
+        echo "Debug: ERRORS=$ERRORS, WARNINGS=$WARNINGS, STYLE=$STYLE, PERFORMANCE=$PERFORMANCE, TOTAL=$TOTAL_ISSUES"
 
     - name: Create Job Summary
       if: always()
       run: |
-        cat >> $GITHUB_STEP_SUMMARY << 'EOF'
+        # Calculate status message
+        if [ "${{ env.cppcheck_failed }}" = "true" ]; then
+          STATUS_MSG="❌ Failed"
+        elif [ "${{ env.CPPCHECK_ERRORS }}" -gt 0 ]; then
+          STATUS_MSG="⚠️ Has Errors"
+        elif [ "${{ env.CPPCHECK_TOTAL }}" -gt 0 ]; then
+          STATUS_MSG="⚠️ Has Warnings"
+        else
+          STATUS_MSG="✅ Passed"
+        fi
+        
+        cat >> $GITHUB_STEP_SUMMARY << EOF
         ## 🔍 Static Analysis Results
 
         | Issue Type | Count |
@@ -243,10 +271,26 @@ jobs:
         | ⚡ Performance Issues | ${{ env.CPPCHECK_PERFORMANCE }} |
         | **📊 Total Issues** | **${{ env.CPPCHECK_TOTAL }}** |
 
-        ### Status: ${{ env.cppcheck_failed == 'true' && '❌ Failed' || (env.CPPCHECK_ERRORS > 0 && '⚠️ Has Errors' || '✅ Passed') }}
-
-        ${{ env.CPPCHECK_TOTAL > 0 && '#### 📋 Issue Breakdown\n```\nErrors: High priority issues that should be fixed\nWarnings: Potential problems worth investigating\nStyle: Code style improvements\nPerformance: Optimization suggestions\n```' || '🎉 No issues found!' }}
+        ### Status: ${STATUS_MSG}
         EOF
+        
+        # Add issue breakdown if there are issues
+        if [ "${{ env.CPPCHECK_TOTAL }}" -gt 0 ]; then
+          cat >> $GITHUB_STEP_SUMMARY << 'EOF'
+
+        #### 📋 Issue Breakdown
+        
+        - **Errors**: High priority issues that should be fixed immediately
+        - **Warnings**: Potential problems worth investigating  
+        - **Style**: Code style improvements for better readability
+        - **Performance**: Optimization suggestions for better efficiency
+        EOF
+        else
+          cat >> $GITHUB_STEP_SUMMARY << 'EOF'
+
+        🎉 **No issues found!** Your code passes all static analysis checks.
+        EOF
+        fi
 
   # Build drivers with metrics
   drivers:
