@@ -491,6 +491,11 @@ jobs:
         FAILED_TESTS=0
         TOTAL_COVERAGE=0
         TEST_DIRS_COUNT=0
+        
+        # Create detailed test results file
+        echo "=== Unit Test Results ===" > test_results.txt
+        echo "Run started at: $(date)" >> test_results.txt
+        echo "" >> test_results.txt
 
         # Find all test directories containing project.yml files
         test_dirs=$(find tests -name "project.yml" -type f -exec dirname {} \;)
@@ -501,16 +506,38 @@ jobs:
         fi
 
         for test_dir in $test_dirs; do
+          echo "=== Running tests in: $test_dir ===" >> test_results.txt
           echo "Running tests in: $test_dir"
           cd "$test_dir"
 
           # Run tests with coverage
-          ceedling gcov:all > test_output.txt 2>&1 || true
+          if ceedling gcov:all > test_output.txt 2>&1; then
+            echo "Test suite completed successfully" >> ../../../test_results.txt
+          else
+            echo "Test suite encountered errors" >> ../../../test_results.txt
+          fi
 
-          # Parse test results
-          DIR_TESTS=$(grep -c "PASS\|FAIL" test_output.txt || echo "0")
-          DIR_PASSED=$(grep -c "PASS" test_output.txt || echo "0")
-          DIR_FAILED=$(grep -c "FAIL" test_output.txt || echo "0")
+          # Parse test results with more detail
+          DIR_TESTS=$(grep -c "PASS\|FAIL" test_output.txt 2>/dev/null || echo "0")
+          DIR_PASSED=$(grep -c "PASS" test_output.txt 2>/dev/null || echo "0")
+          DIR_FAILED=$(grep -c "FAIL" test_output.txt 2>/dev/null || echo "0")
+          
+          # Capture failed test names
+          if [ "$DIR_FAILED" -gt 0 ]; then
+            echo "❌ Failed tests in $test_dir:" >> ../../../test_results.txt
+            grep "FAIL" test_output.txt | head -10 >> ../../../test_results.txt 2>/dev/null || echo "  (Failed test details not available)" >> ../../../test_results.txt
+            echo "" >> ../../../test_results.txt
+          else
+            echo "✅ All tests passed in $test_dir" >> ../../../test_results.txt
+          fi
+          
+          # Capture passed test summary
+          if [ "$DIR_PASSED" -gt 0 ]; then
+            echo "✅ Passed: $DIR_PASSED tests" >> ../../../test_results.txt
+          fi
+          
+          echo "Total tests in $test_dir: $DIR_TESTS (Passed: $DIR_PASSED, Failed: $DIR_FAILED)" >> ../../../test_results.txt
+          echo "" >> ../../../test_results.txt
 
           TOTAL_TESTS=$((TOTAL_TESTS + DIR_TESTS))
           PASSED_TESTS=$((PASSED_TESTS + DIR_PASSED))
@@ -519,6 +546,13 @@ jobs:
 
           cd - > /dev/null
         done
+
+        # Add summary to results
+        echo "=== Test Summary ===" >> test_results.txt
+        echo "Total test suites: $TEST_DIRS_COUNT" >> test_results.txt
+        echo "Total tests: $TOTAL_TESTS" >> test_results.txt
+        echo "Passed: $PASSED_TESTS" >> test_results.txt
+        echo "Failed: $FAILED_TESTS" >> test_results.txt
 
         # Calculate overall coverage (simplified)
         if [ $TOTAL_TESTS -gt 0 ]; then
@@ -553,6 +587,19 @@ jobs:
         ${{ env.TEST_SUCCESS_RATE < 90 && '⚠️ **Test success rate below 90%. Consider improving test reliability.**' || '' }}
         ${{ env.TOTAL_TESTS == '0' && '⚠️ **No tests found. Consider adding unit tests.**' || '' }}
         EOF
+        
+        # Add detailed test results if there are failures
+        if [ "${{ env.FAILED_TESTS }}" != "0" ] && [ -f "test_results.txt" ]; then
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 🔍 Detailed Test Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          # Show failed tests and summary (limit output to prevent overflow)
+          grep -A 20 "Failed tests" test_results.txt | head -50 >> $GITHUB_STEP_SUMMARY 2>/dev/null || echo "Test failure details not available" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "> 📁 **Full test results are available in the uploaded artifacts**" >> $GITHUB_STEP_SUMMARY
+        fi
 
     - name: Upload test results
       if: always()
@@ -562,6 +609,8 @@ jobs:
         path: |
           tests/**/build/artifacts/test/
           tests/**/build/artifacts/gcov/
+          tests/**/test_output.txt
+          test_results.txt
         retention-days: 30
 
   # Metrics summary job
