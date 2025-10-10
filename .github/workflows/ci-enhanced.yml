@@ -517,15 +517,24 @@ jobs:
             echo "Test suite encountered errors" >> ../../../test_results.txt
           fi
 
-          # Parse test results with more detail
-          DIR_TESTS=$(grep -c "PASS\|FAIL" test_output.txt 2>/dev/null || echo "0")
-          DIR_PASSED=$(grep -c "PASS" test_output.txt 2>/dev/null || echo "0")
-          DIR_FAILED=$(grep -c "FAIL" test_output.txt 2>/dev/null || echo "0")
+          # Parse test results from Ceedling output
+          # Look for the OVERALL TEST SUMMARY section
+          DIR_TESTS=$(grep "^TESTED:" test_output.txt 2>/dev/null | tail -1 | grep -o '[0-9]\+' || echo "0")
+          DIR_PASSED=$(grep "^PASSED:" test_output.txt 2>/dev/null | tail -1 | grep -o '[0-9]\+' || echo "0")
+          DIR_FAILED=$(grep "^FAILED:" test_output.txt 2>/dev/null | tail -1 | grep -o '[0-9]\+' || echo "0")
+          
+          # Validate the numbers
+          DIR_TESTS=${DIR_TESTS:-0}
+          DIR_PASSED=${DIR_PASSED:-0}  
+          DIR_FAILED=${DIR_FAILED:-0}
           
           # Capture failed test names
           if [ "$DIR_FAILED" -gt 0 ]; then
+          # Capture failed test names
+          if [ "$DIR_FAILED" -gt 0 ]; then
             echo "❌ Failed tests in $test_dir:" >> ../../../test_results.txt
-            grep "FAIL" test_output.txt | head -10 >> ../../../test_results.txt 2>/dev/null || echo "  (Failed test details not available)" >> ../../../test_results.txt
+            # Look for test failure details in Ceedling output
+            grep -A 5 -B 2 "FAIL\|ERROR" test_output.txt | head -20 >> ../../../test_results.txt 2>/dev/null || echo "  (Failed test details not available)" >> ../../../test_results.txt
             echo "" >> ../../../test_results.txt
           else
             echo "✅ All tests passed in $test_dir" >> ../../../test_results.txt
