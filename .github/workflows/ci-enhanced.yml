@@ -285,6 +285,25 @@ jobs:
         - **Style**: Code style improvements for better readability
         - **Performance**: Optimization suggestions for better efficiency
         EOF
+          
+          # Show actual issues if cppcheck output exists
+          if [ -f "cppcheck_output.txt" ] && [ "${{ env.CPPCHECK_WARNINGS }}" -gt 0 ]; then
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "#### ⚠️ Warning Details" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+            grep ": warning:" cppcheck_output.txt | head -10 >> $GITHUB_STEP_SUMMARY 2>/dev/null || echo "Warning details not available" >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          if [ -f "cppcheck_output.txt" ] && [ "${{ env.CPPCHECK_ERRORS }}" -gt 0 ]; then
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "#### 🚨 Error Details" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+            grep ": error:" cppcheck_output.txt | head -10 >> $GITHUB_STEP_SUMMARY 2>/dev/null || echo "Error details not available" >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          fi
         else
           cat >> $GITHUB_STEP_SUMMARY << 'EOF'
 
@@ -326,7 +345,7 @@ jobs:
         SKIPDIR="-path ./platform -prune -o -path ./axi_core -prune -o -path ./rf-transceiver/navassa -prune -o -path ./adc/ad9081 -prune -o -path ./rf-transceiver/madura -prune -o -path ./net/oa_tc6 -prune -o"
         TOTAL_DRIVERS=$(find . $SKIPDIR -name '*.c' -print | wc -l || echo "0")
         cd ..
-        
+
         echo "Total driver files to compile: $TOTAL_DRIVERS" >> build_output.txt
         echo "This matches the drivers/Makefile SRCS variable" >> build_output.txt
 
@@ -453,7 +472,7 @@ jobs:
         ### Status: ${{ env.BUILD_RESULT == '0' && '✅ All Drivers Compiled Successfully' || '❌ Driver Compilation Failed' }}
 
         ${{ env.BUILD_TIME > 300 && '⚠️ **Build time exceeded 5 minutes. Consider optimization.**' || '' }}
-        
+
         > 💡 **Note**: This builds reusable driver components (${TOTAL_DRIVERS} .c files), not the 134 application projects in the \`projects/\` directory.
         EOF
 
@@ -491,7 +510,7 @@ jobs:
         FAILED_TESTS=0
         TOTAL_COVERAGE=0
         TEST_DIRS_COUNT=0
-        
+
         # Create detailed test results file
         echo "=== Unit Test Results ===" > test_results.txt
         echo "Run started at: $(date)" >> test_results.txt
@@ -522,12 +541,12 @@ jobs:
           DIR_TESTS=$(grep "^TESTED:" test_output.txt 2>/dev/null | tail -1 | grep -o '[0-9]\+' || echo "0")
           DIR_PASSED=$(grep "^PASSED:" test_output.txt 2>/dev/null | tail -1 | grep -o '[0-9]\+' || echo "0")
           DIR_FAILED=$(grep "^FAILED:" test_output.txt 2>/dev/null | tail -1 | grep -o '[0-9]\+' || echo "0")
-          
+
           # Validate the numbers
           DIR_TESTS=${DIR_TESTS:-0}
-          DIR_PASSED=${DIR_PASSED:-0}  
+          DIR_PASSED=${DIR_PASSED:-0}
           DIR_FAILED=${DIR_FAILED:-0}
-          
+
           # Capture failed test names
           if [ "$DIR_FAILED" -gt 0 ]; then
             echo "❌ Failed tests in $test_dir:" >> ../../../test_results.txt
@@ -537,12 +556,12 @@ jobs:
           else
             echo "✅ All tests passed in $test_dir" >> ../../../test_results.txt
           fi
-          
+
           # Capture passed test summary
           if [ "$DIR_PASSED" -gt 0 ]; then
             echo "✅ Passed: $DIR_PASSED tests" >> ../../../test_results.txt
           fi
-          
+
           echo "Total tests in $test_dir: $DIR_TESTS (Passed: $DIR_PASSED, Failed: $DIR_FAILED)" >> ../../../test_results.txt
           echo "" >> ../../../test_results.txt
 
@@ -594,7 +613,7 @@ jobs:
         ${{ env.TEST_SUCCESS_RATE < 90 && '⚠️ **Test success rate below 90%. Consider improving test reliability.**' || '' }}
         ${{ env.TOTAL_TESTS == '0' && '⚠️ **No tests found. Consider adding unit tests.**' || '' }}
         EOF
-        
+
         # Add detailed test results if there are failures
         if [ "${{ env.FAILED_TESTS }}" != "0" ] && [ -f "test_results.txt" ]; then
           echo "" >> $GITHUB_STEP_SUMMARY
