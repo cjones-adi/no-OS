@@ -530,8 +530,6 @@ jobs:
           
           # Capture failed test names
           if [ "$DIR_FAILED" -gt 0 ]; then
-          # Capture failed test names
-          if [ "$DIR_FAILED" -gt 0 ]; then
             echo "❌ Failed tests in $test_dir:" >> ../../../test_results.txt
             # Look for test failure details in Ceedling output
             grep -A 5 -B 2 "FAIL\|ERROR" test_output.txt | head -20 >> ../../../test_results.txt 2>/dev/null || echo "  (Failed test details not available)" >> ../../../test_results.txt
