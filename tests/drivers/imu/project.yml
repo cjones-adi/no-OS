@@ -77,7 +77,7 @@
   :gcovr:
     :html_medium_threshold: 75
     :html_high_threshold: 90
-    :report_include: "../../../../drivers/imu/.*"
+    :report_include: "../../../drivers/imu/.*"
 
 #:tools:
 # Ceedling defaults to using gcc for compiling, linking, etc.
