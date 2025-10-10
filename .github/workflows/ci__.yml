@@ -143,15 +143,15 @@ jobs:
     - name: Run unit tests and generate coverage
       run: |
         set -e  # Exit on any error
-        
+
         # Find all test directories containing project.yml files
         test_dirs=$(find tests -name "project.yml" -type f -exec dirname {} \;)
-        
+
         if [ -z "$test_dirs" ]; then
           echo "No test directories found with project.yml files"
           exit 1
         fi
-        
+
         for test_dir in $test_dirs; do
           echo "Running tests in: $test_dir"
           cd "$test_dir"
@@ -203,7 +203,7 @@ jobs:
 
     - name: Build documentation
       run: ./ci/run_build.sh
-      
+
     # - name: Upload documentation artifacts
     #   if: always()
     #   uses: actions/upload-artifact@v4

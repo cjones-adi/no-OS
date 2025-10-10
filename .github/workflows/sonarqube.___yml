@@ -13,7 +13,7 @@ jobs:
   sonarqube:
     name: SonarQube Analysis
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -57,14 +57,14 @@ jobs:
       run: |
         # Generate coverage reports for SonarQube
         mkdir -p sonar-reports/coverage
-        
+
         # Find and run all tests
         test_dirs=$(find tests -name "project.yml" -type f -exec dirname {} \;)
         for test_dir in $test_dirs; do
           echo "Running tests in: $test_dir"
           cd "$test_dir"
           ceedling gcov:all || true
-          
+
           # Convert coverage to SonarQube format
           if [ -d "build/artifacts/gcov" ]; then
             gcovr --xml --xml-pretty \
@@ -82,23 +82,23 @@ jobs:
         sonar.organization=${{ github.repository_owner }}
         sonar.projectName=no-OS
         sonar.projectVersion=1.0
-        
+
         # Source code
         sonar.sources=drivers/,iio/,jesd204/,libraries/,network/,include/
         sonar.tests=tests/
-        
+
         # Language configuration
         sonar.c.file.suffixes=.c,.h
         sonar.cpp.file.suffixes=.cpp,.hpp,.cxx,.hxx
-        
+
         # Coverage and test reports
         sonar.coverageReportPaths=sonar-reports/coverage/*.xml
         sonar.cxx.cppcheck.reportPaths=sonar-reports/cppcheck-report.xml
-        
+
         # Exclusions
         sonar.exclusions=**/build/**,**/libraries/**,**/tests/**/build/**
         sonar.test.exclusions=**/build/**
-        
+
         # Additional settings
         sonar.sourceEncoding=UTF-8
         sonar.analysis.mode=publish
@@ -127,7 +127,7 @@ jobs:
       run: |
         # Project key for API calls
         PROJECT_KEY="${{ github.repository_owner }}_no-OS"
-        
+
         # Get quality gate status from the previous step's output or API fallback
         QUALITY_GATE="UNKNOWN"
         if [ "${{ steps.wait-for-quality-gate.outcome }}" = "success" ]; then
@@ -140,7 +140,7 @@ jobs:
             "${{ secrets.SONAR_HOST_URL }}/api/qualitygates/project_status?projectKey=${PROJECT_KEY}" \
             2>/dev/null | jq -r '.projectStatus.status // "UNKNOWN"' 2>/dev/null || echo "UNKNOWN")
         fi
-        
+
         # Initialize default values
         BUGS="0"
         VULNERABILITIES="0"
@@ -149,13 +149,13 @@ jobs:
         DUPLICATED_LINES="0"
         LINES_OF_CODE="0"
         MAINTAINABILITY_RATING="1"
-        
+
         # Try to get metrics with error handling
         if command -v jq >/dev/null 2>&1 && [ -n "${{ secrets.SONAR_TOKEN }}" ]; then
           METRICS=$(curl -s -u "${{ secrets.SONAR_TOKEN }}:" \
             "${{ secrets.SONAR_HOST_URL }}/api/measures/component?component=${PROJECT_KEY}&metricKeys=bugs,vulnerabilities,code_smells,coverage,duplicated_lines_density,ncloc,sqale_rating" \
             2>/dev/null | jq -r '.component.measures // []' 2>/dev/null || echo "[]")
-          
+
           if [ "$METRICS" != "[]" ] && [ "$METRICS" != "null" ]; then
             # Parse metrics safely
             BUGS=$(echo "$METRICS" | jq -r '.[] | select(.metric=="bugs") | .value // "0"' 2>/dev/null || echo "0")
@@ -167,7 +167,7 @@ jobs:
             MAINTAINABILITY_RATING=$(echo "$METRICS" | jq -r '.[] | select(.metric=="sqale_rating") | .value // "1"' 2>/dev/null || echo "1")
           fi
         fi
-        
+
         # Parse metrics
         BUGS=$(echo "$METRICS" | jq -r '.[] | select(.metric=="bugs") | .value // "0"')
         VULNERABILITIES=$(echo "$METRICS" | jq -r '.[] | select(.metric=="vulnerabilities") | .value // "0"')
@@ -176,7 +176,7 @@ jobs:
         DUPLICATED_LINES=$(echo "$METRICS" | jq -r '.[] | select(.metric=="duplicated_lines_density") | .value // "0"')
         LINES_OF_CODE=$(echo "$METRICS" | jq -r '.[] | select(.metric=="ncloc") | .value // "0"')
         MAINTAINABILITY_RATING=$(echo "$METRICS" | jq -r '.[] | select(.metric=="sqale_rating") | .value // "1"')
-        
+
         echo "QUALITY_GATE=$QUALITY_GATE" >> $GITHUB_ENV
         echo "BUGS=$BUGS" >> $GITHUB_ENV
         echo "VULNERABILITIES=$VULNERABILITIES" >> $GITHUB_ENV
@@ -185,7 +185,7 @@ jobs:
         echo "DUPLICATED_LINES=$DUPLICATED_LINES" >> $GITHUB_ENV
         echo "LINES_OF_CODE=$LINES_OF_CODE" >> $GITHUB_ENV
         echo "MAINTAINABILITY_RATING=$MAINTAINABILITY_RATING" >> $GITHUB_ENV
-        
+
         # Generate SonarQube URL
         SONAR_URL="${{ secrets.SONAR_HOST_URL }}/dashboard?id=${PROJECT_KEY}"
         echo "SONAR_URL=$SONAR_URL" >> $GITHUB_ENV
@@ -202,14 +202,14 @@ jobs:
           "5") MAINTAINABILITY_GRADE="E" ;;
           *) MAINTAINABILITY_GRADE="Unknown" ;;
         esac
-        
+
         cat >> $GITHUB_STEP_SUMMARY << 'EOF'
         ## 🎯 SonarQube Quality Analysis
-        
+
         ### 🚦 Quality Gate: ${{ env.QUALITY_GATE == 'OK' && '✅ PASSED' || env.QUALITY_GATE == 'ERROR' && '❌ FAILED' || '⚠️ UNKNOWN' }}
-        
+
         ### 📊 Code Quality Metrics
-        
+
         | Metric | Value | Status |
         |--------|-------|--------|
         | 🐛 Bugs | ${{ env.BUGS }} | ${{ env.BUGS == '0' && '✅' || '❌' }} |
@@ -219,12 +219,12 @@ jobs:
         | 📋 Duplicated Lines | ${{ env.DUPLICATED_LINES }}% | ${{ env.DUPLICATED_LINES < 3 && '✅' || env.DUPLICATED_LINES < 5 && '⚠️' || '❌' }} |
         | 📏 Lines of Code | ${{ env.LINES_OF_CODE }} | ℹ️ |
         | 🔧 Maintainability | $MAINTAINABILITY_GRADE | ${{ env.MAINTAINABILITY_RATING <= 2 && '✅' || env.MAINTAINABILITY_RATING <= 3 && '⚠️' || '❌' }} |
-        
+
         ### 🔗 Links
         - [📊 View Full SonarQube Dashboard](${{ env.SONAR_URL }})
         - [📈 View Metrics History](${{ env.SONAR_URL }}&tab=measures)
         - [🐛 View Issues](${{ env.SONAR_URL }}&tab=issues)
-        
+
         ### 📋 Recommendations
         ${{ env.BUGS > 0 && '🐛 **Fix bugs** - Zero bugs policy recommended for production code\n' || '' }}${{ env.VULNERABILITIES > 0 && '🔐 **Address security vulnerabilities** - Critical for application security\n' || '' }}${{ env.COVERAGE < 80 && '📈 **Improve test coverage** - Target: 80%+ coverage\n' || '' }}${{ env.DUPLICATED_LINES > 3 && '📋 **Reduce code duplication** - Extract common functionality\n' || '' }}${{ env.CODE_SMELLS > 50 && '👃 **Address code smells** - Improve code maintainability\n' || '' }}
         EOF
@@ -234,13 +234,13 @@ jobs:
       uses: actions/github-script@v6
       with:
         script: |
-          const qualityGateStatus = process.env.QUALITY_GATE === 'OK' ? '✅ PASSED' : 
+          const qualityGateStatus = process.env.QUALITY_GATE === 'OK' ? '✅ PASSED' :
                                    process.env.QUALITY_GATE === 'ERROR' ? '❌ FAILED' : '⚠️ UNKNOWN';
-          
+
           const comment = `## 🎯 SonarQube Analysis Results
-          
+
           **Quality Gate: ${qualityGateStatus}**
-          
+
           | Metric | Value |
           |--------|-------|
           | 🐛 Bugs | ${process.env.BUGS} |
@@ -248,10 +248,10 @@ jobs:
           | 👃 Code Smells | ${process.env.CODE_SMELLS} |
           | 📈 Coverage | ${process.env.COVERAGE}% |
           | 📋 Duplicated Lines | ${process.env.DUPLICATED_LINES}% |
-          
+
           [📊 View Full Report](${process.env.SONAR_URL})
           `;
-          
+
           github.rest.issues.createComment({
             issue_number: context.issue.number,
             owner: context.repo.owner,

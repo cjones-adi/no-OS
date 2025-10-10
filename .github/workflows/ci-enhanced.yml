@@ -55,11 +55,11 @@ jobs:
       run: |
         # Capture astyle output and git state
         echo "=== Running astyle check ===" > astyle_output.txt
-        
+
         # Count source files before running astyle
         TOTAL_SOURCE_FILES=$(find . -name "*.c" -o -name "*.h" 2>/dev/null | grep -v ".git" | grep -v "build/" | wc -l)
         echo "Total source files found: $TOTAL_SOURCE_FILES" >> astyle_output.txt
-        
+
         # Run astyle and capture detailed output
         if ./ci/run_build.sh >> astyle_output.txt 2>&1; then
           echo "astyle_failed=false" >> $GITHUB_ENV
@@ -68,11 +68,11 @@ jobs:
           echo "astyle_failed=true" >> $GITHUB_ENV
           echo "Astyle check FAILED" >> astyle_output.txt
         fi
-        
+
         # Check for files that were modified by astyle
         MODIFIED_FILES=$(git diff --name-only 2>/dev/null | grep -E "\.(c|h)$" | wc -l || echo "0")
         echo "Files modified by astyle: $MODIFIED_FILES" >> astyle_output.txt
-        
+
         # Show some example changes if any
         if [ "$MODIFIED_FILES" -gt 0 ]; then
           echo "=== Modified files ===" >> astyle_output.txt
@@ -85,15 +85,15 @@ jobs:
         if [ -f "astyle_output.txt" ]; then
           # Get total source files
           TOTAL_FILES=$(grep "Total source files found:" astyle_output.txt | grep -o '[0-9]*' || echo "0")
-          
+
           # Get files modified by astyle
           FILES_WITH_ISSUES=$(grep "Files modified by astyle:" astyle_output.txt | grep -o '[0-9]*' || echo "0")
-          
+
           # Fallback: count source files if not captured
           if [ "$TOTAL_FILES" = "0" ] || [ -z "$TOTAL_FILES" ]; then
             TOTAL_FILES=$(find . -name "*.c" -o -name "*.h" 2>/dev/null | grep -v ".git" | grep -v "build/" | wc -l || echo "0")
           fi
-          
+
           # Fallback: check git diff directly
           if [ "$FILES_WITH_ISSUES" = "0" ] || [ -z "$FILES_WITH_ISSUES" ]; then
             FILES_WITH_ISSUES=$(git diff --name-only 2>/dev/null | grep -E "\.(c|h)$" | wc -l || echo "0")
@@ -103,15 +103,15 @@ jobs:
           TOTAL_FILES=$(find . -name "*.c" -o -name "*.h" 2>/dev/null | grep -v ".git" | grep -v "build/" | wc -l || echo "0")
           FILES_WITH_ISSUES=$(git diff --name-only 2>/dev/null | grep -E "\.(c|h)$" | wc -l || echo "0")
         fi
-        
+
         # Clean the variables
         TOTAL_FILES=$(echo "$TOTAL_FILES" | tr -d '\n\r' | grep -o '^[0-9]*$' || echo "0")
         FILES_WITH_ISSUES=$(echo "$FILES_WITH_ISSUES" | tr -d '\n\r' | grep -o '^[0-9]*$' || echo "0")
-        
+
         # Ensure valid numbers
         TOTAL_FILES=${TOTAL_FILES:-0}
         FILES_WITH_ISSUES=${FILES_WITH_ISSUES:-0}
-        
+
         # Validate numbers are reasonable
         if [ "$TOTAL_FILES" -lt 0 ] || [ "$TOTAL_FILES" -gt 100000 ]; then
           TOTAL_FILES=0
@@ -119,14 +119,14 @@ jobs:
         if [ "$FILES_WITH_ISSUES" -lt 0 ] || [ "$FILES_WITH_ISSUES" -gt "$TOTAL_FILES" ]; then
           FILES_WITH_ISSUES=0
         fi
-        
+
         # Calculate files OK
         FILES_OK=$((TOTAL_FILES - FILES_WITH_ISSUES))
-        
+
         echo "TOTAL_FILES=$TOTAL_FILES" >> $GITHUB_ENV
         echo "FILES_WITH_ISSUES=$FILES_WITH_ISSUES" >> $GITHUB_ENV
         echo "FILES_OK=$FILES_OK" >> $GITHUB_ENV
-        
+
         # Debug output
         echo "Debug: TOTAL_FILES=$TOTAL_FILES, FILES_WITH_ISSUES=$FILES_WITH_ISSUES, FILES_OK=$FILES_OK"
 
@@ -141,17 +141,17 @@ jobs:
         else
           COMPLIANCE_RATE=$(( FILES_OK * 100 / TOTAL_FILES ))
         fi
-        
+
         cat >> $GITHUB_STEP_SUMMARY << EOF
         ## 🎨 Code Style Check Results
-        
+
         | Metric | Value |
         |--------|-------|
         | 📁 Total Files Checked | ${{ env.TOTAL_FILES }} |
         | ✅ Files Compliant | ${{ env.FILES_OK }} |
         | ❌ Files with Issues | ${{ env.FILES_WITH_ISSUES }} |
         | 📊 Compliance Rate | ${COMPLIANCE_RATE}% |
-        
+
         ### Status: ${{ env.astyle_failed == 'true' && '❌ Failed' || '✅ Passed' }}
         EOF
 
@@ -207,22 +207,22 @@ jobs:
           STYLE="0"
           PERFORMANCE="0"
         fi
-        
+
         # Clean the variables of any whitespace/newlines
         ERRORS=$(echo "$ERRORS" | tr -d '\n\r' | grep -o '[0-9]*' || echo "0")
         WARNINGS=$(echo "$WARNINGS" | tr -d '\n\r' | grep -o '[0-9]*' || echo "0")
         STYLE=$(echo "$STYLE" | tr -d '\n\r' | grep -o '[0-9]*' || echo "0")
         PERFORMANCE=$(echo "$PERFORMANCE" | tr -d '\n\r' | grep -o '[0-9]*' || echo "0")
-        
+
         # Ensure we have valid numbers
         ERRORS=${ERRORS:-0}
         WARNINGS=${WARNINGS:-0}
         STYLE=${STYLE:-0}
         PERFORMANCE=${PERFORMANCE:-0}
-        
+
         # Calculate total safely
         TOTAL_ISSUES=$((ERRORS + WARNINGS + STYLE + PERFORMANCE))
-        
+
         echo "CPPCHECK_ERRORS=$ERRORS" >> $GITHUB_ENV
         echo "CPPCHECK_WARNINGS=$WARNINGS" >> $GITHUB_ENV
         echo "CPPCHECK_STYLE=$STYLE" >> $GITHUB_ENV
@@ -234,7 +234,7 @@ jobs:
       run: |
         cat >> $GITHUB_STEP_SUMMARY << 'EOF'
         ## 🔍 Static Analysis Results
-        
+
         | Issue Type | Count |
         |------------|-------|
         | 🚨 Errors | ${{ env.CPPCHECK_ERRORS }} |
@@ -242,9 +242,9 @@ jobs:
         | 🎯 Style Issues | ${{ env.CPPCHECK_STYLE }} |
         | ⚡ Performance Issues | ${{ env.CPPCHECK_PERFORMANCE }} |
         | **📊 Total Issues** | **${{ env.CPPCHECK_TOTAL }}** |
-        
+
         ### Status: ${{ env.cppcheck_failed == 'true' && '❌ Failed' || (env.CPPCHECK_ERRORS > 0 && '⚠️ Has Errors' || '✅ Passed') }}
-        
+
         ${{ env.CPPCHECK_TOTAL > 0 && '#### 📋 Issue Breakdown\n```\nErrors: High priority issues that should be fixed\nWarnings: Potential problems worth investigating\nStyle: Code style improvements\nPerformance: Optimization suggestions\n```' || '🎉 No issues found!' }}
         EOF
 
@@ -271,16 +271,16 @@ jobs:
     - name: Build drivers with metrics
       run: |
         START_TIME=$(date +%s)
-        
+
         # Capture build output with detailed logging
         echo "=== Starting drivers build ===" > build_output.txt
         echo "Build started at: $(date)" >> build_output.txt
-        
+
         # Count total projects to build
         TOTAL_PROJECTS=$(find projects -maxdepth 1 -type d 2>/dev/null | wc -l || echo "1")
         TOTAL_PROJECTS=$((TOTAL_PROJECTS - 1)) # Subtract the projects directory itself
         echo "Total projects found: $TOTAL_PROJECTS" >> build_output.txt
-        
+
         # Run the build and capture result
         if ./ci/run_build.sh >> build_output.txt 2>&1; then
           BUILD_RESULT=0
@@ -291,13 +291,13 @@ jobs:
           echo "BUILD_STATUS=FAILED" >> build_output.txt
           echo "Build failed with errors" >> build_output.txt
         fi
-        
+
         END_TIME=$(date +%s)
         BUILD_TIME=$((END_TIME - START_TIME))
-        
+
         echo "Build completed at: $(date)" >> build_output.txt
         echo "Total build time: ${BUILD_TIME}s" >> build_output.txt
-        
+
         echo "BUILD_TIME=$BUILD_TIME" >> $GITHUB_ENV
         echo "BUILD_RESULT=$BUILD_RESULT" >> $GITHUB_ENV
 
@@ -307,23 +307,23 @@ jobs:
         if [ -f "build_output.txt" ]; then
           # Get total projects
           TOTAL_PROJECTS=$(grep "Total projects found:" build_output.txt | grep -o '[0-9]*' || echo "0")
-          
+
           # Get build status
           BUILD_STATUS=$(grep "BUILD_STATUS=" build_output.txt | cut -d'=' -f2 || echo "UNKNOWN")
-          
+
           # Determine successful vs failed builds based on overall result
           if [ "$BUILD_STATUS" = "SUCCESS" ] || [ "${{ env.BUILD_RESULT }}" = "0" ]; then
             SUCCESSFUL_BUILDS="$TOTAL_PROJECTS"
             FAILED_BUILDS="0"
           elif [ "$BUILD_STATUS" = "FAILED" ] || [ "${{ env.BUILD_RESULT }}" != "0" ]; then
-            SUCCESSFUL_BUILDS="0" 
+            SUCCESSFUL_BUILDS="0"
             FAILED_BUILDS="$TOTAL_PROJECTS"
           else
             # Unknown status - be conservative
             SUCCESSFUL_BUILDS="0"
             FAILED_BUILDS="0"
           fi
-          
+
           # Fallback: count projects if not captured
           if [ "$TOTAL_PROJECTS" = "0" ] || [ -z "$TOTAL_PROJECTS" ]; then
             TOTAL_PROJECTS=$(find projects -maxdepth 1 -type d 2>/dev/null | wc -l || echo "1")
@@ -333,27 +333,27 @@ jobs:
           # If no output file, count projects manually
           TOTAL_PROJECTS=$(find projects -maxdepth 1 -type d 2>/dev/null | wc -l || echo "1")
           TOTAL_PROJECTS=$((TOTAL_PROJECTS - 1))
-          
+
           # Use build result from environment
           if [ "${{ env.BUILD_RESULT }}" = "0" ]; then
             SUCCESSFUL_BUILDS="$TOTAL_PROJECTS"
             FAILED_BUILDS="0"
           else
             SUCCESSFUL_BUILDS="0"
-            FAILED_BUILDS="$TOTAL_PROJECTS" 
+            FAILED_BUILDS="$TOTAL_PROJECTS"
           fi
         fi
-        
+
         # Clean the variables
         TOTAL_PROJECTS=$(echo "$TOTAL_PROJECTS" | tr -d '\n\r' | grep -o '^[0-9]*$' || echo "0")
         SUCCESSFUL_BUILDS=$(echo "$SUCCESSFUL_BUILDS" | tr -d '\n\r' | grep -o '^[0-9]*$' || echo "0")
         FAILED_BUILDS=$(echo "$FAILED_BUILDS" | tr -d '\n\r' | grep -o '^[0-9]*$' || echo "0")
-        
+
         # Ensure valid numbers
         TOTAL_PROJECTS=${TOTAL_PROJECTS:-0}
         SUCCESSFUL_BUILDS=${SUCCESSFUL_BUILDS:-0}
         FAILED_BUILDS=${FAILED_BUILDS:-0}
-        
+
         # Validate numbers are reasonable
         if [ "$TOTAL_PROJECTS" -lt 0 ] || [ "$TOTAL_PROJECTS" -gt 1000 ]; then
           TOTAL_PROJECTS=0
@@ -364,11 +364,11 @@ jobs:
         if [ "$FAILED_BUILDS" -lt 0 ] || [ "$FAILED_BUILDS" -gt "$TOTAL_PROJECTS" ]; then
           FAILED_BUILDS=0
         fi
-        
+
         echo "SUCCESSFUL_BUILDS=$SUCCESSFUL_BUILDS" >> $GITHUB_ENV
         echo "FAILED_BUILDS=$FAILED_BUILDS" >> $GITHUB_ENV
         echo "TOTAL_PROJECTS=$TOTAL_PROJECTS" >> $GITHUB_ENV
-        
+
         # Debug output
         echo "Debug: TOTAL_PROJECTS=$TOTAL_PROJECTS, SUCCESSFUL_BUILDS=$SUCCESSFUL_BUILDS, FAILED_BUILDS=$FAILED_BUILDS, BUILD_STATUS=$BUILD_STATUS"
 
@@ -383,10 +383,10 @@ jobs:
         else
           SUCCESS_RATE=$(( SUCCESSFUL_BUILDS * 100 / TOTAL_PROJECTS ))
         fi
-        
+
         cat >> $GITHUB_STEP_SUMMARY << EOF
         ## 🔨 Build Results Dashboard
-        
+
         ### 📊 Build Metrics
         | Metric | Value |
         |--------|-------|
@@ -395,9 +395,9 @@ jobs:
         | ✅ Successful Builds | ${{ env.SUCCESSFUL_BUILDS }} |
         | ❌ Failed Builds | ${{ env.FAILED_BUILDS }} |
         | 📈 Success Rate | ${SUCCESS_RATE}% |
-        
+
         ### Status: ${{ env.BUILD_RESULT == '0' && '✅ All Builds Passed' || '❌ Build Failures Detected' }}
-        
+
         ${{ env.BUILD_TIME > 300 && '⚠️ **Build time exceeded 5 minutes. Consider optimization.**' || '' }}
         EOF
 
@@ -428,49 +428,49 @@ jobs:
     - name: Run unit tests and generate coverage
       run: |
         set -e
-        
+
         # Initialize counters
         TOTAL_TESTS=0
         PASSED_TESTS=0
         FAILED_TESTS=0
         TOTAL_COVERAGE=0
         TEST_DIRS_COUNT=0
-        
+
         # Find all test directories containing project.yml files
         test_dirs=$(find tests -name "project.yml" -type f -exec dirname {} \;)
-        
+
         if [ -z "$test_dirs" ]; then
           echo "No test directories found with project.yml files"
           exit 1
         fi
-        
+
         for test_dir in $test_dirs; do
           echo "Running tests in: $test_dir"
           cd "$test_dir"
-          
+
           # Run tests with coverage
           ceedling gcov:all > test_output.txt 2>&1 || true
-          
+
           # Parse test results
           DIR_TESTS=$(grep -c "PASS\|FAIL" test_output.txt || echo "0")
           DIR_PASSED=$(grep -c "PASS" test_output.txt || echo "0")
           DIR_FAILED=$(grep -c "FAIL" test_output.txt || echo "0")
-          
+
           TOTAL_TESTS=$((TOTAL_TESTS + DIR_TESTS))
           PASSED_TESTS=$((PASSED_TESTS + DIR_PASSED))
           FAILED_TESTS=$((FAILED_TESTS + DIR_FAILED))
           TEST_DIRS_COUNT=$((TEST_DIRS_COUNT + 1))
-          
+
           cd - > /dev/null
         done
-        
+
         # Calculate overall coverage (simplified)
         if [ $TOTAL_TESTS -gt 0 ]; then
           TEST_SUCCESS_RATE=$((PASSED_TESTS * 100 / TOTAL_TESTS))
         else
           TEST_SUCCESS_RATE=0
         fi
-        
+
         echo "TOTAL_TESTS=$TOTAL_TESTS" >> $GITHUB_ENV
         echo "PASSED_TESTS=$PASSED_TESTS" >> $GITHUB_ENV
         echo "FAILED_TESTS=$FAILED_TESTS" >> $GITHUB_ENV
@@ -482,7 +482,7 @@ jobs:
       run: |
         cat >> $GITHUB_STEP_SUMMARY << 'EOF'
         ## 🧪 Unit Tests & Coverage Dashboard
-        
+
         ### 📊 Test Metrics
         | Metric | Value |
         |--------|-------|
@@ -491,9 +491,9 @@ jobs:
         | 🟢 Passed | ${{ env.PASSED_TESTS }} |
         | 🔴 Failed | ${{ env.FAILED_TESTS }} |
         | 📈 Success Rate | ${{ env.TEST_SUCCESS_RATE }}% |
-        
+
         ### Status: ${{ env.FAILED_TESTS == '0' && '✅ All Tests Passed' || '❌ Test Failures Detected' }}
-        
+
         ${{ env.TEST_SUCCESS_RATE < 90 && '⚠️ **Test success rate below 90%. Consider improving test reliability.**' || '' }}
         ${{ env.TOTAL_TESTS == '0' && '⚠️ **No tests found. Consider adding unit tests.**' || '' }}
         EOF
@@ -514,7 +514,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [astyle, cppcheck, drivers, unit-tests]
     if: always()
-    
+
     steps:
     - name: Calculate Quality Score
       id: quality-score
@@ -524,29 +524,29 @@ jobs:
         CPPCHECK_SCORE=0
         DRIVERS_SCORE=0
         TESTS_SCORE=0
-        
+
         # Check each job result safely
         if [ "${{ needs.astyle.result }}" = "success" ]; then
           ASTYLE_SCORE=25
         fi
-        
+
         if [ "${{ needs.cppcheck.result }}" = "success" ]; then
           CPPCHECK_SCORE=25
         fi
-        
+
         if [ "${{ needs.drivers.result }}" = "success" ]; then
           DRIVERS_SCORE=25
         fi
-        
+
         if [ "${{ needs.unit-tests.result }}" = "success" ]; then
           TESTS_SCORE=25
         fi
-        
+
         # Calculate total score safely
         TOTAL_SCORE=$((ASTYLE_SCORE + CPPCHECK_SCORE + DRIVERS_SCORE + TESTS_SCORE))
-        
+
         echo "TOTAL_SCORE=$TOTAL_SCORE" >> $GITHUB_ENV
-        
+
         # Determine overall status message
         if [ $TOTAL_SCORE -eq 100 ]; then
           echo "QUALITY_MESSAGE=🎉 **Excellent! All quality gates passed.**" >> $GITHUB_ENV
@@ -560,23 +560,23 @@ jobs:
       run: |
         cat >> $GITHUB_STEP_SUMMARY << 'EOF'
         # 📊 Overall Project Health Dashboard
-        
+
         ## 🎯 Quality Gates
-        
+
         | Gate | Status | Details |
         |------|--------|---------|
         | 🎨 Code Style | ${{ needs.astyle.result == 'success' && '✅ PASS' || '❌ FAIL' }} | Automated formatting compliance |
         | 🔍 Static Analysis | ${{ needs.cppcheck.result == 'success' && '✅ PASS' || '❌ FAIL' }} | Code quality checks |
         | 🔨 Build | ${{ needs.drivers.result == 'success' && '✅ PASS' || '❌ FAIL' }} | Compilation success |
         | 🧪 Tests | ${{ needs.unit-tests.result == 'success' && '✅ PASS' || '❌ FAIL' }} | Unit test execution |
-        
+
         ## 📈 Trend Indicators
-        
+
         > 💡 **Tip**: Click on individual job summaries above for detailed metrics
-        
+
         ### 🏆 Quality Score
         ${{ env.TOTAL_SCORE }}/100
-        
+
         ${{ env.QUALITY_MESSAGE }}
         EOF
 
@@ -614,11 +614,11 @@ jobs:
     - name: Build documentation with metrics
       run: |
         START_TIME=$(date +%s)
-        
+
         # Capture documentation build output with detailed logging
         echo "=== Starting documentation build ===" > doc_output.txt
         echo "Build started at: $(date)" >> doc_output.txt
-        
+
         # Run the build and capture result
         if ./ci/run_build.sh >> doc_output.txt 2>&1; then
           DOC_RESULT=0
@@ -629,14 +629,14 @@ jobs:
           echo "DOC_STATUS=FAILED" >> doc_output.txt
           echo "Documentation build failed with errors" >> doc_output.txt
         fi
-        
+
         END_TIME=$(date +%s)
         DOC_BUILD_TIME=$((END_TIME - START_TIME))
-        
+
         # Count documentation files with multiple possible paths
         DOXYGEN_FILES=0
         SPHINX_FILES=0
-        
+
         # Check various possible Doxygen output locations
         for doxy_path in "doc/doxygen/html" "doc/doxygen/build/html" "build/doc/doxygen/html"; do
           if [ -d "$doxy_path" ]; then
@@ -645,8 +645,8 @@ jobs:
             echo "Found $DOXYGEN_COUNT Doxygen files in $doxy_path" >> doc_output.txt
           fi
         done
-        
-        # Check various possible Sphinx output locations  
+
+        # Check various possible Sphinx output locations
         for sphinx_path in "doc/sphinx/_build" "doc/sphinx/_build/html" "doc/sphinx/build/html" "build/doc/sphinx/html"; do
           if [ -d "$sphinx_path" ]; then
             SPHINX_COUNT=$(find "$sphinx_path" -name "*.html" 2>/dev/null | wc -l || echo "0")
@@ -654,16 +654,16 @@ jobs:
             echo "Found $SPHINX_COUNT Sphinx files in $sphinx_path" >> doc_output.txt
           fi
         done
-        
+
         # Calculate total pages
         TOTAL_PAGES=$((DOXYGEN_FILES + SPHINX_FILES))
-        
+
         echo "Build completed at: $(date)" >> doc_output.txt
         echo "Total build time: ${DOC_BUILD_TIME}s" >> doc_output.txt
         echo "Doxygen pages: $DOXYGEN_FILES" >> doc_output.txt
         echo "Sphinx pages: $SPHINX_FILES" >> doc_output.txt
         echo "Total pages: $TOTAL_PAGES" >> doc_output.txt
-        
+
         echo "DOC_BUILD_TIME=$DOC_BUILD_TIME" >> $GITHUB_ENV
         echo "DOC_RESULT=$DOC_RESULT" >> $GITHUB_ENV
         echo "DOXYGEN_FILES=$DOXYGEN_FILES" >> $GITHUB_ENV
@@ -675,15 +675,15 @@ jobs:
       run: |
         cat >> $GITHUB_STEP_SUMMARY << 'EOF'
         ## 📚 Documentation Build Results
-        
+
         | Metric | Value |
         |--------|-------|
         | ⏱️ Build Time | ${{ env.DOC_BUILD_TIME }}s |
         | 📄 Doxygen Pages | ${{ env.DOXYGEN_FILES }} |
         | 📖 Sphinx Pages | ${{ env.SPHINX_FILES }} |
         | 📊 Total Pages | ${{ env.TOTAL_PAGES }} |
-        
+
         ### Status: ${{ env.DOC_RESULT == '0' && '✅ Documentation Built Successfully' || '❌ Documentation Build Failed' }}
-        
+
         ${{ env.UPDATE_GH_DOCS == '1' && '🚀 **Documentation will be deployed to GitHub Pages**' || '📝 **Documentation built for preview**' }}
         EOF
