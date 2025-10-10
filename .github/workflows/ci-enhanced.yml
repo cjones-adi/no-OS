@@ -57,9 +57,24 @@ jobs:
 
     - name: Parse astyle results
       run: |
-        # Count total files checked and files with issues
-        TOTAL_FILES=$(grep -c "Formatted" astyle_output.txt || echo "0")
-        FILES_WITH_ISSUES=$(grep -c "formatted" astyle_output.txt || echo "0")
+        # Count total files checked and files with issues - with safe parsing
+        if [ -f "astyle_output.txt" ]; then
+          TOTAL_FILES=$(grep -c "Formatted" astyle_output.txt 2>/dev/null || echo "0")
+          FILES_WITH_ISSUES=$(grep -c "formatted" astyle_output.txt 2>/dev/null || echo "0")
+        else
+          TOTAL_FILES="0"
+          FILES_WITH_ISSUES="0"
+        fi
+        
+        # Clean the variables of any whitespace/newlines
+        TOTAL_FILES=$(echo "$TOTAL_FILES" | tr -d '\n\r' | grep -o '[0-9]*' || echo "0")
+        FILES_WITH_ISSUES=$(echo "$FILES_WITH_ISSUES" | tr -d '\n\r' | grep -o '[0-9]*' || echo "0")
+        
+        # Ensure we have valid numbers
+        TOTAL_FILES=${TOTAL_FILES:-0}
+        FILES_WITH_ISSUES=${FILES_WITH_ISSUES:-0}
+        
+        # Calculate files OK safely
         FILES_OK=$((TOTAL_FILES - FILES_WITH_ISSUES))
         
         echo "TOTAL_FILES=$TOTAL_FILES" >> $GITHUB_ENV
@@ -131,11 +146,32 @@ jobs:
 
     - name: Parse cppcheck results
       run: |
-        # Parse different types of issues
-        ERRORS=$(grep -c ": error:" cppcheck_output.txt || echo "0")
-        WARNINGS=$(grep -c ": warning:" cppcheck_output.txt || echo "0")
-        STYLE=$(grep -c ": style:" cppcheck_output.txt || echo "0")
-        PERFORMANCE=$(grep -c ": performance:" cppcheck_output.txt || echo "0")
+        # Parse different types of issues with safe parsing
+        if [ -f "cppcheck_output.txt" ]; then
+          ERRORS=$(grep -c ": error:" cppcheck_output.txt 2>/dev/null || echo "0")
+          WARNINGS=$(grep -c ": warning:" cppcheck_output.txt 2>/dev/null || echo "0")
+          STYLE=$(grep -c ": style:" cppcheck_output.txt 2>/dev/null || echo "0")
+          PERFORMANCE=$(grep -c ": performance:" cppcheck_output.txt 2>/dev/null || echo "0")
+        else
+          ERRORS="0"
+          WARNINGS="0"
+          STYLE="0"
+          PERFORMANCE="0"
+        fi
+        
+        # Clean the variables of any whitespace/newlines
+        ERRORS=$(echo "$ERRORS" | tr -d '\n\r' | grep -o '[0-9]*' || echo "0")
+        WARNINGS=$(echo "$WARNINGS" | tr -d '\n\r' | grep -o '[0-9]*' || echo "0")
+        STYLE=$(echo "$STYLE" | tr -d '\n\r' | grep -o '[0-9]*' || echo "0")
+        PERFORMANCE=$(echo "$PERFORMANCE" | tr -d '\n\r' | grep -o '[0-9]*' || echo "0")
+        
+        # Ensure we have valid numbers
+        ERRORS=${ERRORS:-0}
+        WARNINGS=${WARNINGS:-0}
+        STYLE=${STYLE:-0}
+        PERFORMANCE=${PERFORMANCE:-0}
+        
+        # Calculate total safely
         TOTAL_ISSUES=$((ERRORS + WARNINGS + STYLE + PERFORMANCE))
         
         echo "CPPCHECK_ERRORS=$ERRORS" >> $GITHUB_ENV
@@ -196,11 +232,32 @@ jobs:
 
     - name: Parse build results
       run: |
-        # Count successful and failed builds
-        SUCCESSFUL_BUILDS=$(grep -c "Build successful\|BUILD SUCCESSFUL" build_output.txt || echo "0")
-        FAILED_BUILDS=$(grep -c "Build failed\|BUILD FAILED\|Error\|error:" build_output.txt || echo "0")
-        TOTAL_PROJECTS=$(find projects -maxdepth 1 -type d | wc -l)
-        TOTAL_PROJECTS=$((TOTAL_PROJECTS - 1)) # Subtract the projects directory itself
+        # Count successful and failed builds with safe parsing
+        if [ -f "build_output.txt" ]; then
+          SUCCESSFUL_BUILDS=$(grep -c "Build successful\|BUILD SUCCESSFUL" build_output.txt 2>/dev/null || echo "0")
+          FAILED_BUILDS=$(grep -c "Build failed\|BUILD FAILED\|Error\|error:" build_output.txt 2>/dev/null || echo "0")
+        else
+          SUCCESSFUL_BUILDS="0"
+          FAILED_BUILDS="0"
+        fi
+        
+        # Count total projects safely
+        if [ -d "projects" ]; then
+          TOTAL_PROJECTS=$(find projects -maxdepth 1 -type d 2>/dev/null | wc -l || echo "1")
+          TOTAL_PROJECTS=$((TOTAL_PROJECTS - 1)) # Subtract the projects directory itself
+        else
+          TOTAL_PROJECTS="0"
+        fi
+        
+        # Clean the variables of any whitespace/newlines
+        SUCCESSFUL_BUILDS=$(echo "$SUCCESSFUL_BUILDS" | tr -d '\n\r' | grep -o '[0-9]*' || echo "0")
+        FAILED_BUILDS=$(echo "$FAILED_BUILDS" | tr -d '\n\r' | grep -o '[0-9]*' || echo "0")
+        TOTAL_PROJECTS=$(echo "$TOTAL_PROJECTS" | tr -d '\n\r' | grep -o '[0-9]*' || echo "0")
+        
+        # Ensure we have valid numbers
+        SUCCESSFUL_BUILDS=${SUCCESSFUL_BUILDS:-0}
+        FAILED_BUILDS=${FAILED_BUILDS:-0}
+        TOTAL_PROJECTS=${TOTAL_PROJECTS:-0}
         
         echo "SUCCESSFUL_BUILDS=$SUCCESSFUL_BUILDS" >> $GITHUB_ENV
         echo "FAILED_BUILDS=$FAILED_BUILDS" >> $GITHUB_ENV
@@ -353,12 +410,30 @@ jobs:
     - name: Calculate Quality Score
       id: quality-score
       run: |
-        # Calculate quality score based on job results
-        ASTYLE_SCORE=${{ needs.astyle.result == 'success' && '25' || '0' }}
-        CPPCHECK_SCORE=${{ needs.cppcheck.result == 'success' && '25' || '0' }}
-        DRIVERS_SCORE=${{ needs.drivers.result == 'success' && '25' || '0' }}
-        TESTS_SCORE=${{ needs.unit-tests.result == 'success' && '25' || '0' }}
+        # Calculate quality score based on job results - with safe arithmetic
+        ASTYLE_SCORE=0
+        CPPCHECK_SCORE=0
+        DRIVERS_SCORE=0
+        TESTS_SCORE=0
         
+        # Check each job result safely
+        if [ "${{ needs.astyle.result }}" = "success" ]; then
+          ASTYLE_SCORE=25
+        fi
+        
+        if [ "${{ needs.cppcheck.result }}" = "success" ]; then
+          CPPCHECK_SCORE=25
+        fi
+        
+        if [ "${{ needs.drivers.result }}" = "success" ]; then
+          DRIVERS_SCORE=25
+        fi
+        
+        if [ "${{ needs.unit-tests.result }}" = "success" ]; then
+          TESTS_SCORE=25
+        fi
+        
+        # Calculate total score safely
         TOTAL_SCORE=$((ASTYLE_SCORE + CPPCHECK_SCORE + DRIVERS_SCORE + TESTS_SCORE))
         
         echo "TOTAL_SCORE=$TOTAL_SCORE" >> $GITHUB_ENV
