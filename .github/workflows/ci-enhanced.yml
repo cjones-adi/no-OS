@@ -271,46 +271,106 @@ jobs:
     - name: Build drivers with metrics
       run: |
         START_TIME=$(date +%s)
-        ./ci/run_build.sh > build_output.txt 2>&1
-        BUILD_RESULT=$?
+        
+        # Capture build output with detailed logging
+        echo "=== Starting drivers build ===" > build_output.txt
+        echo "Build started at: $(date)" >> build_output.txt
+        
+        # Count total projects to build
+        TOTAL_PROJECTS=$(find projects -maxdepth 1 -type d 2>/dev/null | wc -l || echo "1")
+        TOTAL_PROJECTS=$((TOTAL_PROJECTS - 1)) # Subtract the projects directory itself
+        echo "Total projects found: $TOTAL_PROJECTS" >> build_output.txt
+        
+        # Run the build and capture result
+        if ./ci/run_build.sh >> build_output.txt 2>&1; then
+          BUILD_RESULT=0
+          echo "BUILD_STATUS=SUCCESS" >> build_output.txt
+          echo "All builds completed successfully" >> build_output.txt
+        else
+          BUILD_RESULT=1
+          echo "BUILD_STATUS=FAILED" >> build_output.txt
+          echo "Build failed with errors" >> build_output.txt
+        fi
+        
         END_TIME=$(date +%s)
         BUILD_TIME=$((END_TIME - START_TIME))
+        
+        echo "Build completed at: $(date)" >> build_output.txt
+        echo "Total build time: ${BUILD_TIME}s" >> build_output.txt
         
         echo "BUILD_TIME=$BUILD_TIME" >> $GITHUB_ENV
         echo "BUILD_RESULT=$BUILD_RESULT" >> $GITHUB_ENV
 
     - name: Parse build results
       run: |
-        # Count successful and failed builds with safe parsing
+        # Parse build results from our detailed output
         if [ -f "build_output.txt" ]; then
-          SUCCESSFUL_BUILDS=$(grep -c "Build successful\|BUILD SUCCESSFUL" build_output.txt 2>/dev/null || echo "0")
-          FAILED_BUILDS=$(grep -c "Build failed\|BUILD FAILED\|Error\|error:" build_output.txt 2>/dev/null || echo "0")
+          # Get total projects
+          TOTAL_PROJECTS=$(grep "Total projects found:" build_output.txt | grep -o '[0-9]*' || echo "0")
+          
+          # Get build status
+          BUILD_STATUS=$(grep "BUILD_STATUS=" build_output.txt | cut -d'=' -f2 || echo "UNKNOWN")
+          
+          # Determine successful vs failed builds based on overall result
+          if [ "$BUILD_STATUS" = "SUCCESS" ] || [ "${{ env.BUILD_RESULT }}" = "0" ]; then
+            SUCCESSFUL_BUILDS="$TOTAL_PROJECTS"
+            FAILED_BUILDS="0"
+          elif [ "$BUILD_STATUS" = "FAILED" ] || [ "${{ env.BUILD_RESULT }}" != "0" ]; then
+            SUCCESSFUL_BUILDS="0" 
+            FAILED_BUILDS="$TOTAL_PROJECTS"
+          else
+            # Unknown status - be conservative
+            SUCCESSFUL_BUILDS="0"
+            FAILED_BUILDS="0"
+          fi
+          
+          # Fallback: count projects if not captured
+          if [ "$TOTAL_PROJECTS" = "0" ] || [ -z "$TOTAL_PROJECTS" ]; then
+            TOTAL_PROJECTS=$(find projects -maxdepth 1 -type d 2>/dev/null | wc -l || echo "1")
+            TOTAL_PROJECTS=$((TOTAL_PROJECTS - 1))
+          fi
         else
-          SUCCESSFUL_BUILDS="0"
-          FAILED_BUILDS="0"
-        fi
-        
-        # Count total projects safely
-        if [ -d "projects" ]; then
+          # If no output file, count projects manually
           TOTAL_PROJECTS=$(find projects -maxdepth 1 -type d 2>/dev/null | wc -l || echo "1")
-          TOTAL_PROJECTS=$((TOTAL_PROJECTS - 1)) # Subtract the projects directory itself
-        else
-          TOTAL_PROJECTS="0"
+          TOTAL_PROJECTS=$((TOTAL_PROJECTS - 1))
+          
+          # Use build result from environment
+          if [ "${{ env.BUILD_RESULT }}" = "0" ]; then
+            SUCCESSFUL_BUILDS="$TOTAL_PROJECTS"
+            FAILED_BUILDS="0"
+          else
+            SUCCESSFUL_BUILDS="0"
+            FAILED_BUILDS="$TOTAL_PROJECTS" 
+          fi
         fi
         
-        # Clean the variables of any whitespace/newlines
-        SUCCESSFUL_BUILDS=$(echo "$SUCCESSFUL_BUILDS" | tr -d '\n\r' | grep -o '[0-9]*' || echo "0")
-        FAILED_BUILDS=$(echo "$FAILED_BUILDS" | tr -d '\n\r' | grep -o '[0-9]*' || echo "0")
-        TOTAL_PROJECTS=$(echo "$TOTAL_PROJECTS" | tr -d '\n\r' | grep -o '[0-9]*' || echo "0")
+        # Clean the variables
+        TOTAL_PROJECTS=$(echo "$TOTAL_PROJECTS" | tr -d '\n\r' | grep -o '^[0-9]*$' || echo "0")
+        SUCCESSFUL_BUILDS=$(echo "$SUCCESSFUL_BUILDS" | tr -d '\n\r' | grep -o '^[0-9]*$' || echo "0")
+        FAILED_BUILDS=$(echo "$FAILED_BUILDS" | tr -d '\n\r' | grep -o '^[0-9]*$' || echo "0")
         
-        # Ensure we have valid numbers
+        # Ensure valid numbers
+        TOTAL_PROJECTS=${TOTAL_PROJECTS:-0}
         SUCCESSFUL_BUILDS=${SUCCESSFUL_BUILDS:-0}
         FAILED_BUILDS=${FAILED_BUILDS:-0}
-        TOTAL_PROJECTS=${TOTAL_PROJECTS:-0}
+        
+        # Validate numbers are reasonable
+        if [ "$TOTAL_PROJECTS" -lt 0 ] || [ "$TOTAL_PROJECTS" -gt 1000 ]; then
+          TOTAL_PROJECTS=0
+        fi
+        if [ "$SUCCESSFUL_BUILDS" -lt 0 ] || [ "$SUCCESSFUL_BUILDS" -gt "$TOTAL_PROJECTS" ]; then
+          SUCCESSFUL_BUILDS=0
+        fi
+        if [ "$FAILED_BUILDS" -lt 0 ] || [ "$FAILED_BUILDS" -gt "$TOTAL_PROJECTS" ]; then
+          FAILED_BUILDS=0
+        fi
         
         echo "SUCCESSFUL_BUILDS=$SUCCESSFUL_BUILDS" >> $GITHUB_ENV
         echo "FAILED_BUILDS=$FAILED_BUILDS" >> $GITHUB_ENV
         echo "TOTAL_PROJECTS=$TOTAL_PROJECTS" >> $GITHUB_ENV
+        
+        # Debug output
+        echo "Debug: TOTAL_PROJECTS=$TOTAL_PROJECTS, SUCCESSFUL_BUILDS=$SUCCESSFUL_BUILDS, FAILED_BUILDS=$FAILED_BUILDS, BUILD_STATUS=$BUILD_STATUS"
 
     - name: Create Job Summary
       if: always()
