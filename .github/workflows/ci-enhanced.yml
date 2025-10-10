@@ -242,7 +242,7 @@ jobs:
         echo "CPPCHECK_STYLE=$STYLE" >> $GITHUB_ENV
         echo "CPPCHECK_PERFORMANCE=$PERFORMANCE" >> $GITHUB_ENV
         echo "CPPCHECK_TOTAL=$TOTAL_ISSUES" >> $GITHUB_ENV
-        
+
         # Debug output
         echo "Debug: ERRORS=$ERRORS, WARNINGS=$WARNINGS, STYLE=$STYLE, PERFORMANCE=$PERFORMANCE, TOTAL=$TOTAL_ISSUES"
 
@@ -259,7 +259,7 @@ jobs:
         else
           STATUS_MSG="✅ Passed"
         fi
-        
+
         cat >> $GITHUB_STEP_SUMMARY << EOF
         ## 🔍 Static Analysis Results
 
@@ -273,15 +273,15 @@ jobs:
 
         ### Status: ${STATUS_MSG}
         EOF
-        
+
         # Add issue breakdown if there are issues
         if [ "${{ env.CPPCHECK_TOTAL }}" -gt 0 ]; then
           cat >> $GITHUB_STEP_SUMMARY << 'EOF'
 
         #### 📋 Issue Breakdown
-        
+
         - **Errors**: High priority issues that should be fixed immediately
-        - **Warnings**: Potential problems worth investigating  
+        - **Warnings**: Potential problems worth investigating
         - **Style**: Code style improvements for better readability
         - **Performance**: Optimization suggestions for better efficiency
         EOF
@@ -320,20 +320,25 @@ jobs:
         echo "=== Starting drivers build ===" > build_output.txt
         echo "Build started at: $(date)" >> build_output.txt
 
-        # Count total projects to build
-        TOTAL_PROJECTS=$(find projects -maxdepth 1 -type d 2>/dev/null | wc -l || echo "1")
-        TOTAL_PROJECTS=$((TOTAL_PROJECTS - 1)) # Subtract the projects directory itself
-        echo "Total projects found: $TOTAL_PROJECTS" >> build_output.txt
+        # Count actual driver source files that will be compiled
+        # Use the same logic as the drivers Makefile
+        cd drivers
+        SKIPDIR="-path ./platform -prune -o -path ./axi_core -prune -o -path ./rf-transceiver/navassa -prune -o -path ./adc/ad9081 -prune -o -path ./rf-transceiver/madura -prune -o -path ./net/oa_tc6 -prune -o"
+        TOTAL_DRIVERS=$(find . $SKIPDIR -name '*.c' -print | wc -l || echo "0")
+        cd ..
+        
+        echo "Total driver files to compile: $TOTAL_DRIVERS" >> build_output.txt
+        echo "This matches the drivers/Makefile SRCS variable" >> build_output.txt
 
         # Run the build and capture result
         if ./ci/run_build.sh >> build_output.txt 2>&1; then
           BUILD_RESULT=0
           echo "BUILD_STATUS=SUCCESS" >> build_output.txt
-          echo "All builds completed successfully" >> build_output.txt
+          echo "All driver compilation completed successfully" >> build_output.txt
         else
           BUILD_RESULT=1
           echo "BUILD_STATUS=FAILED" >> build_output.txt
-          echo "Build failed with errors" >> build_output.txt
+          echo "Driver compilation failed with errors" >> build_output.txt
         fi
 
         END_TIME=$(date +%s)
@@ -341,6 +346,7 @@ jobs:
 
         echo "Build completed at: $(date)" >> build_output.txt
         echo "Total build time: ${BUILD_TIME}s" >> build_output.txt
+        echo "Driver files processed: $TOTAL_DRIVERS" >> build_output.txt
 
         echo "BUILD_TIME=$BUILD_TIME" >> $GITHUB_ENV
         echo "BUILD_RESULT=$BUILD_RESULT" >> $GITHUB_ENV
@@ -349,100 +355,106 @@ jobs:
       run: |
         # Parse build results from our detailed output
         if [ -f "build_output.txt" ]; then
-          # Get total projects
-          TOTAL_PROJECTS=$(grep "Total projects found:" build_output.txt | grep -o '[0-9]*' || echo "0")
+          # Get total driver files that were compiled
+          TOTAL_DRIVERS=$(grep "Total driver files to compile:" build_output.txt | grep -o '[0-9]*' || echo "0")
 
           # Get build status
           BUILD_STATUS=$(grep "BUILD_STATUS=" build_output.txt | cut -d'=' -f2 || echo "UNKNOWN")
 
           # Determine successful vs failed builds based on overall result
           if [ "$BUILD_STATUS" = "SUCCESS" ] || [ "${{ env.BUILD_RESULT }}" = "0" ]; then
-            SUCCESSFUL_BUILDS="$TOTAL_PROJECTS"
+            SUCCESSFUL_BUILDS="$TOTAL_DRIVERS"
             FAILED_BUILDS="0"
           elif [ "$BUILD_STATUS" = "FAILED" ] || [ "${{ env.BUILD_RESULT }}" != "0" ]; then
             SUCCESSFUL_BUILDS="0"
-            FAILED_BUILDS="$TOTAL_PROJECTS"
+            FAILED_BUILDS="$TOTAL_DRIVERS"
           else
             # Unknown status - be conservative
             SUCCESSFUL_BUILDS="0"
             FAILED_BUILDS="0"
           fi
 
-          # Fallback: count projects if not captured
-          if [ "$TOTAL_PROJECTS" = "0" ] || [ -z "$TOTAL_PROJECTS" ]; then
-            TOTAL_PROJECTS=$(find projects -maxdepth 1 -type d 2>/dev/null | wc -l || echo "1")
-            TOTAL_PROJECTS=$((TOTAL_PROJECTS - 1))
+          # Fallback: count driver files if not captured
+          if [ "$TOTAL_DRIVERS" = "0" ] || [ -z "$TOTAL_DRIVERS" ]; then
+            cd drivers 2>/dev/null || cd .
+            SKIPDIR="-path ./platform -prune -o -path ./axi_core -prune -o -path ./rf-transceiver/navassa -prune -o -path ./adc/ad9081 -prune -o -path ./rf-transceiver/madura -prune -o -path ./net/oa_tc6 -prune -o"
+            TOTAL_DRIVERS=$(find . $SKIPDIR -name '*.c' -print 2>/dev/null | wc -l || echo "0")
+            cd .. 2>/dev/null || true
           fi
         else
-          # If no output file, count projects manually
-          TOTAL_PROJECTS=$(find projects -maxdepth 1 -type d 2>/dev/null | wc -l || echo "1")
-          TOTAL_PROJECTS=$((TOTAL_PROJECTS - 1))
+          # If no output file, count driver files manually
+          cd drivers 2>/dev/null || cd .
+          SKIPDIR="-path ./platform -prune -o -path ./axi_core -prune -o -path ./rf-transceiver/navassa -prune -o -path ./adc/ad9081 -prune -o -path ./rf-transceiver/madura -prune -o -path ./net/oa_tc6 -prune -o"
+          TOTAL_DRIVERS=$(find . $SKIPDIR -name '*.c' -print 2>/dev/null | wc -l || echo "0")
+          cd .. 2>/dev/null || true
 
           # Use build result from environment
           if [ "${{ env.BUILD_RESULT }}" = "0" ]; then
-            SUCCESSFUL_BUILDS="$TOTAL_PROJECTS"
+            SUCCESSFUL_BUILDS="$TOTAL_DRIVERS"
             FAILED_BUILDS="0"
           else
             SUCCESSFUL_BUILDS="0"
-            FAILED_BUILDS="$TOTAL_PROJECTS"
+            FAILED_BUILDS="$TOTAL_DRIVERS"
           fi
         fi
 
         # Clean the variables
-        TOTAL_PROJECTS=$(echo "$TOTAL_PROJECTS" | tr -d '\n\r' | grep -o '^[0-9]*$' || echo "0")
+        TOTAL_DRIVERS=$(echo "$TOTAL_DRIVERS" | tr -d '\n\r' | grep -o '^[0-9]*$' || echo "0")
         SUCCESSFUL_BUILDS=$(echo "$SUCCESSFUL_BUILDS" | tr -d '\n\r' | grep -o '^[0-9]*$' || echo "0")
         FAILED_BUILDS=$(echo "$FAILED_BUILDS" | tr -d '\n\r' | grep -o '^[0-9]*$' || echo "0")
 
         # Ensure valid numbers
-        TOTAL_PROJECTS=${TOTAL_PROJECTS:-0}
+        TOTAL_DRIVERS=${TOTAL_DRIVERS:-0}
         SUCCESSFUL_BUILDS=${SUCCESSFUL_BUILDS:-0}
         FAILED_BUILDS=${FAILED_BUILDS:-0}
 
         # Validate numbers are reasonable
-        if [ "$TOTAL_PROJECTS" -lt 0 ] || [ "$TOTAL_PROJECTS" -gt 1000 ]; then
-          TOTAL_PROJECTS=0
+        if [ "$TOTAL_DRIVERS" -lt 0 ] || [ "$TOTAL_DRIVERS" -gt 1000 ]; then
+          TOTAL_DRIVERS=0
         fi
-        if [ "$SUCCESSFUL_BUILDS" -lt 0 ] || [ "$SUCCESSFUL_BUILDS" -gt "$TOTAL_PROJECTS" ]; then
+        if [ "$SUCCESSFUL_BUILDS" -lt 0 ] || [ "$SUCCESSFUL_BUILDS" -gt "$TOTAL_DRIVERS" ]; then
           SUCCESSFUL_BUILDS=0
         fi
-        if [ "$FAILED_BUILDS" -lt 0 ] || [ "$FAILED_BUILDS" -gt "$TOTAL_PROJECTS" ]; then
+        if [ "$FAILED_BUILDS" -lt 0 ] || [ "$FAILED_BUILDS" -gt "$TOTAL_DRIVERS" ]; then
           FAILED_BUILDS=0
         fi
 
         echo "SUCCESSFUL_BUILDS=$SUCCESSFUL_BUILDS" >> $GITHUB_ENV
         echo "FAILED_BUILDS=$FAILED_BUILDS" >> $GITHUB_ENV
-        echo "TOTAL_PROJECTS=$TOTAL_PROJECTS" >> $GITHUB_ENV
+        echo "TOTAL_DRIVERS=$TOTAL_DRIVERS" >> $GITHUB_ENV
 
         # Debug output
-        echo "Debug: TOTAL_PROJECTS=$TOTAL_PROJECTS, SUCCESSFUL_BUILDS=$SUCCESSFUL_BUILDS, FAILED_BUILDS=$FAILED_BUILDS, BUILD_STATUS=$BUILD_STATUS"
+        echo "Debug: TOTAL_DRIVERS=$TOTAL_DRIVERS, SUCCESSFUL_BUILDS=$SUCCESSFUL_BUILDS, FAILED_BUILDS=$FAILED_BUILDS, BUILD_STATUS=$BUILD_STATUS"
 
     - name: Create Job Summary
       if: always()
       run: |
         # Calculate success rate safely
-        TOTAL_PROJECTS="${{ env.TOTAL_PROJECTS }}"
+        TOTAL_DRIVERS="${{ env.TOTAL_DRIVERS }}"
         SUCCESSFUL_BUILDS="${{ env.SUCCESSFUL_BUILDS }}"
-        if [ "${TOTAL_PROJECTS:-0}" -eq 0 ]; then
+        if [ "${TOTAL_DRIVERS:-0}" -eq 0 ]; then
           SUCCESS_RATE="N/A"
         else
-          SUCCESS_RATE=$(( SUCCESSFUL_BUILDS * 100 / TOTAL_PROJECTS ))
+          SUCCESS_RATE=$(( SUCCESSFUL_BUILDS * 100 / TOTAL_DRIVERS ))
         fi
 
         cat >> $GITHUB_STEP_SUMMARY << EOF
-        ## 🔨 Build Results Dashboard
+        ## 🔨 Drivers Build Results
 
         ### 📊 Build Metrics
         | Metric | Value |
         |--------|-------|
         | ⏱️ Build Time | ${{ env.BUILD_TIME }}s |
-        | 🎯 Total Projects | ${{ env.TOTAL_PROJECTS }} |
-        | ✅ Successful Builds | ${{ env.SUCCESSFUL_BUILDS }} |
-        | ❌ Failed Builds | ${{ env.FAILED_BUILDS }} |
+        | 🎯 Total Driver Files | ${{ env.TOTAL_DRIVERS }} |
+        | ✅ Successfully Compiled | ${{ env.SUCCESSFUL_BUILDS }} |
+        | ❌ Failed to Compile | ${{ env.FAILED_BUILDS }} |
         | 📈 Success Rate | ${SUCCESS_RATE}% |
 
-        ### Status: ${{ env.BUILD_RESULT == '0' && '✅ All Builds Passed' || '❌ Build Failures Detected' }}
+        ### Status: ${{ env.BUILD_RESULT == '0' && '✅ All Drivers Compiled Successfully' || '❌ Driver Compilation Failed' }}
 
         ${{ env.BUILD_TIME > 300 && '⚠️ **Build time exceeded 5 minutes. Consider optimization.**' || '' }}
+        
+        > 💡 **Note**: This builds reusable driver components (${TOTAL_DRIVERS} .c files), not the 134 application projects in the \`projects/\` directory.
         EOF
 
   # Unit tests with coverage metrics
