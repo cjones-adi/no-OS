@@ -1,0 +1,223 @@
+name: SonarQube Analysis
+
+on:
+  push:
+    branches:
+      - main
+      - staging/*
+      - next_stable
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  sonarqube:
+    name: SonarQube Analysis
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Shallow clones should be disabled for better relevancy of analysis
+
+    - name: Setup Java
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+
+    - name: Install build dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential gcc-arm-none-eabi cppcheck gcovr
+
+    - name: Cache SonarQube packages
+      uses: actions/cache@v3
+      with:
+        path: ~/.sonar/cache
+        key: ${{ runner.os }}-sonar
+        restore-keys: ${{ runner.os }}-sonar
+
+    - name: Run cppcheck for SonarQube
+      run: |
+        mkdir -p sonar-reports
+        # Run cppcheck with XML output for SonarQube
+        cppcheck --enable=all --xml --xml-version=2 \
+          --output-file=sonar-reports/cppcheck-report.xml \
+          --project=drivers/ drivers/ 2>/dev/null || true
+
+    - name: Run tests with coverage
+      run: |
+        # Generate coverage reports for SonarQube
+        mkdir -p sonar-reports/coverage
+        
+        # Find and run all tests
+        test_dirs=$(find tests -name "project.yml" -type f -exec dirname {} \;)
+        for test_dir in $test_dirs; do
+          echo "Running tests in: $test_dir"
+          cd "$test_dir"
+          ceedling gcov:all || true
+          
+          # Convert coverage to SonarQube format
+          if [ -d "build/artifacts/gcov" ]; then
+            gcovr --xml --xml-pretty \
+              --output ../../sonar-reports/coverage/coverage-${test_dir##*/}.xml \
+              build/artifacts/gcov/ || true
+          fi
+          cd - > /dev/null
+        done
+
+    - name: Create sonar-project.properties
+      run: |
+        cat > sonar-project.properties << EOF
+        # Project identification
+        sonar.projectKey=${{ github.repository_owner }}_no-OS
+        sonar.organization=${{ github.repository_owner }}
+        sonar.projectName=no-OS
+        sonar.projectVersion=1.0
+        
+        # Source code
+        sonar.sources=drivers/,iio/,jesd204/,libraries/,network/,include/
+        sonar.tests=tests/
+        
+        # Language configuration
+        sonar.c.file.suffixes=.c,.h
+        sonar.cpp.file.suffixes=.cpp,.hpp,.cxx,.hxx
+        
+        # Coverage and test reports
+        sonar.coverageReportPaths=sonar-reports/coverage/*.xml
+        sonar.cxx.cppcheck.reportPaths=sonar-reports/cppcheck-report.xml
+        
+        # Exclusions
+        sonar.exclusions=**/build/**,**/libraries/**,**/tests/**/build/**
+        sonar.test.exclusions=**/build/**
+        
+        # Additional settings
+        sonar.sourceEncoding=UTF-8
+        sonar.analysis.mode=publish
+        EOF
+
+    - name: Run SonarQube Scan
+      uses: sonarqube-quality-gate-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      with:
+        scannerVersion: latest
+
+    - name: Get SonarQube Analysis Results
+      id: sonar-analysis
+      run: |
+        # Wait for analysis to complete and get results
+        sleep 30
+        
+        # Use SonarQube API to get metrics (requires SONAR_TOKEN)
+        PROJECT_KEY="${{ github.repository_owner }}_no-OS"
+        
+        # Get quality gate status
+        QUALITY_GATE=$(curl -s -u "${{ secrets.SONAR_TOKEN }}:" \
+          "${{ secrets.SONAR_HOST_URL }}/api/qualitygates/project_status?projectKey=${PROJECT_KEY}" \
+          | jq -r '.projectStatus.status // "UNKNOWN"')
+        
+        # Get key metrics
+        METRICS=$(curl -s -u "${{ secrets.SONAR_TOKEN }}:" \
+          "${{ secrets.SONAR_HOST_URL }}/api/measures/component?component=${PROJECT_KEY}&metricKeys=bugs,vulnerabilities,code_smells,coverage,duplicated_lines_density,ncloc,sqale_rating" \
+          | jq -r '.component.measures // []')
+        
+        # Parse metrics
+        BUGS=$(echo "$METRICS" | jq -r '.[] | select(.metric=="bugs") | .value // "0"')
+        VULNERABILITIES=$(echo "$METRICS" | jq -r '.[] | select(.metric=="vulnerabilities") | .value // "0"')
+        CODE_SMELLS=$(echo "$METRICS" | jq -r '.[] | select(.metric=="code_smells") | .value // "0"')
+        COVERAGE=$(echo "$METRICS" | jq -r '.[] | select(.metric=="coverage") | .value // "0"')
+        DUPLICATED_LINES=$(echo "$METRICS" | jq -r '.[] | select(.metric=="duplicated_lines_density") | .value // "0"')
+        LINES_OF_CODE=$(echo "$METRICS" | jq -r '.[] | select(.metric=="ncloc") | .value // "0"')
+        MAINTAINABILITY_RATING=$(echo "$METRICS" | jq -r '.[] | select(.metric=="sqale_rating") | .value // "1"')
+        
+        echo "QUALITY_GATE=$QUALITY_GATE" >> $GITHUB_ENV
+        echo "BUGS=$BUGS" >> $GITHUB_ENV
+        echo "VULNERABILITIES=$VULNERABILITIES" >> $GITHUB_ENV
+        echo "CODE_SMELLS=$CODE_SMELLS" >> $GITHUB_ENV
+        echo "COVERAGE=$COVERAGE" >> $GITHUB_ENV
+        echo "DUPLICATED_LINES=$DUPLICATED_LINES" >> $GITHUB_ENV
+        echo "LINES_OF_CODE=$LINES_OF_CODE" >> $GITHUB_ENV
+        echo "MAINTAINABILITY_RATING=$MAINTAINABILITY_RATING" >> $GITHUB_ENV
+        
+        # Generate SonarQube URL
+        SONAR_URL="${{ secrets.SONAR_HOST_URL }}/dashboard?id=${PROJECT_KEY}"
+        echo "SONAR_URL=$SONAR_URL" >> $GITHUB_ENV
+
+    - name: Create SonarQube Dashboard Summary
+      if: always()
+      run: |
+        # Convert maintainability rating to letter grade
+        case "${{ env.MAINTAINABILITY_RATING }}" in
+          "1") MAINTAINABILITY_GRADE="A" ;;
+          "2") MAINTAINABILITY_GRADE="B" ;;
+          "3") MAINTAINABILITY_GRADE="C" ;;
+          "4") MAINTAINABILITY_GRADE="D" ;;
+          "5") MAINTAINABILITY_GRADE="E" ;;
+          *) MAINTAINABILITY_GRADE="Unknown" ;;
+        esac
+        
+        cat >> $GITHUB_STEP_SUMMARY << 'EOF'
+        ## 🎯 SonarQube Quality Analysis
+        
+        ### 🚦 Quality Gate: ${{ env.QUALITY_GATE == 'OK' && '✅ PASSED' || env.QUALITY_GATE == 'ERROR' && '❌ FAILED' || '⚠️ UNKNOWN' }}
+        
+        ### 📊 Code Quality Metrics
+        
+        | Metric | Value | Status |
+        |--------|-------|--------|
+        | 🐛 Bugs | ${{ env.BUGS }} | ${{ env.BUGS == '0' && '✅' || '❌' }} |
+        | 🔐 Vulnerabilities | ${{ env.VULNERABILITIES }} | ${{ env.VULNERABILITIES == '0' && '✅' || '🚨' }} |
+        | 👃 Code Smells | ${{ env.CODE_SMELLS }} | ${{ env.CODE_SMELLS < 10 && '✅' || env.CODE_SMELLS < 50 && '⚠️' || '❌' }} |
+        | 📈 Coverage | ${{ env.COVERAGE }}% | ${{ env.COVERAGE >= 80 && '✅' || env.COVERAGE >= 60 && '⚠️' || '❌' }} |
+        | 📋 Duplicated Lines | ${{ env.DUPLICATED_LINES }}% | ${{ env.DUPLICATED_LINES < 3 && '✅' || env.DUPLICATED_LINES < 5 && '⚠️' || '❌' }} |
+        | 📏 Lines of Code | ${{ env.LINES_OF_CODE }} | ℹ️ |
+        | 🔧 Maintainability | $MAINTAINABILITY_GRADE | ${{ env.MAINTAINABILITY_RATING <= 2 && '✅' || env.MAINTAINABILITY_RATING <= 3 && '⚠️' || '❌' }} |
+        
+        ### 🔗 Links
+        - [📊 View Full SonarQube Dashboard](${{ env.SONAR_URL }})
+        - [📈 View Metrics History](${{ env.SONAR_URL }}&tab=measures)
+        - [🐛 View Issues](${{ env.SONAR_URL }}&tab=issues)
+        
+        ### 📋 Recommendations
+        ${{ env.BUGS > 0 && '🐛 **Fix bugs** - Zero bugs policy recommended for production code\n' || '' }}${{ env.VULNERABILITIES > 0 && '🔐 **Address security vulnerabilities** - Critical for application security\n' || '' }}${{ env.COVERAGE < 80 && '📈 **Improve test coverage** - Target: 80%+ coverage\n' || '' }}${{ env.DUPLICATED_LINES > 3 && '📋 **Reduce code duplication** - Extract common functionality\n' || '' }}${{ env.CODE_SMELLS > 50 && '👃 **Address code smells** - Improve code maintainability\n' || '' }}
+        EOF
+
+    - name: Comment PR with SonarQube Results
+      if: github.event_name == 'pull_request'
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const qualityGateStatus = process.env.QUALITY_GATE === 'OK' ? '✅ PASSED' : 
+                                   process.env.QUALITY_GATE === 'ERROR' ? '❌ FAILED' : '⚠️ UNKNOWN';
+          
+          const comment = `## 🎯 SonarQube Analysis Results
+          
+          **Quality Gate: ${qualityGateStatus}**
+          
+          | Metric | Value |
+          |--------|-------|
+          | 🐛 Bugs | ${process.env.BUGS} |
+          | 🔐 Vulnerabilities | ${process.env.VULNERABILITIES} |
+          | 👃 Code Smells | ${process.env.CODE_SMELLS} |
+          | 📈 Coverage | ${process.env.COVERAGE}% |
+          | 📋 Duplicated Lines | ${process.env.DUPLICATED_LINES}% |
+          
+          [📊 View Full Report](${process.env.SONAR_URL})
+          `;
+          
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: comment
+          });
+
+    - name: Fail if Quality Gate Failed
+      if: env.QUALITY_GATE == 'ERROR'
+      run: |
+        echo "❌ SonarQube Quality Gate failed!"
+        exit 1

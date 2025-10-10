@@ -1,6 +1,12 @@
 
 # no-OS
+
 [![Build Status](https://dev.azure.com/AnalogDevices/no-OS/_apis/build/status%2Fanalogdevicesinc.no-OS?branchName=main)](https://dev.azure.com/AnalogDevices/no-OS/_build/latest?definitionId=48&branchName=main)
+[![GitHub CI](https://github.com/cjones-adi/no-OS/actions/workflows/ci.yml/badge.svg)](https://github.com/cjones-adi/no-OS/actions/workflows/ci.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=cjones-adi_no-OS&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=cjones-adi_no-OS)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=cjones-adi_no-OS&metric=coverage)](https://sonarcloud.io/summary/new_code?id=cjones-adi_no-OS)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=cjones-adi_no-OS&metric=bugs)](https://sonarcloud.io/summary/new_code?id=cjones-adi_no-OS)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=cjones-adi_no-OS&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=cjones-adi_no-OS)
 
 [Analog Devices Inc.](http://www.analog.com/en/index.html) Software drivers for systems without OS.
 

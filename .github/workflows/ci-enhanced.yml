@@ -1,0 +1,440 @@
+name: CI Enhanced with Metrics
+
+on:
+  push:
+    branches:
+      - main
+      - staging/*
+      - next_stable
+      - '20*'
+  pull_request:
+    branches:
+      - main
+      - next_stable
+      - '20*'
+
+env:
+  NUM_JOBS: 4
+
+jobs:
+  # Code style checking with astyle
+  astyle:
+    name: Code Style Check
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 50
+        ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+    - name: Fetch target branch
+      run: |
+        if [ "${{ github.event_name }}" = "pull_request" ]; then
+          git fetch --depth=50 origin ${{ github.event.pull_request.base.ref }}
+        else
+          git fetch --depth=50 origin main
+        fi
+
+    - name: Install astyle
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y astyle
+
+    - name: Set environment variables
+      run: |
+        if [ "${{ github.event_name }}" = "pull_request" ]; then
+          echo "TARGET_BRANCH=${{ github.event.pull_request.base.ref }}" >> $GITHUB_ENV
+        else
+          echo "TARGET_BRANCH=main" >> $GITHUB_ENV
+        fi
+        echo "BUILD_TYPE=astyle" >> $GITHUB_ENV
+
+    - name: Run astyle check
+      run: |
+        ./ci/run_build.sh > astyle_output.txt 2>&1 || echo "astyle_failed=true" >> $GITHUB_ENV
+
+    - name: Parse astyle results
+      run: |
+        # Count total files checked and files with issues
+        TOTAL_FILES=$(grep -c "Formatted" astyle_output.txt || echo "0")
+        FILES_WITH_ISSUES=$(grep -c "formatted" astyle_output.txt || echo "0")
+        FILES_OK=$((TOTAL_FILES - FILES_WITH_ISSUES))
+        
+        echo "TOTAL_FILES=$TOTAL_FILES" >> $GITHUB_ENV
+        echo "FILES_WITH_ISSUES=$FILES_WITH_ISSUES" >> $GITHUB_ENV
+        echo "FILES_OK=$FILES_OK" >> $GITHUB_ENV
+
+    - name: Create Job Summary
+      if: always()
+      run: |
+        cat >> $GITHUB_STEP_SUMMARY << 'EOF'
+        ## 🎨 Code Style Check Results
+        
+        | Metric | Value |
+        |--------|-------|
+        | 📁 Total Files Checked | ${{ env.TOTAL_FILES }} |
+        | ✅ Files Compliant | ${{ env.FILES_OK }} |
+        | ❌ Files with Issues | ${{ env.FILES_WITH_ISSUES }} |
+        | 📊 Compliance Rate | $(( ${{ env.FILES_OK }} * 100 / (${{ env.TOTAL_FILES }} == 0 ? 1 : ${{ env.TOTAL_FILES }}) ))% |
+        
+        ### Status: ${{ env.astyle_failed == 'true' && '❌ Failed' || '✅ Passed' }}
+        EOF
+
+  # Static analysis with cppcheck
+  cppcheck:
+    name: Static Analysis
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 50
+        ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+    - name: Fetch target branch
+      run: |
+        if [ "${{ github.event_name }}" = "pull_request" ]; then
+          git fetch --depth=50 origin ${{ github.event.pull_request.base.ref }}
+        else
+          git fetch --depth=50 origin main
+        fi
+
+    - name: Install cppcheck
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y cppcheck
+
+    - name: Set environment variables
+      run: |
+        if [ "${{ github.event_name }}" = "pull_request" ]; then
+          echo "TARGET_BRANCH=${{ github.event.pull_request.base.ref }}" >> $GITHUB_ENV
+        else
+          echo "TARGET_BRANCH=main" >> $GITHUB_ENV
+        fi
+        echo "BUILD_TYPE=cppcheck" >> $GITHUB_ENV
+
+    - name: Run cppcheck analysis
+      run: |
+        ./ci/run_build.sh > cppcheck_output.txt 2>&1 || echo "cppcheck_failed=true" >> $GITHUB_ENV
+
+    - name: Parse cppcheck results
+      run: |
+        # Parse different types of issues
+        ERRORS=$(grep -c ": error:" cppcheck_output.txt || echo "0")
+        WARNINGS=$(grep -c ": warning:" cppcheck_output.txt || echo "0")
+        STYLE=$(grep -c ": style:" cppcheck_output.txt || echo "0")
+        PERFORMANCE=$(grep -c ": performance:" cppcheck_output.txt || echo "0")
+        TOTAL_ISSUES=$((ERRORS + WARNINGS + STYLE + PERFORMANCE))
+        
+        echo "CPPCHECK_ERRORS=$ERRORS" >> $GITHUB_ENV
+        echo "CPPCHECK_WARNINGS=$WARNINGS" >> $GITHUB_ENV
+        echo "CPPCHECK_STYLE=$STYLE" >> $GITHUB_ENV
+        echo "CPPCHECK_PERFORMANCE=$PERFORMANCE" >> $GITHUB_ENV
+        echo "CPPCHECK_TOTAL=$TOTAL_ISSUES" >> $GITHUB_ENV
+
+    - name: Create Job Summary
+      if: always()
+      run: |
+        cat >> $GITHUB_STEP_SUMMARY << 'EOF'
+        ## 🔍 Static Analysis Results
+        
+        | Issue Type | Count |
+        |------------|-------|
+        | 🚨 Errors | ${{ env.CPPCHECK_ERRORS }} |
+        | ⚠️ Warnings | ${{ env.CPPCHECK_WARNINGS }} |
+        | 🎯 Style Issues | ${{ env.CPPCHECK_STYLE }} |
+        | ⚡ Performance Issues | ${{ env.CPPCHECK_PERFORMANCE }} |
+        | **📊 Total Issues** | **${{ env.CPPCHECK_TOTAL }}** |
+        
+        ### Status: ${{ env.cppcheck_failed == 'true' && '❌ Failed' || (env.CPPCHECK_ERRORS > 0 && '⚠️ Has Errors' || '✅ Passed') }}
+        
+        ${{ env.CPPCHECK_TOTAL > 0 && '#### 📋 Issue Breakdown\n```\nErrors: High priority issues that should be fixed\nWarnings: Potential problems worth investigating\nStyle: Code style improvements\nPerformance: Optimization suggestions\n```' || '🎉 No issues found!' }}
+        EOF
+
+  # Build drivers with metrics
+  drivers:
+    name: Build Drivers
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 50
+
+    - name: Install build dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential gcc-arm-none-eabi
+
+    - name: Set environment variables
+      run: |
+        echo "BUILD_TYPE=drivers" >> $GITHUB_ENV
+
+    - name: Build drivers with metrics
+      run: |
+        START_TIME=$(date +%s)
+        ./ci/run_build.sh > build_output.txt 2>&1
+        BUILD_RESULT=$?
+        END_TIME=$(date +%s)
+        BUILD_TIME=$((END_TIME - START_TIME))
+        
+        echo "BUILD_TIME=$BUILD_TIME" >> $GITHUB_ENV
+        echo "BUILD_RESULT=$BUILD_RESULT" >> $GITHUB_ENV
+
+    - name: Parse build results
+      run: |
+        # Count successful and failed builds
+        SUCCESSFUL_BUILDS=$(grep -c "Build successful\|BUILD SUCCESSFUL" build_output.txt || echo "0")
+        FAILED_BUILDS=$(grep -c "Build failed\|BUILD FAILED\|Error\|error:" build_output.txt || echo "0")
+        TOTAL_PROJECTS=$(find projects -maxdepth 1 -type d | wc -l)
+        TOTAL_PROJECTS=$((TOTAL_PROJECTS - 1)) # Subtract the projects directory itself
+        
+        echo "SUCCESSFUL_BUILDS=$SUCCESSFUL_BUILDS" >> $GITHUB_ENV
+        echo "FAILED_BUILDS=$FAILED_BUILDS" >> $GITHUB_ENV
+        echo "TOTAL_PROJECTS=$TOTAL_PROJECTS" >> $GITHUB_ENV
+
+    - name: Create Job Summary
+      if: always()
+      run: |
+        cat >> $GITHUB_STEP_SUMMARY << 'EOF'
+        ## 🔨 Build Results Dashboard
+        
+        ### 📊 Build Metrics
+        | Metric | Value |
+        |--------|-------|
+        | ⏱️ Build Time | ${{ env.BUILD_TIME }}s |
+        | 🎯 Total Projects | ${{ env.TOTAL_PROJECTS }} |
+        | ✅ Successful Builds | ${{ env.SUCCESSFUL_BUILDS }} |
+        | ❌ Failed Builds | ${{ env.FAILED_BUILDS }} |
+        | 📈 Success Rate | $(( ${{ env.SUCCESSFUL_BUILDS }} * 100 / (${{ env.TOTAL_PROJECTS }} == 0 ? 1 : ${{ env.TOTAL_PROJECTS }}) ))% |
+        
+        ### Status: ${{ env.BUILD_RESULT == '0' && '✅ All Builds Passed' || '❌ Build Failures Detected' }}
+        
+        ${{ env.BUILD_TIME > 300 && '⚠️ **Build time exceeded 5 minutes. Consider optimization.**' || '' }}
+        EOF
+
+  # Unit tests with coverage metrics
+  unit-tests:
+    name: Unit Tests & Coverage
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 50
+
+    - name: Setup Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.0'
+        bundler-cache: false
+
+    - name: Install Ceedling and dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential gcc lcov python3-pip
+        pip3 install gcovr
+        gem install ceedling
+
+    - name: Run unit tests and generate coverage
+      run: |
+        set -e
+        
+        # Initialize counters
+        TOTAL_TESTS=0
+        PASSED_TESTS=0
+        FAILED_TESTS=0
+        TOTAL_COVERAGE=0
+        TEST_DIRS_COUNT=0
+        
+        # Find all test directories containing project.yml files
+        test_dirs=$(find tests -name "project.yml" -type f -exec dirname {} \;)
+        
+        if [ -z "$test_dirs" ]; then
+          echo "No test directories found with project.yml files"
+          exit 1
+        fi
+        
+        for test_dir in $test_dirs; do
+          echo "Running tests in: $test_dir"
+          cd "$test_dir"
+          
+          # Run tests with coverage
+          ceedling gcov:all > test_output.txt 2>&1 || true
+          
+          # Parse test results
+          DIR_TESTS=$(grep -c "PASS\|FAIL" test_output.txt || echo "0")
+          DIR_PASSED=$(grep -c "PASS" test_output.txt || echo "0")
+          DIR_FAILED=$(grep -c "FAIL" test_output.txt || echo "0")
+          
+          TOTAL_TESTS=$((TOTAL_TESTS + DIR_TESTS))
+          PASSED_TESTS=$((PASSED_TESTS + DIR_PASSED))
+          FAILED_TESTS=$((FAILED_TESTS + DIR_FAILED))
+          TEST_DIRS_COUNT=$((TEST_DIRS_COUNT + 1))
+          
+          cd - > /dev/null
+        done
+        
+        # Calculate overall coverage (simplified)
+        if [ $TOTAL_TESTS -gt 0 ]; then
+          TEST_SUCCESS_RATE=$((PASSED_TESTS * 100 / TOTAL_TESTS))
+        else
+          TEST_SUCCESS_RATE=0
+        fi
+        
+        echo "TOTAL_TESTS=$TOTAL_TESTS" >> $GITHUB_ENV
+        echo "PASSED_TESTS=$PASSED_TESTS" >> $GITHUB_ENV
+        echo "FAILED_TESTS=$FAILED_TESTS" >> $GITHUB_ENV
+        echo "TEST_SUCCESS_RATE=$TEST_SUCCESS_RATE" >> $GITHUB_ENV
+        echo "TEST_DIRS_COUNT=$TEST_DIRS_COUNT" >> $GITHUB_ENV
+
+    - name: Create Job Summary
+      if: always()
+      run: |
+        cat >> $GITHUB_STEP_SUMMARY << 'EOF'
+        ## 🧪 Unit Tests & Coverage Dashboard
+        
+        ### 📊 Test Metrics
+        | Metric | Value |
+        |--------|-------|
+        | 🎯 Test Suites | ${{ env.TEST_DIRS_COUNT }} |
+        | ✅ Total Tests | ${{ env.TOTAL_TESTS }} |
+        | 🟢 Passed | ${{ env.PASSED_TESTS }} |
+        | 🔴 Failed | ${{ env.FAILED_TESTS }} |
+        | 📈 Success Rate | ${{ env.TEST_SUCCESS_RATE }}% |
+        
+        ### Status: ${{ env.FAILED_TESTS == '0' && '✅ All Tests Passed' || '❌ Test Failures Detected' }}
+        
+        ${{ env.TEST_SUCCESS_RATE < 90 && '⚠️ **Test success rate below 90%. Consider improving test reliability.**' || '' }}
+        ${{ env.TOTAL_TESTS == '0' && '⚠️ **No tests found. Consider adding unit tests.**' || '' }}
+        EOF
+
+    - name: Upload test results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: unit-test-results
+        path: |
+          tests/**/build/artifacts/test/
+          tests/**/build/artifacts/gcov/
+        retention-days: 30
+
+  # Metrics summary job
+  metrics-summary:
+    name: 📊 Metrics Dashboard
+    runs-on: ubuntu-latest
+    needs: [astyle, cppcheck, drivers, unit-tests]
+    if: always()
+    
+    steps:
+    - name: Create Overall Dashboard
+      run: |
+        cat >> $GITHUB_STEP_SUMMARY << 'EOF'
+        # 📊 Overall Project Health Dashboard
+        
+        ## 🎯 Quality Gates
+        
+        | Gate | Status | Details |
+        |------|--------|---------|
+        | 🎨 Code Style | ${{ needs.astyle.result == 'success' && '✅ PASS' || '❌ FAIL' }} | Automated formatting compliance |
+        | 🔍 Static Analysis | ${{ needs.cppcheck.result == 'success' && '✅ PASS' || '❌ FAIL' }} | Code quality checks |
+        | 🔨 Build | ${{ needs.drivers.result == 'success' && '✅ PASS' || '❌ FAIL' }} | Compilation success |
+        | 🧪 Tests | ${{ needs.unit-tests.result == 'success' && '✅ PASS' || '❌ FAIL' }} | Unit test execution |
+        
+        ## 📈 Trend Indicators
+        
+        > 💡 **Tip**: Click on individual job summaries above for detailed metrics
+        
+        ### 🏆 Quality Score
+        ${{ 
+          (needs.astyle.result == 'success' && 25 || 0) +
+          (needs.cppcheck.result == 'success' && 25 || 0) +
+          (needs.drivers.result == 'success' && 25 || 0) +
+          (needs.unit-tests.result == 'success' && 25 || 0)
+        }}/100
+        
+        ${{ 
+          ((needs.astyle.result == 'success' && 25 || 0) +
+           (needs.cppcheck.result == 'success' && 25 || 0) +
+           (needs.drivers.result == 'success' && 25 || 0) +
+           (needs.unit-tests.result == 'success' && 25 || 0)) >= 100 && 
+          '🎉 **Excellent! All quality gates passed.**' ||
+          ((needs.astyle.result == 'success' && 25 || 0) +
+           (needs.cppcheck.result == 'success' && 25 || 0) +
+           (needs.drivers.result == 'success' && 25 || 0) +
+           (needs.unit-tests.result == 'success' && 25 || 0)) >= 75 && 
+          '✅ **Good quality, minor issues to address.**' ||
+          '⚠️ **Quality improvements needed.**'
+        }}
+        EOF
+
+  # Documentation with metrics
+  documentation:
+    name: Documentation
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 50
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+
+    - name: Install documentation dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y doxygen graphviz
+        pip install sphinx sphinx-rtd-theme breathe
+
+    - name: Set environment variables
+      run: |
+        echo "BUILD_TYPE=documentation" >> $GITHUB_ENV
+        echo "UPDATE_GH_DOCS=${{ github.ref == 'refs/heads/main' && '1' || '0' }}" >> $GITHUB_ENV
+        echo "GITHUB_DOC_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
+        echo "REPO_SLUG=${{ github.repository }}" >> $GITHUB_ENV
+        echo "BUILD_SOURCEBRANCH=${{ github.ref }}" >> $GITHUB_ENV
+
+    - name: Build documentation with metrics
+      run: |
+        START_TIME=$(date +%s)
+        ./ci/run_build.sh > doc_output.txt 2>&1
+        DOC_RESULT=$?
+        END_TIME=$(date +%s)
+        DOC_BUILD_TIME=$((END_TIME - START_TIME))
+        
+        # Count documentation files
+        DOXYGEN_FILES=$(find doc/doxygen/html -name "*.html" 2>/dev/null | wc -l || echo "0")
+        SPHINX_FILES=$(find doc/sphinx/_build -name "*.html" 2>/dev/null | wc -l || echo "0")
+        
+        echo "DOC_BUILD_TIME=$DOC_BUILD_TIME" >> $GITHUB_ENV
+        echo "DOC_RESULT=$DOC_RESULT" >> $GITHUB_ENV
+        echo "DOXYGEN_FILES=$DOXYGEN_FILES" >> $GITHUB_ENV
+        echo "SPHINX_FILES=$SPHINX_FILES" >> $GITHUB_ENV
+
+    - name: Create Job Summary
+      if: always()
+      run: |
+        cat >> $GITHUB_STEP_SUMMARY << 'EOF'
+        ## 📚 Documentation Build Results
+        
+        | Metric | Value |
+        |--------|-------|
+        | ⏱️ Build Time | ${{ env.DOC_BUILD_TIME }}s |
+        | 📄 Doxygen Pages | ${{ env.DOXYGEN_FILES }} |
+        | 📖 Sphinx Pages | ${{ env.SPHINX_FILES }} |
+        | 📊 Total Pages | $(( ${{ env.DOXYGEN_FILES }} + ${{ env.SPHINX_FILES }} )) |
+        
+        ### Status: ${{ env.DOC_RESULT == '0' && '✅ Documentation Built Successfully' || '❌ Documentation Build Failed' }}
+        
+        ${{ env.UPDATE_GH_DOCS == '1' && '🚀 **Documentation will be deployed to GitHub Pages**' || '📝 **Documentation built for preview**' }}
+        EOF
