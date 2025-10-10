@@ -13,7 +13,7 @@
 #  :release_build: TRUE
   :test_file_prefix: test_
   :which_ceedling: gem
-  :ceedling_version: 0.31.1
+  :ceedling_version: 1.0.1
   :default_tasks:
     - test:all
 
@@ -77,6 +77,7 @@
   :gcovr:
     :html_medium_threshold: 75
     :html_high_threshold: 90
+    :report_include: "../../../../drivers/imu/.*"
 
 #:tools:
 # Ceedling defaults to using gcc for compiling, linking, etc.
@@ -95,8 +96,10 @@
   :test: []
   :release: []
 
-:junit_tests_report:
-  :artifact_filename: report_junit.xml
+:report_tests_log_factory:
+  :reports:
+    - cppunit
+    - junit
 
 :plugins:
   :enabled:
