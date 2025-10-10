@@ -614,19 +614,61 @@ jobs:
     - name: Build documentation with metrics
       run: |
         START_TIME=$(date +%s)
-        ./ci/run_build.sh > doc_output.txt 2>&1
-        DOC_RESULT=$?
+        
+        # Capture documentation build output with detailed logging
+        echo "=== Starting documentation build ===" > doc_output.txt
+        echo "Build started at: $(date)" >> doc_output.txt
+        
+        # Run the build and capture result
+        if ./ci/run_build.sh >> doc_output.txt 2>&1; then
+          DOC_RESULT=0
+          echo "DOC_STATUS=SUCCESS" >> doc_output.txt
+          echo "Documentation build completed successfully" >> doc_output.txt
+        else
+          DOC_RESULT=1
+          echo "DOC_STATUS=FAILED" >> doc_output.txt
+          echo "Documentation build failed with errors" >> doc_output.txt
+        fi
+        
         END_TIME=$(date +%s)
         DOC_BUILD_TIME=$((END_TIME - START_TIME))
         
-        # Count documentation files
-        DOXYGEN_FILES=$(find doc/doxygen/html -name "*.html" 2>/dev/null | wc -l || echo "0")
-        SPHINX_FILES=$(find doc/sphinx/_build -name "*.html" 2>/dev/null | wc -l || echo "0")
+        # Count documentation files with multiple possible paths
+        DOXYGEN_FILES=0
+        SPHINX_FILES=0
+        
+        # Check various possible Doxygen output locations
+        for doxy_path in "doc/doxygen/html" "doc/doxygen/build/html" "build/doc/doxygen/html"; do
+          if [ -d "$doxy_path" ]; then
+            DOXYGEN_COUNT=$(find "$doxy_path" -name "*.html" 2>/dev/null | wc -l || echo "0")
+            DOXYGEN_FILES=$((DOXYGEN_FILES + DOXYGEN_COUNT))
+            echo "Found $DOXYGEN_COUNT Doxygen files in $doxy_path" >> doc_output.txt
+          fi
+        done
+        
+        # Check various possible Sphinx output locations  
+        for sphinx_path in "doc/sphinx/_build" "doc/sphinx/_build/html" "doc/sphinx/build/html" "build/doc/sphinx/html"; do
+          if [ -d "$sphinx_path" ]; then
+            SPHINX_COUNT=$(find "$sphinx_path" -name "*.html" 2>/dev/null | wc -l || echo "0")
+            SPHINX_FILES=$((SPHINX_FILES + SPHINX_COUNT))
+            echo "Found $SPHINX_COUNT Sphinx files in $sphinx_path" >> doc_output.txt
+          fi
+        done
+        
+        # Calculate total pages
+        TOTAL_PAGES=$((DOXYGEN_FILES + SPHINX_FILES))
+        
+        echo "Build completed at: $(date)" >> doc_output.txt
+        echo "Total build time: ${DOC_BUILD_TIME}s" >> doc_output.txt
+        echo "Doxygen pages: $DOXYGEN_FILES" >> doc_output.txt
+        echo "Sphinx pages: $SPHINX_FILES" >> doc_output.txt
+        echo "Total pages: $TOTAL_PAGES" >> doc_output.txt
         
         echo "DOC_BUILD_TIME=$DOC_BUILD_TIME" >> $GITHUB_ENV
         echo "DOC_RESULT=$DOC_RESULT" >> $GITHUB_ENV
         echo "DOXYGEN_FILES=$DOXYGEN_FILES" >> $GITHUB_ENV
         echo "SPHINX_FILES=$SPHINX_FILES" >> $GITHUB_ENV
+        echo "TOTAL_PAGES=$TOTAL_PAGES" >> $GITHUB_ENV
 
     - name: Create Job Summary
       if: always()
@@ -639,7 +681,7 @@ jobs:
         | ⏱️ Build Time | ${{ env.DOC_BUILD_TIME }}s |
         | 📄 Doxygen Pages | ${{ env.DOXYGEN_FILES }} |
         | 📖 Sphinx Pages | ${{ env.SPHINX_FILES }} |
-        | 📊 Total Pages | $(( ${{ env.DOXYGEN_FILES }} + ${{ env.SPHINX_FILES }} )) |
+        | 📊 Total Pages | ${{ env.TOTAL_PAGES }} |
         
         ### Status: ${{ env.DOC_RESULT == '0' && '✅ Documentation Built Successfully' || '❌ Documentation Build Failed' }}
         
