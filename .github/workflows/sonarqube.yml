@@ -26,10 +26,17 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
 
+    - name: Setup Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.0'
+        bundler-cache: false
+
     - name: Install build dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y build-essential gcc-arm-none-eabi cppcheck gcovr
+        sudo apt-get install -y build-essential gcc-arm-none-eabi cppcheck gcovr jq
+        gem install ceedling
 
     - name: Cache SonarQube packages
       uses: actions/cache@v3
@@ -98,32 +105,68 @@ jobs:
         EOF
 
     - name: Run SonarQube Scan
-      uses: sonarqube-quality-gate-action@master
+      uses: sonarqube/sonarqube-scanner-action@v2.3.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+
+    - name: Wait for Quality Gate
+      id: wait-for-quality-gate
+      uses: sonarqube/sonarqube-quality-gate-action@master
+      timeout-minutes: 5
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
       with:
-        scannerVersion: latest
+        scanMetadataReportFile: .scannerwork/report-task.txt
 
     - name: Get SonarQube Analysis Results
       id: sonar-analysis
+      if: always()
       run: |
-        # Wait for analysis to complete and get results
-        sleep 30
-        
-        # Use SonarQube API to get metrics (requires SONAR_TOKEN)
+        # Project key for API calls
         PROJECT_KEY="${{ github.repository_owner }}_no-OS"
         
-        # Get quality gate status
-        QUALITY_GATE=$(curl -s -u "${{ secrets.SONAR_TOKEN }}:" \
-          "${{ secrets.SONAR_HOST_URL }}/api/qualitygates/project_status?projectKey=${PROJECT_KEY}" \
-          | jq -r '.projectStatus.status // "UNKNOWN"')
+        # Get quality gate status from the previous step's output or API fallback
+        QUALITY_GATE="UNKNOWN"
+        if [ "${{ steps.wait-for-quality-gate.outcome }}" = "success" ]; then
+          QUALITY_GATE="OK"
+        elif [ "${{ steps.wait-for-quality-gate.outcome }}" = "failure" ]; then
+          QUALITY_GATE="ERROR"
+        else
+          # Try API call as fallback
+          QUALITY_GATE=$(curl -s -u "${{ secrets.SONAR_TOKEN }}:" \
+            "${{ secrets.SONAR_HOST_URL }}/api/qualitygates/project_status?projectKey=${PROJECT_KEY}" \
+            2>/dev/null | jq -r '.projectStatus.status // "UNKNOWN"' 2>/dev/null || echo "UNKNOWN")
+        fi
         
-        # Get key metrics
-        METRICS=$(curl -s -u "${{ secrets.SONAR_TOKEN }}:" \
-          "${{ secrets.SONAR_HOST_URL }}/api/measures/component?component=${PROJECT_KEY}&metricKeys=bugs,vulnerabilities,code_smells,coverage,duplicated_lines_density,ncloc,sqale_rating" \
-          | jq -r '.component.measures // []')
+        # Initialize default values
+        BUGS="0"
+        VULNERABILITIES="0"
+        CODE_SMELLS="0"
+        COVERAGE="0"
+        DUPLICATED_LINES="0"
+        LINES_OF_CODE="0"
+        MAINTAINABILITY_RATING="1"
+        
+        # Try to get metrics with error handling
+        if command -v jq >/dev/null 2>&1 && [ -n "${{ secrets.SONAR_TOKEN }}" ]; then
+          METRICS=$(curl -s -u "${{ secrets.SONAR_TOKEN }}:" \
+            "${{ secrets.SONAR_HOST_URL }}/api/measures/component?component=${PROJECT_KEY}&metricKeys=bugs,vulnerabilities,code_smells,coverage,duplicated_lines_density,ncloc,sqale_rating" \
+            2>/dev/null | jq -r '.component.measures // []' 2>/dev/null || echo "[]")
+          
+          if [ "$METRICS" != "[]" ] && [ "$METRICS" != "null" ]; then
+            # Parse metrics safely
+            BUGS=$(echo "$METRICS" | jq -r '.[] | select(.metric=="bugs") | .value // "0"' 2>/dev/null || echo "0")
+            VULNERABILITIES=$(echo "$METRICS" | jq -r '.[] | select(.metric=="vulnerabilities") | .value // "0"' 2>/dev/null || echo "0")
+            CODE_SMELLS=$(echo "$METRICS" | jq -r '.[] | select(.metric=="code_smells") | .value // "0"' 2>/dev/null || echo "0")
+            COVERAGE=$(echo "$METRICS" | jq -r '.[] | select(.metric=="coverage") | .value // "0"' 2>/dev/null || echo "0")
+            DUPLICATED_LINES=$(echo "$METRICS" | jq -r '.[] | select(.metric=="duplicated_lines_density") | .value // "0"' 2>/dev/null || echo "0")
+            LINES_OF_CODE=$(echo "$METRICS" | jq -r '.[] | select(.metric=="ncloc") | .value // "0"' 2>/dev/null || echo "0")
+            MAINTAINABILITY_RATING=$(echo "$METRICS" | jq -r '.[] | select(.metric=="sqale_rating") | .value // "1"' 2>/dev/null || echo "1")
+          fi
+        fi
         
         # Parse metrics
         BUGS=$(echo "$METRICS" | jq -r '.[] | select(.metric=="bugs") | .value // "0"')
