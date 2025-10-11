@@ -665,7 +665,7 @@ jobs:
           ASTYLE_SCORE=25
         fi
 
-        if [ "${{ needs.cppcheck.result }}" = "success" ]; then
+        if [ "${{ needs.cppcheck.result }}" = "success" ] && [ "${{ needs.cppcheck.outputs.total_issues }}" = "0" ]; then
           CPPCHECK_SCORE=25
         fi
 
@@ -687,8 +687,10 @@ jobs:
           echo "QUALITY_MESSAGE=🎉 **Excellent! All quality gates passed.**" >> $GITHUB_ENV
         elif [ $TOTAL_SCORE -ge 75 ]; then
           echo "QUALITY_MESSAGE=✅ **Good quality, minor issues to address.**" >> $GITHUB_ENV
-        else
+        elif [ $TOTAL_SCORE -ge 50 ]; then
           echo "QUALITY_MESSAGE=⚠️ **Quality improvements needed.**" >> $GITHUB_ENV
+        else
+          echo "QUALITY_MESSAGE=❌ **Significant quality issues require attention.**" >> $GITHUB_ENV
         fi
 
     - name: Create Overall Dashboard
