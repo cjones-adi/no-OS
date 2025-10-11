@@ -790,7 +790,9 @@ jobs:
         ## 📈 Trend Indicators
 
         > 💡 **Tip**: Click on individual job summaries above for detailed metrics
-        > 🔗 **Dashboard**: Click the main heading to view the workflow run page        ### 🏆 Quality Score
+        > 🔗 **Dashboard**: Click the main heading to view the workflow run page
+
+        ### 🏆 Quality Score
         ${{ env.TOTAL_SCORE }}/100
 
         ${{ env.QUALITY_MESSAGE }}
