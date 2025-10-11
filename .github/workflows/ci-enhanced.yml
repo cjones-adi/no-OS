@@ -316,6 +316,16 @@ jobs:
         EOF
         fi
 
+    - name: Fail job if issues found
+      run: |
+        if [ "${{ env.CPPCHECK_TOTAL }}" -gt 0 ]; then
+          echo "❌ Static analysis found ${{ env.CPPCHECK_TOTAL }} issues that need to be addressed."
+          echo "Errors: ${{ env.CPPCHECK_ERRORS }}, Warnings: ${{ env.CPPCHECK_WARNINGS }}, Style: ${{ env.CPPCHECK_STYLE }}, Performance: ${{ env.CPPCHECK_PERFORMANCE }}"
+          exit 1
+        else
+          echo "✅ No static analysis issues found."
+        fi
+
   # Build drivers with metrics
   drivers:
     name: Build Drivers
