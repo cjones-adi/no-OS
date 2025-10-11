@@ -146,7 +146,7 @@ jobs:
         fi
 
         cat >> $GITHUB_STEP_SUMMARY << EOF
-        ## 🎨 Code Style Check Results
+        ## [🎨 Code Style Check Results](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ github.job }})
 
         | Metric | Value |
         |--------|-------|
@@ -156,6 +156,8 @@ jobs:
         | 📊 Compliance Rate | ${COMPLIANCE_RATE}% |
 
         ### Status: ${{ env.astyle_failed == 'true' && '❌ Failed' || '✅ Passed' }}
+        
+        > 💡 **Tip**: Click the heading above to view detailed job logs
         EOF
 
   # Static analysis with cppcheck
@@ -269,7 +271,7 @@ jobs:
         fi
 
         cat >> $GITHUB_STEP_SUMMARY << EOF
-        ## 🔍 Static Analysis Results
+        ## [🔍 Static Analysis Results](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ github.job }})
 
         | Issue Type | Count |
         |------------|-------|
@@ -280,6 +282,8 @@ jobs:
         | **📊 Total Issues** | **${{ env.CPPCHECK_TOTAL }}** |
 
         ### Status: ${STATUS_MSG}
+        
+        > 💡 **Tip**: Click the heading above to view detailed job logs
         EOF
 
         # Add issue breakdown if there are issues
@@ -493,7 +497,7 @@ jobs:
         fi
 
         cat >> $GITHUB_STEP_SUMMARY << EOF
-        ## 🔨 Drivers Build Results
+        ## [🔨 Drivers Build Results](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ github.job }})
 
         ### 📊 Build Metrics
         | Metric | Value |
@@ -873,8 +877,8 @@ jobs:
     - name: Create Job Summary
       if: always()
       run: |
-        cat >> $GITHUB_STEP_SUMMARY << 'EOF'
-        ## 📚 Documentation Build Results
+        cat >> $GITHUB_STEP_SUMMARY << EOF
+        ## [📚 Documentation Build Results](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ github.job }})
 
         | Metric | Value |
         |--------|-------|
