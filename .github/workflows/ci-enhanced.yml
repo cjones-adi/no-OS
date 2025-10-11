@@ -156,7 +156,7 @@ jobs:
         | 📊 Compliance Rate | ${COMPLIANCE_RATE}% |
 
         ### Status: ${{ env.astyle_failed == 'true' && '❌ Failed' || '✅ Passed' }}
-        
+
         > 💡 **Tip**: Click the heading above to view the workflow run page
         EOF  # Static analysis with cppcheck
   cppcheck:
@@ -280,7 +280,7 @@ jobs:
         | **📊 Total Issues** | **${{ env.CPPCHECK_TOTAL }}** |
 
         ### Status: ${STATUS_MSG}
-        
+
         > 💡 **Tip**: Click the heading above to view the workflow run page
         EOF        # Add issue breakdown if there are issues
         if [ "${{ env.CPPCHECK_TOTAL }}" -gt 0 ]; then
@@ -323,11 +323,15 @@ jobs:
       run: |
         echo "Static Analysis Mode: ${{ env.STATIC_ANALYSIS_STRICT == 'true' && 'STRICT' || 'LENIENT' }}"
         echo "Issues found - Errors: ${{ env.CPPCHECK_ERRORS }}, Warnings: ${{ env.CPPCHECK_WARNINGS }}, Style: ${{ env.CPPCHECK_STYLE }}, Performance: ${{ env.CPPCHECK_PERFORMANCE }}"
+        
+        # Convert string values to numbers for comparison
+        ERRORS=$((0 + ${{ env.CPPCHECK_ERRORS }}))
+        TOTAL=$((0 + ${{ env.CPPCHECK_TOTAL }}))
 
         if [ "${{ env.STATIC_ANALYSIS_STRICT }}" = "true" ]; then
           # Strict mode: fail on any issues (errors, warnings, style, performance)
-          if [ "${{ env.CPPCHECK_TOTAL }}" -gt 0 ]; then
-            echo "❌ STRICT MODE: Static analysis found ${{ env.CPPCHECK_TOTAL }} issues that need to be addressed."
+          if [ $TOTAL -gt 0 ]; then
+            echo "❌ STRICT MODE: Static analysis found $TOTAL issues that need to be addressed."
             echo "Set STATIC_ANALYSIS_STRICT=false to make warnings/style/performance issues non-blocking."
             exit 1
           else
@@ -335,13 +339,13 @@ jobs:
           fi
         else
           # Lenient mode: only fail on errors (warnings/style/performance are informational)
-          if [ "${{ env.CPPCHECK_ERRORS }}" -gt 0 ]; then
-            echo "❌ LENIENT MODE: Static analysis found ${{ env.CPPCHECK_ERRORS }} errors that must be fixed."
+          if [ $ERRORS -gt 0 ]; then
+            echo "❌ LENIENT MODE: Static analysis found $ERRORS errors that must be fixed."
             exit 1
           else
             echo "✅ LENIENT MODE: No errors found. Warnings/style/performance issues are informational."
-            if [ "${{ env.CPPCHECK_TOTAL }}" -gt 0 ]; then
-              echo "ℹ️  Found ${{ env.CPPCHECK_TOTAL }} non-blocking issues (warnings/style/performance)."
+            if [ $TOTAL -gt 0 ]; then
+              echo "ℹ️  Found $TOTAL non-blocking issues (warnings/style/performance)."
             fi
           fi
         fi
@@ -777,7 +781,7 @@ jobs:
 
         ## 📈 Trend Indicators
 
-        > 💡 **Tip**: Click on individual job summaries above for detailed metrics  
+        > 💡 **Tip**: Click on individual job summaries above for detailed metrics
         > 🔗 **Dashboard**: Click the main heading to view the workflow run page        ### 🏆 Quality Score
         ${{ env.TOTAL_SCORE }}/100
 
