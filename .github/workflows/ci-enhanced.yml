@@ -201,7 +201,19 @@ jobs:
     - name: Run cppcheck analysis
       run: |
         set -o pipefail
-        ./ci/run_build.sh 2>&1 | tee cppcheck_output.txt || echo "cppcheck_failed=true" >> $GITHUB_ENV
+        
+        # Run cppcheck and capture the exit code
+        if ./ci/run_build.sh 2>&1 | tee cppcheck_output.txt; then
+          echo "cppcheck_completed=true" >> $GITHUB_ENV
+        else
+          EXIT_CODE=$?
+          echo "cppcheck_completed=true" >> $GITHUB_ENV
+          # Only mark as failed if it's a real failure (not just finding issues)
+          # cppcheck exits with code 1 when issues are found, which is normal
+          if [ $EXIT_CODE -gt 1 ]; then
+            echo "cppcheck_failed=true" >> $GITHUB_ENV
+          fi
+        fi
 
     - name: Parse cppcheck results
       run: |
@@ -264,6 +276,7 @@ jobs:
         ERRORS=$((0 + ${{ env.CPPCHECK_ERRORS }}))
         TOTAL=$((0 + ${{ env.CPPCHECK_TOTAL }}))
         
+        # Determine status based on results
         if [ "${{ env.cppcheck_failed }}" = "true" ]; then
           STATUS_MSG="❌ Failed"
         elif [ $ERRORS -gt 0 ]; then
