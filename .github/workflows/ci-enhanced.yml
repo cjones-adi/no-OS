@@ -195,7 +195,8 @@ jobs:
 
     - name: Run cppcheck analysis
       run: |
-        ./ci/run_build.sh > cppcheck_output.txt 2>&1 || echo "cppcheck_failed=true" >> $GITHUB_ENV
+        set -o pipefail
+        ./ci/run_build.sh 2>&1 | tee cppcheck_output.txt || echo "cppcheck_failed=true" >> $GITHUB_ENV
 
     - name: Parse cppcheck results
       run: |
