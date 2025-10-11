@@ -308,15 +308,13 @@ jobs:
 
         # Add issue breakdown if there are issues
         if [ $TOTAL -gt 0 ]; then
-          cat >> $GITHUB_STEP_SUMMARY << EOF
-
-          #### 📋 Issue Breakdown
-
-          - **Errors**: High priority issues that should be fixed immediately
-          - **Warnings**: Potential problems worth investigating
-          - **Style**: Code style improvements for better readability
-          - **Performance**: Optimization suggestions for better efficiency
-          EOF
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "#### 📋 Issue Breakdown" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **Errors**: High priority issues that should be fixed immediately" >> $GITHUB_STEP_SUMMARY
+          echo "- **Warnings**: Potential problems worth investigating" >> $GITHUB_STEP_SUMMARY
+          echo "- **Style**: Code style improvements for better readability" >> $GITHUB_STEP_SUMMARY
+          echo "- **Performance**: Optimization suggestions for better efficiency" >> $GITHUB_STEP_SUMMARY
 
           # Show actual issues if cppcheck output exists
           WARNINGS=$((0 + ${{ env.CPPCHECK_WARNINGS }}))
@@ -340,10 +338,8 @@ jobs:
             echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
           fi
         else
-          cat >> $GITHUB_STEP_SUMMARY << EOF
-
-          🎉 **No issues found!** Your code passes all static analysis checks.
-          EOF
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "🎉 **No issues found!** Your code passes all static analysis checks." >> $GITHUB_STEP_SUMMARY
         fi
 
     - name: Fail job if issues found
