@@ -146,7 +146,7 @@ jobs:
         fi
 
         cat >> $GITHUB_STEP_SUMMARY << EOF
-        ## [🎨 Code Style Check Results](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/jobs/${{ github.job_id }})
+        ## [🎨 Code Style Check Results](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ github.job_id }})
 
         | Metric | Value |
         |--------|-------|
@@ -158,7 +158,9 @@ jobs:
         ### Status: ${{ env.astyle_failed == 'true' && '❌ Failed' || '✅ Passed' }}
 
         > 💡 **Tip**: Click the heading above to view the workflow run page
-        EOF  # Static analysis with cppcheck
+        EOF
+
+# Static analysis with cppcheck
   cppcheck:
     name: Static Analysis
     runs-on: ubuntu-latest
@@ -282,7 +284,9 @@ jobs:
         ### Status: ${STATUS_MSG}
 
         > 💡 **Tip**: Click the heading above to view the workflow run page
-        EOF        # Add issue breakdown if there are issues
+        EOF
+
+        # Add issue breakdown if there are issues
         if [ "${{ env.CPPCHECK_TOTAL }}" -gt 0 ]; then
           cat >> $GITHUB_STEP_SUMMARY << 'EOF'
 
@@ -323,7 +327,7 @@ jobs:
       run: |
         echo "Static Analysis Mode: ${{ env.STATIC_ANALYSIS_STRICT == 'true' && 'STRICT' || 'LENIENT' }}"
         echo "Issues found - Errors: ${{ env.CPPCHECK_ERRORS }}, Warnings: ${{ env.CPPCHECK_WARNINGS }}, Style: ${{ env.CPPCHECK_STYLE }}, Performance: ${{ env.CPPCHECK_PERFORMANCE }}"
-        
+
         # Convert string values to numbers for comparison
         ERRORS=$((0 + ${{ env.CPPCHECK_ERRORS }}))
         TOTAL=$((0 + ${{ env.CPPCHECK_TOTAL }}))
