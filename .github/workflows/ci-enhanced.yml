@@ -146,7 +146,7 @@ jobs:
         fi
 
         cat >> $GITHUB_STEP_SUMMARY << EOF
-        ## [🎨 Code Style Check Results](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ github.job }})
+        ## [🎨 Code Style Check Results](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
 
         | Metric | Value |
         |--------|-------|
@@ -157,10 +157,8 @@ jobs:
 
         ### Status: ${{ env.astyle_failed == 'true' && '❌ Failed' || '✅ Passed' }}
         
-        > 💡 **Tip**: Click the heading above to view detailed job logs
-        EOF
-
-  # Static analysis with cppcheck
+        > 💡 **Tip**: Click the heading above to view the workflow run page
+        EOF  # Static analysis with cppcheck
   cppcheck:
     name: Static Analysis
     runs-on: ubuntu-latest
@@ -271,7 +269,7 @@ jobs:
         fi
 
         cat >> $GITHUB_STEP_SUMMARY << EOF
-        ## [🔍 Static Analysis Results](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ github.job }})
+        ## [🔍 Static Analysis Results](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
 
         | Issue Type | Count |
         |------------|-------|
@@ -283,10 +281,8 @@ jobs:
 
         ### Status: ${STATUS_MSG}
         
-        > 💡 **Tip**: Click the heading above to view detailed job logs
-        EOF
-
-        # Add issue breakdown if there are issues
+        > 💡 **Tip**: Click the heading above to view the workflow run page
+        EOF        # Add issue breakdown if there are issues
         if [ "${{ env.CPPCHECK_TOTAL }}" -gt 0 ]; then
           cat >> $GITHUB_STEP_SUMMARY << 'EOF'
 
@@ -327,7 +323,7 @@ jobs:
       run: |
         echo "Static Analysis Mode: ${{ env.STATIC_ANALYSIS_STRICT == 'true' && 'STRICT' || 'LENIENT' }}"
         echo "Issues found - Errors: ${{ env.CPPCHECK_ERRORS }}, Warnings: ${{ env.CPPCHECK_WARNINGS }}, Style: ${{ env.CPPCHECK_STYLE }}, Performance: ${{ env.CPPCHECK_PERFORMANCE }}"
-        
+
         if [ "${{ env.STATIC_ANALYSIS_STRICT }}" = "true" ]; then
           # Strict mode: fail on any issues (errors, warnings, style, performance)
           if [ "${{ env.CPPCHECK_TOTAL }}" -gt 0 ]; then
@@ -497,7 +493,7 @@ jobs:
         fi
 
         cat >> $GITHUB_STEP_SUMMARY << EOF
-        ## [🔨 Drivers Build Results](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ github.job }})
+        ## [🔨 Drivers Build Results](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
 
         ### 📊 Build Metrics
         | Metric | Value |
@@ -744,7 +740,7 @@ jobs:
         echo "Debug: STATIC_ANALYSIS_STRICT=${{ env.STATIC_ANALYSIS_STRICT }}"
         echo "Debug: total_issues=${{ needs.cppcheck.outputs.total_issues }}"
         echo "Debug: has_errors=${{ needs.cppcheck.outputs.has_errors }}"
-        
+
         if [ "${{ needs.cppcheck.result }}" = "success" ]; then
           if [ "${{ env.STATIC_ANALYSIS_STRICT }}" = "true" ]; then
             # Strict mode: require zero issues
@@ -768,7 +764,7 @@ jobs:
     - name: Create Overall Dashboard
       run: |
         cat >> $GITHUB_STEP_SUMMARY << EOF
-        # [📊 Overall Project Health Dashboard](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ github.job }})
+        # [📊 Overall Project Health Dashboard](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
 
         ## 🎯 Quality Gates
 
@@ -782,9 +778,7 @@ jobs:
         ## 📈 Trend Indicators
 
         > 💡 **Tip**: Click on individual job summaries above for detailed metrics  
-        > 🔗 **Dashboard**: Click the main heading to view this dashboard's job logs
-
-        ### 🏆 Quality Score
+        > 🔗 **Dashboard**: Click the main heading to view the workflow run page        ### 🏆 Quality Score
         ${{ env.TOTAL_SCORE }}/100
 
         ${{ env.QUALITY_MESSAGE }}
@@ -884,7 +878,7 @@ jobs:
       if: always()
       run: |
         cat >> $GITHUB_STEP_SUMMARY << EOF
-        ## [📚 Documentation Build Results](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ github.job }})
+        ## [📚 Documentation Build Results](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
 
         | Metric | Value |
         |--------|-------|
