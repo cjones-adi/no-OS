@@ -160,7 +160,7 @@ jobs:
         > 💡 **Tip**: Click the heading above to view the workflow run page
         EOF
 
-# Static analysis with cppcheck
+  # Static analysis with cppcheck
   cppcheck:
     name: Static Analysis
     runs-on: ubuntu-latest
@@ -304,7 +304,8 @@ jobs:
             echo "#### ⚠️ Warning Details" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
             echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
-            grep ": warning:" cppcheck_output.txt | head -10 >> $GITHUB_STEP_SUMMARY 2>/dev/null || echo "Warning details not available" >> $GITHUB_STEP_SUMMARY
+            grep ": warning:" cppcheck_output.txt | head -10 >> $GITHUB_STEP_SUMMARY 2>/dev/null || \
+              echo "Warning details not available" >> $GITHUB_STEP_SUMMARY
             echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
           fi
 
@@ -313,7 +314,8 @@ jobs:
             echo "#### 🚨 Error Details" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
             echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
-            grep ": error:" cppcheck_output.txt | head -10 >> $GITHUB_STEP_SUMMARY 2>/dev/null || echo "Error details not available" >> $GITHUB_STEP_SUMMARY
+            grep ": error:" cppcheck_output.txt | head -10 >> $GITHUB_STEP_SUMMARY 2>/dev/null || \
+              echo "Error details not available" >> $GITHUB_STEP_SUMMARY
             echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
           fi
         else
@@ -594,7 +596,8 @@ jobs:
           if [ "$DIR_FAILED" -gt 0 ]; then
             echo "❌ Failed tests in $test_dir:" >> ../../../test_results.txt
             # Look for test failure details in Ceedling output
-            grep -A 5 -B 2 "FAIL\|ERROR" test_output.txt | head -20 >> ../../../test_results.txt 2>/dev/null || echo "  (Failed test details not available)" >> ../../../test_results.txt
+            grep -A 5 -B 2 "FAIL\|ERROR" test_output.txt | head -20 >> ../../../test_results.txt 2>/dev/null || \
+              echo "  (Failed test details not available)" >> ../../../test_results.txt
             echo "" >> ../../../test_results.txt
           else
             echo "✅ All tests passed in $test_dir" >> ../../../test_results.txt
@@ -664,7 +667,8 @@ jobs:
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
           # Show failed tests and summary (limit output to prevent overflow)
-          grep -A 20 "Failed tests" test_results.txt | head -50 >> $GITHUB_STEP_SUMMARY 2>/dev/null || echo "Test failure details not available" >> $GITHUB_STEP_SUMMARY
+          grep -A 20 "Failed tests" test_results.txt | head -50 >> $GITHUB_STEP_SUMMARY 2>/dev/null || \
+            echo "Test failure details not available" >> $GITHUB_STEP_SUMMARY
           echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "> 📁 **Full test results are available in the uploaded artifacts**" >> $GITHUB_STEP_SUMMARY
