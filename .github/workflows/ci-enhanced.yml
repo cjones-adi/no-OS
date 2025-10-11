@@ -773,14 +773,16 @@ jobs:
         if [ "${{ needs.cppcheck.result }}" = "success" ]; then
           if [ "${{ env.STATIC_ANALYSIS_STRICT }}" = "true" ]; then
             # Strict mode: require zero issues
-            if [ "${{ needs.cppcheck.outputs.total_issues }}" = "0" ]; then
+            TOTAL_ISSUES=$((0 + ${{ needs.cppcheck.outputs.total_issues }}))
+            if [ $TOTAL_ISSUES -eq 0 ]; then
               echo "STATIC_ANALYSIS_STATUS=✅ PASS" >> $GITHUB_ENV
             else
               echo "STATIC_ANALYSIS_STATUS=❌ FAIL" >> $GITHUB_ENV
             fi
           else
             # Lenient mode: only require zero errors (warnings/style/performance OK)
-            if [ "${{ needs.cppcheck.outputs.has_errors }}" = "0" ]; then
+            ERRORS=$((0 + ${{ needs.cppcheck.outputs.has_errors }}))
+            if [ $ERRORS -eq 0 ]; then
               echo "STATIC_ANALYSIS_STATUS=✅ PASS" >> $GITHUB_ENV
             else
               echo "STATIC_ANALYSIS_STATUS=❌ FAIL" >> $GITHUB_ENV
