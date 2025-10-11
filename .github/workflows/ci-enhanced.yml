@@ -146,7 +146,7 @@ jobs:
         fi
 
         cat >> $GITHUB_STEP_SUMMARY << EOF
-        ## [🎨 Code Style Check Results](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
+        ## [🎨 Code Style Check Results](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/jobs/${{ github.job_id }})
 
         | Metric | Value |
         |--------|-------|
@@ -286,13 +286,13 @@ jobs:
         if [ "${{ env.CPPCHECK_TOTAL }}" -gt 0 ]; then
           cat >> $GITHUB_STEP_SUMMARY << 'EOF'
 
-        #### 📋 Issue Breakdown
+          #### 📋 Issue Breakdown
 
-        - **Errors**: High priority issues that should be fixed immediately
-        - **Warnings**: Potential problems worth investigating
-        - **Style**: Code style improvements for better readability
-        - **Performance**: Optimization suggestions for better efficiency
-        EOF
+          - **Errors**: High priority issues that should be fixed immediately
+          - **Warnings**: Potential problems worth investigating
+          - **Style**: Code style improvements for better readability
+          - **Performance**: Optimization suggestions for better efficiency
+          EOF
 
           # Show actual issues if cppcheck output exists
           if [ -f "cppcheck_output.txt" ] && [ "${{ env.CPPCHECK_WARNINGS }}" -gt 0 ]; then
@@ -315,8 +315,8 @@ jobs:
         else
           cat >> $GITHUB_STEP_SUMMARY << 'EOF'
 
-        🎉 **No issues found!** Your code passes all static analysis checks.
-        EOF
+          🎉 **No issues found!** Your code passes all static analysis checks.
+          EOF
         fi
 
     - name: Fail job if issues found
