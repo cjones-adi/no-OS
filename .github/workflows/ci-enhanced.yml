@@ -260,11 +260,15 @@ jobs:
       if: always()
       run: |
         # Calculate status message
+        # Convert string values to numbers for comparison
+        ERRORS=$((0 + ${{ env.CPPCHECK_ERRORS }}))
+        TOTAL=$((0 + ${{ env.CPPCHECK_TOTAL }}))
+        
         if [ "${{ env.cppcheck_failed }}" = "true" ]; then
           STATUS_MSG="❌ Failed"
-        elif [ "${{ env.CPPCHECK_ERRORS }}" -gt 0 ]; then
+        elif [ $ERRORS -gt 0 ]; then
           STATUS_MSG="⚠️ Has Errors"
-        elif [ "${{ env.CPPCHECK_TOTAL }}" -gt 0 ]; then
+        elif [ $TOTAL -gt 0 ]; then
           STATUS_MSG="⚠️ Has Warnings"
         else
           STATUS_MSG="✅ Passed"
@@ -287,7 +291,7 @@ jobs:
         EOF
 
         # Add issue breakdown if there are issues
-        if [ "${{ env.CPPCHECK_TOTAL }}" -gt 0 ]; then
+        if [ $TOTAL -gt 0 ]; then
           cat >> $GITHUB_STEP_SUMMARY << 'EOF'
 
           #### 📋 Issue Breakdown
@@ -299,7 +303,8 @@ jobs:
           EOF
 
           # Show actual issues if cppcheck output exists
-          if [ -f "cppcheck_output.txt" ] && [ "${{ env.CPPCHECK_WARNINGS }}" -gt 0 ]; then
+          WARNINGS=$((0 + ${{ env.CPPCHECK_WARNINGS }}))
+          if [ -f "cppcheck_output.txt" ] && [ $WARNINGS -gt 0 ]; then
             echo "" >> $GITHUB_STEP_SUMMARY
             echo "#### ⚠️ Warning Details" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
@@ -309,7 +314,7 @@ jobs:
             echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
           fi
 
-          if [ -f "cppcheck_output.txt" ] && [ "${{ env.CPPCHECK_ERRORS }}" -gt 0 ]; then
+          if [ -f "cppcheck_output.txt" ] && [ $ERRORS -gt 0 ]; then
             echo "" >> $GITHUB_STEP_SUMMARY
             echo "#### 🚨 Error Details" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
