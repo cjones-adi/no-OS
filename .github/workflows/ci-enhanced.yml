@@ -159,6 +159,10 @@ jobs:
   cppcheck:
     name: Static Analysis
     runs-on: ubuntu-latest
+    outputs:
+      total_issues: ${{ env.CPPCHECK_TOTAL }}
+      has_errors: ${{ env.CPPCHECK_ERRORS }}
+      has_warnings: ${{ env.CPPCHECK_WARNINGS }}
 
     steps:
     - name: Checkout code
@@ -285,7 +289,7 @@ jobs:
         - **Style**: Code style improvements for better readability
         - **Performance**: Optimization suggestions for better efficiency
         EOF
-          
+
           # Show actual issues if cppcheck output exists
           if [ -f "cppcheck_output.txt" ] && [ "${{ env.CPPCHECK_WARNINGS }}" -gt 0 ]; then
             echo "" >> $GITHUB_STEP_SUMMARY
@@ -295,7 +299,7 @@ jobs:
             grep ": warning:" cppcheck_output.txt | head -10 >> $GITHUB_STEP_SUMMARY 2>/dev/null || echo "Warning details not available" >> $GITHUB_STEP_SUMMARY
             echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
           fi
-          
+
           if [ -f "cppcheck_output.txt" ] && [ "${{ env.CPPCHECK_ERRORS }}" -gt 0 ]; then
             echo "" >> $GITHUB_STEP_SUMMARY
             echo "#### 🚨 Error Details" >> $GITHUB_STEP_SUMMARY
@@ -697,7 +701,7 @@ jobs:
         | Gate | Status | Details |
         |------|--------|---------|
         | 🎨 Code Style | ${{ needs.astyle.result == 'success' && '✅ PASS' || '❌ FAIL' }} | Automated formatting compliance |
-        | 🔍 Static Analysis | ${{ needs.cppcheck.result == 'success' && '✅ PASS' || '❌ FAIL' }} | Code quality checks |
+        | 🔍 Static Analysis | ${{ needs.cppcheck.result == 'success' && needs.cppcheck.outputs.total_issues == '0' && '✅ PASS' || '❌ FAIL' }} | Code quality checks |
         | 🔨 Build | ${{ needs.drivers.result == 'success' && '✅ PASS' || '❌ FAIL' }} | Compilation success |
         | 🧪 Tests | ${{ needs.unit-tests.result == 'success' && '✅ PASS' || '❌ FAIL' }} | Unit test execution |
 
