@@ -15,6 +15,9 @@ on:
 
 env:
   NUM_JOBS: 4
+  # Set to 'true' to fail Static Analysis job when warnings/style/performance issues are found
+  # Set to 'false' to only fail on errors (warnings become informational)
+  STATIC_ANALYSIS_STRICT: 'true'
 
 jobs:
   # Code style checking with astyle
@@ -318,12 +321,29 @@ jobs:
 
     - name: Fail job if issues found
       run: |
-        if [ "${{ env.CPPCHECK_TOTAL }}" -gt 0 ]; then
-          echo "❌ Static analysis found ${{ env.CPPCHECK_TOTAL }} issues that need to be addressed."
-          echo "Errors: ${{ env.CPPCHECK_ERRORS }}, Warnings: ${{ env.CPPCHECK_WARNINGS }}, Style: ${{ env.CPPCHECK_STYLE }}, Performance: ${{ env.CPPCHECK_PERFORMANCE }}"
-          exit 1
+        echo "Static Analysis Mode: ${{ env.STATIC_ANALYSIS_STRICT == 'true' && 'STRICT' || 'LENIENT' }}"
+        echo "Issues found - Errors: ${{ env.CPPCHECK_ERRORS }}, Warnings: ${{ env.CPPCHECK_WARNINGS }}, Style: ${{ env.CPPCHECK_STYLE }}, Performance: ${{ env.CPPCHECK_PERFORMANCE }}"
+        
+        if [ "${{ env.STATIC_ANALYSIS_STRICT }}" = "true" ]; then
+          # Strict mode: fail on any issues (errors, warnings, style, performance)
+          if [ "${{ env.CPPCHECK_TOTAL }}" -gt 0 ]; then
+            echo "❌ STRICT MODE: Static analysis found ${{ env.CPPCHECK_TOTAL }} issues that need to be addressed."
+            echo "Set STATIC_ANALYSIS_STRICT=false to make warnings/style/performance issues non-blocking."
+            exit 1
+          else
+            echo "✅ STRICT MODE: No static analysis issues found."
+          fi
         else
-          echo "✅ No static analysis issues found."
+          # Lenient mode: only fail on errors (warnings/style/performance are informational)
+          if [ "${{ env.CPPCHECK_ERRORS }}" -gt 0 ]; then
+            echo "❌ LENIENT MODE: Static analysis found ${{ env.CPPCHECK_ERRORS }} errors that must be fixed."
+            exit 1
+          else
+            echo "✅ LENIENT MODE: No errors found. Warnings/style/performance issues are informational."
+            if [ "${{ env.CPPCHECK_TOTAL }}" -gt 0 ]; then
+              echo "ℹ️  Found ${{ env.CPPCHECK_TOTAL }} non-blocking issues (warnings/style/performance)."
+            fi
+          fi
         fi
 
   # Build drivers with metrics
@@ -676,8 +696,18 @@ jobs:
           ASTYLE_SCORE=25
         fi
 
-        if [ "${{ needs.cppcheck.result }}" = "success" ] && [ "${{ needs.cppcheck.outputs.total_issues }}" = "0" ]; then
-          CPPCHECK_SCORE=25
+        if [ "${{ needs.cppcheck.result }}" = "success" ]; then
+          if [ "${{ env.STATIC_ANALYSIS_STRICT }}" = "true" ]; then
+            # Strict mode: require zero issues for full score
+            if [ "${{ needs.cppcheck.outputs.total_issues }}" = "0" ]; then
+              CPPCHECK_SCORE=25
+            fi
+          else
+            # Lenient mode: only require zero errors for full score
+            if [ "${{ needs.cppcheck.outputs.has_errors }}" = "0" ]; then
+              CPPCHECK_SCORE=25
+            fi
+          fi
         fi
 
         if [ "${{ needs.drivers.result }}" = "success" ]; then
@@ -704,6 +734,28 @@ jobs:
           echo "QUALITY_MESSAGE=❌ **Significant quality issues require attention.**" >> $GITHUB_ENV
         fi
 
+    - name: Calculate Static Analysis Status
+      run: |
+        if [ "${{ needs.cppcheck.result }}" = "success" ]; then
+          if [ "${{ env.STATIC_ANALYSIS_STRICT }}" = "true" ]; then
+            # Strict mode: require zero issues
+            if [ "${{ needs.cppcheck.outputs.total_issues }}" = "0" ]; then
+              echo "STATIC_ANALYSIS_STATUS=✅ PASS" >> $GITHUB_ENV
+            else
+              echo "STATIC_ANALYSIS_STATUS=❌ FAIL" >> $GITHUB_ENV
+            fi
+          else
+            # Lenient mode: only require zero errors
+            if [ "${{ needs.cppcheck.outputs.has_errors }}" = "0" ]; then
+              echo "STATIC_ANALYSIS_STATUS=✅ PASS" >> $GITHUB_ENV
+            else
+              echo "STATIC_ANALYSIS_STATUS=❌ FAIL" >> $GITHUB_ENV
+            fi
+          fi
+        else
+          echo "STATIC_ANALYSIS_STATUS=❌ FAIL" >> $GITHUB_ENV
+        fi
+
     - name: Create Overall Dashboard
       run: |
         cat >> $GITHUB_STEP_SUMMARY << 'EOF'
@@ -714,7 +766,7 @@ jobs:
         | Gate | Status | Details |
         |------|--------|---------|
         | 🎨 Code Style | ${{ needs.astyle.result == 'success' && '✅ PASS' || '❌ FAIL' }} | Automated formatting compliance |
-        | 🔍 Static Analysis | ${{ needs.cppcheck.result == 'success' && needs.cppcheck.outputs.total_issues == '0' && '✅ PASS' || '❌ FAIL' }} | Code quality checks |
+        | 🔍 Static Analysis | ${{ env.STATIC_ANALYSIS_STATUS }} | Code quality checks (${{ env.STATIC_ANALYSIS_STRICT == 'true' && 'STRICT' || 'LENIENT' }}) |
         | 🔨 Build | ${{ needs.drivers.result == 'success' && '✅ PASS' || '❌ FAIL' }} | Compilation success |
         | 🧪 Tests | ${{ needs.unit-tests.result == 'success' && '✅ PASS' || '❌ FAIL' }} | Unit test execution |
 
