@@ -647,11 +647,6 @@ void test_max17616_iio_read_attr_pout_raw(void)
 
 	/* Setup test data */
 	test_telemetry.pout_mw = 8500;  // Power value in milliwatts
-	test_telemetry.valid_mask = NO_OS_BIT(5); /* POUT valid */
-
-	/* Setup mock */
-	max17616_read_telemetry_all_Stub(mock_read_telemetry_all_callback);
-
 	/* Create IIO descriptor */
 	struct max17616_iio_desc iio_desc = {
 		.max17616_dev = &test_max17616_dev

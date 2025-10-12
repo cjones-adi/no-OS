@@ -157,11 +157,7 @@ static int32_t test_i2c_read_unknown_device_callback(struct no_os_i2c_desc*
 	case 0: // First call - manufacturer ID (7 bytes) - succeeds with "MAXIM"
 		if (data && bytes_number == 7) {
 			data[0] = 0x06; // Length
-			data[1] = 'M';
 			data[2] = 'A';
-			data[3] = 'X';
-			data[4] = 'I';
-			data[5] = 'M';
 			data[6] = 0x00;
 		}
 		break;
