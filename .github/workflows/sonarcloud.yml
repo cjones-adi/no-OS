@@ -107,15 +107,39 @@ jobs:
           echo '<?xml version="1.0" ?><coverage version="1"><sources></sources></coverage>' > coverage/coverage.xml
         fi
 
+    - name: Generate compile_commands.json
+      run: |
+        # Install bear if not available (should be available in CI)
+        if ! command -v bear &> /dev/null; then
+          sudo apt-get update && sudo apt-get install -y bear
+        fi
+        
+        # Generate compile_commands.json using bear and the existing ARM toolchain
+        cd drivers
+        bear -- make clean
+        bear -- make -j$(nproc)
+        cd ..
+        
+        # Verify the compilation database was created
+        if [ -f "compile_commands.json" ]; then
+          echo "✅ compile_commands.json generated successfully"
+          echo "📊 Files captured: $(grep -c '"file":' compile_commands.json)"
+        else
+          echo "⚠️ compile_commands.json not generated, analysis will use basic mode"
+        fi
+
     - name: Run SonarCloud Scan
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       run: |
-        # Check if compile_commands.json exists, if not create a basic one or use build wrapper
-        if [ ! -f "compile_commands.json" ]; then
-          echo "No compile_commands.json found, SonarCloud will use basic analysis"
-          echo "For improved analysis, consider generating compile_commands.json with bear or cmake"
+        # Check if compile_commands.json exists
+        if [ -f "compile_commands.json" ]; then
+          echo "✅ Using compile_commands.json for enhanced C/C++ analysis"
+          COMPILE_COMMANDS_PARAM="-Dsonar.cfamily.compile-commands=compile_commands.json"
+        else
+          echo "⚠️ No compile_commands.json found, using basic analysis"
+          COMPILE_COMMANDS_PARAM=""
         fi
         
         sonar-scanner \
@@ -124,6 +148,7 @@ jobs:
           -Dsonar.host.url=https://sonarcloud.io \
           -Dsonar.sources=drivers,include,iio,jesd204,libraries,network \
           -Dsonar.tests=tests \
+          ${COMPILE_COMMANDS_PARAM} \
           -Dsonar.cfamily.cache.enabled=true \
           -Dsonar.cfamily.threads=2 \
           -Dsonar.c.file.suffixes=.c \
