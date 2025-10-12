@@ -699,7 +699,7 @@ jobs:
           COV_STATUS="Medium"
         fi
 
-        cat >> $GITHUB_STEP_SUMMARY << 'EOF'
+        cat >> $GITHUB_STEP_SUMMARY << EOF
         ## 🧪 Unit Tests & Coverage Dashboard
 
         ### 📊 Test Metrics
@@ -819,8 +819,9 @@ jobs:
               CPPCHECK_SCORE=25
             fi
           else
-            # Lenient mode: only require zero errors for full score
-            if [ "${{ needs.cppcheck.outputs.has_errors }}" = "0" ]; then
+            # Lenient mode: only require zero errors for full score (warnings OK)
+            ERRORS_COUNT="${{ needs.cppcheck.outputs.has_errors }}"
+            if [ "${ERRORS_COUNT:-0}" = "0" ]; then
               CPPCHECK_SCORE=25
             fi
           fi
@@ -868,7 +869,8 @@ jobs:
             fi
           else
             # Lenient mode: only require zero errors (warnings/style/performance OK)
-            ERRORS=$((0 + ${{ needs.cppcheck.outputs.has_errors }}))
+            ERRORS_COUNT="${{ needs.cppcheck.outputs.has_errors }}"
+            ERRORS=$((0 + ${ERRORS_COUNT:-0}))
             if [ $ERRORS -eq 0 ]; then
               echo "STATIC_ANALYSIS_STATUS=✅ PASS" >> $GITHUB_ENV
             else
@@ -902,7 +904,6 @@ jobs:
         ## 📈 Trend Indicators
 
         > 💡 **Tip**: Click on individual job summaries above for detailed metrics
-        > 🔗 **Dashboard**: Click the main heading to view the workflow run page
 
         ### 🏆 Quality Score
         ${{ env.TOTAL_SCORE }}/100
