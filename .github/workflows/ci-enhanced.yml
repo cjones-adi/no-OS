@@ -146,7 +146,7 @@ jobs:
         fi
 
         cat >> $GITHUB_STEP_SUMMARY << EOF
-        ## [🎨 Code Style Check Results](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/job/${{ github.job }})
+        ## 🎨 Code Style Check Results
 
         | Metric | Value |
         |--------|-------|
@@ -201,7 +201,7 @@ jobs:
     - name: Run cppcheck analysis
       run: |
         set -o pipefail
-        
+
         # Run cppcheck and capture the exit code
         if ./ci/run_build.sh 2>&1 | tee cppcheck_output.txt; then
           echo "cppcheck_completed=true" >> $GITHUB_ENV
@@ -278,7 +278,7 @@ jobs:
         # Convert string values to numbers for comparison
         ERRORS=$((0 + ${{ env.CPPCHECK_ERRORS }}))
         TOTAL=$((0 + ${{ env.CPPCHECK_TOTAL }}))
-        
+
         # Determine status based on results
         if [ "${{ env.cppcheck_failed }}" = "true" ]; then
           STATUS_MSG="❌ Failed"
@@ -291,7 +291,7 @@ jobs:
         fi
 
         cat >> $GITHUB_STEP_SUMMARY << EOF
-        ## [🔍 Static Analysis Results](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
+        ## 🔍 Static Analysis Results
 
         | Issue Type | Count |
         |------------|-------|
@@ -520,7 +520,7 @@ jobs:
         fi
 
         cat >> $GITHUB_STEP_SUMMARY << EOF
-        ## [🔨 Drivers Build Results](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
+        ## 🔨 Drivers Build Results
 
         ### 📊 Build Metrics
         | Metric | Value |
@@ -896,7 +896,7 @@ jobs:
         | 🧪 Tests | ${{ needs.unit-tests.result == 'success' && '✅ PASS' || '❌ FAIL' }} | Unit test execution |
 
         ## 🔗 Enhanced Analysis
-        
+
         | Tool | Purpose | Status |
         |------|---------|--------|
         | 📊 [SonarCloud](https://sonarcloud.io/project/overview?id=cjones-adi_no-OS) | Security & Quality | [View Results](https://sonarcloud.io/project/overview?id=cjones-adi_no-OS) |
@@ -1005,7 +1005,7 @@ jobs:
       if: always()
       run: |
         cat >> $GITHUB_STEP_SUMMARY << EOF
-        ## [📚 Documentation Build Results](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
+        ## 📚 Documentation Build Results
 
         | Metric | Value |
         |--------|-------|
