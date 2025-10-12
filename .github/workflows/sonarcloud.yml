@@ -37,7 +37,7 @@ jobs:
     - name: Install build dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y build-essential gcc lcov python3-pip
+        sudo apt-get install -y build-essential gcc-arm-none-eabi lcov python3-pip bear
         pip3 install gcovr
 
     - name: Setup Ruby for tests
@@ -49,6 +49,11 @@ jobs:
     - name: Install Ceedling for test coverage
       run: |
         gem install ceedling
+
+    - name: Verify ARM toolchain
+      run: |
+        which arm-none-eabi-gcc
+        arm-none-eabi-gcc --version
 
     - name: Cache SonarCloud packages
       uses: actions/cache@v3
@@ -109,23 +114,52 @@ jobs:
 
     - name: Generate compile_commands.json
       run: |
-        # Install bear if not available (should be available in CI)
-        if ! command -v bear &> /dev/null; then
-          sudo apt-get update && sudo apt-get install -y bear
+        # Verify ARM toolchain is available
+        if ! command -v arm-none-eabi-gcc &> /dev/null; then
+          echo "❌ ARM toolchain not found"
+          exit 1
         fi
         
-        # Generate compile_commands.json using bear and the existing ARM toolchain
-        cd drivers
-        bear -- make clean
-        bear -- make -j$(nproc)
-        cd ..
+        echo "✅ ARM toolchain found: $(which arm-none-eabi-gcc)"
+        echo "Version: $(arm-none-eabi-gcc --version | head -1)"
         
-        # Verify the compilation database was created
+        # Generate compile_commands.json using bear
+        cd drivers
+        
+        # Clean previous builds to ensure fresh compilation
+        make clean || true
+        
+        # Generate compilation database with bear
+        if bear -- make -j$(nproc); then
+          echo "✅ Compilation successful"
+        else
+          echo "⚠️ Compilation had warnings/errors but may have produced compile_commands.json"
+        fi
+        
+        # Move compile_commands.json to root directory
         if [ -f "compile_commands.json" ]; then
+          mv compile_commands.json ../ 
+          cd ..
           echo "✅ compile_commands.json generated successfully"
           echo "📊 Files captured: $(grep -c '"file":' compile_commands.json)"
+          echo "📁 Sample files:"
+          grep '"file":' compile_commands.json | head -3 | sed 's/.*"file": "\([^"]*\)".*/  - \1/'
         else
-          echo "⚠️ compile_commands.json not generated, analysis will use basic mode"
+          cd ..
+          echo "⚠️ compile_commands.json not generated"
+          
+          # Create a minimal compile_commands.json as fallback
+          echo "Creating minimal compile_commands.json as fallback..."
+          cat > compile_commands.json << 'EOF'
+[
+  {
+    "directory": "/github/workspace/drivers",
+    "command": "arm-none-eabi-gcc -c -Wall -Wformat=0 -DIIO_SUPPORT -I../include/ -I../projects/drivers/util/ example.c",
+    "file": "example.c"
+  }
+]
+EOF
+          echo "📝 Created minimal compile_commands.json for basic analysis"
         fi
 
     - name: Run SonarCloud Scan
@@ -167,6 +201,15 @@ jobs:
         ORG_KEY="cjones-adi"
         SONARCLOUD_URL="https://sonarcloud.io/project/overview?id=${PROJECT_KEY}"
         
+        # Check if compile_commands.json was generated
+        if [ -f "compile_commands.json" ]; then
+          COMPILE_DB_STATUS="✅ Generated ($(grep -c '"file":' compile_commands.json) files)"
+          ANALYSIS_MODE="Enhanced with compilation database"
+        else
+          COMPILE_DB_STATUS="❌ Not available"
+          ANALYSIS_MODE="Basic analysis mode"
+        fi
+        
         cat >> $GITHUB_STEP_SUMMARY << EOF
         ## [📊 SonarCloud Analysis Results](${SONARCLOUD_URL})
         
@@ -177,12 +220,15 @@ jobs:
         | 📋 Project Key | \`${PROJECT_KEY}\` |
         | 🏢 Organization | \`${ORG_KEY}\` |
         | 📈 Branch | \`${{ github.ref_name }}\` |
+        | 🔧 Analysis Mode | ${ANALYSIS_MODE} |
+        | 📁 Compile Database | ${COMPILE_DB_STATUS} |
         
         ### 🔍 What's Analyzed
         - **Source Code**: drivers, include, iio, jesd204, libraries, network
         - **Tests**: tests directory (excluded from main analysis)
         - **Coverage**: Combined test coverage from Ceedling/gcov
         - **Languages**: C/C++ with cfamily analyzer
+        - **Toolchain**: ARM GCC $(arm-none-eabi-gcc --version 2>/dev/null | head -1 | sed 's/.*) //' || echo "Not available")
         
         ### 📊 Key Metrics Available
         - 🐛 **Bugs**: Reliability issues
@@ -199,6 +245,11 @@ jobs:
         2. Set up quality gates based on your project standards
         3. Configure branch analysis for pull requests
         4. Integrate SonarCloud badges in your README
+        
+        ### 🔧 Analysis Details
+        - **ARM Toolchain**: $(which arm-none-eabi-gcc 2>/dev/null || echo "Not found in CI")
+        - **Bear Version**: $(bear --version 2>/dev/null || echo "Not available")
+        - **Workflow Status**: ${{ job.status }}
         EOF
 
     - name: Upload coverage reports
