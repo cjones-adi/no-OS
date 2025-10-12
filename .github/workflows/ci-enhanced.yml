@@ -821,7 +821,7 @@ jobs:
           else
             # Lenient mode: only require zero errors for full score (warnings OK)
             ERRORS_COUNT="${{ needs.cppcheck.outputs.has_errors }}"
-            if [ "${ERRORS_COUNT:-0}" = "0" ]; then
+            if [ "${ERRORS_COUNT:-0}" = "00" ]; then
               CPPCHECK_SCORE=25
             fi
           fi
