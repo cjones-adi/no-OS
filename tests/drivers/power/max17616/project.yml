@@ -1,10 +1,4 @@
 ---
-
-# Notes:
-# Sample project C code is not presently written to produce a release artifact.
-# As such, release build options are disabled.
-# This sample, therefore, only demonstrates running a collection of unit tests.
-
 :project:
   :use_exceptions: FALSE
   :use_test_preprocessor: :all
@@ -17,13 +11,6 @@
   :default_tasks:
     - test:all
 
-#:test_build:
-#  :use_assembly: TRUE
-
-#:release_build:
-#  :output: MyApp.out
-#  :use_assembly: FALSE
-
 :environment:
 
 :extension:
@@ -31,21 +18,30 @@
 
 :paths:
   :test:
-    - +:test/**
-    - -:test/support
+    - test
   :source:
-    - ../../../drivers/imu/**
+    - ../../../../drivers/power/max17616/
   :include:
-    - ../../../include/**
-    - ../../../drivers/imu/**
+    - ../../../../include/**
+    - ../../../../drivers/power/max17616/**
+    - ../../../../iio/**
   :support:
     - test/support
   :libraries: []
 
+:files:
+  :test:
+    - test/test_max17616.c
+    - test/test_iio_max17616.c
+  :source:
+    - ../../../../drivers/power/max17616/max17616.c
+    - ../../../../drivers/power/max17616/iio_max17616.c
+  :support:
+    - test/support/test_max17616_support.c
+    - test/support/test_iio_max17616_support.c
+
 :defines:
-  # in order to add common defines:
-  #  1) remove the trailing [] from the :common: section
-  #  2) add entries to the :common: section (e.g. :test: has TEST defined)
+  # Original driver specific defines
   :common: &common_defines []
   :test:
     - *common_defines
@@ -57,6 +53,8 @@
 :cmock:
   :mock_prefix: mock_
   :when_no_prototypes: :warn
+  :callback_include_count: TRUE
+  :callback_after_arg_check: TRUE
   :enforce_strict_ordering: TRUE
   :plugins:
     - :ignore
@@ -77,7 +75,7 @@
   :gcovr:
     :html_medium_threshold: 75
     :html_high_threshold: 90
-    :report_include: "../../../drivers/imu/.*"
+    :report_include: "../../../../drivers/power/max17616/.*"
 
 #:tools:
 # Ceedling defaults to using gcc for compiling, linking, etc.
@@ -108,4 +106,3 @@
     - report_tests_raw_output_log
     - gcov
     - report_tests_log_factory
-...
