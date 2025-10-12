@@ -893,6 +893,12 @@ jobs:
         | 🔨 Build | ${{ needs.drivers.result == 'success' && '✅ PASS' || '❌ FAIL' }} | Compilation success |
         | 🧪 Tests | ${{ needs.unit-tests.result == 'success' && '✅ PASS' || '❌ FAIL' }} | Unit test execution |
 
+        ## 🔗 Enhanced Analysis
+        
+        | Tool | Purpose | Status |
+        |------|---------|--------|
+        | 📊 [SonarCloud](https://sonarcloud.io/project/overview?id=cjones-adi_no-OS) | Security & Quality | [View Results](https://sonarcloud.io/project/overview?id=cjones-adi_no-OS) |
+
         ## 📈 Trend Indicators
 
         > 💡 **Tip**: Click on individual job summaries above for detailed metrics
