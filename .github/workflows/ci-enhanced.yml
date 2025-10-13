@@ -1207,7 +1207,7 @@ jobs:
         EOF
         else
           # Calculate memory quality score
-          TOTAL_ISSUES=${{ env.MEMORY_LEAKS + env.MEMORY_ERRORS }}
+          TOTAL_ISSUES=$((${{ env.MEMORY_LEAKS }} + ${{ env.MEMORY_ERRORS }}))
           if [ $TOTAL_ISSUES -eq 0 ]; then
             MEMORY_QUALITY="🟢 Excellent"
           elif [ $TOTAL_ISSUES -le 5 ]; then

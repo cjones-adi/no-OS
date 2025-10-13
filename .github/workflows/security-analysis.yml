@@ -690,6 +690,9 @@ jobs:
             STATUS_MSG="Poor Memory Health (Major Issues)"
           fi
 
+          # Calculate total memory issues for display
+          TOTAL_MEMORY_ISSUES=$((MEMORY_LEAKS + MEMORY_ERRORS))
+          
           cat >> $GITHUB_STEP_SUMMARY << EOF
         ## 🧠 Comprehensive Memory Analysis Results
 
@@ -697,7 +700,7 @@ jobs:
 
         | Tool | Purpose | Issues Found |
         |------|---------|--------------|
-        | 🔍 Memcheck | Memory errors & leaks | ${{ env.MEMORY_LEAKS + env.MEMORY_ERRORS }} |
+        | 🔍 Memcheck | Memory errors & leaks | ${TOTAL_MEMORY_ISSUES} |
         | 🧵 Helgrind | Race conditions | Analysis completed |
         | ⚡ Cachegrind | Performance profiling | Reports generated |
 
