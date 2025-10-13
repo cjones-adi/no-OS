@@ -249,6 +249,67 @@ jobs:
         - ✅ **Security Advisories**: CVE database integration
         EOF
 
+        # Add detailed security findings if any issues exist
+        if [ "${{ env.TOTAL_GITHUB_ISSUES }}" != "0" ]; then
+          cat >> $GITHUB_STEP_SUMMARY << EOF
+
+        ### 🔍 Detailed Security Findings
+
+        #### 📦 Dependabot Alert Details
+        EOF
+          
+          # Show Dependabot alert details if any exist
+          if [ "${{ env.DEPENDABOT_ALERTS }}" != "0" ]; then
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            if [ -f "dependabot_alerts.json" ] && [ -s "dependabot_alerts.json" ]; then
+              jq -r '.[] | "• \(.security_advisory.summary) (Severity: \(.security_advisory.severity))\n  Package: \(.dependency.package.name)\n  Vulnerable versions: \(.security_advisory.vulnerabilities[0].vulnerable_version_range // "N/A")\n  CVE: \(.security_advisory.cve_id // "N/A")\n"' dependabot_alerts.json 2>/dev/null | head -20 >> $GITHUB_STEP_SUMMARY || echo "Could not parse Dependabot details" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "Dependabot alerts file not available" >> $GITHUB_STEP_SUMMARY
+            fi
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          else
+            echo "No Dependabot alerts found." >> $GITHUB_STEP_SUMMARY
+          fi
+
+          cat >> $GITHUB_STEP_SUMMARY << EOF
+
+        #### 🔍 Code Scanning Alert Details
+        EOF
+          
+          # Show Code Scanning alert details if any exist
+          if [ "${{ env.CODE_SCANNING_ALERTS }}" != "0" ]; then
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            if [ -f "code_scanning_alerts.json" ] && [ -s "code_scanning_alerts.json" ]; then
+              jq -r '.[] | "• \(.rule.description) (Severity: \(.rule.severity // "N/A"))\n  Rule: \(.rule.id)\n  Location: \(.most_recent_instance.location.path):\(.most_recent_instance.location.start_line // "N/A")\n  State: \(.state)\n"' code_scanning_alerts.json 2>/dev/null | head -20 >> $GITHUB_STEP_SUMMARY || echo "Could not parse Code Scanning details" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "Code Scanning alerts file not available" >> $GITHUB_STEP_SUMMARY
+            fi
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          else
+            echo "No Code Scanning alerts found." >> $GITHUB_STEP_SUMMARY
+          fi
+
+          cat >> $GITHUB_STEP_SUMMARY << EOF
+
+        #### 🔐 Secret Scanning Alert Details
+        EOF
+          
+          # Show Secret Scanning alert details if any exist
+          if [ "${{ env.SECRET_SCANNING_ALERTS }}" != "0" ]; then
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            if [ -f "secret_scanning_alerts.json" ] && [ -s "secret_scanning_alerts.json" ]; then
+              jq -r '.[] | "• Secret type: \(.secret_type)\n  Location: \(.locations[0].details.path // "N/A"):\(.locations[0].details.start_line // "N/A")\n  State: \(.state)\n  Created: \(.created_at)\n"' secret_scanning_alerts.json 2>/dev/null | head -20 >> $GITHUB_STEP_SUMMARY || echo "Could not parse Secret Scanning details" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "Secret Scanning alerts file not available" >> $GITHUB_STEP_SUMMARY
+            fi
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          else
+            echo "No Secret Scanning alerts found." >> $GITHUB_STEP_SUMMARY
+          fi
+        fi
+
+        echo "EOF" >> $GITHUB_STEP_SUMMARY
+
     - name: Upload GitHub Security Reports
       if: always()
       uses: actions/upload-artifact@v4

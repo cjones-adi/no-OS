@@ -1048,7 +1048,45 @@ jobs:
         if [ "${{ env.TOTAL_SECURITY_ISSUES }}" != "0" ]; then
           cat >> $GITHUB_STEP_SUMMARY << EOF
 
-        ### 🚀 Next Steps
+        ### � Detailed Security Findings
+
+        #### 📦 Dependabot Alert Details
+        EOF
+          
+          # Show Dependabot alert details if any exist
+          if [ "${{ env.DEPENDENCY_ALERTS }}" != "0" ]; then
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            if gh api repos/${{ github.repository }}/dependabot/alerts 2>/dev/null | jq -r '.[] | "• \(.security_advisory.summary) (Severity: \(.security_advisory.severity))\n  Package: \(.dependency.package.name)\n  Vulnerable versions: \(.security_advisory.vulnerabilities[0].vulnerable_version_range // "N/A")\n  CVE: \(.security_advisory.cve_id // "N/A")\n"' 2>/dev/null | head -20 >> $GITHUB_STEP_SUMMARY; then
+              echo "Dependabot details added" > /dev/null
+            else
+              echo "Could not retrieve detailed Dependabot information" >> $GITHUB_STEP_SUMMARY
+            fi
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          else
+            echo "No Dependabot alerts found." >> $GITHUB_STEP_SUMMARY
+          fi
+
+          cat >> $GITHUB_STEP_SUMMARY << EOF
+
+        #### 🔍 Code Scanning Alert Details
+        EOF
+          
+          # Show Code Scanning alert details if any exist
+          if [ "${{ env.CODE_SCANNING_ALERTS }}" != "0" ]; then
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            if gh api repos/${{ github.repository }}/code-scanning/alerts 2>/dev/null | jq -r '.[] | "• \(.rule.description) (Severity: \(.rule.severity // "N/A"))\n  Rule: \(.rule.id)\n  Location: \(.most_recent_instance.location.path):\(.most_recent_instance.location.start_line // "N/A")\n  State: \(.state)\n"' 2>/dev/null | head -20 >> $GITHUB_STEP_SUMMARY; then
+              echo "Code scanning details added" > /dev/null
+            else
+              echo "Could not retrieve detailed Code Scanning information" >> $GITHUB_STEP_SUMMARY
+            fi
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          else
+            echo "No Code Scanning alerts found." >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          cat >> $GITHUB_STEP_SUMMARY << EOF
+
+        ### �🚀 Next Steps
         1. Review detailed reports in uploaded artifacts
         2. Enable GitHub's Dependabot for automated updates
         3. Configure GitHub Code Scanning (CodeQL) for static analysis
