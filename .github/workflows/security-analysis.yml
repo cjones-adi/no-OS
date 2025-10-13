@@ -147,9 +147,13 @@ jobs:
 
           # Get comprehensive Dependabot alerts
           echo "Checking Dependabot alerts..." >> github_security_comprehensive.txt
-          if gh api repos/${{ github.repository }}/dependabot/alerts --paginate 2>/dev/null > dependabot_alerts.json; then
-            DEPENDABOT_ALERTS=$(jq length dependabot_alerts.json 2>/dev/null || echo "0")
-
+          if gh api repos/${{ github.repository }}/dependabot/alerts 2>/dev/null | jq length > /dev/null 2>&1; then
+            DEPENDABOT_ALERTS=$(gh api repos/${{ github.repository }}/dependabot/alerts | jq length 2>/dev/null || echo "0")
+            echo "Dependabot alerts found: $DEPENDABOT_ALERTS" >> github_security_comprehensive.txt
+            
+            # Get detailed alert info for severity breakdown
+            gh api repos/${{ github.repository }}/dependabot/alerts 2>/dev/null > dependabot_alerts.json || echo "[]" > dependabot_alerts.json
+            
             # Categorize by severity
             CRITICAL_DEPS=$(jq '[.[] | select(.security_advisory.severity == "critical")] | length' dependabot_alerts.json 2>/dev/null || echo "0")
             HIGH_DEPS=$(jq '[.[] | select(.security_advisory.severity == "high")] | length' dependabot_alerts.json 2>/dev/null || echo "0")
@@ -164,18 +168,24 @@ jobs:
 
           # Get Code scanning alerts
           echo "Checking code scanning alerts..." >> github_security_comprehensive.txt
-          if gh api repos/${{ github.repository }}/code-scanning/alerts --paginate 2>/dev/null > code_scanning_alerts.json; then
-            CODE_SCANNING_ALERTS=$(jq length code_scanning_alerts.json 2>/dev/null || echo "0")
+          if gh api repos/${{ github.repository }}/code-scanning/alerts 2>/dev/null | jq length > /dev/null 2>&1; then
+            CODE_SCANNING_ALERTS=$(gh api repos/${{ github.repository }}/code-scanning/alerts | jq length 2>/dev/null || echo "0")
             echo "Code scanning alerts found: $CODE_SCANNING_ALERTS" >> github_security_comprehensive.txt
+            
+            # Save detailed results for artifact
+            gh api repos/${{ github.repository }}/code-scanning/alerts 2>/dev/null > code_scanning_alerts.json || echo "[]" > code_scanning_alerts.json
           else
             echo "No code scanning alerts or insufficient permissions" >> github_security_comprehensive.txt
           fi
 
           # Get Secret scanning alerts (if available)
           echo "Checking secret scanning alerts..." >> github_security_comprehensive.txt
-          if gh api repos/${{ github.repository }}/secret-scanning/alerts --paginate 2>/dev/null > secret_scanning_alerts.json; then
-            SECRET_SCANNING_ALERTS=$(jq length secret_scanning_alerts.json 2>/dev/null || echo "0")
+          if gh api repos/${{ github.repository }}/secret-scanning/alerts 2>/dev/null | jq length > /dev/null 2>&1; then
+            SECRET_SCANNING_ALERTS=$(gh api repos/${{ github.repository }}/secret-scanning/alerts | jq length 2>/dev/null || echo "0")
             echo "Secret scanning alerts found: $SECRET_SCANNING_ALERTS" >> github_security_comprehensive.txt
+            
+            # Save detailed results for artifact
+            gh api repos/${{ github.repository }}/secret-scanning/alerts 2>/dev/null > secret_scanning_alerts.json || echo "[]" > secret_scanning_alerts.json
           else
             echo "No secret scanning alerts or feature not available" >> github_security_comprehensive.txt
           fi
