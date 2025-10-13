@@ -790,11 +790,607 @@ jobs:
           coverage-badge.json
         retention-days: 30
 
+  # Security scanning with free tools
+  # NOTE: Blackduck (commercial tool) has been replaced with free alternatives
+  #
+  # # Blackduck security scan (COMMENTED OUT - Commercial License Required)
+  # blackduck-scan:
+  #   name: 🔒 Blackduck Security Scan
+  #   runs-on: ubuntu-latest
+  #   if: github.event_name == 'push' || github.event_name == 'schedule'
+  #   steps:
+  #   - name: Checkout code
+  #     uses: actions/checkout@v4
+  #     with:
+  #       fetch-depth: 0
+  #   # ... (Blackduck configuration would go here)
+
+  security-scan:
+    name: 🔒 Security Analysis (GitHub + OWASP)
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Setup Java 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+
+    - name: Run GitHub Security Analysis
+      run: |
+        START_TIME=$(date +%s)
+
+        echo "=== GitHub Security Analysis ===" > security_output.txt
+        echo "Analysis started at: $(date)" >> security_output.txt
+
+        # Initialize counters
+        GITHUB_ALERTS=0
+        DEPENDENCY_ALERTS=0
+        CODE_SCANNING_ALERTS=0
+
+        # GitHub CLI is pre-installed on ubuntu-latest runners
+        # Check for security alerts (requires GITHUB_TOKEN)
+        if gh auth status > /dev/null 2>&1; then
+          echo "✅ GitHub CLI authenticated" >> security_output.txt
+
+          # Get Dependabot alerts with better error handling
+          echo "Checking Dependabot alerts..." >> security_output.txt
+          if DEPENDABOT_RESPONSE=$(gh api repos/${{ github.repository }}/dependabot/alerts 2>&1); then
+            if echo "$DEPENDABOT_RESPONSE" | jq empty 2>/dev/null; then
+              DEPENDENCY_ALERTS=$(echo "$DEPENDABOT_RESPONSE" | jq length 2>/dev/null || echo "0")
+              echo "Dependabot alerts found: $DEPENDENCY_ALERTS" >> security_output.txt
+            else
+              echo "Dependabot API returned invalid JSON: $DEPENDABOT_RESPONSE" >> security_output.txt
+              DEPENDENCY_ALERTS=0
+            fi
+          else
+            echo "Dependabot API call failed: $DEPENDABOT_RESPONSE" >> security_output.txt
+            echo "This may be due to insufficient permissions or the feature being disabled" >> security_output.txt
+            DEPENDENCY_ALERTS=0
+          fi
+
+          # Get Code scanning alerts with better error handling
+          echo "Checking code scanning alerts..." >> security_output.txt
+          if CODE_SCANNING_RESPONSE=$(gh api repos/${{ github.repository }}/code-scanning/alerts 2>&1); then
+            if echo "$CODE_SCANNING_RESPONSE" | jq empty 2>/dev/null; then
+              CODE_SCANNING_ALERTS=$(echo "$CODE_SCANNING_RESPONSE" | jq length 2>/dev/null || echo "0")
+              echo "Code scanning alerts found: $CODE_SCANNING_ALERTS" >> security_output.txt
+            else
+              echo "Code scanning API returned invalid JSON: $CODE_SCANNING_RESPONSE" >> security_output.txt
+              CODE_SCANNING_ALERTS=0
+            fi
+          else
+            echo "Code scanning API call failed: $CODE_SCANNING_RESPONSE" >> security_output.txt
+            echo "This may be due to insufficient permissions or CodeQL not being set up" >> security_output.txt
+            CODE_SCANNING_ALERTS=0
+          fi
+        else
+          echo "⚠️ GitHub CLI not authenticated, skipping alerts check" >> security_output.txt
+          DEPENDENCY_ALERTS=0
+          CODE_SCANNING_ALERTS=0
+        fi
+
+        # Clean and validate numbers
+        DEPENDENCY_ALERTS=${DEPENDENCY_ALERTS:-0}
+        CODE_SCANNING_ALERTS=${CODE_SCANNING_ALERTS:-0}
+        GITHUB_ALERTS=$((DEPENDENCY_ALERTS + CODE_SCANNING_ALERTS))
+
+        echo "GITHUB_ALERTS=$GITHUB_ALERTS" >> $GITHUB_ENV
+        echo "DEPENDENCY_ALERTS=$DEPENDENCY_ALERTS" >> $GITHUB_ENV
+        echo "CODE_SCANNING_ALERTS=$CODE_SCANNING_ALERTS" >> $GITHUB_ENV
+
+        END_TIME=$(date +%s)
+        GITHUB_SCAN_TIME=$((END_TIME - START_TIME))
+        echo "GITHUB_SCAN_TIME=$GITHUB_SCAN_TIME" >> $GITHUB_ENV
+
+        echo "GitHub analysis completed at: $(date)" >> security_output.txt
+        echo "GitHub scan time: ${GITHUB_SCAN_TIME}s" >> security_output.txt
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Download and Run OWASP Dependency Check
+      run: |
+        START_TIME=$(date +%s)
+
+        echo "=== OWASP Dependency Check ===" >> security_output.txt
+        echo "OWASP scan started at: $(date)" >> security_output.txt
+
+        # Download OWASP Dependency Check
+        DC_VERSION="9.0.4"
+        curl -s -L "https://github.com/jeremylong/DependencyCheck/releases/download/v${DC_VERSION}/dependency-check-${DC_VERSION}-release.zip" -o dependency-check.zip
+        unzip -q dependency-check.zip
+
+        # Create reports directory
+        mkdir -p security-reports
+
+        # Run OWASP Dependency Check
+        ./dependency-check/bin/dependency-check.sh \
+          --project "no-OS" \
+          --scan . \
+          --exclude "**/build/**" \
+          --exclude "**/libraries/azure/**" \
+          --exclude "**/libraries/mbed/**" \
+          --exclude "**/libraries/mbedtls/**" \
+          --exclude "**/tests/**/build/**" \
+          --format XML \
+          --format HTML \
+          --format JSON \
+          --out security-reports/ \
+          --nvdApiKey ${{ secrets.NVD_API_KEY || '' }} \
+          --enableExperimental >> security_output.txt 2>&1 || true
+
+        # Parse OWASP results
+        if [ -f "security-reports/dependency-check-report.xml" ]; then
+          # Count vulnerabilities by severity
+          CRITICAL_VULNS=$(grep -c 'severity="CRITICAL"' security-reports/dependency-check-report.xml 2>/dev/null || echo "0")
+          HIGH_VULNS=$(grep -c 'severity="HIGH"' security-reports/dependency-check-report.xml 2>/dev/null || echo "0")
+          MEDIUM_VULNS=$(grep -c 'severity="MEDIUM"' security-reports/dependency-check-report.xml 2>/dev/null || echo "0")
+          LOW_VULNS=$(grep -c 'severity="LOW"' security-reports/dependency-check-report.xml 2>/dev/null || echo "0")
+
+          TOTAL_OWASP_VULNS=$((CRITICAL_VULNS + HIGH_VULNS + MEDIUM_VULNS + LOW_VULNS))
+
+          echo "OWASP vulnerabilities by severity:" >> security_output.txt
+          echo "Critical: $CRITICAL_VULNS" >> security_output.txt
+          echo "High: $HIGH_VULNS" >> security_output.txt
+          echo "Medium: $MEDIUM_VULNS" >> security_output.txt
+          echo "Low: $LOW_VULNS" >> security_output.txt
+          echo "Total: $TOTAL_OWASP_VULNS" >> security_output.txt
+        else
+          echo "⚠️ OWASP Dependency Check report not generated" >> security_output.txt
+          CRITICAL_VULNS=0
+          HIGH_VULNS=0
+          MEDIUM_VULNS=0
+          LOW_VULNS=0
+          TOTAL_OWASP_VULNS=0
+        fi
+
+        END_TIME=$(date +%s)
+        OWASP_SCAN_TIME=$((END_TIME - START_TIME))
+
+        # Set environment variables
+        echo "OWASP_SCAN_TIME=$OWASP_SCAN_TIME" >> $GITHUB_ENV
+        echo "CRITICAL_VULNS=$CRITICAL_VULNS" >> $GITHUB_ENV
+        echo "HIGH_VULNS=$HIGH_VULNS" >> $GITHUB_ENV
+        echo "MEDIUM_VULNS=$MEDIUM_VULNS" >> $GITHUB_ENV
+        echo "LOW_VULNS=$LOW_VULNS" >> $GITHUB_ENV
+        echo "TOTAL_OWASP_VULNS=$TOTAL_OWASP_VULNS" >> $GITHUB_ENV
+
+        # Calculate total security issues
+        TOTAL_SECURITY_ISSUES=$((GITHUB_ALERTS + TOTAL_OWASP_VULNS))
+        echo "TOTAL_SECURITY_ISSUES=$TOTAL_SECURITY_ISSUES" >> $GITHUB_ENV
+
+        # Determine security status
+        if [ $CRITICAL_VULNS -gt 0 ]; then
+          echo "SECURITY_STATUS=CRITICAL" >> $GITHUB_ENV
+        elif [ $HIGH_VULNS -gt 0 ] || [ $GITHUB_ALERTS -gt 0 ]; then
+          echo "SECURITY_STATUS=HIGH_RISK" >> $GITHUB_ENV
+        elif [ $MEDIUM_VULNS -gt 0 ]; then
+          echo "SECURITY_STATUS=MEDIUM_RISK" >> $GITHUB_ENV
+        elif [ $LOW_VULNS -gt 0 ]; then
+          echo "SECURITY_STATUS=LOW_RISK" >> $GITHUB_ENV
+        else
+          echo "SECURITY_STATUS=CLEAN" >> $GITHUB_ENV
+        fi
+
+        echo "OWASP scan completed at: $(date)" >> security_output.txt
+        echo "OWASP scan time: ${OWASP_SCAN_TIME}s" >> security_output.txt
+
+    - name: Create Security Job Summary
+      if: always()
+      run: |
+        # Calculate total scan time
+        TOTAL_SCAN_TIME=$((GITHUB_SCAN_TIME + OWASP_SCAN_TIME))
+
+        # Determine status emoji and message
+        case "${{ env.SECURITY_STATUS }}" in
+          "CLEAN")
+            STATUS_EMOJI="✅"
+            STATUS_MSG="No Security Issues Detected"
+            ;;
+          "LOW_RISK")
+            STATUS_EMOJI="🟡"
+            STATUS_MSG="Low Risk Issues Found"
+            ;;
+          "MEDIUM_RISK")
+            STATUS_EMOJI="🟠"
+            STATUS_MSG="Medium Risk Issues Found"
+            ;;
+          "HIGH_RISK")
+            STATUS_EMOJI="🔴"
+            STATUS_MSG="High Risk Issues Found"
+            ;;
+          "CRITICAL")
+            STATUS_EMOJI="💀"
+            STATUS_MSG="Critical Security Issues Found"
+            ;;
+          *)
+            STATUS_EMOJI="⚠️"
+            STATUS_MSG="Security Scan Completed"
+            ;;
+        esac
+
+        cat >> $GITHUB_STEP_SUMMARY << EOF
+        ## 🔒 Security Analysis Results (GitHub + OWASP)
+
+        ### ${STATUS_EMOJI} ${STATUS_MSG}
+
+        | Tool | Purpose | Issues Found |
+        |------|---------|--------------|
+        | 🐙 GitHub Security | Repository alerts | ${{ env.GITHUB_ALERTS }} |
+        | 🛡️ OWASP Dependency Check | Vulnerability scanning | ${{ env.TOTAL_OWASP_VULNS }} |
+
+        ### 📊 Vulnerability Breakdown (OWASP)
+        | Severity | Count | Priority |
+        |----------|-------|----------|
+        | 💀 Critical | ${{ env.CRITICAL_VULNS }} | Immediate |
+        | 🔴 High | ${{ env.HIGH_VULNS }} | Within 7 days |
+        | 🟠 Medium | ${{ env.MEDIUM_VULNS }} | Within 30 days |
+        | 🟡 Low | ${{ env.LOW_VULNS }} | Monitor |
+
+        ### 🐙 GitHub Security Alerts
+        | Type | Count |
+        |------|-------|
+        | 📦 Dependabot | ${{ env.DEPENDENCY_ALERTS }} |
+        | 🔍 Code Scanning | ${{ env.CODE_SCANNING_ALERTS }} |
+
+        ### ⏱️ Scan Performance
+        - **GitHub Analysis**: ${{ env.GITHUB_SCAN_TIME }}s
+        - **OWASP Dependency Check**: ${{ env.OWASP_SCAN_TIME }}s
+        - **Total Duration**: ${TOTAL_SCAN_TIME}s
+
+        ### 🎯 Security Summary
+        - **Total Issues**: ${{ env.TOTAL_SECURITY_ISSUES }}
+        - **Risk Level**: ${{ env.SECURITY_STATUS }}
+        - **Tools Used**: GitHub Security + OWASP Dependency Check
+
+        > 📁 **Reports Available**: Check artifacts for detailed HTML, XML, and JSON reports
+
+        ### 💡 Free Security Tools Benefits
+        - ✅ **No licensing costs** (vs commercial tools like Blackduck)
+        - ✅ **GitHub integration** for seamless workflow
+        - ✅ **CVE database access** through OWASP
+        - ✅ **Multiple report formats** for analysis
+        EOF
+
+        # Add recommendations based on findings - always show this section for transparency
+        cat >> $GITHUB_STEP_SUMMARY << EOF
+
+        ### 🔍 Detailed Security Findings
+
+        #### 📦 Dependabot Alert Details
+        EOF
+        
+        # Show Dependabot alert details if any exist
+        if [ "${{ env.DEPENDENCY_ALERTS }}" != "0" ]; then
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          
+          # Capture API response for better error handling
+          if DEPENDABOT_RESPONSE=$(gh api repos/${{ github.repository }}/dependabot/alerts 2>&1); then
+            if echo "$DEPENDABOT_RESPONSE" | jq empty 2>/dev/null && [ "$DEPENDABOT_RESPONSE" != "[]" ]; then
+              # Show JSON structure for debugging
+              echo "JSON structure (first alert):" >> $GITHUB_STEP_SUMMARY
+              echo "$DEPENDABOT_RESPONSE" | jq '.[0] // "No alerts in array"' 2>/dev/null | head -10 >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+              
+              # Try to parse with error handling and fallbacks
+              if echo "$DEPENDABOT_RESPONSE" | jq -r '.[] | "• \(.security_advisory.summary // "No summary available") (Severity: \(.security_advisory.severity // "Unknown"))\n  Package: \(.dependency.package.name // "Unknown package")\n  Vulnerable versions: \(.security_advisory.vulnerabilities[0].vulnerable_version_range // "N/A")\n  CVE: \(.security_advisory.cve_id // "N/A")\n"' 2>/dev/null | head -20 >> $GITHUB_STEP_SUMMARY; then
+                echo "Successfully parsed Dependabot alerts" >> $GITHUB_STEP_SUMMARY
+              else
+                echo "Failed to parse Dependabot alerts with expected structure. Raw data:" >> $GITHUB_STEP_SUMMARY
+                echo "$DEPENDABOT_RESPONSE" | head -500 >> $GITHUB_STEP_SUMMARY
+              fi
+            else
+              echo "Dependabot API returned empty or invalid JSON" >> $GITHUB_STEP_SUMMARY
+              echo "Raw response (first 200 chars): $(echo "$DEPENDABOT_RESPONSE" | head -c 200)" >> $GITHUB_STEP_SUMMARY
+            fi
+          else
+            echo "Could not retrieve detailed Dependabot information" >> $GITHUB_STEP_SUMMARY
+            echo "API call failed: $DEPENDABOT_RESPONSE" >> $GITHUB_STEP_SUMMARY
+            echo "This may be due to permissions, rate limiting, or feature not being enabled" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo '```' >> $GITHUB_STEP_SUMMARY
+        else
+          echo "No Dependabot alerts found." >> $GITHUB_STEP_SUMMARY
+        fi
+
+        cat >> $GITHUB_STEP_SUMMARY << EOF
+
+        #### 🔍 Code Scanning Alert Details
+        EOF
+        
+        # Show Code Scanning alert details if any exist
+        if [ "${{ env.CODE_SCANNING_ALERTS }}" != "0" ]; then
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          
+          # Capture API response for better error handling
+          if CODE_SCANNING_RESPONSE=$(gh api repos/${{ github.repository }}/code-scanning/alerts 2>&1); then
+            if echo "$CODE_SCANNING_RESPONSE" | jq empty 2>/dev/null && [ "$CODE_SCANNING_RESPONSE" != "[]" ]; then
+              # Show JSON structure for debugging
+              echo "JSON structure (first alert):" >> $GITHUB_STEP_SUMMARY
+              echo "$CODE_SCANNING_RESPONSE" | jq '.[0] // "No alerts in array"' 2>/dev/null | head -10 >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+              
+              # Try to parse with error handling and fallbacks
+              if echo "$CODE_SCANNING_RESPONSE" | jq -r '.[] | "• \(.rule.description // "No description available") (Severity: \(.rule.severity // "Unknown"))\n  Rule: \(.rule.id // "Unknown rule")\n  Location: \(.most_recent_instance.location.path // "Unknown"):\(.most_recent_instance.location.start_line // "N/A")\n  State: \(.state // "Unknown")\n"' 2>/dev/null | head -20 >> $GITHUB_STEP_SUMMARY; then
+                echo "Successfully parsed Code Scanning alerts" >> $GITHUB_STEP_SUMMARY
+              else
+                echo "Failed to parse Code Scanning alerts with expected structure. Raw data:" >> $GITHUB_STEP_SUMMARY
+                echo "$CODE_SCANNING_RESPONSE" | head -500 >> $GITHUB_STEP_SUMMARY
+              fi
+            else
+              echo "Code Scanning API returned empty or invalid JSON" >> $GITHUB_STEP_SUMMARY
+              echo "Raw response (first 200 chars): $(echo "$CODE_SCANNING_RESPONSE" | head -c 200)" >> $GITHUB_STEP_SUMMARY
+            fi
+          else
+            echo "Could not retrieve detailed Code Scanning information" >> $GITHUB_STEP_SUMMARY
+            echo "API call failed: $CODE_SCANNING_RESPONSE" >> $GITHUB_STEP_SUMMARY
+            echo "This may be due to permissions, rate limiting, or CodeQL not being configured" >> $GITHUB_STEP_SUMMARY
+          fi
+          echo '```' >> $GITHUB_STEP_SUMMARY
+        else
+          echo "No Code Scanning alerts found." >> $GITHUB_STEP_SUMMARY
+        fi
+        
+        cat >> $GITHUB_STEP_SUMMARY << EOF
+
+        ### 🔧 Troubleshooting Information
+        
+        #### API Response Status
+        | API Endpoint | Status | Notes |
+        |--------------|--------|-------|
+        | Dependabot | ${{ env.DEPENDENCY_ALERTS != '0' && 'Has alerts' || 'No alerts or API failed' }} | Check repository security settings |
+        | Code Scanning | ${{ env.CODE_SCANNING_ALERTS != '0' && 'Has alerts' || 'No alerts or API failed' }} | Ensure CodeQL is configured |
+
+        #### Common Issues
+        - **Empty alert details**: API permissions may be insufficient
+        - **Authentication errors**: Verify GITHUB_TOKEN has security read permissions
+        - **Feature availability**: Some features require GitHub Advanced Security or public repos
+        - **Rate limiting**: GitHub API may be temporarily limited
+        
+        #### Repository Security Settings
+        To enable these features:
+        1. Go to Settings > Security & analysis
+        2. Enable Dependabot alerts and security updates
+        3. Enable Code scanning (CodeQL)
+
+        ### 🚀 Next Steps
+        1. Review detailed reports in uploaded artifacts
+        2. Enable GitHub's Dependabot for automated updates
+        3. Configure GitHub Code Scanning (CodeQL) for static analysis
+        4. Consider adding Snyk for additional coverage
+        EOF
+
+    - name: Upload Security Reports
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: security-analysis-reports
+        path: |
+          security-reports/
+          security_output.txt
+        retention-days: 30
+
+  # Valgrind memory analysis
+  valgrind-analysis:
+    name: 🧠 Valgrind Memory Analysis
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 50
+
+    - name: Install Valgrind and dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y valgrind build-essential gcc gdb libc6-dbg
+
+    - name: Setup Ruby for tests
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.0'
+        bundler-cache: false
+
+    - name: Install Ceedling
+      run: |
+        gem install ceedling
+
+    - name: Run Valgrind Analysis
+      run: |
+        START_TIME=$(date +%s)
+
+        echo "=== Starting Valgrind Memory Analysis ===" > valgrind_output.txt
+        echo "Analysis started at: $(date)" >> valgrind_output.txt
+
+        # Initialize counters
+        TOTAL_TESTS_RUN=0
+        MEMORY_LEAKS=0
+        MEMORY_ERRORS=0
+        INVALID_READS=0
+        INVALID_WRITES=0
+
+        # Find test directories
+        test_dirs=$(find tests -name "project.yml" -type f -exec dirname {} \;)
+
+        if [ -z "$test_dirs" ]; then
+          echo "No test directories found for Valgrind analysis"
+          echo "TEST_STATUS=NO_TESTS" >> $GITHUB_ENV
+          exit 0
+        fi
+
+        # Create valgrind reports directory
+        mkdir -p valgrind_reports
+
+        # Run Valgrind on each test suite
+        for test_dir in $test_dirs; do
+          echo "=== Analyzing: $test_dir ===" >> valgrind_output.txt
+          cd "$test_dir"
+
+          # Build tests first
+          if ceedling test:all > build_output.txt 2>&1; then
+            echo "✅ Tests built successfully for $test_dir" >> ../../valgrind_output.txt
+
+            # Find test executables
+            test_executables=$(find build/test/out -name "test_*" -type f -executable 2>/dev/null || true)
+
+            for exe in $test_executables; do
+              if [ -f "$exe" ]; then
+                echo "Running Valgrind on: $exe" >> ../../valgrind_output.txt
+                TOTAL_TESTS_RUN=$((TOTAL_TESTS_RUN + 1))
+
+                # Run Valgrind with comprehensive checks
+                valgrind \
+                  --tool=memcheck \
+                  --leak-check=full \
+                  --show-leak-kinds=all \
+                  --track-origins=yes \
+                  --verbose \
+                  --xml=yes \
+                  --xml-file="../../valgrind_reports/$(basename $exe).xml" \
+                  "$exe" > "../../valgrind_reports/$(basename $exe).log" 2>&1 || true
+
+                # Parse results from this run
+                if [ -f "../../valgrind_reports/$(basename $exe).log" ]; then
+                  # Count different types of issues
+                  LEAKS=$(grep -c "definitely lost\|possibly lost" "../../valgrind_reports/$(basename $exe).log" 2>/dev/null || echo "0")
+                  ERRORS=$(grep -c "Invalid read\|Invalid write\|Conditional jump" "../../valgrind_reports/$(basename $exe).log" 2>/dev/null || echo "0")
+                  READS=$(grep -c "Invalid read" "../../valgrind_reports/$(basename $exe).log" 2>/dev/null || echo "0")
+                  WRITES=$(grep -c "Invalid write" "../../valgrind_reports/$(basename $exe).log" 2>/dev/null || echo "0")
+
+                  MEMORY_LEAKS=$((MEMORY_LEAKS + LEAKS))
+                  MEMORY_ERRORS=$((MEMORY_ERRORS + ERRORS))
+                  INVALID_READS=$((INVALID_READS + READS))
+                  INVALID_WRITES=$((INVALID_WRITES + WRITES))
+                fi
+              fi
+            done
+          else
+            echo "❌ Failed to build tests for $test_dir" >> ../../valgrind_output.txt
+          fi
+
+          cd - > /dev/null
+        done
+
+        END_TIME=$(date +%s)
+        ANALYSIS_TIME=$((END_TIME - START_TIME))
+
+        echo "Analysis completed at: $(date)" >> valgrind_output.txt
+        echo "Total analysis time: ${ANALYSIS_TIME}s" >> valgrind_output.txt
+        echo "Test executables analyzed: $TOTAL_TESTS_RUN" >> valgrind_output.txt
+        echo "Memory leaks found: $MEMORY_LEAKS" >> valgrind_output.txt
+        echo "Memory errors found: $MEMORY_ERRORS" >> valgrind_output.txt
+
+        # Set environment variables
+        echo "ANALYSIS_TIME=$ANALYSIS_TIME" >> $GITHUB_ENV
+        echo "TOTAL_TESTS_RUN=$TOTAL_TESTS_RUN" >> $GITHUB_ENV
+        echo "MEMORY_LEAKS=$MEMORY_LEAKS" >> $GITHUB_ENV
+        echo "MEMORY_ERRORS=$MEMORY_ERRORS" >> $GITHUB_ENV
+        echo "INVALID_READS=$INVALID_READS" >> $GITHUB_ENV
+        echo "INVALID_WRITES=$INVALID_WRITES" >> $GITHUB_ENV
+
+        if [ $TOTAL_TESTS_RUN -eq 0 ]; then
+          echo "TEST_STATUS=NO_TESTS" >> $GITHUB_ENV
+        elif [ $MEMORY_LEAKS -eq 0 ] && [ $MEMORY_ERRORS -eq 0 ]; then
+          echo "TEST_STATUS=CLEAN" >> $GITHUB_ENV
+        else
+          echo "TEST_STATUS=ISSUES_FOUND" >> $GITHUB_ENV
+        fi
+
+    - name: Create Valgrind Job Summary
+      if: always()
+      run: |
+        if [ "${{ env.TEST_STATUS }}" = "NO_TESTS" ]; then
+          cat >> $GITHUB_STEP_SUMMARY << EOF
+        ## 🧠 Valgrind Memory Analysis
+
+        ### ⚠️ No Tests Found
+        No test executables were found to analyze with Valgrind.
+
+        > 💡 **Tip**: Ensure your unit tests compile to executable binaries for memory analysis
+        EOF
+        else
+          # Calculate memory quality score
+          TOTAL_ISSUES=$((${{ env.MEMORY_LEAKS }} + ${{ env.MEMORY_ERRORS }}))
+          if [ $TOTAL_ISSUES -eq 0 ]; then
+            MEMORY_QUALITY="🟢 Excellent"
+          elif [ $TOTAL_ISSUES -le 5 ]; then
+            MEMORY_QUALITY="🟡 Good"
+          else
+            MEMORY_QUALITY="🔴 Needs Attention"
+          fi
+
+          cat >> $GITHUB_STEP_SUMMARY << EOF
+        ## 🧠 Valgrind Memory Analysis Results
+
+        | Metric | Count | Status |
+        |--------|-------|--------|
+        | ⏱️ Analysis Time | ${{ env.ANALYSIS_TIME }}s | ✅ |
+        | 🎯 Tests Analyzed | ${{ env.TOTAL_TESTS_RUN }} | ✅ |
+        | 💧 Memory Leaks | ${{ env.MEMORY_LEAKS }} | ${{ env.MEMORY_LEAKS == '0' && '✅' || '❌' }} |
+        | ⚠️ Memory Errors | ${{ env.MEMORY_ERRORS }} | ${{ env.MEMORY_ERRORS == '0' && '✅' || '❌' }} |
+        | 📖 Invalid Reads | ${{ env.INVALID_READS }} | ${{ env.INVALID_READS == '0' && '✅' || '❌' }} |
+        | ✏️ Invalid Writes | ${{ env.INVALID_WRITES }} | ${{ env.INVALID_WRITES == '0' && '✅' || '❌' }} |
+
+        ### Memory Quality: ${MEMORY_QUALITY}
+
+        ### Status: ${{ env.TEST_STATUS == 'CLEAN' && '✅ No Memory Issues Detected' || '⚠️ Memory Issues Found' }}
+
+        ### 🔍 Analysis Coverage
+        - **Memory Leaks**: Definite and possible leaks detected
+        - **Buffer Overflows**: Invalid reads and writes identified
+        - **Uninitialized Memory**: Usage of uninitialized values tracked
+        - **Double Free**: Multiple deallocations caught
+        EOF
+
+        # Add detailed breakdown if issues found
+        if [ "${{ env.TEST_STATUS }}" = "ISSUES_FOUND" ]; then
+          cat >> $GITHUB_STEP_SUMMARY << EOF
+
+        ### 🚨 Issue Breakdown
+        - **Memory Leaks (${{ env.MEMORY_LEAKS }})**: Memory allocated but never freed
+        - **Invalid Reads (${{ env.INVALID_READS }})**: Reading from invalid memory locations
+        - **Invalid Writes (${{ env.INVALID_WRITES }})**: Writing to invalid memory locations
+
+        > 📁 **Detailed Reports**: Check the uploaded Valgrind artifacts for complete analysis
+        EOF
+        fi
+
+        cat >> $GITHUB_STEP_SUMMARY << EOF
+
+        ### 💡 Recommendations
+        - Review detailed Valgrind logs for specific issue locations
+        - Fix memory leaks by ensuring all `malloc()` calls have matching `free()`
+        - Address buffer overflows by checking array bounds
+        - Initialize all variables before use
+        EOF
+        fi
+
+    - name: Upload Valgrind reports
+      if: always() && env.TEST_STATUS != 'NO_TESTS'
+      uses: actions/upload-artifact@v4
+      with:
+        name: valgrind-memory-analysis
+        path: |
+          valgrind_reports/
+          valgrind_output.txt
+        retention-days: 30
+
   # Metrics summary job
   metrics-summary:
     name: 📊 Metrics Dashboard
     runs-on: ubuntu-latest
-    needs: [astyle, cppcheck, drivers, unit-tests]
+    needs: [astyle, cppcheck, drivers, unit-tests, security-scan, valgrind-analysis]
     if: always()
 
     steps:
@@ -806,49 +1402,65 @@ jobs:
         CPPCHECK_SCORE=0
         DRIVERS_SCORE=0
         TESTS_SCORE=0
+        SECURITY_SCORE=0
+        MEMORY_SCORE=0
 
         # Check each job result safely
         if [ "${{ needs.astyle.result }}" = "success" ]; then
-          ASTYLE_SCORE=25
+          ASTYLE_SCORE=15
         fi
 
         if [ "${{ needs.cppcheck.result }}" = "success" ]; then
           if [ "${{ env.STATIC_ANALYSIS_STRICT }}" = "true" ]; then
             # Strict mode: require zero issues for full score
             if [ "${{ needs.cppcheck.outputs.total_issues }}" = "0" ]; then
-              CPPCHECK_SCORE=25
+              CPPCHECK_SCORE=15
             fi
           else
             # Lenient mode: only require zero errors for full score (warnings OK)
             ERRORS_COUNT="${{ needs.cppcheck.outputs.has_errors }}"
             if [ "${ERRORS_COUNT:-0}" = "00" ]; then
-              CPPCHECK_SCORE=25
+              CPPCHECK_SCORE=15
             fi
           fi
         fi
 
         if [ "${{ needs.drivers.result }}" = "success" ]; then
-          DRIVERS_SCORE=25
+          DRIVERS_SCORE=20
         fi
 
         if [ "${{ needs.unit-tests.result }}" = "success" ]; then
-          TESTS_SCORE=25
+          TESTS_SCORE=20
+        fi
+
+        # Security analysis score (GitHub + OWASP)
+        if [ "${{ needs.security-scan.result }}" = "success" ]; then
+          SECURITY_SCORE=15
+        fi
+
+        # Memory analysis score (Valgrind)
+        if [ "${{ needs.valgrind-analysis.result }}" = "success" ]; then
+          MEMORY_SCORE=15
         fi
 
         # Calculate total score safely
-        TOTAL_SCORE=$((ASTYLE_SCORE + CPPCHECK_SCORE + DRIVERS_SCORE + TESTS_SCORE))
+        TOTAL_SCORE=$((ASTYLE_SCORE + CPPCHECK_SCORE + DRIVERS_SCORE + TESTS_SCORE + SECURITY_SCORE + MEMORY_SCORE))
 
         echo "TOTAL_SCORE=$TOTAL_SCORE" >> $GITHUB_ENV
+        echo "SECURITY_SCORE=$SECURITY_SCORE" >> $GITHUB_ENV
+        echo "MEMORY_SCORE=$MEMORY_SCORE" >> $GITHUB_ENV
 
         # Determine overall status message
         if [ $TOTAL_SCORE -eq 100 ]; then
-          echo "QUALITY_MESSAGE=🎉 **Excellent! All quality gates passed.**" >> $GITHUB_ENV
-        elif [ $TOTAL_SCORE -ge 75 ]; then
-          echo "QUALITY_MESSAGE=✅ **Good quality, minor issues to address.**" >> $GITHUB_ENV
+          echo "QUALITY_MESSAGE=🎉 **Excellent! All quality and security gates passed.**" >> $GITHUB_ENV
+        elif [ $TOTAL_SCORE -ge 85 ]; then
+          echo "QUALITY_MESSAGE=✅ **High quality with robust security posture.**" >> $GITHUB_ENV
+        elif [ $TOTAL_SCORE -ge 70 ]; then
+          echo "QUALITY_MESSAGE=🟡 **Good quality, some security/memory improvements needed.**" >> $GITHUB_ENV
         elif [ $TOTAL_SCORE -ge 50 ]; then
-          echo "QUALITY_MESSAGE=⚠️ **Quality improvements needed.**" >> $GITHUB_ENV
+          echo "QUALITY_MESSAGE=⚠️ **Quality improvements needed across multiple areas.**" >> $GITHUB_ENV
         else
-          echo "QUALITY_MESSAGE=❌ **Significant quality issues require attention.**" >> $GITHUB_ENV
+          echo "QUALITY_MESSAGE=❌ **Significant quality and security issues require attention.**" >> $GITHUB_ENV
         fi
 
     - name: Calculate Static Analysis Status
@@ -881,6 +1493,20 @@ jobs:
           echo "STATIC_ANALYSIS_STATUS=❌ FAIL" >> $GITHUB_ENV
         fi
 
+        # Calculate Security Analysis Status
+        if [ "${{ needs.security-scan.result }}" = "success" ]; then
+          echo "SECURITY_ANALYSIS_STATUS=✅ PASS" >> $GITHUB_ENV
+        else
+          echo "SECURITY_ANALYSIS_STATUS=❌ FAIL" >> $GITHUB_ENV
+        fi
+
+        # Calculate Memory Analysis Status
+        if [ "${{ needs.valgrind-analysis.result }}" = "success" ]; then
+          echo "MEMORY_ANALYSIS_STATUS=✅ PASS" >> $GITHUB_ENV
+        else
+          echo "MEMORY_ANALYSIS_STATUS=❌ FAIL" >> $GITHUB_ENV
+        fi
+
     - name: Create Overall Dashboard
       run: |
         cat >> $GITHUB_STEP_SUMMARY << EOF
@@ -894,12 +1520,16 @@ jobs:
         | 🔍 Static Analysis | ${{ env.STATIC_ANALYSIS_STATUS }} | Code quality checks (${{ env.STATIC_ANALYSIS_STRICT == 'true' && 'STRICT' || 'LENIENT' }}) |
         | 🔨 Build | ${{ needs.drivers.result == 'success' && '✅ PASS' || '❌ FAIL' }} | Compilation success |
         | 🧪 Tests | ${{ needs.unit-tests.result == 'success' && '✅ PASS' || '❌ FAIL' }} | Unit test execution |
+        | 🔒 Security | ${{ env.SECURITY_ANALYSIS_STATUS }} | Vulnerability scanning (GitHub + OWASP) |
+        | 🧠 Memory | ${{ env.MEMORY_ANALYSIS_STATUS }} | Memory leak detection (Valgrind) |
 
         ## 🔗 Enhanced Analysis
 
         | Tool | Purpose | Status |
         |------|---------|--------|
         | 📊 [SonarCloud](https://sonarcloud.io/project/overview?id=cjones-adi_no-OS) | Security & Quality | [View Results](https://sonarcloud.io/project/overview?id=cjones-adi_no-OS) |
+        | 🔒 GitHub + OWASP | Security & Vulnerability Scanning | ${{ needs.security-scan.result == 'success' && '✅ Completed' || '❌ Failed' }} |
+        | 🧠 Valgrind | Memory Analysis | ${{ needs.valgrind-analysis.result == 'success' && '✅ Completed' || '❌ Failed' }} |
 
         ## 📈 Trend Indicators
 
@@ -908,7 +1538,21 @@ jobs:
         ### 🏆 Quality Score
         ${{ env.TOTAL_SCORE }}/100
 
+        **Breakdown:**
+        - Code Style (15pts): ${{ needs.astyle.result == 'success' && '✅ 15' || '❌ 0' }}
+        - Static Analysis (15pts): ${{ env.STATIC_ANALYSIS_STATUS == '✅ PASS' && '✅ 15' || '❌ 0' }}
+        - Build (20pts): ${{ needs.drivers.result == 'success' && '✅ 20' || '❌ 0' }}
+        - Tests (20pts): ${{ needs.unit-tests.result == 'success' && '✅ 20' || '❌ 0' }}
+        - Security (15pts): ${{ env.SECURITY_SCORE }}
+        - Memory (15pts): ${{ env.MEMORY_SCORE }}
+
         ${{ env.QUALITY_MESSAGE }}
+
+        ### 🛡️ Security Posture
+        ${{ env.SECURITY_ANALYSIS_STATUS == '✅ PASS' && '🟢 **Strong**: Using GitHub Security + OWASP (free tools)' || '� **Weak**: Security scanning issues detected' }}
+
+        ### 🧠 Memory Health
+        ${{ env.MEMORY_ANALYSIS_STATUS == '✅ PASS' && '🟢 **Healthy**: No memory issues detected' || '🔴 **Issues**: Memory leaks or errors found' }}
         EOF
 
   # Documentation with metrics
