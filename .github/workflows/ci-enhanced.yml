@@ -843,23 +843,41 @@ jobs:
         if gh auth status > /dev/null 2>&1; then
           echo "✅ GitHub CLI authenticated" >> security_output.txt
 
-          # Get Dependabot alerts (if any)
-          if gh api repos/${{ github.repository }}/dependabot/alerts 2>/dev/null | jq length > /dev/null 2>&1; then
-            DEPENDENCY_ALERTS=$(gh api repos/${{ github.repository }}/dependabot/alerts | jq length 2>/dev/null || echo "0")
-            echo "Dependabot alerts found: $DEPENDENCY_ALERTS" >> security_output.txt
+          # Get Dependabot alerts with better error handling
+          echo "Checking Dependabot alerts..." >> security_output.txt
+          if DEPENDABOT_RESPONSE=$(gh api repos/${{ github.repository }}/dependabot/alerts 2>&1); then
+            if echo "$DEPENDABOT_RESPONSE" | jq empty 2>/dev/null; then
+              DEPENDENCY_ALERTS=$(echo "$DEPENDABOT_RESPONSE" | jq length 2>/dev/null || echo "0")
+              echo "Dependabot alerts found: $DEPENDENCY_ALERTS" >> security_output.txt
+            else
+              echo "Dependabot API returned invalid JSON: $DEPENDABOT_RESPONSE" >> security_output.txt
+              DEPENDENCY_ALERTS=0
+            fi
           else
-            echo "No Dependabot alerts API access or no alerts" >> security_output.txt
+            echo "Dependabot API call failed: $DEPENDABOT_RESPONSE" >> security_output.txt
+            echo "This may be due to insufficient permissions or the feature being disabled" >> security_output.txt
+            DEPENDENCY_ALERTS=0
           fi
 
-          # Get Code scanning alerts (if any)
-          if gh api repos/${{ github.repository }}/code-scanning/alerts 2>/dev/null | jq length > /dev/null 2>&1; then
-            CODE_SCANNING_ALERTS=$(gh api repos/${{ github.repository }}/code-scanning/alerts | jq length 2>/dev/null || echo "0")
-            echo "Code scanning alerts found: $CODE_SCANNING_ALERTS" >> security_output.txt
+          # Get Code scanning alerts with better error handling
+          echo "Checking code scanning alerts..." >> security_output.txt
+          if CODE_SCANNING_RESPONSE=$(gh api repos/${{ github.repository }}/code-scanning/alerts 2>&1); then
+            if echo "$CODE_SCANNING_RESPONSE" | jq empty 2>/dev/null; then
+              CODE_SCANNING_ALERTS=$(echo "$CODE_SCANNING_RESPONSE" | jq length 2>/dev/null || echo "0")
+              echo "Code scanning alerts found: $CODE_SCANNING_ALERTS" >> security_output.txt
+            else
+              echo "Code scanning API returned invalid JSON: $CODE_SCANNING_RESPONSE" >> security_output.txt
+              CODE_SCANNING_ALERTS=0
+            fi
           else
-            echo "No code scanning alerts API access or no alerts" >> security_output.txt
+            echo "Code scanning API call failed: $CODE_SCANNING_RESPONSE" >> security_output.txt
+            echo "This may be due to insufficient permissions or CodeQL not being set up" >> security_output.txt
+            CODE_SCANNING_ALERTS=0
           fi
         else
           echo "⚠️ GitHub CLI not authenticated, skipping alerts check" >> security_output.txt
+          DEPENDENCY_ALERTS=0
+          CODE_SCANNING_ALERTS=0
         fi
 
         # Clean and validate numbers
@@ -1044,55 +1062,113 @@ jobs:
         - ✅ **Multiple report formats** for analysis
         EOF
 
-        # Add recommendations based on findings
-        if [ "${{ env.TOTAL_SECURITY_ISSUES }}" != "0" ]; then
-          cat >> $GITHUB_STEP_SUMMARY << EOF
+        # Add recommendations based on findings - always show this section for transparency
+        cat >> $GITHUB_STEP_SUMMARY << EOF
 
-        ### � Detailed Security Findings
+        ### 🔍 Detailed Security Findings
 
         #### 📦 Dependabot Alert Details
         EOF
+        
+        # Show Dependabot alert details if any exist
+        if [ "${{ env.DEPENDENCY_ALERTS }}" != "0" ]; then
+          echo '```' >> $GITHUB_STEP_SUMMARY
           
-          # Show Dependabot alert details if any exist
-          if [ "${{ env.DEPENDENCY_ALERTS }}" != "0" ]; then
-            echo '```' >> $GITHUB_STEP_SUMMARY
-            if gh api repos/${{ github.repository }}/dependabot/alerts 2>/dev/null | jq -r '.[] | "• \(.security_advisory.summary) (Severity: \(.security_advisory.severity))\n  Package: \(.dependency.package.name)\n  Vulnerable versions: \(.security_advisory.vulnerabilities[0].vulnerable_version_range // "N/A")\n  CVE: \(.security_advisory.cve_id // "N/A")\n"' 2>/dev/null | head -20 >> $GITHUB_STEP_SUMMARY; then
-              echo "Dependabot details added" > /dev/null
+          # Capture API response for better error handling
+          if DEPENDABOT_RESPONSE=$(gh api repos/${{ github.repository }}/dependabot/alerts 2>&1); then
+            if echo "$DEPENDABOT_RESPONSE" | jq empty 2>/dev/null && [ "$DEPENDABOT_RESPONSE" != "[]" ]; then
+              # Show JSON structure for debugging
+              echo "JSON structure (first alert):" >> $GITHUB_STEP_SUMMARY
+              echo "$DEPENDABOT_RESPONSE" | jq '.[0] // "No alerts in array"' 2>/dev/null | head -10 >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+              
+              # Try to parse with error handling and fallbacks
+              if echo "$DEPENDABOT_RESPONSE" | jq -r '.[] | "• \(.security_advisory.summary // "No summary available") (Severity: \(.security_advisory.severity // "Unknown"))\n  Package: \(.dependency.package.name // "Unknown package")\n  Vulnerable versions: \(.security_advisory.vulnerabilities[0].vulnerable_version_range // "N/A")\n  CVE: \(.security_advisory.cve_id // "N/A")\n"' 2>/dev/null | head -20 >> $GITHUB_STEP_SUMMARY; then
+                echo "Successfully parsed Dependabot alerts" >> $GITHUB_STEP_SUMMARY
+              else
+                echo "Failed to parse Dependabot alerts with expected structure. Raw data:" >> $GITHUB_STEP_SUMMARY
+                echo "$DEPENDABOT_RESPONSE" | head -500 >> $GITHUB_STEP_SUMMARY
+              fi
             else
-              echo "Could not retrieve detailed Dependabot information" >> $GITHUB_STEP_SUMMARY
+              echo "Dependabot API returned empty or invalid JSON" >> $GITHUB_STEP_SUMMARY
+              echo "Raw response (first 200 chars): $(echo "$DEPENDABOT_RESPONSE" | head -c 200)" >> $GITHUB_STEP_SUMMARY
             fi
-            echo '```' >> $GITHUB_STEP_SUMMARY
           else
-            echo "No Dependabot alerts found." >> $GITHUB_STEP_SUMMARY
+            echo "Could not retrieve detailed Dependabot information" >> $GITHUB_STEP_SUMMARY
+            echo "API call failed: $DEPENDABOT_RESPONSE" >> $GITHUB_STEP_SUMMARY
+            echo "This may be due to permissions, rate limiting, or feature not being enabled" >> $GITHUB_STEP_SUMMARY
           fi
+          echo '```' >> $GITHUB_STEP_SUMMARY
+        else
+          echo "No Dependabot alerts found." >> $GITHUB_STEP_SUMMARY
+        fi
 
-          cat >> $GITHUB_STEP_SUMMARY << EOF
+        cat >> $GITHUB_STEP_SUMMARY << EOF
 
         #### 🔍 Code Scanning Alert Details
         EOF
+        
+        # Show Code Scanning alert details if any exist
+        if [ "${{ env.CODE_SCANNING_ALERTS }}" != "0" ]; then
+          echo '```' >> $GITHUB_STEP_SUMMARY
           
-          # Show Code Scanning alert details if any exist
-          if [ "${{ env.CODE_SCANNING_ALERTS }}" != "0" ]; then
-            echo '```' >> $GITHUB_STEP_SUMMARY
-            if gh api repos/${{ github.repository }}/code-scanning/alerts 2>/dev/null | jq -r '.[] | "• \(.rule.description) (Severity: \(.rule.severity // "N/A"))\n  Rule: \(.rule.id)\n  Location: \(.most_recent_instance.location.path):\(.most_recent_instance.location.start_line // "N/A")\n  State: \(.state)\n"' 2>/dev/null | head -20 >> $GITHUB_STEP_SUMMARY; then
-              echo "Code scanning details added" > /dev/null
+          # Capture API response for better error handling
+          if CODE_SCANNING_RESPONSE=$(gh api repos/${{ github.repository }}/code-scanning/alerts 2>&1); then
+            if echo "$CODE_SCANNING_RESPONSE" | jq empty 2>/dev/null && [ "$CODE_SCANNING_RESPONSE" != "[]" ]; then
+              # Show JSON structure for debugging
+              echo "JSON structure (first alert):" >> $GITHUB_STEP_SUMMARY
+              echo "$CODE_SCANNING_RESPONSE" | jq '.[0] // "No alerts in array"' 2>/dev/null | head -10 >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+              
+              # Try to parse with error handling and fallbacks
+              if echo "$CODE_SCANNING_RESPONSE" | jq -r '.[] | "• \(.rule.description // "No description available") (Severity: \(.rule.severity // "Unknown"))\n  Rule: \(.rule.id // "Unknown rule")\n  Location: \(.most_recent_instance.location.path // "Unknown"):\(.most_recent_instance.location.start_line // "N/A")\n  State: \(.state // "Unknown")\n"' 2>/dev/null | head -20 >> $GITHUB_STEP_SUMMARY; then
+                echo "Successfully parsed Code Scanning alerts" >> $GITHUB_STEP_SUMMARY
+              else
+                echo "Failed to parse Code Scanning alerts with expected structure. Raw data:" >> $GITHUB_STEP_SUMMARY
+                echo "$CODE_SCANNING_RESPONSE" | head -500 >> $GITHUB_STEP_SUMMARY
+              fi
             else
-              echo "Could not retrieve detailed Code Scanning information" >> $GITHUB_STEP_SUMMARY
+              echo "Code Scanning API returned empty or invalid JSON" >> $GITHUB_STEP_SUMMARY
+              echo "Raw response (first 200 chars): $(echo "$CODE_SCANNING_RESPONSE" | head -c 200)" >> $GITHUB_STEP_SUMMARY
             fi
-            echo '```' >> $GITHUB_STEP_SUMMARY
           else
-            echo "No Code Scanning alerts found." >> $GITHUB_STEP_SUMMARY
+            echo "Could not retrieve detailed Code Scanning information" >> $GITHUB_STEP_SUMMARY
+            echo "API call failed: $CODE_SCANNING_RESPONSE" >> $GITHUB_STEP_SUMMARY
+            echo "This may be due to permissions, rate limiting, or CodeQL not being configured" >> $GITHUB_STEP_SUMMARY
           fi
-          
-          cat >> $GITHUB_STEP_SUMMARY << EOF
+          echo '```' >> $GITHUB_STEP_SUMMARY
+        else
+          echo "No Code Scanning alerts found." >> $GITHUB_STEP_SUMMARY
+        fi
+        
+        cat >> $GITHUB_STEP_SUMMARY << EOF
 
-        ### �🚀 Next Steps
+        ### 🔧 Troubleshooting Information
+        
+        #### API Response Status
+        | API Endpoint | Status | Notes |
+        |--------------|--------|-------|
+        | Dependabot | ${{ env.DEPENDENCY_ALERTS != '0' && 'Has alerts' || 'No alerts or API failed' }} | Check repository security settings |
+        | Code Scanning | ${{ env.CODE_SCANNING_ALERTS != '0' && 'Has alerts' || 'No alerts or API failed' }} | Ensure CodeQL is configured |
+
+        #### Common Issues
+        - **Empty alert details**: API permissions may be insufficient
+        - **Authentication errors**: Verify GITHUB_TOKEN has security read permissions
+        - **Feature availability**: Some features require GitHub Advanced Security or public repos
+        - **Rate limiting**: GitHub API may be temporarily limited
+        
+        #### Repository Security Settings
+        To enable these features:
+        1. Go to Settings > Security & analysis
+        2. Enable Dependabot alerts and security updates
+        3. Enable Code scanning (CodeQL)
+
+        ### 🚀 Next Steps
         1. Review detailed reports in uploaded artifacts
         2. Enable GitHub's Dependabot for automated updates
         3. Configure GitHub Code Scanning (CodeQL) for static analysis
         4. Consider adding Snyk for additional coverage
         EOF
-        fi
 
     - name: Upload Security Reports
       if: always()
