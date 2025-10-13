@@ -82,7 +82,7 @@ jobs:
     - name: Comprehensive GitHub Security Check
       run: |
         START_TIME=$(date +%s)
-        
+
         echo "=== Comprehensive GitHub Security Analysis ===" > github_security_comprehensive.txt
         echo "Analysis started at: $(date)" >> github_security_comprehensive.txt
 
@@ -95,25 +95,25 @@ jobs:
         # Check GitHub Security Features
         if gh auth status > /dev/null 2>&1; then
           echo "✅ GitHub CLI authenticated" >> github_security_comprehensive.txt
-          
+
           # Get comprehensive Dependabot alerts
           echo "Checking Dependabot alerts..." >> github_security_comprehensive.txt
           if gh api repos/${{ github.repository }}/dependabot/alerts --paginate 2>/dev/null > dependabot_alerts.json; then
             DEPENDABOT_ALERTS=$(jq length dependabot_alerts.json 2>/dev/null || echo "0")
-            
+
             # Categorize by severity
             CRITICAL_DEPS=$(jq '[.[] | select(.security_advisory.severity == "critical")] | length' dependabot_alerts.json 2>/dev/null || echo "0")
             HIGH_DEPS=$(jq '[.[] | select(.security_advisory.severity == "high")] | length' dependabot_alerts.json 2>/dev/null || echo "0")
             MEDIUM_DEPS=$(jq '[.[] | select(.security_advisory.severity == "medium")] | length' dependabot_alerts.json 2>/dev/null || echo "0")
             LOW_DEPS=$(jq '[.[] | select(.security_advisory.severity == "low")] | length' dependabot_alerts.json 2>/dev/null || echo "0")
-            
+
             echo "Dependabot alerts by severity:" >> github_security_comprehensive.txt
             echo "Critical: $CRITICAL_DEPS, High: $HIGH_DEPS, Medium: $MEDIUM_DEPS, Low: $LOW_DEPS" >> github_security_comprehensive.txt
           else
             echo "No Dependabot alerts or insufficient permissions" >> github_security_comprehensive.txt
           fi
 
-          # Get Code scanning alerts  
+          # Get Code scanning alerts
           echo "Checking code scanning alerts..." >> github_security_comprehensive.txt
           if gh api repos/${{ github.repository }}/code-scanning/alerts --paginate 2>/dev/null > code_scanning_alerts.json; then
             CODE_SCANNING_ALERTS=$(jq length code_scanning_alerts.json 2>/dev/null || echo "0")
@@ -185,7 +185,7 @@ jobs:
 
         ### 🎯 Free GitHub Security Features
         - ✅ **Dependabot**: Automated dependency vulnerability alerts
-        - ✅ **CodeQL**: Static application security testing (SAST)  
+        - ✅ **CodeQL**: Static application security testing (SAST)
         - ✅ **Secret Scanning**: Exposed credentials detection
         - ✅ **Security Advisories**: CVE database integration
         EOF
@@ -220,7 +220,7 @@ jobs:
     - name: Run Comprehensive OWASP Dependency Check
       run: |
         START_TIME=$(date +%s)
-        
+
         echo "=== Comprehensive OWASP Dependency Check ===" > owasp_comprehensive.txt
         echo "Analysis started at: $(date)" >> owasp_comprehensive.txt
 
@@ -265,21 +265,21 @@ jobs:
         # Parse comprehensive results
         if [ -f "owasp-comprehensive-reports/dependency-check-report.xml" ]; then
           echo "Parsing OWASP results..." >> owasp_comprehensive.txt
-          
+
           # Count vulnerabilities by severity
           CRITICAL_VULNS=$(grep -c 'severity="CRITICAL"' owasp-comprehensive-reports/dependency-check-report.xml 2>/dev/null || echo "0")
           HIGH_VULNS=$(grep -c 'severity="HIGH"' owasp-comprehensive-reports/dependency-check-report.xml 2>/dev/null || echo "0")
           MEDIUM_VULNS=$(grep -c 'severity="MEDIUM"' owasp-comprehensive-reports/dependency-check-report.xml 2>/dev/null || echo "0")
           LOW_VULNS=$(grep -c 'severity="LOW"' owasp-comprehensive-reports/dependency-check-report.xml 2>/dev/null || echo "0")
-          
+
           # Count dependencies analyzed
           DEPENDENCIES_ANALYZED=$(grep -c '<dependency' owasp-comprehensive-reports/dependency-check-report.xml 2>/dev/null || echo "0")
-          
+
           # Count CVEs found
           CVES_FOUND=$(grep -c '<cve>' owasp-comprehensive-reports/dependency-check-report.xml 2>/dev/null || echo "0")
-          
+
           TOTAL_VULNS=$((CRITICAL_VULNS + HIGH_VULNS + MEDIUM_VULNS + LOW_VULNS))
-          
+
           echo "OWASP Results Summary:" >> owasp_comprehensive.txt
           echo "Dependencies analyzed: $DEPENDENCIES_ANALYZED" >> owasp_comprehensive.txt
           echo "CVEs found: $CVES_FOUND" >> owasp_comprehensive.txt
@@ -507,16 +507,16 @@ jobs:
           # Build tests with debug symbols
           if ceedling test:all > build_output.txt 2>&1; then
             echo "✅ Tests built with debug symbols for $test_dir" >> ../../valgrind_comprehensive.txt
-            
+
             # Find test executables
             test_executables=$(find build/test/out -name "test_*" -type f -executable 2>/dev/null || true)
-            
+
             for exe in $test_executables; do
               if [ -f "$exe" ]; then
                 exe_name=$(basename "$exe")
                 echo "Running comprehensive analysis on: $exe" >> ../../valgrind_comprehensive.txt
                 TOTAL_TESTS_RUN=$((TOTAL_TESTS_RUN + 1))
-                
+
                 # 1. Memcheck - Memory error detection
                 echo "Running memcheck..." >> ../../valgrind_comprehensive.txt
                 valgrind \
@@ -554,7 +554,7 @@ jobs:
                   WRITES=$(grep -c "Invalid write" "../../valgrind_comprehensive_reports/${exe_name}_memcheck.log" 2>/dev/null || echo "0")
                   UNINIT=$(grep -c "Conditional jump.*uninitialized\|Use of uninitialised" "../../valgrind_comprehensive_reports/${exe_name}_memcheck.log" 2>/dev/null || echo "0")
                   DOUBLE_FREE=$(grep -c "Invalid free\|double free" "../../valgrind_comprehensive_reports/${exe_name}_memcheck.log" 2>/dev/null || echo "0")
-                  
+
                   MEMORY_LEAKS=$((MEMORY_LEAKS + LEAKS))
                   MEMORY_ERRORS=$((MEMORY_ERRORS + ERRORS))
                   INVALID_READS=$((INVALID_READS + READS))
@@ -644,15 +644,15 @@ jobs:
         if [ "${{ env.MEMORY_LEAKS }}" != "0" ]; then
           echo "- **Memory Leaks**: Review allocation/deallocation patterns. Ensure every \`malloc()\` has a matching \`free()\`" >> memory_analysis_report.md
         fi
-        
+
         if [ "${{ env.INVALID_READS }}" != "0" ] || [ "${{ env.INVALID_WRITES }}" != "0" ]; then
           echo "- **Buffer Overflows**: Check array bounds and pointer arithmetic" >> memory_analysis_report.md
         fi
-        
+
         if [ "${{ env.UNINITIALIZED_VARS }}" != "0" ]; then
           echo "- **Uninitialized Variables**: Initialize all variables before use" >> memory_analysis_report.md
         fi
-        
+
         if [ "${{ env.DOUBLE_FREES }}" != "0" ]; then
           echo "- **Double Frees**: Set pointers to NULL after freeing and check before freeing" >> memory_analysis_report.md
         fi
@@ -745,29 +745,29 @@ jobs:
         GITHUB_SECURITY_SCORE=0
         OWASP_SCORE=0
         MEMORY_SCORE=0
-        
+
         # GitHub Security scoring (40 points max - enhanced weight for comprehensive free tools)
         if [ "${{ needs.github-security-comprehensive.result }}" = "success" ]; then
           GITHUB_SECURITY_SCORE=40
         fi
-        
+
         # OWASP scoring (30 points max - substantial weight for vulnerability detection)
         if [ "${{ needs.owasp-comprehensive.result }}" = "success" ]; then
           OWASP_SCORE=30
         fi
-        
+
         # Memory analysis scoring (30 points max)
         if [ "${{ needs.valgrind-comprehensive.result }}" = "success" ]; then
           MEMORY_SCORE=30
         fi
-        
+
         TOTAL_SECURITY_SCORE=$((GITHUB_SECURITY_SCORE + OWASP_SCORE + MEMORY_SCORE))
-        
+
         echo "GITHUB_SECURITY_SCORE=$GITHUB_SECURITY_SCORE" >> $GITHUB_ENV
         echo "OWASP_SCORE=$OWASP_SCORE" >> $GITHUB_ENV
         echo "MEMORY_SCORE=$MEMORY_SCORE" >> $GITHUB_ENV
         echo "TOTAL_SECURITY_SCORE=$TOTAL_SECURITY_SCORE" >> $GITHUB_ENV
-        
+
         # Determine overall security posture
         if [ $TOTAL_SECURITY_SCORE -ge 90 ]; then
           echo "SECURITY_POSTURE=🟢 EXCELLENT" >> $GITHUB_ENV
@@ -799,7 +799,7 @@ jobs:
         ### � GitHub Security Analysis
         ${{ needs.github-security-comprehensive.result == 'success' && '✅ **Comprehensive GitHub security suite completed**' || '❌ **Analysis failed** - Check logs for details' }}
         - **CodeQL**: Static application security testing (SAST)
-        - **Dependabot**: Automated dependency vulnerability detection  
+        - **Dependabot**: Automated dependency vulnerability detection
         - **Secret Scanning**: Exposed credentials detection
 
         ### 🛡️ OWASP Dependency Check
@@ -811,10 +811,10 @@ jobs:
         ## 📈 Security Trends
 
         > 💡 **Cost-Effective Security**: Using comprehensive **free** security tools
-        > - 🆓 **GitHub Security**: Built-in platform features  
+        > - 🆓 **GitHub Security**: Built-in platform features
         > - 🆓 **OWASP**: Industry-standard vulnerability detection
         > - 🆓 **Valgrind**: Professional memory analysis
-        > 
+        >
         > 💰 **Savings**: Avoiding commercial tools like Blackduck (~$10k-50k+/year)
 
         > 💡 **Next Steps**:
@@ -844,7 +844,7 @@ jobs:
         echo "" >> $GITHUB_STEP_SUMMARY
         echo "## 💡 Security Recommendations" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
-        
+
         if [ "${{ needs.github-security-comprehensive.result }}" != "success" ]; then
           echo "### � Enhance GitHub Security" >> $GITHUB_STEP_SUMMARY
           echo "- Verify GitHub CLI authentication and permissions" >> $GITHUB_STEP_SUMMARY
@@ -853,7 +853,7 @@ jobs:
           echo "- Set up secret scanning for credential detection" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
         fi
-        
+
         if [ "${{ needs.owasp-comprehensive.result }}" != "success" ]; then
           echo "### 🛡️ Improve OWASP Scanning" >> $GITHUB_STEP_SUMMARY
           echo "- Check OWASP Dependency Check installation and configuration" >> $GITHUB_STEP_SUMMARY
@@ -862,7 +862,7 @@ jobs:
           echo "- Set up regular dependency scanning schedule" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
         fi
-        
+
         if [ "${{ needs.valgrind-comprehensive.result }}" != "success" ]; then
           echo "### 🧠 Improve Memory Analysis" >> $GITHUB_STEP_SUMMARY
           echo "- Ensure unit tests are properly configured" >> $GITHUB_STEP_SUMMARY
@@ -870,7 +870,7 @@ jobs:
           echo "- Consider static analysis tools (AddressSanitizer, etc.)" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
         fi
-        
+
         echo "### 🆓 Free Security Tools Benefits" >> $GITHUB_STEP_SUMMARY
         echo "- **GitHub Security**: Integrated platform security (Dependabot, CodeQL, Secret Scanning)" >> $GITHUB_STEP_SUMMARY
         echo "- **OWASP Dependency Check**: Industry-standard vulnerability detection" >> $GITHUB_STEP_SUMMARY

@@ -792,7 +792,7 @@ jobs:
 
   # Security scanning with free tools
   # NOTE: Blackduck (commercial tool) has been replaced with free alternatives
-  # 
+  #
   # # Blackduck security scan (COMMENTED OUT - Commercial License Required)
   # blackduck-scan:
   #   name: 🔒 Blackduck Security Scan
@@ -829,7 +829,7 @@ jobs:
     - name: Run GitHub Security Analysis
       run: |
         START_TIME=$(date +%s)
-        
+
         echo "=== GitHub Security Analysis ===" > security_output.txt
         echo "Analysis started at: $(date)" >> security_output.txt
 
@@ -842,7 +842,7 @@ jobs:
         # Check for security alerts (requires GITHUB_TOKEN)
         if gh auth status > /dev/null 2>&1; then
           echo "✅ GitHub CLI authenticated" >> security_output.txt
-          
+
           # Get Dependabot alerts (if any)
           if gh api repos/${{ github.repository }}/dependabot/alerts 2>/dev/null | jq length > /dev/null 2>&1; then
             DEPENDENCY_ALERTS=$(gh api repos/${{ github.repository }}/dependabot/alerts | jq length 2>/dev/null || echo "0")
@@ -874,7 +874,7 @@ jobs:
         END_TIME=$(date +%s)
         GITHUB_SCAN_TIME=$((END_TIME - START_TIME))
         echo "GITHUB_SCAN_TIME=$GITHUB_SCAN_TIME" >> $GITHUB_ENV
-        
+
         echo "GitHub analysis completed at: $(date)" >> security_output.txt
         echo "GitHub scan time: ${GITHUB_SCAN_TIME}s" >> security_output.txt
       env:
@@ -883,7 +883,7 @@ jobs:
     - name: Download and Run OWASP Dependency Check
       run: |
         START_TIME=$(date +%s)
-        
+
         echo "=== OWASP Dependency Check ===" >> security_output.txt
         echo "OWASP scan started at: $(date)" >> security_output.txt
 
@@ -918,9 +918,9 @@ jobs:
           HIGH_VULNS=$(grep -c 'severity="HIGH"' security-reports/dependency-check-report.xml 2>/dev/null || echo "0")
           MEDIUM_VULNS=$(grep -c 'severity="MEDIUM"' security-reports/dependency-check-report.xml 2>/dev/null || echo "0")
           LOW_VULNS=$(grep -c 'severity="LOW"' security-reports/dependency-check-report.xml 2>/dev/null || echo "0")
-          
+
           TOTAL_OWASP_VULNS=$((CRITICAL_VULNS + HIGH_VULNS + MEDIUM_VULNS + LOW_VULNS))
-          
+
           echo "OWASP vulnerabilities by severity:" >> security_output.txt
           echo "Critical: $CRITICAL_VULNS" >> security_output.txt
           echo "High: $HIGH_VULNS" >> security_output.txt
@@ -972,7 +972,7 @@ jobs:
       run: |
         # Calculate total scan time
         TOTAL_SCAN_TIME=$((GITHUB_SCAN_TIME + OWASP_SCAN_TIME))
-        
+
         # Determine status emoji and message
         case "${{ env.SECURITY_STATUS }}" in
           "CLEAN")
@@ -1036,7 +1036,7 @@ jobs:
         - **Tools Used**: GitHub Security + OWASP Dependency Check
 
         > 📁 **Reports Available**: Check artifacts for detailed HTML, XML, and JSON reports
-        
+
         ### 💡 Free Security Tools Benefits
         - ✅ **No licensing costs** (vs commercial tools like Blackduck)
         - ✅ **GitHub integration** for seamless workflow
@@ -1126,15 +1126,15 @@ jobs:
           # Build tests first
           if ceedling test:all > build_output.txt 2>&1; then
             echo "✅ Tests built successfully for $test_dir" >> ../../valgrind_output.txt
-            
+
             # Find test executables
             test_executables=$(find build/test/out -name "test_*" -type f -executable 2>/dev/null || true)
-            
+
             for exe in $test_executables; do
               if [ -f "$exe" ]; then
                 echo "Running Valgrind on: $exe" >> ../../valgrind_output.txt
                 TOTAL_TESTS_RUN=$((TOTAL_TESTS_RUN + 1))
-                
+
                 # Run Valgrind with comprehensive checks
                 valgrind \
                   --tool=memcheck \
@@ -1153,7 +1153,7 @@ jobs:
                   ERRORS=$(grep -c "Invalid read\|Invalid write\|Conditional jump" "../../valgrind_reports/$(basename $exe).log" 2>/dev/null || echo "0")
                   READS=$(grep -c "Invalid read" "../../valgrind_reports/$(basename $exe).log" 2>/dev/null || echo "0")
                   WRITES=$(grep -c "Invalid write" "../../valgrind_reports/$(basename $exe).log" 2>/dev/null || echo "0")
-                  
+
                   MEMORY_LEAKS=$((MEMORY_LEAKS + LEAKS))
                   MEMORY_ERRORS=$((MEMORY_ERRORS + ERRORS))
                   INVALID_READS=$((INVALID_READS + READS))
@@ -1234,7 +1234,7 @@ jobs:
 
         ### 🔍 Analysis Coverage
         - **Memory Leaks**: Definite and possible leaks detected
-        - **Buffer Overflows**: Invalid reads and writes identified  
+        - **Buffer Overflows**: Invalid reads and writes identified
         - **Uninitialized Memory**: Usage of uninitialized values tracked
         - **Double Free**: Multiple deallocations caught
         EOF
