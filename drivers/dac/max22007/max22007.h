@@ -66,13 +66,13 @@
 
 /* Control Register Masks */
 #define MAX22007_LD_CTRL_MASK					NO_OS_GENMASK(15, 12)
-#define LD_CTRL_CH_MASK(channel)				NO_OS_BIT(12 + channel)
+#define LD_CTRL_CH_MASK(channel)				(NO_OS_BIT(12) << (channel))
 
 /* Channel Mode Register Masks */
 #define MAX22007_CH_MODE_MASK					NO_OS_GENMASK(15, 12)
-#define MAX22007_CH_MODE_CH_MASK(channel)		NO_OS_BIT(12 + channel)
+#define MAX22007_CH_MODE_CH_MASK(channel)		(NO_OS_BIT(12) << (channel))
 #define MAX22007_CH_PWR_MASK					NO_OS_GENMASK(11, 8)
-#define MAX22007_CH_PWR_CH_MASK(channel)		NO_OS_BIT(8 + channel)
+#define MAX22007_CH_PWR_CH_MASK(channel)		(NO_OS_BIT(8) << (channel))
 
 /* Soft Reset Register Masks */
 #define MAX22007_SW_CLR_MASK					NO_OS_BIT(12)
@@ -91,8 +91,7 @@
 
 #define MAX22007_SPI_READ						0x80
 #define MAX22007_NUM_CHANNELS					4
-#define MAX22007_REV_ID_REV0					0xBB45
-#define MAX22007_REV_ID_REV1					0xBB47
+#define MAX22007_REV_ID							0xBB45
 #define MAX22007_ADRR_MASK						NO_OS_GENMASK(7, 1)
 #define MAX22007_RW_MASK						NO_OS_BIT(0)
 #define MAX22007_FRAME_SIZE						3

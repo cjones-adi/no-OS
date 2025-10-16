@@ -122,11 +122,13 @@ int max22007_reg_write(struct max22007_dev *dev, uint8_t reg_addr,
 
 	dev->buff[0] = no_os_field_prep(MAX22007_ADRR_MASK, reg_addr) |
 		       no_os_field_prep(MAX22007_RW_MASK, 0);
+
 	dev->buff[1] = (reg_data >> 8) & 0xFF;
 	dev->buff[2] = reg_data & 0xFF;
 
-	if (dev->crc_en)
+	if (dev->crc_en) {
 		dev->buff[3] = no_os_crc8(max22007_crc8_table, dev->buff, 3, 0x00);
+	}
 
 	return no_os_spi_transfer(dev->comm_desc, &xfer, 1);
 }
@@ -519,25 +521,32 @@ int max22007_init(struct max22007_dev **device,
 	if (!dev)
 		return -ENOMEM;
 
+	dev->crc_en = true;
+
 	no_os_crc8_populate_lsb(max22007_crc8_table, MAX22007_CRC8_POLYNOMIAL);
 
 	ret = no_os_spi_init(&dev->comm_desc, init_param.comm_param);
-	if (ret)
+	if (ret) {
+		goto err_dev;
+	}
+
+	no_os_mdelay(20);
+
+	ret = max22007_configure_crc(dev, init_param.crc_en);
+	if (ret) {
 		goto err_spi;
+	}
 
 	ret = max22007_soft_reset(dev, true, true);
 	if (ret)
 		goto err_spi;
 
-	ret = max22007_configure_crc(dev, init_param.crc_en);
-	if (ret)
-		goto err_spi;
-
 	ret = max22007_reg_read(dev, MAX22007_REV_ID_REG, &reg_val);
-	if (ret)
+	if (ret) {
 		goto err_spi;
+	}
 
-	if ((reg_val != MAX22007_REV_ID_REV0) && (reg_val != MAX22007_REV_ID_REV1)) {
+	if (reg_val != MAX22007_REV_ID) {
 		pr_info("Invalid device ID: 0x%04X\n", reg_val);
 		ret = -EINVAL;
 		goto err_spi;
@@ -545,36 +554,43 @@ int max22007_init(struct max22007_dev **device,
 
 	/* Configure device with initialization parameters */
 	ret = max22007_set_reference(dev, init_param.ref_mode);
-	if (ret)
+	if (ret) {
 		goto err_spi;
+	}
 
 	for (ch = 0; ch < MAX22007_NUM_CHANNELS; ch++) {
 		ret = max22007_set_channel_mode(dev, ch,
 						init_param.channel_config[ch].channel_mode);
-		if (ret)
+		if (ret) {
 			goto err_spi;
+		}
 
 		ret = max22007_set_latch_mode(dev, ch,
 					      init_param.channel_config[ch].latch_mode);
-		if (ret)
+		if (ret) {
 			goto err_spi;
+		}
 
 		ret = max22007_set_channel_power(dev, ch,
 						 init_param.channel_config[ch].channel_power);
-		if (ret)
+		if (ret) {
 			goto err_spi;
+		}
 	}
 
 	ret = max22007_set_timeout(dev, init_param.timeout_config.timeout_en,
 				   init_param.timeout_config.timeout_sel,
 				   init_param.timeout_config.timeout_cnfg);
-	if (ret)
+	if (ret) {
 		goto err_spi;
+	}
 
 	*device = dev;
 	return 0;
 
 err_spi:
+	no_os_spi_remove(dev->comm_desc);
+err_dev:
 	max22007_remove(dev);
 	return ret;
 }
@@ -589,10 +605,7 @@ int max22007_remove(struct max22007_dev *dev)
 	if (!dev)
 		return -EINVAL;
 
-	no_os_spi_remove(dev->comm_desc);
-
 	no_os_free(dev);
 
 	return 0;
 }
-

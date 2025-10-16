@@ -71,9 +71,10 @@ int example_main()
 	if (ret)
 		goto error;
 
-	ret = max22007_write_ldac(dev, 0x09);
+	ret = max22007_write_ldac(dev, 0xF);
 	if (ret)
 		goto error;
+
 
 	while (1) {
 		// Main loop - DAC channels are now set to test values

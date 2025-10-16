@@ -1,5 +1,5 @@
 MAX22007EVKIT no-OS Example Project
-===================================
+====================================
 
 .. no-os-doxygen::
 
@@ -111,4 +111,3 @@ STM32 Platform
 	make PLATFORM=stm32 HARDWARE=sdp-k1.ioc
 	# to flash the code
 	make run
-
