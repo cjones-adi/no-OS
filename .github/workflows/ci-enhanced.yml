@@ -64,7 +64,7 @@ jobs:
         echo "Total source files found: $TOTAL_SOURCE_FILES" >> astyle_output.txt
 
         # Run astyle and capture detailed output
-        if ./ci/run_build.sh >> astyle_output.txt 2>&1; then
+        if ./ci/run_build.sh 2>&1 | tee -a astyle_output.txt; then
           echo "astyle_failed=false" >> $GITHUB_ENV
           echo "Astyle check PASSED" >> astyle_output.txt
         else
@@ -422,7 +422,7 @@ jobs:
         echo "This matches the drivers/Makefile SRCS variable" >> build_output.txt
 
         # Run the build and capture result
-        if ./ci/run_build.sh >> build_output.txt 2>&1; then
+        if ./ci/run_build.sh 2>&1 | tee -a build_output.txt; then
           BUILD_RESULT=0
           echo "BUILD_STATUS=SUCCESS" >> build_output.txt
           echo "All driver compilation completed successfully" >> build_output.txt
@@ -618,7 +618,7 @@ jobs:
           cd "$test_dir"
 
           # Run tests with coverage
-          if ceedling gcov:all > test_output.txt 2>&1; then
+          if ceedling gcov:all 2>&1 | tee -a test_output.txt; then
             echo "✅ Test suite completed successfully" >> ../../../test_results.txt
           else
             echo "❌ Test suite encountered errors" >> ../../../test_results.txt
@@ -1290,7 +1290,7 @@ jobs:
           cd "$test_dir"
 
           # Build tests first
-          if ceedling test:all > build_output.txt 2>&1; then
+          if ceedling test:all 2>&1 | tee -a build_output.txt; then
             echo "✅ Tests built successfully for $test_dir" >> ../../valgrind_output.txt
 
             # Find test executables
@@ -1683,7 +1683,7 @@ jobs:
         echo "Build started at: $(date)" >> doc_output.txt
 
         # Run the build and capture result
-        if ./ci/run_build.sh >> doc_output.txt 2>&1; then
+        if ./ci/run_build.sh 2>&1 | tee -a doc_output.txt; then
           DOC_RESULT=0
           echo "DOC_STATUS=SUCCESS" >> doc_output.txt
           echo "Documentation build completed successfully" >> doc_output.txt
