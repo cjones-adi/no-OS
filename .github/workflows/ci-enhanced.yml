@@ -64,7 +64,7 @@ jobs:
         echo "Total source files found: $TOTAL_SOURCE_FILES" >> astyle_output.txt
 
         # Run astyle and capture detailed output
-        if ./ci/run_build.sh >> astyle_output.txt 2>&1; then
+        if ./ci/run_build.sh 2>&1 | tee -a astyle_output.txt; then
           echo "astyle_failed=false" >> $GITHUB_ENV
           echo "Astyle check PASSED" >> astyle_output.txt
         else
@@ -159,6 +159,16 @@ jobs:
 
         > 💡 **Tip**: Click the heading above to view the workflow run page
         EOF
+
+    - name: Fail job if style issues found
+      run: |
+        if [ "${{ env.astyle_failed }}" = "true" ]; then
+          echo "❌ Code style check failed - files need formatting"
+          echo "Run 'astyle --style=linux --indent=tab --max-code-length=80 --break-blocks --pad-oper --pad-header --unpad-paren --align-pointer=name --break-one-line-headers --convert-tabs --mode=c --recursive *.c,*.h' to fix formatting issues"
+          exit 1
+        else
+          echo "✅ All files pass code style requirements"
+        fi
 
   # Static analysis with cppcheck
   cppcheck:
@@ -412,7 +422,7 @@ jobs:
         echo "This matches the drivers/Makefile SRCS variable" >> build_output.txt
 
         # Run the build and capture result
-        if ./ci/run_build.sh >> build_output.txt 2>&1; then
+        if ./ci/run_build.sh 2>&1 | tee -a build_output.txt; then
           BUILD_RESULT=0
           echo "BUILD_STATUS=SUCCESS" >> build_output.txt
           echo "All driver compilation completed successfully" >> build_output.txt
@@ -538,6 +548,17 @@ jobs:
         > 💡 **Note**: This builds reusable driver components (${TOTAL_DRIVERS} .c files), not the 134 application projects in the \`projects/\` directory.
         EOF
 
+    - name: Fail job if driver compilation failed
+      run: |
+        if [ "${{ env.BUILD_RESULT }}" != "0" ]; then
+          echo "❌ Driver compilation failed with ${{ env.FAILED_BUILDS }} failures out of ${{ env.TOTAL_DRIVERS }} drivers"
+          echo "Check the build logs above for specific compilation errors"
+          echo "Fix compilation errors before merging"
+          exit 1
+        else
+          echo "✅ All ${{ env.SUCCESSFUL_BUILDS }} drivers compiled successfully"
+        fi
+
   # Unit tests with coverage metrics
   unit-tests:
     name: Unit Tests & Coverage
@@ -597,7 +618,7 @@ jobs:
           cd "$test_dir"
 
           # Run tests with coverage
-          if ceedling gcov:all > test_output.txt 2>&1; then
+          if ceedling gcov:all 2>&1 | tee -a test_output.txt; then
             echo "✅ Test suite completed successfully" >> ../../../test_results.txt
           else
             echo "❌ Test suite encountered errors" >> ../../../test_results.txt
@@ -771,11 +792,28 @@ jobs:
         if (( $(echo "${{ env.OVERALL_LINE_COV }} < $THRESHOLD" | bc -l) )); then
           echo "❌ Coverage ${{ env.OVERALL_LINE_COV }}% is below threshold of ${THRESHOLD}%"
           echo "Consider adding more tests to improve coverage"
-          # Uncomment the next line to fail the build on low coverage
-          # exit 1
+          echo "COVERAGE_FAILED=true" >> $GITHUB_ENV
         else
           echo "✅ Coverage ${{ env.OVERALL_LINE_COV }}% meets the threshold of ${THRESHOLD}%"
+          echo "COVERAGE_FAILED=false" >> $GITHUB_ENV
         fi
+
+    - name: Fail job if tests failed or coverage is low
+      run: |
+        # Check if any tests failed
+        if grep -q "❌ Test suite encountered errors" test_results.txt 2>/dev/null; then
+          echo "❌ Unit tests failed - check test output above"
+          exit 1
+        fi
+
+        # Check coverage threshold
+        if [ "${{ env.COVERAGE_FAILED }}" = "true" ]; then
+          echo "❌ Code coverage ${{ env.OVERALL_LINE_COV }}% is below the required 70% threshold"
+          echo "Add more unit tests to increase coverage before merging"
+          exit 1
+        fi
+
+        echo "✅ All tests passed and coverage meets requirements"
 
     - name: Upload test results and coverage
       if: always()
@@ -1069,11 +1107,11 @@ jobs:
 
         #### 📦 Dependabot Alert Details
         EOF
-        
+
         # Show Dependabot alert details if any exist
         if [ "${{ env.DEPENDENCY_ALERTS }}" != "0" ]; then
           echo '```' >> $GITHUB_STEP_SUMMARY
-          
+
           # Capture API response for better error handling
           if DEPENDABOT_RESPONSE=$(gh api repos/${{ github.repository }}/dependabot/alerts 2>&1); then
             if echo "$DEPENDABOT_RESPONSE" | jq empty 2>/dev/null && [ "$DEPENDABOT_RESPONSE" != "[]" ]; then
@@ -1081,7 +1119,7 @@ jobs:
               echo "JSON structure (first alert):" >> $GITHUB_STEP_SUMMARY
               echo "$DEPENDABOT_RESPONSE" | jq '.[0] // "No alerts in array"' 2>/dev/null | head -10 >> $GITHUB_STEP_SUMMARY
               echo "" >> $GITHUB_STEP_SUMMARY
-              
+
               # Try to parse with error handling and fallbacks
               if echo "$DEPENDABOT_RESPONSE" | jq -r '.[] | "• \(.security_advisory.summary // "No summary available") (Severity: \(.security_advisory.severity // "Unknown"))\n  Package: \(.dependency.package.name // "Unknown package")\n  Vulnerable versions: \(.security_advisory.vulnerabilities[0].vulnerable_version_range // "N/A")\n  CVE: \(.security_advisory.cve_id // "N/A")\n"' 2>/dev/null | head -20 >> $GITHUB_STEP_SUMMARY; then
                 echo "Successfully parsed Dependabot alerts" >> $GITHUB_STEP_SUMMARY
@@ -1107,11 +1145,11 @@ jobs:
 
         #### 🔍 Code Scanning Alert Details
         EOF
-        
+
         # Show Code Scanning alert details if any exist
         if [ "${{ env.CODE_SCANNING_ALERTS }}" != "0" ]; then
           echo '```' >> $GITHUB_STEP_SUMMARY
-          
+
           # Capture API response for better error handling
           if CODE_SCANNING_RESPONSE=$(gh api repos/${{ github.repository }}/code-scanning/alerts 2>&1); then
             if echo "$CODE_SCANNING_RESPONSE" | jq empty 2>/dev/null && [ "$CODE_SCANNING_RESPONSE" != "[]" ]; then
@@ -1119,7 +1157,7 @@ jobs:
               echo "JSON structure (first alert):" >> $GITHUB_STEP_SUMMARY
               echo "$CODE_SCANNING_RESPONSE" | jq '.[0] // "No alerts in array"' 2>/dev/null | head -10 >> $GITHUB_STEP_SUMMARY
               echo "" >> $GITHUB_STEP_SUMMARY
-              
+
               # Try to parse with error handling and fallbacks
               if echo "$CODE_SCANNING_RESPONSE" | jq -r '.[] | "• \(.rule.description // "No description available") (Severity: \(.rule.severity // "Unknown"))\n  Rule: \(.rule.id // "Unknown rule")\n  Location: \(.most_recent_instance.location.path // "Unknown"):\(.most_recent_instance.location.start_line // "N/A")\n  State: \(.state // "Unknown")\n"' 2>/dev/null | head -20 >> $GITHUB_STEP_SUMMARY; then
                 echo "Successfully parsed Code Scanning alerts" >> $GITHUB_STEP_SUMMARY
@@ -1140,11 +1178,11 @@ jobs:
         else
           echo "No Code Scanning alerts found." >> $GITHUB_STEP_SUMMARY
         fi
-        
+
         cat >> $GITHUB_STEP_SUMMARY << EOF
 
         ### 🔧 Troubleshooting Information
-        
+
         #### API Response Status
         | API Endpoint | Status | Notes |
         |--------------|--------|-------|
@@ -1156,7 +1194,7 @@ jobs:
         - **Authentication errors**: Verify GITHUB_TOKEN has security read permissions
         - **Feature availability**: Some features require GitHub Advanced Security or public repos
         - **Rate limiting**: GitHub API may be temporarily limited
-        
+
         #### Repository Security Settings
         To enable these features:
         1. Go to Settings > Security & analysis
@@ -1169,6 +1207,20 @@ jobs:
         3. Configure GitHub Code Scanning (CodeQL) for static analysis
         4. Consider adding Snyk for additional coverage
         EOF
+
+    - name: Fail job if critical security vulnerabilities found
+      run: |
+        if [ "${{ env.CRITICAL_VULNS }}" -gt "0" ]; then
+          echo "❌ Security scan found ${{ env.CRITICAL_VULNS }} critical vulnerabilities"
+          echo "Critical vulnerabilities must be addressed before merging"
+          echo "Review the security report artifacts for details"
+          exit 1
+        else
+          echo "✅ No critical security vulnerabilities found"
+          if [ "${{ env.HIGH_VULNS }}" -gt "0" ]; then
+            echo "⚠️  Found ${{ env.HIGH_VULNS }} high-severity vulnerabilities (non-blocking)"
+          fi
+        fi
 
     - name: Upload Security Reports
       if: always()
@@ -1238,7 +1290,7 @@ jobs:
           cd "$test_dir"
 
           # Build tests first
-          if ceedling test:all > build_output.txt 2>&1; then
+          if ceedling test:all 2>&1 | tee -a build_output.txt; then
             echo "✅ Tests built successfully for $test_dir" >> ../../valgrind_output.txt
 
             # Find test executables
@@ -1376,6 +1428,24 @@ jobs:
         EOF
         fi
 
+    - name: Fail job if critical memory issues found
+      run: |
+        if [ "${{ env.TEST_STATUS }}" = "NO_TESTS" ]; then
+          echo "✅ No tests to run - skipping memory analysis failure check"
+          exit 0
+        fi
+
+        TOTAL_ISSUES=$((${{ env.MEMORY_LEAKS }} + ${{ env.MEMORY_ERRORS }}))
+        if [ $TOTAL_ISSUES -gt 0 ]; then
+          echo "❌ Valgrind found $TOTAL_ISSUES memory issues:"
+          echo "  - Memory leaks: ${{ env.MEMORY_LEAKS }}"
+          echo "  - Memory errors: ${{ env.MEMORY_ERRORS }}"
+          echo "Fix memory issues before merging - check uploaded Valgrind reports for details"
+          exit 1
+        else
+          echo "✅ No memory leaks or errors detected by Valgrind"
+        fi
+
     - name: Upload Valgrind reports
       if: always() && env.TEST_STATUS != 'NO_TESTS'
       uses: actions/upload-artifact@v4
@@ -1390,7 +1460,7 @@ jobs:
   metrics-summary:
     name: 📊 Metrics Dashboard
     runs-on: ubuntu-latest
-    needs: [astyle, cppcheck, drivers, unit-tests, security-scan, valgrind-analysis]
+    needs: [astyle, cppcheck, drivers, unit-tests, security-scan, valgrind-analysis, documentation]
     if: always()
 
     steps:
@@ -1404,6 +1474,7 @@ jobs:
         TESTS_SCORE=0
         SECURITY_SCORE=0
         MEMORY_SCORE=0
+        DOCUMENTATION_SCORE=0
 
         # Check each job result safely
         if [ "${{ needs.astyle.result }}" = "success" ]; then
@@ -1440,27 +1511,35 @@ jobs:
 
         # Memory analysis score (Valgrind)
         if [ "${{ needs.valgrind-analysis.result }}" = "success" ]; then
-          MEMORY_SCORE=15
+          MEMORY_SCORE=10
+        fi
+
+        # Documentation score (required)
+        if [ "${{ needs.documentation.result }}" = "success" ]; then
+          DOCUMENTATION_SCORE=10
         fi
 
         # Calculate total score safely
-        TOTAL_SCORE=$((ASTYLE_SCORE + CPPCHECK_SCORE + DRIVERS_SCORE + TESTS_SCORE + SECURITY_SCORE + MEMORY_SCORE))
+        TOTAL_SCORE=$((ASTYLE_SCORE + CPPCHECK_SCORE + DRIVERS_SCORE + TESTS_SCORE + SECURITY_SCORE + MEMORY_SCORE + DOCUMENTATION_SCORE))
 
         echo "TOTAL_SCORE=$TOTAL_SCORE" >> $GITHUB_ENV
         echo "SECURITY_SCORE=$SECURITY_SCORE" >> $GITHUB_ENV
         echo "MEMORY_SCORE=$MEMORY_SCORE" >> $GITHUB_ENV
+        echo "DOCUMENTATION_SCORE=$DOCUMENTATION_SCORE" >> $GITHUB_ENV
 
         # Determine overall status message
-        if [ $TOTAL_SCORE -eq 100 ]; then
-          echo "QUALITY_MESSAGE=🎉 **Excellent! All quality and security gates passed.**" >> $GITHUB_ENV
+        if [ $TOTAL_SCORE -eq 110 ]; then
+          echo "QUALITY_MESSAGE=🎉 **Perfect! All quality gates passed including documentation.**" >> $GITHUB_ENV
+        elif [ $TOTAL_SCORE -ge 100 ]; then
+          echo "QUALITY_MESSAGE=✅ **Excellent! High quality with robust security posture.**" >> $GITHUB_ENV
         elif [ $TOTAL_SCORE -ge 85 ]; then
-          echo "QUALITY_MESSAGE=✅ **High quality with robust security posture.**" >> $GITHUB_ENV
+          echo "QUALITY_MESSAGE=🟡 **Good quality, some improvements needed.**" >> $GITHUB_ENV
         elif [ $TOTAL_SCORE -ge 70 ]; then
-          echo "QUALITY_MESSAGE=🟡 **Good quality, some security/memory improvements needed.**" >> $GITHUB_ENV
-        elif [ $TOTAL_SCORE -ge 50 ]; then
           echo "QUALITY_MESSAGE=⚠️ **Quality improvements needed across multiple areas.**" >> $GITHUB_ENV
+        elif [ $TOTAL_SCORE -ge 50 ]; then
+          echo "QUALITY_MESSAGE=❌ **Significant quality issues require attention.**" >> $GITHUB_ENV
         else
-          echo "QUALITY_MESSAGE=❌ **Significant quality and security issues require attention.**" >> $GITHUB_ENV
+          echo "QUALITY_MESSAGE=❌ **Critical quality failures - immediate attention required.**" >> $GITHUB_ENV
         fi
 
     - name: Calculate Static Analysis Status
@@ -1507,6 +1586,13 @@ jobs:
           echo "MEMORY_ANALYSIS_STATUS=❌ FAIL" >> $GITHUB_ENV
         fi
 
+        # Calculate Documentation Status
+        if [ "${{ needs.documentation.result }}" = "success" ]; then
+          echo "DOCUMENTATION_STATUS=✅ PASS" >> $GITHUB_ENV
+        else
+          echo "DOCUMENTATION_STATUS=⚠️ FAIL" >> $GITHUB_ENV
+        fi
+
     - name: Create Overall Dashboard
       run: |
         cat >> $GITHUB_STEP_SUMMARY << EOF
@@ -1522,6 +1608,7 @@ jobs:
         | 🧪 Tests | ${{ needs.unit-tests.result == 'success' && '✅ PASS' || '❌ FAIL' }} | Unit test execution |
         | 🔒 Security | ${{ env.SECURITY_ANALYSIS_STATUS }} | Vulnerability scanning (GitHub + OWASP) |
         | 🧠 Memory | ${{ env.MEMORY_ANALYSIS_STATUS }} | Memory leak detection (Valgrind) |
+        | 📚 Documentation | ${{ env.DOCUMENTATION_STATUS }} | Sphinx + Doxygen build (REQUIRED) |
 
         ## 🔗 Enhanced Analysis
 
@@ -1536,7 +1623,7 @@ jobs:
         > 💡 **Tip**: Click on individual job summaries above for detailed metrics
 
         ### 🏆 Quality Score
-        ${{ env.TOTAL_SCORE }}/100
+        ${{ env.TOTAL_SCORE }}/110
 
         **Breakdown:**
         - Code Style (15pts): ${{ needs.astyle.result == 'success' && '✅ 15' || '❌ 0' }}
@@ -1544,7 +1631,8 @@ jobs:
         - Build (20pts): ${{ needs.drivers.result == 'success' && '✅ 20' || '❌ 0' }}
         - Tests (20pts): ${{ needs.unit-tests.result == 'success' && '✅ 20' || '❌ 0' }}
         - Security (15pts): ${{ env.SECURITY_SCORE }}
-        - Memory (15pts): ${{ env.MEMORY_SCORE }}
+        - Memory (10pts): ${{ env.MEMORY_SCORE }}
+        - Documentation (10pts): ${{ env.DOCUMENTATION_SCORE }}
 
         ${{ env.QUALITY_MESSAGE }}
 
@@ -1595,7 +1683,7 @@ jobs:
         echo "Build started at: $(date)" >> doc_output.txt
 
         # Run the build and capture result
-        if ./ci/run_build.sh >> doc_output.txt 2>&1; then
+        if ./ci/run_build.sh 2>&1 | tee -a doc_output.txt; then
           DOC_RESULT=0
           echo "DOC_STATUS=SUCCESS" >> doc_output.txt
           echo "Documentation build completed successfully" >> doc_output.txt
@@ -1662,3 +1750,15 @@ jobs:
 
         ${{ env.UPDATE_GH_DOCS == '1' && '🚀 **Documentation will be deployed to GitHub Pages**' || '📝 **Documentation built for preview**' }}
         EOF
+
+    - name: Fail job if documentation build failed
+      run: |
+        if [ "${{ env.DOC_RESULT }}" != "0" ]; then
+          echo "❌ Documentation build failed with exit code ${{ env.DOC_RESULT }}"
+          echo "Generated ${{ env.DOXYGEN_FILES }} Doxygen pages and ${{ env.SPHINX_FILES }} Sphinx pages"
+          echo "Check the build logs above for specific errors in Doxygen or Sphinx"
+          exit 1
+        else
+          echo "✅ Documentation build completed successfully"
+          echo "Generated ${{ env.TOTAL_PAGES }} total documentation pages"
+        fi
