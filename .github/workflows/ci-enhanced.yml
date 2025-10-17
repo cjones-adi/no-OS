@@ -160,6 +160,16 @@ jobs:
         > 💡 **Tip**: Click the heading above to view the workflow run page
         EOF
 
+    - name: Fail job if style issues found
+      run: |
+        if [ "${{ env.astyle_failed }}" = "true" ]; then
+          echo "❌ Code style check failed - files need formatting"
+          echo "Run 'astyle --style=linux --indent=tab --max-code-length=80 --break-blocks --pad-oper --pad-header --unpad-paren --align-pointer=name --break-one-line-headers --convert-tabs --mode=c --recursive *.c,*.h' to fix formatting issues"
+          exit 1
+        else
+          echo "✅ All files pass code style requirements"
+        fi
+
   # Static analysis with cppcheck
   cppcheck:
     name: Static Analysis
@@ -538,6 +548,17 @@ jobs:
         > 💡 **Note**: This builds reusable driver components (${TOTAL_DRIVERS} .c files), not the 134 application projects in the \`projects/\` directory.
         EOF
 
+    - name: Fail job if driver compilation failed
+      run: |
+        if [ "${{ env.BUILD_RESULT }}" != "0" ]; then
+          echo "❌ Driver compilation failed with ${{ env.FAILED_BUILDS }} failures out of ${{ env.TOTAL_DRIVERS }} drivers"
+          echo "Check the build logs above for specific compilation errors"
+          echo "Fix compilation errors before merging"
+          exit 1
+        else
+          echo "✅ All ${{ env.SUCCESSFUL_BUILDS }} drivers compiled successfully"
+        fi
+
   # Unit tests with coverage metrics
   unit-tests:
     name: Unit Tests & Coverage
@@ -771,11 +792,28 @@ jobs:
         if (( $(echo "${{ env.OVERALL_LINE_COV }} < $THRESHOLD" | bc -l) )); then
           echo "❌ Coverage ${{ env.OVERALL_LINE_COV }}% is below threshold of ${THRESHOLD}%"
           echo "Consider adding more tests to improve coverage"
-          # Uncomment the next line to fail the build on low coverage
-          # exit 1
+          echo "COVERAGE_FAILED=true" >> $GITHUB_ENV
         else
           echo "✅ Coverage ${{ env.OVERALL_LINE_COV }}% meets the threshold of ${THRESHOLD}%"
+          echo "COVERAGE_FAILED=false" >> $GITHUB_ENV
         fi
+
+    - name: Fail job if tests failed or coverage is low
+      run: |
+        # Check if any tests failed
+        if grep -q "❌ Test suite encountered errors" test_results.txt 2>/dev/null; then
+          echo "❌ Unit tests failed - check test output above"
+          exit 1
+        fi
+        
+        # Check coverage threshold
+        if [ "${{ env.COVERAGE_FAILED }}" = "true" ]; then
+          echo "❌ Code coverage ${{ env.OVERALL_LINE_COV }}% is below the required 70% threshold"
+          echo "Add more unit tests to increase coverage before merging"
+          exit 1
+        fi
+        
+        echo "✅ All tests passed and coverage meets requirements"
 
     - name: Upload test results and coverage
       if: always()
@@ -1170,6 +1208,20 @@ jobs:
         4. Consider adding Snyk for additional coverage
         EOF
 
+    - name: Fail job if critical security vulnerabilities found
+      run: |
+        if [ "${{ env.CRITICAL_VULNS }}" -gt "0" ]; then
+          echo "❌ Security scan found ${{ env.CRITICAL_VULNS }} critical vulnerabilities"
+          echo "Critical vulnerabilities must be addressed before merging"
+          echo "Review the security report artifacts for details"
+          exit 1
+        else
+          echo "✅ No critical security vulnerabilities found"
+          if [ "${{ env.HIGH_VULNS }}" -gt "0" ]; then
+            echo "⚠️  Found ${{ env.HIGH_VULNS }} high-severity vulnerabilities (non-blocking)"
+          fi
+        fi
+
     - name: Upload Security Reports
       if: always()
       uses: actions/upload-artifact@v4
@@ -1374,6 +1426,24 @@ jobs:
         - Address buffer overflows by checking array bounds
         - Initialize all variables before use
         EOF
+        fi
+
+    - name: Fail job if critical memory issues found
+      run: |
+        if [ "${{ env.TEST_STATUS }}" = "NO_TESTS" ]; then
+          echo "✅ No tests to run - skipping memory analysis failure check"
+          exit 0
+        fi
+        
+        TOTAL_ISSUES=$((${{ env.MEMORY_LEAKS }} + ${{ env.MEMORY_ERRORS }}))
+        if [ $TOTAL_ISSUES -gt 0 ]; then
+          echo "❌ Valgrind found $TOTAL_ISSUES memory issues:"
+          echo "  - Memory leaks: ${{ env.MEMORY_LEAKS }}"
+          echo "  - Memory errors: ${{ env.MEMORY_ERRORS }}"
+          echo "Fix memory issues before merging - check uploaded Valgrind reports for details"
+          exit 1
+        else
+          echo "✅ No memory leaks or errors detected by Valgrind"
         fi
 
     - name: Upload Valgrind reports
@@ -1680,3 +1750,15 @@ jobs:
 
         ${{ env.UPDATE_GH_DOCS == '1' && '🚀 **Documentation will be deployed to GitHub Pages**' || '📝 **Documentation built for preview**' }}
         EOF
+
+    - name: Fail job if documentation build failed
+      run: |
+        if [ "${{ env.DOC_RESULT }}" != "0" ]; then
+          echo "❌ Documentation build failed with exit code ${{ env.DOC_RESULT }}"
+          echo "Generated ${{ env.DOXYGEN_FILES }} Doxygen pages and ${{ env.SPHINX_FILES }} Sphinx pages"
+          echo "Check the build logs above for specific errors in Doxygen or Sphinx"
+          exit 1
+        else
+          echo "✅ Documentation build completed successfully"
+          echo "Generated ${{ env.TOTAL_PAGES }} total documentation pages"
+        fi
