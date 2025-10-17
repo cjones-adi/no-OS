@@ -64,6 +64,7 @@ jobs:
         echo "Total source files found: $TOTAL_SOURCE_FILES" >> astyle_output.txt
 
         # Run astyle and capture detailed output
+        set -o pipefail
         if ./ci/run_build.sh 2>&1 | tee -a astyle_output.txt; then
           echo "astyle_failed=false" >> $GITHUB_ENV
           echo "Astyle check PASSED" >> astyle_output.txt
@@ -422,6 +423,7 @@ jobs:
         echo "This matches the drivers/Makefile SRCS variable" >> build_output.txt
 
         # Run the build and capture result
+        set -o pipefail
         if ./ci/run_build.sh 2>&1 | tee -a build_output.txt; then
           BUILD_RESULT=0
           echo "BUILD_STATUS=SUCCESS" >> build_output.txt
@@ -1683,6 +1685,7 @@ jobs:
         echo "Build started at: $(date)" >> doc_output.txt
 
         # Run the build and capture result
+        set -o pipefail
         if ./ci/run_build.sh 2>&1 | tee -a doc_output.txt; then
           DOC_RESULT=0
           echo "DOC_STATUS=SUCCESS" >> doc_output.txt
