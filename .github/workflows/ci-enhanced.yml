@@ -1390,7 +1390,7 @@ jobs:
   metrics-summary:
     name: 📊 Metrics Dashboard
     runs-on: ubuntu-latest
-    needs: [astyle, cppcheck, drivers, unit-tests, security-scan, valgrind-analysis]
+    needs: [astyle, cppcheck, drivers, unit-tests, security-scan, valgrind-analysis, documentation]
     if: always()
 
     steps:
@@ -1404,6 +1404,7 @@ jobs:
         TESTS_SCORE=0
         SECURITY_SCORE=0
         MEMORY_SCORE=0
+        DOCUMENTATION_SCORE=0
 
         # Check each job result safely
         if [ "${{ needs.astyle.result }}" = "success" ]; then
@@ -1440,27 +1441,35 @@ jobs:
 
         # Memory analysis score (Valgrind)
         if [ "${{ needs.valgrind-analysis.result }}" = "success" ]; then
-          MEMORY_SCORE=15
+          MEMORY_SCORE=10
+        fi
+
+        # Documentation score (required)
+        if [ "${{ needs.documentation.result }}" = "success" ]; then
+          DOCUMENTATION_SCORE=10
         fi
 
         # Calculate total score safely
-        TOTAL_SCORE=$((ASTYLE_SCORE + CPPCHECK_SCORE + DRIVERS_SCORE + TESTS_SCORE + SECURITY_SCORE + MEMORY_SCORE))
+        TOTAL_SCORE=$((ASTYLE_SCORE + CPPCHECK_SCORE + DRIVERS_SCORE + TESTS_SCORE + SECURITY_SCORE + MEMORY_SCORE + DOCUMENTATION_SCORE))
 
         echo "TOTAL_SCORE=$TOTAL_SCORE" >> $GITHUB_ENV
         echo "SECURITY_SCORE=$SECURITY_SCORE" >> $GITHUB_ENV
         echo "MEMORY_SCORE=$MEMORY_SCORE" >> $GITHUB_ENV
+        echo "DOCUMENTATION_SCORE=$DOCUMENTATION_SCORE" >> $GITHUB_ENV
 
         # Determine overall status message
-        if [ $TOTAL_SCORE -eq 100 ]; then
-          echo "QUALITY_MESSAGE=🎉 **Excellent! All quality and security gates passed.**" >> $GITHUB_ENV
+        if [ $TOTAL_SCORE -eq 110 ]; then
+          echo "QUALITY_MESSAGE=🎉 **Perfect! All quality gates passed including documentation.**" >> $GITHUB_ENV
+        elif [ $TOTAL_SCORE -ge 100 ]; then
+          echo "QUALITY_MESSAGE=✅ **Excellent! High quality with robust security posture.**" >> $GITHUB_ENV
         elif [ $TOTAL_SCORE -ge 85 ]; then
-          echo "QUALITY_MESSAGE=✅ **High quality with robust security posture.**" >> $GITHUB_ENV
+          echo "QUALITY_MESSAGE=🟡 **Good quality, some improvements needed.**" >> $GITHUB_ENV
         elif [ $TOTAL_SCORE -ge 70 ]; then
-          echo "QUALITY_MESSAGE=🟡 **Good quality, some security/memory improvements needed.**" >> $GITHUB_ENV
-        elif [ $TOTAL_SCORE -ge 50 ]; then
           echo "QUALITY_MESSAGE=⚠️ **Quality improvements needed across multiple areas.**" >> $GITHUB_ENV
+        elif [ $TOTAL_SCORE -ge 50 ]; then
+          echo "QUALITY_MESSAGE=❌ **Significant quality issues require attention.**" >> $GITHUB_ENV
         else
-          echo "QUALITY_MESSAGE=❌ **Significant quality and security issues require attention.**" >> $GITHUB_ENV
+          echo "QUALITY_MESSAGE=❌ **Critical quality failures - immediate attention required.**" >> $GITHUB_ENV
         fi
 
     - name: Calculate Static Analysis Status
@@ -1507,6 +1516,13 @@ jobs:
           echo "MEMORY_ANALYSIS_STATUS=❌ FAIL" >> $GITHUB_ENV
         fi
 
+        # Calculate Documentation Status
+        if [ "${{ needs.documentation.result }}" = "success" ]; then
+          echo "DOCUMENTATION_STATUS=✅ PASS" >> $GITHUB_ENV
+        else
+          echo "DOCUMENTATION_STATUS=⚠️ FAIL" >> $GITHUB_ENV
+        fi
+
     - name: Create Overall Dashboard
       run: |
         cat >> $GITHUB_STEP_SUMMARY << EOF
@@ -1522,6 +1538,7 @@ jobs:
         | 🧪 Tests | ${{ needs.unit-tests.result == 'success' && '✅ PASS' || '❌ FAIL' }} | Unit test execution |
         | 🔒 Security | ${{ env.SECURITY_ANALYSIS_STATUS }} | Vulnerability scanning (GitHub + OWASP) |
         | 🧠 Memory | ${{ env.MEMORY_ANALYSIS_STATUS }} | Memory leak detection (Valgrind) |
+        | 📚 Documentation | ${{ env.DOCUMENTATION_STATUS }} | Sphinx + Doxygen build (REQUIRED) |
 
         ## 🔗 Enhanced Analysis
 
@@ -1536,7 +1553,7 @@ jobs:
         > 💡 **Tip**: Click on individual job summaries above for detailed metrics
 
         ### 🏆 Quality Score
-        ${{ env.TOTAL_SCORE }}/100
+        ${{ env.TOTAL_SCORE }}/110
 
         **Breakdown:**
         - Code Style (15pts): ${{ needs.astyle.result == 'success' && '✅ 15' || '❌ 0' }}
@@ -1544,7 +1561,8 @@ jobs:
         - Build (20pts): ${{ needs.drivers.result == 'success' && '✅ 20' || '❌ 0' }}
         - Tests (20pts): ${{ needs.unit-tests.result == 'success' && '✅ 20' || '❌ 0' }}
         - Security (15pts): ${{ env.SECURITY_SCORE }}
-        - Memory (15pts): ${{ env.MEMORY_SCORE }}
+        - Memory (10pts): ${{ env.MEMORY_SCORE }}
+        - Documentation (10pts): ${{ env.DOCUMENTATION_SCORE }}
 
         ${{ env.QUALITY_MESSAGE }}
 
