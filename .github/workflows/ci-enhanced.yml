@@ -805,14 +805,14 @@ jobs:
           echo "❌ Unit tests failed - check test output above"
           exit 1
         fi
-        
+
         # Check coverage threshold
         if [ "${{ env.COVERAGE_FAILED }}" = "true" ]; then
           echo "❌ Code coverage ${{ env.OVERALL_LINE_COV }}% is below the required 70% threshold"
           echo "Add more unit tests to increase coverage before merging"
           exit 1
         fi
-        
+
         echo "✅ All tests passed and coverage meets requirements"
 
     - name: Upload test results and coverage
@@ -1107,11 +1107,11 @@ jobs:
 
         #### 📦 Dependabot Alert Details
         EOF
-        
+
         # Show Dependabot alert details if any exist
         if [ "${{ env.DEPENDENCY_ALERTS }}" != "0" ]; then
           echo '```' >> $GITHUB_STEP_SUMMARY
-          
+
           # Capture API response for better error handling
           if DEPENDABOT_RESPONSE=$(gh api repos/${{ github.repository }}/dependabot/alerts 2>&1); then
             if echo "$DEPENDABOT_RESPONSE" | jq empty 2>/dev/null && [ "$DEPENDABOT_RESPONSE" != "[]" ]; then
@@ -1119,7 +1119,7 @@ jobs:
               echo "JSON structure (first alert):" >> $GITHUB_STEP_SUMMARY
               echo "$DEPENDABOT_RESPONSE" | jq '.[0] // "No alerts in array"' 2>/dev/null | head -10 >> $GITHUB_STEP_SUMMARY
               echo "" >> $GITHUB_STEP_SUMMARY
-              
+
               # Try to parse with error handling and fallbacks
               if echo "$DEPENDABOT_RESPONSE" | jq -r '.[] | "• \(.security_advisory.summary // "No summary available") (Severity: \(.security_advisory.severity // "Unknown"))\n  Package: \(.dependency.package.name // "Unknown package")\n  Vulnerable versions: \(.security_advisory.vulnerabilities[0].vulnerable_version_range // "N/A")\n  CVE: \(.security_advisory.cve_id // "N/A")\n"' 2>/dev/null | head -20 >> $GITHUB_STEP_SUMMARY; then
                 echo "Successfully parsed Dependabot alerts" >> $GITHUB_STEP_SUMMARY
@@ -1145,11 +1145,11 @@ jobs:
 
         #### 🔍 Code Scanning Alert Details
         EOF
-        
+
         # Show Code Scanning alert details if any exist
         if [ "${{ env.CODE_SCANNING_ALERTS }}" != "0" ]; then
           echo '```' >> $GITHUB_STEP_SUMMARY
-          
+
           # Capture API response for better error handling
           if CODE_SCANNING_RESPONSE=$(gh api repos/${{ github.repository }}/code-scanning/alerts 2>&1); then
             if echo "$CODE_SCANNING_RESPONSE" | jq empty 2>/dev/null && [ "$CODE_SCANNING_RESPONSE" != "[]" ]; then
@@ -1157,7 +1157,7 @@ jobs:
               echo "JSON structure (first alert):" >> $GITHUB_STEP_SUMMARY
               echo "$CODE_SCANNING_RESPONSE" | jq '.[0] // "No alerts in array"' 2>/dev/null | head -10 >> $GITHUB_STEP_SUMMARY
               echo "" >> $GITHUB_STEP_SUMMARY
-              
+
               # Try to parse with error handling and fallbacks
               if echo "$CODE_SCANNING_RESPONSE" | jq -r '.[] | "• \(.rule.description // "No description available") (Severity: \(.rule.severity // "Unknown"))\n  Rule: \(.rule.id // "Unknown rule")\n  Location: \(.most_recent_instance.location.path // "Unknown"):\(.most_recent_instance.location.start_line // "N/A")\n  State: \(.state // "Unknown")\n"' 2>/dev/null | head -20 >> $GITHUB_STEP_SUMMARY; then
                 echo "Successfully parsed Code Scanning alerts" >> $GITHUB_STEP_SUMMARY
@@ -1178,11 +1178,11 @@ jobs:
         else
           echo "No Code Scanning alerts found." >> $GITHUB_STEP_SUMMARY
         fi
-        
+
         cat >> $GITHUB_STEP_SUMMARY << EOF
 
         ### 🔧 Troubleshooting Information
-        
+
         #### API Response Status
         | API Endpoint | Status | Notes |
         |--------------|--------|-------|
@@ -1194,7 +1194,7 @@ jobs:
         - **Authentication errors**: Verify GITHUB_TOKEN has security read permissions
         - **Feature availability**: Some features require GitHub Advanced Security or public repos
         - **Rate limiting**: GitHub API may be temporarily limited
-        
+
         #### Repository Security Settings
         To enable these features:
         1. Go to Settings > Security & analysis
@@ -1434,7 +1434,7 @@ jobs:
           echo "✅ No tests to run - skipping memory analysis failure check"
           exit 0
         fi
-        
+
         TOTAL_ISSUES=$((${{ env.MEMORY_LEAKS }} + ${{ env.MEMORY_ERRORS }}))
         if [ $TOTAL_ISSUES -gt 0 ]; then
           echo "❌ Valgrind found $TOTAL_ISSUES memory issues:"
