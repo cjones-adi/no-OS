@@ -1,4 +1,4 @@
-EXAMPLE := basic
+EXAMPLE ?= basic
 
 include ../../tools/scripts/generic_variables.mk
 
