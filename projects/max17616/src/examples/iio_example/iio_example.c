@@ -30,7 +30,6 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *******************************************************************************/
-#include "iio_example.h"
 #include "iio_max17616.h"
 #include "common_data.h"
 #include "no_os_print_log.h"

@@ -34,7 +34,6 @@
 #include "no_os_delay.h"
 #include "no_os_print_log.h"
 #include "max17616.h"
-#include "basic_example.h"
 #include <stdlib.h>
 
 /**

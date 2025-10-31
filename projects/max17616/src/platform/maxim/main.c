@@ -34,12 +34,6 @@
 #include "common_data.h"
 #include "no_os_error.h"
 
-#ifdef BASIC_EXAMPLE
-#include "basic_example.h"
-#elif defined (IIO_EXAMPLE)
-#include "iio_example.h"
-#endif
-
 int main()
 {
 	return example_main();
