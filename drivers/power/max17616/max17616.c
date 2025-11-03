@@ -1034,7 +1034,7 @@ int max17616_init(struct max17616_dev **device,
 	struct max17616_dev *dev;
 	int ret = -EINVAL;
 
-	dev = (struct max17616_dev *)no_os_calloc(0, sizeof(struct max17616_dev));
+	dev = (struct max17616_dev *)no_os_calloc(1, sizeof(struct max17616_dev));
 	if (!dev)
 		return -ENOMEM;
 

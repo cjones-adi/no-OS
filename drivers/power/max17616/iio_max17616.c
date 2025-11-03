@@ -91,10 +91,12 @@ enum max17616_iio_channels {
 static struct iio_attribute max17616_vin_attrs[] = {
 	{
 		.name = "raw",
+		.priv = 0,
 		.show = max17616_iio_read_attr,
 	},
 	{
 		.name = "scale",
+		.priv = 1,
 		.show = max17616_iio_read_attr,
 	},
 	END_ATTRIBUTES_ARRAY
@@ -103,10 +105,12 @@ static struct iio_attribute max17616_vin_attrs[] = {
 static struct iio_attribute max17616_vout_attrs[] = {
 	{
 		.name = "raw",
+		.priv = 0,
 		.show = max17616_iio_read_attr,
 	},
 	{
 		.name = "scale",
+		.priv = 1,
 		.show = max17616_iio_read_attr,
 	},
 	END_ATTRIBUTES_ARRAY
@@ -115,10 +119,12 @@ static struct iio_attribute max17616_vout_attrs[] = {
 static struct iio_attribute max17616_iout_attrs[] = {
 	{
 		.name = "raw",
+		.priv = 0,
 		.show = max17616_iio_read_attr,
 	},
 	{
 		.name = "scale",
+		.priv = 1,
 		.show = max17616_iio_read_attr,
 	},
 	END_ATTRIBUTES_ARRAY
@@ -127,10 +133,12 @@ static struct iio_attribute max17616_iout_attrs[] = {
 static struct iio_attribute max17616_temp_attrs[] = {
 	{
 		.name = "raw",
+		.priv = 0,
 		.show = max17616_iio_read_attr,
 	},
 	{
 		.name = "scale",
+		.priv = 1,
 		.show = max17616_iio_read_attr,
 	},
 	END_ATTRIBUTES_ARRAY
@@ -139,10 +147,12 @@ static struct iio_attribute max17616_temp_attrs[] = {
 static struct iio_attribute max17616_pout_attrs[] = {
 	{
 		.name = "raw",
+		.priv = 0,
 		.show = max17616_iio_read_attr,
 	},
 	{
 		.name = "scale",
+		.priv = 1,
 		.show = max17616_iio_read_attr,
 	},
 	END_ATTRIBUTES_ARRAY
@@ -389,7 +399,7 @@ static struct iio_device max17616_iio_device = {
  * @param buf - Buffer to write the attribute value
  * @param len - Maximum length of the buffer
  * @param channel - IIO channel information
- * @param priv - Private data (attribute ID)
+ * @param priv - Private data (0=raw, 1=scale)
  * @return Length of the attribute value on success, negative error code otherwise
  */
 STATIC int max17616_iio_read_attr(void *device, char *buf, uint32_t len,
@@ -399,54 +409,80 @@ STATIC int max17616_iio_read_attr(void *device, char *buf, uint32_t len,
 	struct max17616_iio_desc *iio_max17616 = (struct max17616_iio_desc *)device;
 	struct max17616_telemetry telemetry;
 	struct max17616_status status;
+	uint16_t raw_value;
 	int ret;
 
-	/* Read telemetry for measurement channels */
+	/* Handle measurement channels */
 	switch (channel->address) {
 	case MAX17616_IIO_VIN_CHAN:
-		ret = max17616_read_telemetry_all(iio_max17616->max17616_dev,
-						  &telemetry);
-		if (ret)
-			return ret;
-		if (!(telemetry.valid_mask & NO_OS_BIT(0)))
-			return -ENODATA;
-		return snprintf(buf, len, "%d", telemetry.vin);
+		if (priv == 0) {
+			ret = max17616_read_telemetry_all(iio_max17616->max17616_dev,
+							  &telemetry);
+			if (ret)
+				return ret;
+			if (!(telemetry.valid_mask & NO_OS_BIT(0)))
+				return -ENODATA;
+			return snprintf(buf, len, "%d", telemetry.vin);
+		} else if (priv == 1) {
+			return snprintf(buf, len, "1");
+		}
+		break;
 
 	case MAX17616_IIO_VOUT_CHAN:
-		ret = max17616_read_telemetry_all(iio_max17616->max17616_dev,
-						  &telemetry);
-		if (ret)
-			return ret;
-		if (!(telemetry.valid_mask & NO_OS_BIT(1)))
-			return -ENODATA;
-		return snprintf(buf, len, "%d", telemetry.vout);
+		if (priv == 0) {
+			ret = max17616_read_telemetry_all(iio_max17616->max17616_dev,
+							  &telemetry);
+			if (ret)
+				return ret;
+			if (!(telemetry.valid_mask & NO_OS_BIT(1)))
+				return -ENODATA;
+			return snprintf(buf, len, "%d", telemetry.vout);
+		} else if (priv == 1) {
+			return snprintf(buf, len, "1");
+		}
+		break;
 
 	case MAX17616_IIO_IOUT_CHAN:
-		ret = max17616_read_telemetry_all(iio_max17616->max17616_dev,
-						  &telemetry);
-		if (ret)
-			return ret;
-		if (!(telemetry.valid_mask & NO_OS_BIT(3)))
-			return -ENODATA;
-		return snprintf(buf, len, "%d", telemetry.iout);
+		if (priv == 0) {
+			ret = max17616_read_telemetry_all(iio_max17616->max17616_dev,
+							  &telemetry);
+			if (ret)
+				return ret;
+			if (!(telemetry.valid_mask & NO_OS_BIT(3)))
+				return -ENODATA;
+			return snprintf(buf, len, "%d", telemetry.iout);
+		} else if (priv == 1) {
+			return snprintf(buf, len, "1");
+		}
+		break;
 
 	case MAX17616_IIO_TEMP_CHAN:
-		ret = max17616_read_telemetry_all(iio_max17616->max17616_dev,
-						  &telemetry);
-		if (ret)
-			return ret;
-		if (!(telemetry.valid_mask & NO_OS_BIT(4)))
-			return -ENODATA;
-		return snprintf(buf, len, "%d", telemetry.temp1);
+		if (priv == 0) {
+			ret = max17616_read_telemetry_all(iio_max17616->max17616_dev,
+							  &telemetry);
+			if (ret)
+				return ret;
+			if (!(telemetry.valid_mask & NO_OS_BIT(4)))
+				return -ENODATA;
+			return snprintf(buf, len, "%d", telemetry.temp1);
+		} else if (priv == 1) {
+			return snprintf(buf, len, "1");
+		}
+		break;
 
 	case MAX17616_IIO_POUT_CHAN:
-		ret = max17616_read_telemetry_all(iio_max17616->max17616_dev,
-						  &telemetry);
-		if (ret)
-			return ret;
-		if (!(telemetry.valid_mask & NO_OS_BIT(5)))
-			return -ENODATA;
-		return snprintf(buf, len, "%d", telemetry.pout);
+		if (priv == 0) {
+			ret = max17616_read_telemetry_all(iio_max17616->max17616_dev,
+							  &telemetry);
+			if (ret)
+				return ret;
+			if (!(telemetry.valid_mask & NO_OS_BIT(5)))
+				return -ENODATA;
+			return snprintf(buf, len, "%d", telemetry.pout);
+		} else if (priv == 1) {
+			return snprintf(buf, len, "1");
+		}
+		break;
 
 	/* Status registers */
 	case MAX17616_IIO_STATUS_WORD_CHAN:

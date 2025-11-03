@@ -80,7 +80,7 @@ MAX17616 Driver Initialization Example
 	};
 
 	struct max17616_init_param max17616_ip = {
-		.i2c_init = &_i2c_ip,
+		.i2c_init = &i2c_ip,
 		.chip_id = ID_MAX17616,
 	};
 
