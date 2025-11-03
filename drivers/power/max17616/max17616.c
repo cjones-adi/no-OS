@@ -364,14 +364,12 @@ int max17616_verify_manufacturer_id(struct max17616_dev *dev)
 	uint8_t mfr_id[8];
 	int ret;
 
-	/* Read manufacturer ID */
 	ret = max17616_read_block_data(dev, MAX17616_CMD(MAX17616_MFR_ID),
 				       mfr_id,
 				       MAX17616_DATA_SIZE(MAX17616_MFR_ID));
 	if (ret)
 		return ret;
 
-	/* Verify manufacturer ID */
 	if (strncmp((char*)mfr_id,
 		    MAX17616_MFR_ID_STR, MAX17616_MFR_ID_SIZE) != 0)
 		return -ENODEV;
@@ -389,14 +387,12 @@ int max17616_identify_chip_variant(struct max17616_dev *dev)
 	uint8_t device_id[16];
 	int ret;
 
-	/* Read device ID */
 	ret = max17616_read_block_data(dev, MAX17616_CMD(MAX17616_IC_DEVICE_ID),
 				       device_id,
 				       MAX17616_DATA_SIZE(MAX17616_IC_DEVICE_ID));
 	if (ret)
 		return ret;
 
-	/* Identify specific chip variant */
 	for (int i = 0; i < ID_MAX17616_CHIP_COUNT; i++) {
 		if (strncmp((char*)device_id, dev->chip_info->specific_info[i].ic_dev_id,
 			    dev->chip_info->specific_info[i].ic_dev_id_size) == 0) {
@@ -405,7 +401,6 @@ int max17616_identify_chip_variant(struct max17616_dev *dev)
 		}
 	}
 
-	/* No matching chip variant found */
 	return -ENODEV;
 }
 
@@ -419,7 +414,6 @@ int max17616_verify_pmbus_revision(struct max17616_dev *dev)
 	uint16_t pmbus_rev;
 	int ret;
 
-	/* Verify PMBus revision */
 	ret = max17616_read_word(dev, MAX17616_CMD(MAX17616_PMBUS_REVISION),
 				 &pmbus_rev);
 	if (ret)
@@ -440,17 +434,14 @@ static int max17616_identify(struct max17616_dev *dev)
 {
 	int ret;
 
-	/* Step 1: Verify manufacturer ID */
 	ret = max17616_verify_manufacturer_id(dev);
 	if (ret)
 		return ret;
 
-	/* Step 2: Identify chip variant */
 	ret = max17616_identify_chip_variant(dev);
 	if (ret)
 		return ret;
 
-	/* Step 3: Verify PMBus revision */
 	ret = max17616_verify_pmbus_revision(dev);
 	if (ret)
 		return ret;
@@ -480,6 +471,7 @@ int max17616_read_value(struct max17616_dev *dev,
 {
 	uint16_t raw_value;
 	int ret;
+	int vin, iout;
 
 	if (!dev || !value)
 		return -EINVAL;
@@ -488,53 +480,57 @@ int max17616_read_value(struct max17616_dev *dev,
 	case MAX17616_VIN:
 		ret = max17616_read_word(dev, MAX17616_CMD(MAX17616_READ_VIN),
 					 &raw_value);
-		if (ret == 0)
-			*value = max17616_direct_to_int(raw_value,
-							&max17616_vin_coeffs);
+		if (ret)
+			return ret;
+
+		*value = max17616_direct_to_int(raw_value, &max17616_vin_coeffs);
 		break;
 
 	case MAX17616_VOUT:
 		ret = max17616_read_word(dev, MAX17616_CMD(MAX17616_READ_VOUT),
 					 &raw_value);
-		if (ret == 0)
-			*value = max17616_direct_to_int(raw_value,
-							&max17616_vout_coeffs);
+		if (ret)
+			return ret;
+
+		*value = max17616_direct_to_int(raw_value, &max17616_vout_coeffs);
 		break;
 
 	case MAX17616_IOUT:
 		ret = max17616_read_word(dev, MAX17616_CMD(MAX17616_READ_IOUT),
 					 &raw_value);
-		if (ret == 0)
-			*value = max17616_direct_to_int(raw_value,
-							&max17616_iout_coeffs);
+		if (ret)
+			return ret;
+
+		*value = max17616_direct_to_int(raw_value, &max17616_iout_coeffs);
 		break;
 
 	case MAX17616_TEMP:
 		ret = max17616_read_word(dev,
 					 MAX17616_CMD(MAX17616_READ_TEMPERATURE_1),
 					 &raw_value);
-		if (ret == 0)
-			*value = max17616_direct_to_int(raw_value,
-							&max17616_temp_coeffs);
+		if (ret)
+			return ret;
+
+		*value = max17616_direct_to_int(raw_value, &max17616_temp_coeffs);
 		break;
 
 	case MAX17616_POWER:
 		/* Calculate power from voltage and current */
-	{
-		int vin, iout;
 		ret = max17616_read_value(dev, MAX17616_VOUT, &vin);
-		if (ret) break;
+		if (ret)
+			return ret;
 		ret = max17616_read_value(dev, MAX17616_IOUT, &iout);
-		if (ret == 0)
-			*value = vin * iout;
-	}
-	break;
+		if (ret)
+			return ret;
+
+		*value = vin * iout;
+		break;
 
 	default:
 		return -EINVAL;
 	}
 
-	return ret;
+	return 0;
 }
 
 /**
@@ -593,14 +589,14 @@ int max17616_get_current_limit_mode(struct max17616_dev *dev,
 		return ret;
 
 	/* Extract bits 7:6 and convert to enum */
-	switch (raw_value & 0xC0) {
-	case 0x00:
+	switch (raw_value & MAX17616_CLMODE_BITS_MASK) {
+	case MAX17616_CLMODE_LATCH_OFF_BITS:
 		*clmode = MAX17616_CLMODE_LATCH_OFF;
 		break;
-	case 0x40:
+	case MAX17616_CLMODE_CONTINUOUS_BITS:
 		*clmode = MAX17616_CLMODE_CONTINUOUS;
 		break;
-	case 0x80:
+	case MAX17616_CLMODE_AUTO_RETRY_BITS:
 		*clmode = MAX17616_CLMODE_AUTO_RETRY;
 		break;
 	default:
@@ -647,20 +643,20 @@ int max17616_get_istart_ratio(struct max17616_dev *dev,
 		return ret;
 
 	/* Extract bits 3:0 and convert to enum */
-	switch (raw_value & 0x0F) {
-	case 0x00:
+	switch (raw_value & MAX17616_ISTART_BITS_MASK) {
+	case MAX17616_ISTART_FULL_BITS:
 		*istart_ratio = MAX17616_ISTART_FULL;
 		break;
-	case 0x01:
+	case MAX17616_ISTART_HALF_BITS:
 		*istart_ratio = MAX17616_ISTART_HALF;
 		break;
-	case 0x02:
+	case MAX17616_ISTART_QUARTER_BITS:
 		*istart_ratio = MAX17616_ISTART_QUARTER;
 		break;
-	case 0x03:
+	case MAX17616_ISTART_EIGHTH_BITS:
 		*istart_ratio = MAX17616_ISTART_EIGHTH;
 		break;
-	case 0x04:
+	case MAX17616_ISTART_SIXTEENTH_BITS:
 		*istart_ratio = MAX17616_ISTART_SIXTEENTH;
 		break;
 	default:
@@ -706,18 +702,17 @@ int max17616_get_overcurrent_timeout(struct max17616_dev *dev,
 	if (ret)
 		return ret;
 
-	/* Extract bits 1:0 and convert to enum */
-	switch (raw_value & 0x03) {
-	case 0x00:
+	switch (raw_value & MAX17616_TIMEOUT_BITS_MASK) {
+	case MAX17616_TIMEOUT_400US_BITS:
 		*timeout = MAX17616_TIMEOUT_400US;
 		break;
-	case 0x01:
+	case MAX17616_TIMEOUT_1MS_BITS:
 		*timeout = MAX17616_TIMEOUT_1MS;
 		break;
-	case 0x02:
+	case MAX17616_TIMEOUT_4MS_BITS:
 		*timeout = MAX17616_TIMEOUT_4MS;
 		break;
-	case 0x03:
+	case MAX17616_TIMEOUT_24MS_BITS:
 		*timeout = MAX17616_TIMEOUT_24MS;
 		break;
 	default:
@@ -763,18 +758,17 @@ int max17616_get_overcurrent_limit(struct max17616_dev *dev,
 	if (ret)
 		return ret;
 
-	/* Extract bits 1:0 and convert to enum */
-	switch (raw_value & 0x03) {
-	case 0x00:
+	switch (raw_value & MAX17616_OC_LIMIT_BITS_MASK) {
+	case MAX17616_OC_LIMIT_1_25_BITS:
 		*istlim = MAX17616_OC_LIMIT_1_25;
 		break;
-	case 0x01:
+	case MAX17616_OC_LIMIT_1_50_BITS:
 		*istlim = MAX17616_OC_LIMIT_1_50;
 		break;
-	case 0x02:
+	case MAX17616_OC_LIMIT_1_75_BITS:
 		*istlim = MAX17616_OC_LIMIT_1_75;
 		break;
-	case 0x03:
+	case MAX17616_OC_LIMIT_2_00_BITS:
 		*istlim = MAX17616_OC_LIMIT_2_00;
 		break;
 	default:
@@ -851,30 +845,30 @@ int max17616_get_vout_uv_fault_limit_config(struct max17616_dev *dev,
 		return ret;
 
 	/* Extract voltage selection (bits 4:2) */
-	uint8_t voltage_bits = (raw_value >> 2) & 0x07;
+	uint8_t voltage_bits = (raw_value >> 2) & MAX17616_NOMINAL_VOLTAGE_BITS_MASK;
 	switch (voltage_bits) {
-	case 0x00:
+	case MAX17616_NOMINAL_5V_BITS:
 		*voltage = MAX17616_NOMINAL_5V;
 		break;
-	case 0x01:
+	case MAX17616_NOMINAL_9V_BITS:
 		*voltage = MAX17616_NOMINAL_9V;
 		break;
-	case 0x02:
+	case MAX17616_NOMINAL_12V_BITS:
 		*voltage = MAX17616_NOMINAL_12V;
 		break;
-	case 0x03:
+	case MAX17616_NOMINAL_24V_BITS:
 		*voltage = MAX17616_NOMINAL_24V;
 		break;
-	case 0x04:
+	case MAX17616_NOMINAL_36V_BITS:
 		*voltage = MAX17616_NOMINAL_36V;
 		break;
-	case 0x05:
+	case MAX17616_NOMINAL_48V_BITS:
 		*voltage = MAX17616_NOMINAL_48V;
 		break;
-	case 0x06:
+	case MAX17616_NOMINAL_60V_BITS:
 		*voltage = MAX17616_NOMINAL_60V;
 		break;
-	case 0x07:
+	case MAX17616_NOMINAL_72V_BITS:
 		*voltage = MAX17616_NOMINAL_72V;
 		break;
 	default:
@@ -882,15 +876,15 @@ int max17616_get_vout_uv_fault_limit_config(struct max17616_dev *dev,
 	}
 
 	/* Extract PGOOD threshold (bits 1:0) */
-	uint8_t threshold_bits = raw_value & 0x03;
+	uint8_t threshold_bits = raw_value & MAX17616_PGOOD_THRESHOLD_BITS_MASK;
 	switch (threshold_bits) {
-	case 0x00:
+	case MAX17616_PGOOD_MINUS_10_PERCENT_BITS:
 		*threshold = MAX17616_PGOOD_MINUS_10_PERCENT;
 		break;
-	case 0x01:
+	case MAX17616_PGOOD_MINUS_20_PERCENT_BITS:
 		*threshold = MAX17616_PGOOD_MINUS_20_PERCENT;
 		break;
-	case 0x02:
+	case MAX17616_PGOOD_MINUS_30_PERCENT_BITS:
 		*threshold = MAX17616_PGOOD_MINUS_30_PERCENT;
 		break;
 	default:
@@ -992,22 +986,18 @@ int max17616_read_telemetry_all(struct max17616_dev *dev,
 	/* Initialize telemetry structure */
 	memset(telemetry, 0, sizeof(struct max17616_telemetry));
 
-	/* Read VIN using DIRECT format */
 	ret = max17616_read_value(dev, MAX17616_VIN, &telemetry->vin);
 	if (ret == 0)
 		telemetry->valid_mask |= NO_OS_BIT(0);
 
-	/* Read VOUT using DIRECT format */
 	ret = max17616_read_value(dev, MAX17616_VOUT, &telemetry->vout);
 	if (ret == 0)
 		telemetry->valid_mask |= NO_OS_BIT(1);
 
-	/* Read IOUT using DIRECT format */
 	ret = max17616_read_value(dev, MAX17616_IOUT, &telemetry->iout);
 	if (ret == 0)
 		telemetry->valid_mask |= NO_OS_BIT(3);
 
-	/* Read Temperature using DIRECT format */
 	ret = max17616_read_value(dev, MAX17616_TEMP, &telemetry->temp1);
 	if (ret == 0)
 		telemetry->valid_mask |= NO_OS_BIT(4);

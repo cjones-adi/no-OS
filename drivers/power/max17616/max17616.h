@@ -161,6 +161,51 @@ enum max17616_pgood_threshold {
 	MAX17616_PGOOD_MINUS_30_PERCENT = 0x02	/* 10b = -30% */
 };
 
+/* Bit field macros for current limit mode */
+#define MAX17616_CLMODE_BITS_MASK		0xC0
+#define MAX17616_CLMODE_LATCH_OFF_BITS		0x00
+#define MAX17616_CLMODE_CONTINUOUS_BITS		0x40
+#define MAX17616_CLMODE_AUTO_RETRY_BITS		0x80
+
+/* Bit field macros for ISTART ratio */
+#define MAX17616_ISTART_BITS_MASK		0x0F
+#define MAX17616_ISTART_FULL_BITS		0x00
+#define MAX17616_ISTART_HALF_BITS		0x01
+#define MAX17616_ISTART_QUARTER_BITS		0x02
+#define MAX17616_ISTART_EIGHTH_BITS		0x03
+#define MAX17616_ISTART_SIXTEENTH_BITS		0x04
+
+/* Bit field macros for overcurrent timeout */
+#define MAX17616_TIMEOUT_BITS_MASK		0x03
+#define MAX17616_TIMEOUT_400US_BITS		0x00
+#define MAX17616_TIMEOUT_1MS_BITS		0x01
+#define MAX17616_TIMEOUT_4MS_BITS		0x02
+#define MAX17616_TIMEOUT_24MS_BITS		0x03
+
+/* Bit field macros for overcurrent limit */
+#define MAX17616_OC_LIMIT_BITS_MASK		0x03
+#define MAX17616_OC_LIMIT_1_25_BITS		0x00
+#define MAX17616_OC_LIMIT_1_50_BITS		0x01
+#define MAX17616_OC_LIMIT_1_75_BITS		0x02
+#define MAX17616_OC_LIMIT_2_00_BITS		0x03
+
+/* Bit field macros for nominal voltage configuration */
+#define MAX17616_NOMINAL_VOLTAGE_BITS_MASK	0x07
+#define MAX17616_NOMINAL_5V_BITS		0x00
+#define MAX17616_NOMINAL_9V_BITS		0x01
+#define MAX17616_NOMINAL_12V_BITS		0x02
+#define MAX17616_NOMINAL_24V_BITS		0x03
+#define MAX17616_NOMINAL_36V_BITS		0x04
+#define MAX17616_NOMINAL_48V_BITS		0x05
+#define MAX17616_NOMINAL_60V_BITS		0x06
+#define MAX17616_NOMINAL_72V_BITS		0x07
+
+/* Bit field macros for PGOOD threshold configuration */
+#define MAX17616_PGOOD_THRESHOLD_BITS_MASK	0x03
+#define MAX17616_PGOOD_MINUS_10_PERCENT_BITS	0x00
+#define MAX17616_PGOOD_MINUS_20_PERCENT_BITS	0x01
+#define MAX17616_PGOOD_MINUS_30_PERCENT_BITS	0x02
+
 /* Value types for high-level read/write functions */
 enum max17616_value_type {
 	MAX17616_VIN,		/* Input voltage in volts */
@@ -210,102 +255,102 @@ struct max17616_init_param {
 };
 
 enum max17616_status_byte {
-	MAX17616_STATUS_BIT_GENERAL	= 0,	// Not supported
-	MAX17616_STATUS_BIT_CML		= 1,	// Comms, memory, or logic Fault
-	MAX17616_STATUS_BIT_TEMPERATURE	= 2,	// Temperature Fault or Warning
-	MAX17616_STATUS_BIT_VIN_UV	= 3,	// Input Under Voltage Fault
-	MAX17616_STATUS_BIT_IOUT_OC	= 4,	// Output Over Current Fault
-	MAX17616_STATUS_BIT_VOUT_OV	= 5,	// An output overvoltage fault occurred
-	MAX17616_STATUS_BIT_OFF		= 6,	// Max17616 is not enabled
-	MAX17616_STATUS_BIT_BUSY	= 7	// Not supported
+	MAX17616_STATUS_BIT_GENERAL,		// Not supported
+	MAX17616_STATUS_BIT_CML,		// Comms, memory, or logic Fault
+	MAX17616_STATUS_BIT_TEMPERATURE,	// Temperature Fault or Warning
+	MAX17616_STATUS_BIT_VIN_UV,		// Input Under Voltage Fault
+	MAX17616_STATUS_BIT_IOUT_OC,		// Output Over Current Fault
+	MAX17616_STATUS_BIT_VOUT_OV,		// An output overvoltage fault occurred
+	MAX17616_STATUS_BIT_OFF,		// Max17616 is not enabled
+	MAX17616_STATUS_BIT_BUSY		// Not supported
 };
 
 enum max17616_status_word_byte_high {
-	MAX17616_STATUS_BIT_STARTUP	= 0,	// Not supported
-	MAX17616_STATUS_BIT_OTHER	= 1,	// Not supported
-	MAX17616_STATUS_BIT_FANS	= 2,	// Not supported
-	MAX17616_STATUS_BIT_POWER_GOOD	= 3,	// Not supported
-	MAX17616_STATUS_BIT_MFR		= 4,	// Manufacturer specific Fault
-	MAX17616_STATUS_BIT_INPUT	= 5,	// Input V, I, or P Fault
-	MAX17616_STATUS_BIT_IOUT_POUT	= 6,	// Output current or power Fault
-	MAX17616_STATUS_BIT_VOUT	= 7	// Output voltage Fault
+	MAX17616_STATUS_BIT_STARTUP,		// Not supported
+	MAX17616_STATUS_BIT_OTHER,		// Not supported
+	MAX17616_STATUS_BIT_FANS,		// Not supported
+	MAX17616_STATUS_BIT_POWER_GOOD,		// Not supported
+	MAX17616_STATUS_BIT_MFR,		// Manufacturer specific Fault
+	MAX17616_STATUS_BIT_INPUT,		// Input V, I, or P Fault
+	MAX17616_STATUS_BIT_IOUT_POUT,		// Output current or power Fault
+	MAX17616_STATUS_BIT_VOUT		// Output voltage Fault
 };
 
 enum max17616_general_bit_fault_byte {
-	MAX17616_GENERAL_FAULT_NS_BIT0	= 0,	// Not supported
-	MAX17616_GENERAL_FAULT_NS_BIT1	= 1,	// Not supported
-	MAX17616_GENERAL_FAULT_NS_BIT2	= 2,	// Not supported
-	MAX17616_GENERAL_FAULT_NS_BIT3	= 3,	// Not supported
-	MAX17616_GENERAL_FAULT_NS_BIT4	= 4,	// Not supported
-	MAX17616_GENERAL_FAULT_NS_BIT5	= 5,	// Not supported
-	MAX17616_GENERAL_FAULT_NS_BIT6	= 6,	// Not supported
-	MAX17616_GENERAL_FAULT_NS_BIT7	= 7	// Not supported
+	MAX17616_GENERAL_FAULT_NS_BIT0,		// Not supported
+	MAX17616_GENERAL_FAULT_NS_BIT1,		// Not supported
+	MAX17616_GENERAL_FAULT_NS_BIT2,		// Not supported
+	MAX17616_GENERAL_FAULT_NS_BIT3,		// Not supported
+	MAX17616_GENERAL_FAULT_NS_BIT4,		// Not supported
+	MAX17616_GENERAL_FAULT_NS_BIT5,		// Not supported
+	MAX17616_GENERAL_FAULT_NS_BIT6,		// Not supported
+	MAX17616_GENERAL_FAULT_NS_BIT7		// Not supported
 };
 
 enum max17616_cml_bit_fault_byte {
-	MAX17616_CML_FAULT_NS_BIT0 	= 0,	// Not supported
-	MAX17616_CML_FAULT_OTHER 	= 1,	// Communications other error
-	MAX17616_CML_FAULT_NS_BIT2 	= 2,	// Not supported
-	MAX17616_CML_FAULT_NS_BIT3	= 3,	// Not supported
-	MAX17616_CML_FAULT_MEM_ERROR	= 4,	// Memory Error detected
-	MAX17616_CML_FAULT_PEC_FAIL 	= 5,	// Packet error checking failed
-	MAX17616_CML_FAULT_DATA 	= 6,	// Invalid or unsupported data received
-	MAX17616_CML_FAULT_CMD		= 7,	// Invalid or unsupported command received
+	MAX17616_CML_FAULT_NS_BIT0,		// Not supported
+	MAX17616_CML_FAULT_OTHER,		// Communications other error
+	MAX17616_CML_FAULT_NS_BIT2,		// Not supported
+	MAX17616_CML_FAULT_NS_BIT3,		// Not supported
+	MAX17616_CML_FAULT_MEM_ERROR,		// Memory Error detected
+	MAX17616_CML_FAULT_PEC_FAIL,		// Packet error checking failed
+	MAX17616_CML_FAULT_DATA,		// Invalid or unsupported data received
+	MAX17616_CML_FAULT_CMD			// Invalid or unsupported command received
 };
 
 enum max17616_temperature_bit_fault_byte {
-	MAX17616_TEMPERATURE_FAULT_NS_BIT0	= 0,	// Not supported
-	MAX17616_TEMPERATURE_FAULT_NS_BIT1	= 1,	// Not supported
-	MAX17616_TEMPERATURE_FAULT_NS_BIT2	= 2,	// Not supported
-	MAX17616_TEMPERATURE_FAULT_NS_BIT3	= 3,	// Not supported
-	MAX17616_TEMPERATURE_FAULT_UT_FAULT	= 4,	// Not supported
-	MAX17616_TEMPERATURE_FAULT_UT_WARNING	= 5,	// Not supported
-	MAX17616_TEMPERATURE_FAULT_OT_WARNING	= 6,	// Not supported
-	MAX17616_TEMPERATURE_FAULT_OT_FAULT	= 7	// An overtemperature fault occurred
+	MAX17616_TEMPERATURE_FAULT_NS_BIT0,		// Not supported
+	MAX17616_TEMPERATURE_FAULT_NS_BIT1,		// Not supported
+	MAX17616_TEMPERATURE_FAULT_NS_BIT2,		// Not supported
+	MAX17616_TEMPERATURE_FAULT_NS_BIT3,		// Not supported
+	MAX17616_TEMPERATURE_FAULT_UT_FAULT,		// Not supported
+	MAX17616_TEMPERATURE_FAULT_UT_WARNING,		// Not supported
+	MAX17616_TEMPERATURE_FAULT_OT_WARNING,		// Not supported
+	MAX17616_TEMPERATURE_FAULT_OT_FAULT		// An overtemperature fault occurred
 };
 
 enum max17616_input_fault_bit {
-	MAX17616_INPUT_FAULT_PIN_OP_WARNING	= 0,	// Not supported
-	MAX17616_INPUT_FAULT_IIN_OC_WARNING	= 1,	// Not supported
-	MAX17616_INPUT_FAULT_IIN_OC_FAULT	= 2,	// Not supported
-	MAX17616_INPUT_FAULT_UNIT_OFF		= 3,	// Not supported
-	MAX17616_INPUT_FAULT_VIN_UV_FAULT	= 4,	// An input undervoltage fault occurred
-	MAX17616_INPUT_FAULT_VIN_UV_WARNING	= 5,	// Not supported
-	MAX17616_INPUT_FAULT_VIN_OV_WARNING	= 6,	// Not supported
-	MAX17616_INPUT_FAULT_VIN_OV_FAULT	= 7	// An input overvoltage fault occurred
+	MAX17616_INPUT_FAULT_PIN_OP_WARNING,		// Not supported
+	MAX17616_INPUT_FAULT_IIN_OC_WARNING,		// Not supported
+	MAX17616_INPUT_FAULT_IIN_OC_FAULT,		// Not supported
+	MAX17616_INPUT_FAULT_UNIT_OFF,			// Not supported
+	MAX17616_INPUT_FAULT_VIN_UV_FAULT,		// An input undervoltage fault occurred
+	MAX17616_INPUT_FAULT_VIN_UV_WARNING,		// Not supported
+	MAX17616_INPUT_FAULT_VIN_OV_WARNING,		// Not supported
+	MAX17616_INPUT_FAULT_VIN_OV_FAULT		// An input overvoltage fault occurred
 };
 
 enum max17616_iout_fault_bit {
-	MAX17616_IOUT_FAULT_NS_BIT0	= 0,	// An output overcurrent fault occurred
-	MAX17616_IOUT_FAULT_NS_BIT1	= 1,	// Not supported
-	MAX17616_IOUT_FAULT_NS_BIT2	= 2,	// Not supported
-	MAX17616_IOUT_FAULT_NS_BIT3	= 3,	// Not supported
-	MAX17616_IOUT_FAULT_NS_BIT4	= 4,	// Not supported
-	MAX17616_IOUT_FAULT_OUT_OC_WARNING	= 5,	// Not supported
-	MAX17616_IOUT_FAULT_OUT_OC_UV_LO	= 6,	// An output overcurrent and low voltage fault occurred
-	MAX17616_IOUT_FAULT_OUT_OC_FAULT	= 7	// An output overcurrent fault occurred
+	MAX17616_IOUT_FAULT_NS_BIT0,			// An output overcurrent fault occurred
+	MAX17616_IOUT_FAULT_NS_BIT1,			// Not supported
+	MAX17616_IOUT_FAULT_NS_BIT2,			// Not supported
+	MAX17616_IOUT_FAULT_NS_BIT3,			// Not supported
+	MAX17616_IOUT_FAULT_NS_BIT4,			// Not supported
+	MAX17616_IOUT_FAULT_OUT_OC_WARNING,		// Not supported
+	MAX17616_IOUT_FAULT_OUT_OC_UV_LO,		// An output overcurrent and low voltage fault occurred
+	MAX17616_IOUT_FAULT_OUT_OC_FAULT		// An output overcurrent fault occurred
 };
 
 enum max17616_vout_fault_bit {
-	MAX17616_VOUT_FAULT_VOUT_TRACKING_ERROR	= 0,	// Not supported
-	MAX17616_VOUT_FAULT_TOFF_MAX_WARNING	= 1,	// Not supported
-	MAX17616_VOUT_FAULT_TON_MAX_FAULT	= 2,	// Not supported
-	MAX17616_VOUT_FAULT_VOUT_MAX_WARNING	= 3,	// Not supported
-	MAX17616_VOUT_FAULT_VOUT_UV_FAULT	= 4,	// Not supported
-	MAX17616_VOUT_FAULT_VOUT_UV_WARNING	= 5,	// Output has gone below the output undervoltage threshold
-	MAX17616_VOUT_FAULT_VOUT_OV_WARNING	= 6,	// Output regulation event has occurred
-	MAX17616_VOUT_FAULT_VOUT_OV_FAULT	= 7	// Not supported
+	MAX17616_VOUT_FAULT_VOUT_TRACKING_ERROR,	// Not supported
+	MAX17616_VOUT_FAULT_TOFF_MAX_WARNING,		// Not supported
+	MAX17616_VOUT_FAULT_TON_MAX_FAULT,		// Not supported
+	MAX17616_VOUT_FAULT_VOUT_MAX_WARNING,		// Not supported
+	MAX17616_VOUT_FAULT_VOUT_UV_FAULT,		// Not supported
+	MAX17616_VOUT_FAULT_VOUT_UV_WARNING,		// Output has gone below the output undervoltage threshold
+	MAX17616_VOUT_FAULT_VOUT_OV_WARNING,		// Output regulation event has occurred
+	MAX17616_VOUT_FAULT_VOUT_OV_FAULT		// Not supported
 };
 
 enum max17616_mfr_specific_fault_bit {
-	MAX17616_MFR_FAULT_NS_BIT0	= 0,	// Not supported
-	MAX17616_MFR_FAULT_NS_BIT1	= 1,	// Not supported
-	MAX17616_MFR_FAULT_REVERSE_CURRENT	= 2,	// A reverse current fault occurred
-	MAX17616_MFR_FAULT_OUTPUT_SHORT_CIRCUIT	= 3,	// An output short circuit fault occurred
-	MAX17616_MFR_FAULT_NS_BIT4	= 4,	// Not supported
-	MAX17616_MFR_FAULT_SOFT_START	= 5,	// Soft start failed
-	MAX17616_MFR_FAULT_IMON_PIN	= 6,	// IMON pin fault
-	MAX17616_MFR_FAULT_SETI_PIN	= 7	// SETI pin fault
+	MAX17616_MFR_FAULT_NS_BIT0,			// Not supported
+	MAX17616_MFR_FAULT_NS_BIT1,			// Not supported
+	MAX17616_MFR_FAULT_REVERSE_CURRENT,		// A reverse current fault occurred
+	MAX17616_MFR_FAULT_OUTPUT_SHORT_CIRCUIT,	// An output short circuit fault occurred
+	MAX17616_MFR_FAULT_NS_BIT4,			// Not supported
+	MAX17616_MFR_FAULT_SOFT_START,			// Soft start failed
+	MAX17616_MFR_FAULT_IMON_PIN,			// IMON pin fault
+	MAX17616_MFR_FAULT_SETI_PIN			// SETI pin fault
 };
 
 // /* Fault Management Module Definitions */

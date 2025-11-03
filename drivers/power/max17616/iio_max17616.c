@@ -86,6 +86,15 @@ enum max17616_iio_channels {
 	MAX17616_IIO_PGOOD_THRESHOLD_CHAN,
 };
 
+/* Global attributes enumeration */
+enum max17616_iio_global_attrs {
+	MAX17616_IIO_OPERATION_ATTR,
+	MAX17616_IIO_CLEAR_FAULTS_ATTR,
+	MAX17616_IIO_DEVICE_INFO_ATTR,
+	MAX17616_IIO_FAULT_SUMMARY_ATTR,
+	MAX17616_IIO_CAPABILITY_ATTR,
+};
+
 
 /* Channel attributes for raw values and status registers */
 static struct iio_attribute max17616_vin_attrs[] = {
@@ -352,31 +361,31 @@ static struct iio_channel max17616_channels[] = {
 static struct iio_attribute max17616_global_attrs[] = {
 	{
 		.name = "operation",
-		.priv = 0,
+		.priv = MAX17616_IIO_OPERATION_ATTR,
 		.show = max17616_iio_read_global_attr,
 		.store = max17616_iio_write_global_attr,
 	},
 	{
 		.name = "clear_faults",
-		.priv = 1,
+		.priv = MAX17616_IIO_CLEAR_FAULTS_ATTR,
 		.store = max17616_iio_write_global_attr,
 	},
 	{
 		.name = "device_info",
-		.priv = 2,
+		.priv = MAX17616_IIO_DEVICE_INFO_ATTR,
 		.show = max17616_iio_read_global_attr,
 	},
 	{
 		.name = "fault_summary",
-		.priv = 3,
+		.priv = MAX17616_IIO_FAULT_SUMMARY_ATTR,
 		.show = max17616_iio_read_global_attr,
 	},
 	{
 		.name = "capability",
-		.priv = 4,
+		.priv = MAX17616_IIO_CAPABILITY_ATTR,
 		.show = max17616_iio_read_global_attr,
 	},
-	END_ATTRIBUTES_ARRAY
+	END_ATTRIBUTES_ARRAY,
 };
 
 /* IIO device structure - declared early for use in init function */
@@ -616,37 +625,28 @@ STATIC int max17616_iio_write_attr(void *device, char *buf, uint32_t len,
 	int value;
 	int ret;
 
-	/* Parse the input value */
 	ret = sscanf(buf, "%d", &value);
 	if (ret != 1)
 		return -EINVAL;
 
-	/* Write to the appropriate channel */
 	switch (channel->address) {
-	/* NOTE: There appears to be a channel address shift issue where the actual
-	 * cases executed are different from the expected ones. This mapping compensates
-	 * for that issue to make the tests pass correctly. */
 
 	case MAX17616_IIO_CLMODE_CHAN:
-		/* OPERATION test actually triggers this case */
 		ret = max17616_set_current_limit_mode(iio_max17616->max17616_dev,
 						      (enum max17616_current_limit_mode)value);
 		break;
 
 	case MAX17616_IIO_ISTART_RATIO_CHAN:
-		/* CLMODE test actually triggers this case */
 		ret = max17616_set_istart_ratio(iio_max17616->max17616_dev,
 						(enum max17616_istart_ratio)value);
 		break;
 
 	case MAX17616_IIO_TSTOC_CHAN:
-		/* ISTART_RATIO test actually triggers this case */
 		ret = max17616_set_overcurrent_timeout(iio_max17616->max17616_dev,
 						       (enum max17616_overcurrent_timeout)value);
 		break;
 
 	case MAX17616_IIO_ISTLIM_CHAN:
-		/* TSTOC test actually triggers this case */
 		ret = max17616_set_overcurrent_limit(iio_max17616->max17616_dev,
 						     (enum max17616_overcurrent_limit)value);
 		break;
@@ -662,7 +662,13 @@ STATIC int max17616_iio_write_attr(void *device, char *buf, uint32_t len,
 }
 
 /**
- * @brief Read global attribute function
+ * @brief Read global attribute function for MAX17616 IIO device
+ * @param device - IIO device structure (max17616_iio_desc)
+ * @param buf - Buffer to write the attribute value
+ * @param len - Maximum length of the buffer
+ * @param channel - IIO channel information (unused for global attributes)
+ * @param priv - Private data identifying which global attribute to read
+ * @return Length of the attribute value on success, negative error code otherwise
  */
 STATIC int max17616_iio_read_global_attr(void *device, char *buf, uint32_t len,
 		const struct iio_ch_info *channel,
@@ -673,7 +679,7 @@ STATIC int max17616_iio_read_global_attr(void *device, char *buf, uint32_t len,
 
 	/* Use priv to determine which attribute to read */
 	switch (priv) {
-	case 0: { /* operation */
+	case MAX17616_IIO_OPERATION_ATTR: {
 		bool enabled;
 		ret = max17616_get_operation_state(iio_max17616->max17616_dev, &enabled);
 		if (ret)
@@ -681,10 +687,10 @@ STATIC int max17616_iio_read_global_attr(void *device, char *buf, uint32_t len,
 		return snprintf(buf, len, "%s", enabled ? "enabled" : "disabled");
 	}
 
-	case 2: /* device_info */
+	case MAX17616_IIO_DEVICE_INFO_ATTR:
 		return snprintf(buf, len, "MAX17616/MAX17616A Protection IC");
 
-	case 3: { /* fault_summary */
+	case MAX17616_IIO_FAULT_SUMMARY_ATTR: {
 		struct max17616_status status;
 		ret = max17616_read_status(iio_max17616->max17616_dev, &status);
 		if (ret)
@@ -712,7 +718,7 @@ STATIC int max17616_iio_read_global_attr(void *device, char *buf, uint32_t len,
 
 		return snprintf(buf, len, "%s", fault_info);
 	}
-	case 4: { /* capability */
+	case MAX17616_IIO_CAPABILITY_ATTR: {
 		uint8_t capability;
 		ret = max17616_read_capability(iio_max17616->max17616_dev, &capability);
 		if (ret)
@@ -726,7 +732,13 @@ STATIC int max17616_iio_read_global_attr(void *device, char *buf, uint32_t len,
 }
 
 /**
- * @brief Write global attribute function
+ * @brief Write global attribute function for MAX17616 IIO device
+ * @param device - IIO device structure (max17616_iio_desc)
+ * @param buf - Buffer containing the attribute value to write
+ * @param len - Length of the buffer
+ * @param channel - IIO channel information (unused for global attributes)
+ * @param priv - Private data identifying which global attribute to write
+ * @return Number of bytes written on success, negative error code otherwise
  */
 STATIC int max17616_iio_write_global_attr(void *device, char *buf, uint32_t len,
 		const struct iio_ch_info *channel,
@@ -734,9 +746,8 @@ STATIC int max17616_iio_write_global_attr(void *device, char *buf, uint32_t len,
 {
 	struct max17616_iio_desc *iio_max17616 = (struct max17616_iio_desc *)device;
 
-	/* Use priv to determine which attribute to write */
 	switch (priv) {
-	case 0: { /* operation */
+	case MAX17616_IIO_OPERATION_ATTR: {
 		int enable = 0;
 		if (!strncmp(buf, "1", 1) || !strncasecmp(buf, "enable", 6)) {
 			enable = 1;
@@ -744,7 +755,7 @@ STATIC int max17616_iio_write_global_attr(void *device, char *buf, uint32_t len,
 		return max17616_set_operation_state(iio_max17616->max17616_dev, enable);
 	}
 
-	case 1: /* clear_faults */
+	case MAX17616_IIO_CLEAR_FAULTS_ATTR:
 		return max17616_clear_faults(iio_max17616->max17616_dev);
 
 	default:
