@@ -119,39 +119,39 @@ enum max17616_current_limit_mode {
 /* Current start ratio options - fractions of hardware-configured current limit
  * Note: The actual current limit is set by external resistor on SETI pin */
 enum max17616_istart_ratio {
-	MAX17616_ISTART_FULL = 0x00,		/* 000b = Current Limit (1/1) */
-	MAX17616_ISTART_HALF = 0x01,		/* 001b = Current Limit / 2 */
-	MAX17616_ISTART_QUARTER = 0x02,		/* 010b = Current Limit / 4 */
-	MAX17616_ISTART_EIGHTH = 0x03,		/* 011b = Current Limit / 8 */
-	MAX17616_ISTART_SIXTEENTH = 0x04	/* 100b = Current Limit / 16 */
+	MAX17616_ISTART_FULL,			/* 000b = Current Limit (1/1) */
+	MAX17616_ISTART_HALF,			/* 001b = Current Limit / 2 */
+	MAX17616_ISTART_QUARTER,		/* 010b = Current Limit / 4 */
+	MAX17616_ISTART_EIGHTH,			/* 011b = Current Limit / 8 */
+	MAX17616_ISTART_SIXTEENTH		/* 100b = Current Limit / 16 */
 };
 
 /* Overcurrent timeout duration options */
 enum max17616_overcurrent_timeout {
-	MAX17616_TIMEOUT_400US = 0x00,		/* 00b = 400 microseconds */
-	MAX17616_TIMEOUT_1MS = 0x01,		/* 01b = 1 millisecond */
-	MAX17616_TIMEOUT_4MS = 0x02,		/* 10b = 4 milliseconds */
-	MAX17616_TIMEOUT_24MS = 0x03		/* 11b = 24 milliseconds */
+	MAX17616_TIMEOUT_400US,			/* 00b = 400 microseconds */
+	MAX17616_TIMEOUT_1MS,			/* 01b = 1 millisecond */
+	MAX17616_TIMEOUT_4MS,			/* 10b = 4 milliseconds */
+	MAX17616_TIMEOUT_24MS			/* 11b = 24 milliseconds */
 };
 
 /* Overcurrent limit ratio options - multiples of hardware current limit */
 enum max17616_overcurrent_limit {
-	MAX17616_OC_LIMIT_1_25 = 0x00,		/* 00b = 1.25:1 ratio */
-	MAX17616_OC_LIMIT_1_50 = 0x01,		/* 01b = 1.50:1 ratio */
-	MAX17616_OC_LIMIT_1_75 = 0x02,		/* 10b = 1.75:1 ratio */
-	MAX17616_OC_LIMIT_2_00 = 0x03		/* 11b = 2.00:1 ratio */
+	MAX17616_OC_LIMIT_1_25,			/* 00b = 1.25:1 ratio */
+	MAX17616_OC_LIMIT_1_50,			/* 01b = 1.50:1 ratio */
+	MAX17616_OC_LIMIT_1_75,			/* 10b = 1.75:1 ratio */
+	MAX17616_OC_LIMIT_2_00			/* 11b = 2.00:1 ratio */
 };
 
 /* Nominal voltage selection options for VOUT UV fault limit (bits 4:2) */
 enum max17616_nominal_voltage {
-	MAX17616_NOMINAL_5V = 0x00,		/* 000b = 5V */
-	MAX17616_NOMINAL_9V = 0x01,		/* 001b = 9V */
-	MAX17616_NOMINAL_12V = 0x02,		/* 010b = 12V */
-	MAX17616_NOMINAL_24V = 0x03,		/* 011b = 24V */
-	MAX17616_NOMINAL_36V = 0x04,		/* 100b = 36V */
-	MAX17616_NOMINAL_48V = 0x05,		/* 101b = 48V */
-	MAX17616_NOMINAL_60V = 0x06,		/* 110b = 60V */
-	MAX17616_NOMINAL_72V = 0x07		/* 111b = 72V */
+	MAX17616_NOMINAL_5V,			/* 000b = 5V */
+	MAX17616_NOMINAL_9V,			/* 001b = 9V */
+	MAX17616_NOMINAL_12V,			/* 010b = 12V */
+	MAX17616_NOMINAL_24V,			/* 011b = 24V */
+	MAX17616_NOMINAL_36V,			/* 100b = 36V */
+	MAX17616_NOMINAL_48V,			/* 101b = 48V */
+	MAX17616_NOMINAL_60V,			/* 110b = 60V */
+	MAX17616_NOMINAL_72V			/* 111b = 72V */
 };
 
 /* PGOOD rising threshold options for VOUT UV fault limit (bits 1:0) */
@@ -353,7 +353,7 @@ enum max17616_mfr_specific_fault_bit {
 	MAX17616_MFR_FAULT_SETI_PIN			// SETI pin fault
 };
 
-// /* Fault Management Module Definitions */
+/* Fault Management Module Definitions */
 
 /* Fault group identifiers matching STATUS_WORD bits */
 enum max17616_fault_group {
