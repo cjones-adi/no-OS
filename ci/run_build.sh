@@ -95,7 +95,9 @@ build_documentation() {
     pip3 install pip --upgrade
     pip3 install -r ${TOP_DIR}/doc/sphinx/source/requirements.txt
     # Install a recent version of doxygen
-	DOXYGEN_URL="https://sourceforge.net/projects/doxygen/files/rel-1.13.2/doxygen-1.13.2.src.tar.gz/"
+	# DOXYGEN_URL="https://sourceforge.net/projects/doxygen/files/rel-1.13.2/doxygen-1.13.2.src.tar.gz/"
+	# Doxygen has official releases on GitHub now
+	DOXYGEN_URL="https://github.com/doxygen/doxygen/releases/download/Release_1_13_2/doxygen-1.13.2.linux.bin.tar.gz"
 	DOXYGEN_THEME_URL="https://github.com/analogdevicesinc/doctools/releases/download/latest/adi-harmonic-doxygen-theme.tar.gz"
 	mkdir -p "${DEPS_DIR}"
 	cd ${DEPS_DIR}
