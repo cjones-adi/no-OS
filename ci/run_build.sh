@@ -94,28 +94,26 @@ build_documentation() {
     # Install a recent version of pip and the requirements
     pip3 install pip --upgrade
     pip3 install -r ${TOP_DIR}/doc/sphinx/source/requirements.txt
-    # Install a recent version of doxygen
-	# DOXYGEN_URL="https://sourceforge.net/projects/doxygen/files/rel-1.13.2/doxygen-1.13.2.src.tar.gz/"
-	# Doxygen has official releases on GitHub now
-	DOXYGEN_URL="https://github.com/doxygen/doxygen/releases/download/Release_1_13_2/doxygen-1.13.2.linux.bin.tar.gz"
+    # Install a recent version of doxygen from pre-built binary
+	DOXYGEN_URL="https://github.com/doxygen/doxygen/releases/download/Release_1_15_0/doxygen-1.15.0.linux.bin.tar.gz"
 	DOXYGEN_THEME_URL="https://github.com/analogdevicesinc/doctools/releases/download/latest/adi-harmonic-doxygen-theme.tar.gz"
 	mkdir -p "${DEPS_DIR}"
 	cd ${DEPS_DIR}
+	
+	# Download and extract pre-built Doxygen binary
 	[ -d "doxygen" ] || {
 		mkdir doxygen && wget --quiet -O - ${DOXYGEN_URL} | tar --strip-components=1 -xz -C doxygen
 	}
+	
+	# Download Doxygen theme
 	[ -d "doxygen-theme" ] || {
 		mkdir doxygen-theme && wget --quiet -O - ${DOXYGEN_THEME_URL} | tar --strip-components=1 -xz -C doxygen-theme
 	}
 
-    # Install Doxygen
+    # Install pre-built Doxygen binary (no compilation needed)
     cd doxygen
-    patch ./src/docparser.cpp < ${TOP_DIR}/ci/patch_doxy.patch
-    mkdir -p build && cd build
-    cmake ..
-    make -j${NUM_JOBS}
-    sudo make install
-    cd ../..
+    sudo cp bin/doxygen /usr/local/bin/
+    cd ..
 
     #Generate *.dox files for drivers and projects
     . ${TOP_DIR}/ci/gen_dox.sh
