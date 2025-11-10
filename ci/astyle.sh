@@ -112,6 +112,6 @@ run_astyle() {
 
 parse_commit_range
 
-build_astyle
+# build_astyle
 
 run_astyle
