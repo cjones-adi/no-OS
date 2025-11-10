@@ -109,9 +109,10 @@ build_documentation() {
     # Install a recent version of pip and the requirements
     pip3 install pip --upgrade
     pip3 install -r ${TOP_DIR}/doc/sphinx/source/requirements.txt
-    # Install specific version of doxygen (1.13.2) for legacy project compatibility
+    # Install specific version of doxygen (1.9.1) for legacy project compatibility
+	# Version 1.9.1 is more lenient with documentation warnings than 1.13.2
 	# Using pre-built binary from GitHub (more reliable than SourceForge)
-	DOXYGEN_URL="https://github.com/doxygen/doxygen/releases/download/Release_1_13_2/doxygen-1.13.2.linux.bin.tar.gz"
+	DOXYGEN_URL="https://github.com/doxygen/doxygen/releases/download/Release_1_9_1/doxygen-1.9.1.linux.bin.tar.gz"
 	DOXYGEN_THEME_URL="https://github.com/analogdevicesinc/doctools/releases/download/latest/adi-harmonic-doxygen-theme.tar.gz"
 	mkdir -p "${DEPS_DIR}"
 	cd ${DEPS_DIR}
