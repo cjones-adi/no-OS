@@ -379,13 +379,14 @@ struct max17616_fault_info {
 };
 
 /* MAX17616 telemetry data */
+/* MAX17616 telemetry data */
 struct max17616_telemetry {
-	int vin;		/* Input voltage in volts */
-	int vout;		/* Output voltage in volts */
-	int iout;		/* Output current in amps */
-	int pin;		/* Input power in watts */
-	int pout;		/* Output power in watts */
-	int temp1;		/* Temperature in degrees Celsius */
+	float vin;		/* Input voltage in volts */
+	float vout;		/* Output voltage in volts */
+	float iout;		/* Output current in amps */
+	float pin;		/* Input power in watts */
+	float pout;		/* Output power in watts */
+	float temp1;		/* Temperature in degrees Celsius */
 	uint8_t valid_mask;	/* Bitmask indicating which values are valid */
 };
 
@@ -424,7 +425,7 @@ const char *max17616_get_fault_description(uint16_t group, uint8_t bit);
 
 /* High-level value reading functions */
 int max17616_read_value(struct max17616_dev *dev,
-			enum max17616_value_type value_type, int *value);
+			enum max17616_value_type value_type, float *value);
 
 /* Enhanced operation control functions */
 int max17616_set_operation_state(struct max17616_dev *dev, bool enable);

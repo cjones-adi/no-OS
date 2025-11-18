@@ -475,7 +475,7 @@ void test_max17616_init_success_flow(void)
 	struct max17616_dev *device = NULL;
 
 	// Step 1: Mock memory allocation
-	no_os_calloc_ExpectAndReturn(0, sizeof(struct max17616_dev), (void*)os_malloc);
+	no_os_calloc_ExpectAndReturn(1, sizeof(struct max17616_dev), (void*)os_malloc);
 
 	// Step 2: Mock I2C initialization - must succeed
 	no_os_i2c_init_IgnoreAndReturn(0);
@@ -540,7 +540,7 @@ void test_max17616_init_unknown_device_variant(void)
 	struct max17616_dev *device = NULL;
 
 	// Step 1: Mock memory allocation - succeeds
-	no_os_calloc_ExpectAndReturn(0, sizeof(struct max17616_dev), (void*)os_malloc);
+	no_os_calloc_ExpectAndReturn(1, sizeof(struct max17616_dev), (void*)os_malloc);
 
 	// Step 2: Mock I2C initialization - succeeds
 	no_os_i2c_init_IgnoreAndReturn(0);
@@ -579,7 +579,7 @@ void test_max17616_init_wrong_manufacturer(void)
 	struct max17616_dev *device = NULL;
 
 	// Step 1: Mock memory allocation - succeeds
-	no_os_calloc_ExpectAndReturn(0, sizeof(struct max17616_dev), (void*)os_malloc);
+	no_os_calloc_ExpectAndReturn(1, sizeof(struct max17616_dev), (void*)os_malloc);
 
 	// Step 2: Mock I2C initialization - succeeds
 	no_os_i2c_init_IgnoreAndReturn(0);
@@ -613,7 +613,7 @@ void test_max17616_init_wrong_pmbus_revision(void)
 	struct max17616_dev *device = NULL;
 
 	// Step 1: Mock memory allocation - succeeds
-	no_os_calloc_ExpectAndReturn(0, sizeof(struct max17616_dev), (void*)os_malloc);
+	no_os_calloc_ExpectAndReturn(1, sizeof(struct max17616_dev), (void*)os_malloc);
 
 	// Step 2: Mock I2C initialization - succeeds
 	no_os_i2c_init_IgnoreAndReturn(0);
@@ -673,7 +673,7 @@ void test_max17616_remove_success(void)
 void test_max17616_read_value_vin_and_power(void)
 {
 	struct max17616_dev device = {.i2c_desc = &test_i2c_desc};
-	int value = 0;
+	float value = 0.0f;
 	uint8_t response_data[2] = {0x40, 0x30}; // Little-endian: 0x3040
 
 	// Test VIN read
@@ -685,7 +685,7 @@ void test_max17616_read_value_vin_and_power(void)
 
 	int result = max17616_read_value(&device, MAX17616_VIN, &value);
 	TEST_ASSERT_EQUAL_INT(0, result);
-	TEST_ASSERT_TRUE(value > 0); // Should be a positive voltage value
+	TEST_ASSERT_TRUE(value > 0.0f); // Should be a positive voltage value
 
 	// Test power calculation (VOUT * IOUT)
 	// First call for VOUT
@@ -700,7 +700,7 @@ void test_max17616_read_value_vin_and_power(void)
 
 	result = max17616_read_value(&device, MAX17616_POWER, &value);
 	TEST_ASSERT_EQUAL_INT(0, result);
-	TEST_ASSERT_TRUE(value >= 0); // Power should be non-negative
+	TEST_ASSERT_TRUE(value >= 0.0f); // Power should be non-negative
 }
 
 /**
@@ -709,7 +709,7 @@ void test_max17616_read_value_vin_and_power(void)
 void test_max17616_read_value_invalid_params(void)
 {
 	struct max17616_dev device = {.i2c_desc = &test_i2c_desc};
-	int value = 0;
+	float value = 0.0f;
 
 	// Test with NULL device
 	int result = max17616_read_value(NULL, MAX17616_VIN, &value);
@@ -1266,7 +1266,7 @@ void test_max17616_individual_status_reads(void)
 void test_max17616_read_additional_value_types(void)
 {
 	struct max17616_dev device = {.i2c_desc = &test_i2c_desc};
-	int value;
+	float value;
 
 	// Test VOUT value type
 	no_os_i2c_write_IgnoreAndReturn(0);
@@ -1456,7 +1456,7 @@ void test_max17616_read_status_additional_faults(void)
 void test_max17616_read_value_power_error_path(void)
 {
 	struct max17616_dev device = {.i2c_desc = &test_i2c_desc};
-	int value;
+	float value;
 
 	/* Test MAX17616_POWER case where VOUT read fails - covers uncovered branch in line 532-533 */
 	/* Mock the first read_value call (VOUT) to fail */

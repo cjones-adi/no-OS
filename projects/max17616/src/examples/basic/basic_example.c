@@ -79,19 +79,19 @@ static void display_telemetry(struct max17616_telemetry *telemetry)
 	pr_info("=== MAX17616 Telemetry ===\n\r");
 
 	if (telemetry->valid_mask & NO_OS_BIT(0))
-		pr_info("VIN:         %d V\n\r", telemetry->vin);
+		pr_info("VIN:         %.3f V\n\r", telemetry->vin);
 
 	if (telemetry->valid_mask & NO_OS_BIT(1))
-		pr_info("VOUT:        %d V\n\r", telemetry->vout);
+		pr_info("VOUT:        %.3f V\n\r", telemetry->vout);
 
 	if (telemetry->valid_mask & NO_OS_BIT(3))
-		pr_info("IOUT:        %d A\n\r", telemetry->iout);
+		pr_info("IOUT:        %.3f A\n\r", telemetry->iout);
 
 	if (telemetry->valid_mask & NO_OS_BIT(4))
-		pr_info("Temperature: %d °C\n\r", telemetry->temp1);
+		pr_info("Temperature: %.1f °C\n\r", telemetry->temp1);
 
 	if (telemetry->valid_mask & NO_OS_BIT(5))
-		pr_info("Power:       %d W\n\r", telemetry->pout);
+		pr_info("Power:       %.3f W\n\r", telemetry->pout);
 
 	pr_info("\n\r");
 }

@@ -90,7 +90,7 @@
   :placement: :end
   :flag: "-l${1}"
   :path_flag: "-L ${1}"
-  :system: []    # for example, you might list 'm' to grab the math library
+  :system: [m]    # Math library needed for pow() in max17616_direct_to_float()
   :test: []
   :release: []
 

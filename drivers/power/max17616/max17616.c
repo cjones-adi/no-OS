@@ -36,6 +36,7 @@
 #include <stdlib.h>
 #include <errno.h>
 #include <stdio.h>
+#include <math.h>
 
 #include "no_os_units.h"
 #include "no_os_util.h"
@@ -208,31 +209,26 @@ int max17616_write_byte(struct max17616_dev *dev, uint8_t cmd, uint8_t value)
 }
 
 /**
- * @brief Convert DIRECT format raw value to integer
+ * @brief Convert DIRECT format raw value to floating-point
  * @param raw_value - Raw 16-bit value from device
  * @param coeffs - DIRECT format coefficients
- * @return Converted integer value
+ * @return Converted floating-point value (real-world units)
+ *
+ * This function implements the PMBus DIRECT format formula as specified
+ * in the MAX17616 datasheet:
+ * X = (1/m) × (Y × 10^(-R) - b)
+ * where X is the real-world value (voltage in V, current in A, temp in °C)
  */
-static int max17616_direct_to_int(uint16_t raw_value,
-				  const struct max17616_direct_coeffs *coeffs)
+static float max17616_direct_to_float(uint16_t raw_value,
+				      const struct max17616_direct_coeffs *coeffs)
 {
-	int32_t y = (int16_t)raw_value;  /* Convert to signed */
-	int32_t result;
+	int16_t Y = (int16_t)raw_value;  /* Sign-extend to handle 2's complement */
+	float m = (float)coeffs->m;
+	float b = (float)coeffs->b;
+	float R = (float)coeffs->R;
 
-	/* X = (1/m) × (Y × 10^(-R) - b) */
-	/* First: Y × 10^(-R) */
-	int32_t y_scaled;
-	/* Negative R: Y × 10^(-R) = Y × 10^|R| */
-	int32_t power = 1;
-	for (int i = 0; i < -coeffs->R; i++)
-		power *= 10;
-
-	y_scaled = y * power;
-
-	/* Then: (Y × 10^(-R) - b) / m */
-	result = (y_scaled - coeffs->b) / coeffs->m;
-
-	return (int)result;
+	/* Apply PMBus DIRECT formula: X = (1/m) × (Y × 10^(-R) - b) */
+	return (1.0f / m) * ((float)Y * pow(10.0, (double)(-R)) - b);
 }
 
 /**
@@ -467,11 +463,11 @@ int max17616_clear_faults(struct max17616_dev *dev)
  * @return 0 on success, negative error code otherwise
  */
 int max17616_read_value(struct max17616_dev *dev,
-			enum max17616_value_type value_type, int *value)
+			enum max17616_value_type value_type, float *value)
 {
 	uint16_t raw_value;
 	int ret;
-	int vin, iout;
+	float vin, iout;
 
 	if (!dev || !value)
 		return -EINVAL;
@@ -483,7 +479,7 @@ int max17616_read_value(struct max17616_dev *dev,
 		if (ret)
 			return ret;
 
-		*value = max17616_direct_to_int(raw_value, &max17616_vin_coeffs);
+		*value = max17616_direct_to_float(raw_value, &max17616_vin_coeffs);
 		break;
 
 	case MAX17616_VOUT:
@@ -492,7 +488,7 @@ int max17616_read_value(struct max17616_dev *dev,
 		if (ret)
 			return ret;
 
-		*value = max17616_direct_to_int(raw_value, &max17616_vout_coeffs);
+		*value = max17616_direct_to_float(raw_value, &max17616_vout_coeffs);
 		break;
 
 	case MAX17616_IOUT:
@@ -501,7 +497,7 @@ int max17616_read_value(struct max17616_dev *dev,
 		if (ret)
 			return ret;
 
-		*value = max17616_direct_to_int(raw_value, &max17616_iout_coeffs);
+		*value = max17616_direct_to_float(raw_value, &max17616_iout_coeffs);
 		break;
 
 	case MAX17616_TEMP:
@@ -511,11 +507,11 @@ int max17616_read_value(struct max17616_dev *dev,
 		if (ret)
 			return ret;
 
-		*value = max17616_direct_to_int(raw_value, &max17616_temp_coeffs);
+		*value = max17616_direct_to_float(raw_value, &max17616_temp_coeffs);
 		break;
 
 	case MAX17616_POWER:
-		/* Calculate power from voltage and current */
+		/* Calculate power from voltage and current: P = V × I */
 		ret = max17616_read_value(dev, MAX17616_VOUT, &vin);
 		if (ret)
 			return ret;

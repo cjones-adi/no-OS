@@ -31,3 +31,6 @@ SRCS += $(NO-OS)/util/no_os_lf256fifo.c	\
 
 INCS += $(DRIVERS)/power/max17616/max17616.h
 SRCS += $(DRIVERS)/power/max17616/max17616.c
+
+# Link math library for MAX17616 driver (needed for pow() in DIRECT format conversion)
+LIB_FLAGS = -Wl,--start-group -lm -lc -lgcc -lnosys -Wl,--end-group
