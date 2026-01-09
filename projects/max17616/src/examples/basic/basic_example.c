@@ -71,6 +71,32 @@ static void process_fault_bits(uint8_t fault_value, uint16_t fault_group,
 }
 
 /**
+ * @brief Display raw register values for debugging
+ * @param dev - MAX17616 device structure
+ */
+static void display_raw_values(struct max17616_dev *dev)
+{
+	uint16_t raw_vin, raw_vout, raw_iout;
+	int ret;
+
+	pr_info("=== Raw Register Values (Debug) ===\n\r");
+
+	ret = max17616_read_word(dev, MAX17616_CMD(MAX17616_READ_VIN), &raw_vin);
+	if (ret == 0)
+		pr_info("VIN  raw: 0x%04X (%d)\n\r", raw_vin, (int16_t)raw_vin);
+
+	ret = max17616_read_word(dev, MAX17616_CMD(MAX17616_READ_VOUT), &raw_vout);
+	if (ret == 0)
+		pr_info("VOUT raw: 0x%04X (%d)\n\r", raw_vout, (int16_t)raw_vout);
+
+	ret = max17616_read_word(dev, MAX17616_CMD(MAX17616_READ_IOUT), &raw_iout);
+	if (ret == 0)
+		pr_info("IOUT raw: 0x%04X (%d)\n\r", raw_iout, (int16_t)raw_iout);
+
+	pr_info("\n\r");
+}
+
+/**
  * @brief Display telemetry data in a formatted way
  * @param telemetry - Telemetry structure to display
  */
@@ -83,6 +109,16 @@ static void display_telemetry(struct max17616_telemetry *telemetry)
 
 	if (telemetry->valid_mask & NO_OS_BIT(1))
 		pr_info("VOUT:        %.3f V\n\r", telemetry->vout);
+
+	if ((telemetry->valid_mask & NO_OS_BIT(0)) &&
+	    (telemetry->valid_mask & NO_OS_BIT(1))) {
+		float vdiff = telemetry->vin - telemetry->vout;
+		pr_info("VIN-VOUT:    %.3f V", vdiff);
+		if (vdiff < 0)
+			pr_info(" (measurement tolerance)\n\r");
+		else
+			pr_info("\n\r");
+	}
 
 	if (telemetry->valid_mask & NO_OS_BIT(3))
 		pr_info("IOUT:        %.3f A\n\r", telemetry->iout);
@@ -334,8 +370,10 @@ int example_main(void)
 		ret = max17616_read_telemetry_all(max17616_dev, &telemetry);
 		if (ret)
 			pr_err("Failed to read telemetry: %d\n\r", ret);
-		else
+		else {
+			display_raw_values(max17616_dev);
 			display_telemetry(&telemetry);
+		}
 
 		/* Check for faults */
 		display_fault_status(max17616_dev);
