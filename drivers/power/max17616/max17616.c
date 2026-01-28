@@ -230,7 +230,7 @@ int max17616_write_byte(struct max17616_dev *dev, uint8_t cmd, uint8_t value)
  * X_milli = ((Y x 10 - b) x 1000) / m
  */
 static float max17616_direct_to_milliunit(uint16_t raw_value,
-			const struct max17616_direct_coeffs *coeffs)
+		const struct max17616_direct_coeffs *coeffs)
 {
 	int16_t Y = (int16_t)raw_value;  /* Sign-extend to handle 2's complement */
 	int32_t temp;
@@ -502,7 +502,7 @@ int max17616_set_mfg_specific_config(struct max17616_dev *dev)
  * @return 0 on success, negative error code otherwise
  */
 int max17616_read_value(struct max17616_dev *dev,
-		enum max17616_value_type value_type, int32_t *value_milliunit)
+			enum max17616_value_type value_type, int32_t *value_milliunit)
 {
 	uint16_t raw_value;
 	int ret;
@@ -518,7 +518,8 @@ int max17616_read_value(struct max17616_dev *dev,
 		if (ret)
 			return ret;
 
-		*value_milliunit = max17616_direct_to_milliunit(raw_value, &max17616_vin_coeffs);
+		*value_milliunit = max17616_direct_to_milliunit(raw_value,
+				   &max17616_vin_coeffs);
 		break;
 
 	case MAX17616_VOUT:
@@ -527,7 +528,8 @@ int max17616_read_value(struct max17616_dev *dev,
 		if (ret)
 			return ret;
 
-		*value_milliunit = max17616_direct_to_milliunit(raw_value, &max17616_vout_coeffs);
+		*value_milliunit = max17616_direct_to_milliunit(raw_value,
+				   &max17616_vout_coeffs);
 		break;
 
 	case MAX17616_IOUT:
@@ -536,7 +538,8 @@ int max17616_read_value(struct max17616_dev *dev,
 		if (ret)
 			return ret;
 
-		*value_milliunit = max17616_direct_to_milliunit(raw_value, &max17616_iout_coeffs);
+		*value_milliunit = max17616_direct_to_milliunit(raw_value,
+				   &max17616_iout_coeffs);
 		break;
 
 	case MAX17616_TEMP:
@@ -546,7 +549,8 @@ int max17616_read_value(struct max17616_dev *dev,
 		if (ret)
 			return ret;
 
-		*value_milliunit = max17616_direct_to_milliunit(raw_value, &max17616_temp_coeffs);
+		*value_milliunit = max17616_direct_to_milliunit(raw_value,
+				   &max17616_temp_coeffs);
 		break;
 
 	case MAX17616_POWER:
@@ -558,7 +562,8 @@ int max17616_read_value(struct max17616_dev *dev,
 		if (ret)
 			return ret;
 
-		*value_milliunit = (int32_t)(((uint64_t)vout_mv * (uint64_t)iout_ma) / MAX17616_MILLIUNIT_SCALE);
+		*value_milliunit = (int32_t)(((uint64_t)vout_mv * (uint64_t)iout_ma) /
+					     MAX17616_MILLIUNIT_SCALE);
 		break;
 
 	default:
@@ -881,7 +886,8 @@ int max17616_get_vout_uv_fault_limit_config(struct max17616_dev *dev,
 		return ret;
 
 	/* Extract voltage selection (bits 4:2) */
-	uint8_t voltage_bits = no_os_field_get(MAX17616_NOMINAL_VOLTAGE_MASK, raw_value);
+	uint8_t voltage_bits = no_os_field_get(MAX17616_NOMINAL_VOLTAGE_MASK,
+					       raw_value);
 	switch (voltage_bits) {
 	case MAX17616_NOMINAL_5V_BITS:
 		*voltage = MAX17616_NOMINAL_5V;
@@ -1042,7 +1048,7 @@ int max17616_read_telemetry_all(struct max17616_dev *dev,
 	if ((telemetry->valid_mask & NO_OS_BIT(1)) &&
 	    (telemetry->valid_mask & NO_OS_BIT(3))) {
 		telemetry->pout_mw = (int32_t)(((int64_t)telemetry->vout_mv *
-			(int64_t)telemetry->iout_ma) / MAX17616_MILLIUNIT_SCALE);
+						(int64_t)telemetry->iout_ma) / MAX17616_MILLIUNIT_SCALE);
 		telemetry->valid_mask |= NO_OS_BIT(5);
 	}
 

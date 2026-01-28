@@ -57,7 +57,7 @@ static struct no_os_i2c_init_param test_i2c_init;
 
 // Test helper variables for mock callbacks
 static uint8_t test_expected_read_data;
-static uint8_t test_expected_read_buffer[16]; // Buffer for multi-byte reads
+static uint8_t test_expected_read_buffer[256]; // Buffer for multi-byte reads
 static uint8_t test_expected_read_length;
 static int test_i2c_read_call_count = 0; // Track which call we're on
 
@@ -101,8 +101,8 @@ static int32_t test_i2c_read_init_callback(struct no_os_i2c_desc* desc,
 	switch (cmock_num_calls) {
 	case 0: // First call - manufacturer ID (7 bytes with length prefix)
 		if (data && bytes_number == 7) {
-			// Response: [0x05, 'M', 'A', 'X', 'I', 'M', 0x00]
-			data[0] = 0x05; // Length
+			// Response: [0x06, 'M', 'A', 'X', 'I', 'M', 0x00]
+			data[0] = 0x06; // Length
 			data[1] = 'M';
 			data[2] = 'A';
 			data[3] = 'X';
@@ -113,8 +113,8 @@ static int32_t test_i2c_read_init_callback(struct no_os_i2c_desc* desc,
 		break;
 	case 1: // Second call - chip variant ID (11 bytes with length prefix)
 		if (data && bytes_number == 11) {
-			// Response: [0x08, 'M', 'A', 'X', '1', '7', '6', '1', '6', 0x00, 0x00]
-			data[0] = 0x08; // Length
+			// Response: [0x0A, 'M', 'A', 'X', '1', '7', '6', '1', '6', 0x00, 0x00]
+			data[0] = 0x0A; // Length
 			data[1] = 'M';
 			data[2] = 'A';
 			data[3] = 'X';
@@ -156,7 +156,7 @@ static int32_t test_i2c_read_unknown_device_callback(struct no_os_i2c_desc*
 	switch (cmock_num_calls) {
 	case 0: // First call - manufacturer ID (7 bytes) - succeeds with "MAXIM"
 		if (data && bytes_number == 7) {
-			data[0] = 0x05; // Length
+			data[0] = 0x06; // Length
 			data[1] = 'M';
 			data[2] = 'A';
 			data[3] = 'X';
@@ -167,7 +167,7 @@ static int32_t test_i2c_read_unknown_device_callback(struct no_os_i2c_desc*
 		break;
 	case 1: // Second call - chip variant ID (11 bytes) - returns unknown device
 		if (data && bytes_number == 11) {
-			data[0] = 0x08; // Length
+			data[0] = 0x0A; // Length
 			data[1] = 'U';  // Unknown device
 			data[2] = 'N';
 			data[3] = 'K';
@@ -200,7 +200,7 @@ static int32_t test_i2c_read_wrong_mfr_callback(struct no_os_i2c_desc* desc,
 	switch (cmock_num_calls) {
 	case 0: // First call - manufacturer ID (7 bytes) - returns wrong manufacturer
 		if (data && bytes_number == 7) {
-			data[0] = 0x05; // Length
+			data[0] = 0x06; // Length
 			data[1] = 'W';  // Wrong manufacturer
 			data[2] = 'R';
 			data[3] = 'O';
@@ -229,7 +229,7 @@ static int32_t test_i2c_read_wrong_pmbus_callback(struct no_os_i2c_desc* desc,
 	switch (cmock_num_calls) {
 	case 0: // First call - manufacturer ID (7 bytes) - succeeds with "MAXIM"
 		if (data && bytes_number == 7) {
-			data[0] = 0x05; // Length
+			data[0] = 0x06; // Length
 			data[1] = 'M';
 			data[2] = 'A';
 			data[3] = 'X';
@@ -240,7 +240,7 @@ static int32_t test_i2c_read_wrong_pmbus_callback(struct no_os_i2c_desc* desc,
 		break;
 	case 1: // Second call - chip variant ID (11 bytes) - succeeds with "MAX17616"
 		if (data && bytes_number == 11) {
-			data[0] = 0x08; // Length
+			data[0] = 0x0A; // Length
 			data[1] = 'M';
 			data[2] = 'A';
 			data[3] = 'X';
@@ -417,7 +417,7 @@ void test_max17616_read_block_data_success(void)
 	struct max17616_dev device = {.i2c_desc = &test_i2c_desc};
 	uint8_t cmd = 0x99; // MFR_ID command
 	uint8_t data[6] = {0};
-	uint8_t response_data[7] = {0x05, 'M', 'A', 'X', 'I', 'M', 0x00}; // Length + data
+	uint8_t response_data[7] = {0x06, 'M', 'A', 'X', 'I', 'M', 0x00}; // Length + data
 	size_t nbytes = 6;
 
 	// Setup mock expectations
@@ -863,6 +863,10 @@ void test_max17616_get_vout_uv_fault_limit_config_success(void)
 	no_os_i2c_write_IgnoreAndReturn(0);
 	no_os_i2c_read_Stub(test_i2c_read_callback);
 	test_expected_read_data = test_value;
+	
+	// Mock no_os_field_get calls for extracting voltage and threshold bits
+	no_os_field_get_IgnoreAndReturn(0x05); // voltage bits (101b = 5)
+	no_os_field_get_IgnoreAndReturn(0x00); // threshold bits (00b = 0)
 
 	// Test the function
 	int result = max17616_get_vout_uv_fault_limit_config(&device, &voltage,
@@ -919,6 +923,7 @@ void test_max17616_get_overcurrent_limit_all_branches(void)
 	no_os_i2c_write_IgnoreAndReturn(0);
 	no_os_i2c_read_Stub(test_i2c_read_callback);
 	test_expected_read_data = 0x00; // Bits 1:0 = 00
+	no_os_field_get_ExpectAndReturn(MAX17616_OC_LIMIT_MASK, 0x00, 0x00);
 	result = max17616_get_overcurrent_limit(&device, &istlim);
 	TEST_ASSERT_EQUAL_INT(0, result);
 	TEST_ASSERT_EQUAL_INT(MAX17616_OC_LIMIT_1_25, istlim);
@@ -926,6 +931,7 @@ void test_max17616_get_overcurrent_limit_all_branches(void)
 	// Test case 0x01 - MAX17616_OC_LIMIT_1_50
 	no_os_i2c_write_IgnoreAndReturn(0);
 	test_expected_read_data = 0x01; // Bits 1:0 = 01
+	no_os_field_get_ExpectAndReturn(MAX17616_OC_LIMIT_MASK, 0x01, 0x01);
 	result = max17616_get_overcurrent_limit(&device, &istlim);
 	TEST_ASSERT_EQUAL_INT(0, result);
 	TEST_ASSERT_EQUAL_INT(MAX17616_OC_LIMIT_1_50, istlim);
@@ -933,6 +939,7 @@ void test_max17616_get_overcurrent_limit_all_branches(void)
 	// Test case 0x02 - MAX17616_OC_LIMIT_1_75
 	no_os_i2c_write_IgnoreAndReturn(0);
 	test_expected_read_data = 0x02; // Bits 1:0 = 10
+	no_os_field_get_ExpectAndReturn(MAX17616_OC_LIMIT_MASK, 0x02, 0x02);
 	result = max17616_get_overcurrent_limit(&device, &istlim);
 	TEST_ASSERT_EQUAL_INT(0, result);
 	TEST_ASSERT_EQUAL_INT(MAX17616_OC_LIMIT_1_75, istlim);
@@ -940,6 +947,7 @@ void test_max17616_get_overcurrent_limit_all_branches(void)
 	// Test case 0x03 - MAX17616_OC_LIMIT_2_00
 	no_os_i2c_write_IgnoreAndReturn(0);
 	test_expected_read_data = 0x03; // Bits 1:0 = 11
+	no_os_field_get_ExpectAndReturn(MAX17616_OC_LIMIT_MASK, 0x03, 0x03);
 	result = max17616_get_overcurrent_limit(&device, &istlim);
 	TEST_ASSERT_EQUAL_INT(0, result);
 	TEST_ASSERT_EQUAL_INT(MAX17616_OC_LIMIT_2_00, istlim);
@@ -975,6 +983,7 @@ void test_max17616_get_overcurrent_timeout_all_branches(void)
 	no_os_i2c_write_IgnoreAndReturn(0);
 	no_os_i2c_read_Stub(test_i2c_read_callback);
 	test_expected_read_data = 0x00; // Bits 1:0 = 00
+	no_os_field_get_ExpectAndReturn(MAX17616_TIMEOUT_MASK, 0x00, 0x00);
 	result = max17616_get_overcurrent_timeout(&device, &timeout);
 	TEST_ASSERT_EQUAL_INT(0, result);
 	TEST_ASSERT_EQUAL_INT(MAX17616_TIMEOUT_400US, timeout);
@@ -982,6 +991,7 @@ void test_max17616_get_overcurrent_timeout_all_branches(void)
 	// Test case 0x01 - MAX17616_TIMEOUT_1MS
 	no_os_i2c_write_IgnoreAndReturn(0);
 	test_expected_read_data = 0x01; // Bits 1:0 = 01
+	no_os_field_get_ExpectAndReturn(MAX17616_TIMEOUT_MASK, 0x01, 0x01);
 	result = max17616_get_overcurrent_timeout(&device, &timeout);
 	TEST_ASSERT_EQUAL_INT(0, result);
 	TEST_ASSERT_EQUAL_INT(MAX17616_TIMEOUT_1MS, timeout);
@@ -989,6 +999,7 @@ void test_max17616_get_overcurrent_timeout_all_branches(void)
 	// Test case 0x02 - MAX17616_TIMEOUT_4MS
 	no_os_i2c_write_IgnoreAndReturn(0);
 	test_expected_read_data = 0x02; // Bits 1:0 = 10
+	no_os_field_get_ExpectAndReturn(MAX17616_TIMEOUT_MASK, 0x02, 0x02);
 	result = max17616_get_overcurrent_timeout(&device, &timeout);
 	TEST_ASSERT_EQUAL_INT(0, result);
 	TEST_ASSERT_EQUAL_INT(MAX17616_TIMEOUT_4MS, timeout);
@@ -996,6 +1007,7 @@ void test_max17616_get_overcurrent_timeout_all_branches(void)
 	// Test case 0x03 - MAX17616_TIMEOUT_24MS
 	no_os_i2c_write_IgnoreAndReturn(0);
 	test_expected_read_data = 0x03; // Bits 1:0 = 11
+	no_os_field_get_ExpectAndReturn(MAX17616_TIMEOUT_MASK, 0x03, 0x03);
 	result = max17616_get_overcurrent_timeout(&device, &timeout);
 	TEST_ASSERT_EQUAL_INT(0, result);
 	TEST_ASSERT_EQUAL_INT(MAX17616_TIMEOUT_24MS, timeout);
@@ -1033,6 +1045,7 @@ void test_max17616_get_istart_ratio_all_branches(void)
 	no_os_i2c_write_IgnoreAndReturn(0);
 	no_os_i2c_read_Stub(test_i2c_read_callback);
 	test_expected_read_data = 0x00; // Bits 3:0 = 0000
+	no_os_field_get_ExpectAndReturn(MAX17616_ISTART_MASK, 0x00, 0x00);
 	result = max17616_get_istart_ratio(&device, &istart_ratio);
 	TEST_ASSERT_EQUAL_INT(0, result);
 	TEST_ASSERT_EQUAL_INT(MAX17616_ISTART_FULL, istart_ratio);
@@ -1040,6 +1053,7 @@ void test_max17616_get_istart_ratio_all_branches(void)
 	// Test case 0x01 - MAX17616_ISTART_HALF
 	no_os_i2c_write_IgnoreAndReturn(0);
 	test_expected_read_data = 0x01; // Bits 3:0 = 0001
+	no_os_field_get_ExpectAndReturn(MAX17616_ISTART_MASK, 0x01, 0x01);
 	result = max17616_get_istart_ratio(&device, &istart_ratio);
 	TEST_ASSERT_EQUAL_INT(0, result);
 	TEST_ASSERT_EQUAL_INT(MAX17616_ISTART_HALF, istart_ratio);
@@ -1047,6 +1061,7 @@ void test_max17616_get_istart_ratio_all_branches(void)
 	// Test case 0x02 - MAX17616_ISTART_QUARTER
 	no_os_i2c_write_IgnoreAndReturn(0);
 	test_expected_read_data = 0x02; // Bits 3:0 = 0010
+	no_os_field_get_ExpectAndReturn(MAX17616_ISTART_MASK, 0x02, 0x02);
 	result = max17616_get_istart_ratio(&device, &istart_ratio);
 	TEST_ASSERT_EQUAL_INT(0, result);
 	TEST_ASSERT_EQUAL_INT(MAX17616_ISTART_QUARTER, istart_ratio);
@@ -1054,6 +1069,7 @@ void test_max17616_get_istart_ratio_all_branches(void)
 	// Test case 0x03 - MAX17616_ISTART_EIGHTH
 	no_os_i2c_write_IgnoreAndReturn(0);
 	test_expected_read_data = 0x03; // Bits 3:0 = 0011
+	no_os_field_get_ExpectAndReturn(MAX17616_ISTART_MASK, 0x03, 0x03);
 	result = max17616_get_istart_ratio(&device, &istart_ratio);
 	TEST_ASSERT_EQUAL_INT(0, result);
 	TEST_ASSERT_EQUAL_INT(MAX17616_ISTART_EIGHTH, istart_ratio);
@@ -1061,6 +1077,7 @@ void test_max17616_get_istart_ratio_all_branches(void)
 	// Test case 0x04 - MAX17616_ISTART_SIXTEENTH
 	no_os_i2c_write_IgnoreAndReturn(0);
 	test_expected_read_data = 0x04; // Bits 3:0 = 0100
+	no_os_field_get_ExpectAndReturn(MAX17616_ISTART_MASK, 0x04, 0x04);
 	result = max17616_get_istart_ratio(&device, &istart_ratio);
 	TEST_ASSERT_EQUAL_INT(0, result);
 	TEST_ASSERT_EQUAL_INT(MAX17616_ISTART_SIXTEENTH, istart_ratio);
@@ -1068,6 +1085,7 @@ void test_max17616_get_istart_ratio_all_branches(void)
 	// Test default case - invalid value (0x0F would be bits 3:0 = 1111)
 	no_os_i2c_write_IgnoreAndReturn(0);
 	test_expected_read_data = 0x0F; // Bits 3:0 = 1111 (invalid)
+	no_os_field_get_ExpectAndReturn(MAX17616_ISTART_MASK, 0x0F, 0x0F);
 	result = max17616_get_istart_ratio(&device, &istart_ratio);
 	TEST_ASSERT_EQUAL_INT(-EINVAL, result);
 }
@@ -1099,6 +1117,7 @@ void test_max17616_get_current_limit_mode_all_branches(void)
 	no_os_i2c_write_IgnoreAndReturn(0);
 	no_os_i2c_read_Stub(test_i2c_read_callback);
 	test_expected_read_data = 0x00; // Bits 7:6 = 00
+	no_os_field_get_ExpectAndReturn(MAX17616_CLMODE_MASK, 0x00, 0x00);
 	result = max17616_get_current_limit_mode(&device, &clmode);
 	TEST_ASSERT_EQUAL_INT(0, result);
 	TEST_ASSERT_EQUAL_INT(MAX17616_CLMODE_LATCH_OFF, clmode);
@@ -1106,6 +1125,7 @@ void test_max17616_get_current_limit_mode_all_branches(void)
 	// Test case 0x40 - MAX17616_CLMODE_CONTINUOUS
 	no_os_i2c_write_IgnoreAndReturn(0);
 	test_expected_read_data = 0x40; // Bits 7:6 = 01
+	no_os_field_get_ExpectAndReturn(MAX17616_CLMODE_MASK, 0x40, 0x01);
 	result = max17616_get_current_limit_mode(&device, &clmode);
 	TEST_ASSERT_EQUAL_INT(0, result);
 	TEST_ASSERT_EQUAL_INT(MAX17616_CLMODE_CONTINUOUS, clmode);
@@ -1113,6 +1133,7 @@ void test_max17616_get_current_limit_mode_all_branches(void)
 	// Test case 0x80 - MAX17616_CLMODE_AUTO_RETRY
 	no_os_i2c_write_IgnoreAndReturn(0);
 	test_expected_read_data = 0x80; // Bits 7:6 = 10
+	no_os_field_get_ExpectAndReturn(MAX17616_CLMODE_MASK, 0x80, 0x02);
 	result = max17616_get_current_limit_mode(&device, &clmode);
 	TEST_ASSERT_EQUAL_INT(0, result);
 	TEST_ASSERT_EQUAL_INT(MAX17616_CLMODE_AUTO_RETRY, clmode);
@@ -1120,6 +1141,7 @@ void test_max17616_get_current_limit_mode_all_branches(void)
 	// Test default case - invalid value (0xC0 would be bits 7:6 = 11)
 	no_os_i2c_write_IgnoreAndReturn(0);
 	test_expected_read_data = 0xC0; // Bits 7:6 = 11 (invalid)
+	no_os_field_get_ExpectAndReturn(MAX17616_CLMODE_MASK, 0xC0, 0x03);
 	result = max17616_get_current_limit_mode(&device, &clmode);
 	TEST_ASSERT_EQUAL_INT(-EINVAL, result);
 }
@@ -1139,6 +1161,7 @@ void test_max17616_enum_getters(void)
 	no_os_i2c_write_IgnoreAndReturn(0);
 	no_os_i2c_read_Stub(test_i2c_read_callback);
 	test_expected_read_data = test_value;
+	no_os_field_get_ExpectAndReturn(MAX17616_ISTART_MASK, 0x02, 0x02);
 
 	result = max17616_get_istart_ratio(&device, &istart_ratio);
 	TEST_ASSERT_EQUAL_INT(0, result);
@@ -1149,6 +1172,7 @@ void test_max17616_enum_getters(void)
 	test_value = 0x01; // MAX17616_TIMEOUT_1MS
 	no_os_i2c_write_IgnoreAndReturn(0);
 	test_expected_read_data = test_value;
+	no_os_field_get_ExpectAndReturn(MAX17616_TIMEOUT_MASK, 0x01, 0x01);
 
 	result = max17616_get_overcurrent_timeout(&device, &timeout);
 	TEST_ASSERT_EQUAL_INT(0, result);
@@ -1159,6 +1183,7 @@ void test_max17616_enum_getters(void)
 	test_value = 0x01; // MAX17616_OC_LIMIT_1_50
 	no_os_i2c_write_IgnoreAndReturn(0);
 	test_expected_read_data = test_value;
+	no_os_field_get_ExpectAndReturn(MAX17616_OC_LIMIT_MASK, 0x01, 0x01);
 
 	result = max17616_get_overcurrent_limit(&device, &istlim);
 	TEST_ASSERT_EQUAL_INT(0, result);
@@ -1195,6 +1220,8 @@ void test_max17616_enum_setters(void)
 
 	// Test vout uv fault limit config setter
 	no_os_i2c_write_IgnoreAndReturn(0);
+	no_os_field_prep_ExpectAndReturn(MAX17616_NOMINAL_VOLTAGE_MASK, MAX17616_NOMINAL_12V, 0x20);
+	no_os_field_prep_ExpectAndReturn(MAX17616_PGOOD_MASK, MAX17616_PGOOD_MINUS_20_PERCENT, 0x10);
 	result = max17616_set_vout_uv_fault_limit_config(&device, MAX17616_NOMINAL_12V,
 			MAX17616_PGOOD_MINUS_20_PERCENT);
 	TEST_ASSERT_EQUAL_INT(0, result);
@@ -1348,6 +1375,8 @@ void test_max17616_get_vout_uv_fault_limit_config_all_branches(void)
 	no_os_i2c_write_IgnoreAndReturn(0);
 	no_os_i2c_read_Stub(test_i2c_read_callback);
 	test_expected_read_data = 0x00; // voltage bits 000, threshold bits 00
+	no_os_field_get_ExpectAndReturn(MAX17616_NOMINAL_VOLTAGE_MASK, 0x00, 0x00);
+	no_os_field_get_ExpectAndReturn(MAX17616_PGOOD_MASK, 0x00, 0x00);
 	result = max17616_get_vout_uv_fault_limit_config(&device, &voltage, &threshold);
 	TEST_ASSERT_EQUAL_INT(0, result);
 	TEST_ASSERT_EQUAL_INT(MAX17616_NOMINAL_5V, voltage);
@@ -1356,6 +1385,8 @@ void test_max17616_get_vout_uv_fault_limit_config_all_branches(void)
 	// Test voltage case 0x01 (bits 4:2 = 001) with threshold 0x01 (bits 1:0 = 01)
 	no_os_i2c_write_IgnoreAndReturn(0);
 	test_expected_read_data = 0x05; // voltage bits 001, threshold bits 01
+	no_os_field_get_ExpectAndReturn(MAX17616_NOMINAL_VOLTAGE_MASK, 0x05, 0x01);
+	no_os_field_get_ExpectAndReturn(MAX17616_PGOOD_MASK, 0x05, 0x01);
 	result = max17616_get_vout_uv_fault_limit_config(&device, &voltage, &threshold);
 	TEST_ASSERT_EQUAL_INT(0, result);
 	TEST_ASSERT_EQUAL_INT(MAX17616_NOMINAL_9V, voltage);
@@ -1364,6 +1395,8 @@ void test_max17616_get_vout_uv_fault_limit_config_all_branches(void)
 	// Test voltage case 0x02 (bits 4:2 = 010) with threshold 0x02 (bits 1:0 = 10)
 	no_os_i2c_write_IgnoreAndReturn(0);
 	test_expected_read_data = 0x0A; // voltage bits 010, threshold bits 10
+	no_os_field_get_ExpectAndReturn(MAX17616_NOMINAL_VOLTAGE_MASK, 0x0A, 0x02);
+	no_os_field_get_ExpectAndReturn(MAX17616_PGOOD_MASK, 0x0A, 0x02);
 	result = max17616_get_vout_uv_fault_limit_config(&device, &voltage, &threshold);
 	TEST_ASSERT_EQUAL_INT(0, result);
 	TEST_ASSERT_EQUAL_INT(MAX17616_NOMINAL_12V, voltage);
@@ -1372,6 +1405,8 @@ void test_max17616_get_vout_uv_fault_limit_config_all_branches(void)
 	// Test voltage case 0x03 (bits 4:2 = 011)
 	no_os_i2c_write_IgnoreAndReturn(0);
 	test_expected_read_data = 0x0C; // voltage bits 011, threshold bits 00
+	no_os_field_get_ExpectAndReturn(MAX17616_NOMINAL_VOLTAGE_MASK, 0x0C, 0x03);
+	no_os_field_get_ExpectAndReturn(MAX17616_PGOOD_MASK, 0x0C, 0x00);
 	result = max17616_get_vout_uv_fault_limit_config(&device, &voltage, &threshold);
 	TEST_ASSERT_EQUAL_INT(0, result);
 	TEST_ASSERT_EQUAL_INT(MAX17616_NOMINAL_24V, voltage);
@@ -1379,6 +1414,8 @@ void test_max17616_get_vout_uv_fault_limit_config_all_branches(void)
 	// Test voltage case 0x04 (bits 4:2 = 100)
 	no_os_i2c_write_IgnoreAndReturn(0);
 	test_expected_read_data = 0x10; // voltage bits 100, threshold bits 00
+	no_os_field_get_ExpectAndReturn(MAX17616_NOMINAL_VOLTAGE_MASK, 0x10, 0x04);
+	no_os_field_get_ExpectAndReturn(MAX17616_PGOOD_MASK, 0x10, 0x00);
 	result = max17616_get_vout_uv_fault_limit_config(&device, &voltage, &threshold);
 	TEST_ASSERT_EQUAL_INT(0, result);
 	TEST_ASSERT_EQUAL_INT(MAX17616_NOMINAL_36V, voltage);
@@ -1386,6 +1423,8 @@ void test_max17616_get_vout_uv_fault_limit_config_all_branches(void)
 	// Test voltage case 0x05 (bits 4:2 = 101)
 	no_os_i2c_write_IgnoreAndReturn(0);
 	test_expected_read_data = 0x14; // voltage bits 101, threshold bits 00
+	no_os_field_get_ExpectAndReturn(MAX17616_NOMINAL_VOLTAGE_MASK, 0x14, 0x05);
+	no_os_field_get_ExpectAndReturn(MAX17616_PGOOD_MASK, 0x14, 0x00);
 	result = max17616_get_vout_uv_fault_limit_config(&device, &voltage, &threshold);
 	TEST_ASSERT_EQUAL_INT(0, result);
 	TEST_ASSERT_EQUAL_INT(MAX17616_NOMINAL_48V, voltage);
@@ -1393,6 +1432,8 @@ void test_max17616_get_vout_uv_fault_limit_config_all_branches(void)
 	// Test voltage case 0x06 (bits 4:2 = 110)
 	no_os_i2c_write_IgnoreAndReturn(0);
 	test_expected_read_data = 0x18; // voltage bits 110, threshold bits 00
+	no_os_field_get_ExpectAndReturn(MAX17616_NOMINAL_VOLTAGE_MASK, 0x18, 0x06);
+	no_os_field_get_ExpectAndReturn(MAX17616_PGOOD_MASK, 0x18, 0x00);
 	result = max17616_get_vout_uv_fault_limit_config(&device, &voltage, &threshold);
 	TEST_ASSERT_EQUAL_INT(0, result);
 	TEST_ASSERT_EQUAL_INT(MAX17616_NOMINAL_60V, voltage);
@@ -1400,6 +1441,8 @@ void test_max17616_get_vout_uv_fault_limit_config_all_branches(void)
 	// Test voltage case 0x07 (bits 4:2 = 111)
 	no_os_i2c_write_IgnoreAndReturn(0);
 	test_expected_read_data = 0x1C; // voltage bits 111, threshold bits 00
+	no_os_field_get_ExpectAndReturn(MAX17616_NOMINAL_VOLTAGE_MASK, 0x1C, 0x07);
+	no_os_field_get_ExpectAndReturn(MAX17616_PGOOD_MASK, 0x1C, 0x00);
 	result = max17616_get_vout_uv_fault_limit_config(&device, &voltage, &threshold);
 	TEST_ASSERT_EQUAL_INT(0, result);
 	TEST_ASSERT_EQUAL_INT(MAX17616_NOMINAL_72V, voltage);
@@ -1407,6 +1450,8 @@ void test_max17616_get_vout_uv_fault_limit_config_all_branches(void)
 	// Test threshold case 0x03 (bits 1:0 = 11) - invalid, should return -EINVAL
 	no_os_i2c_write_IgnoreAndReturn(0);
 	test_expected_read_data = 0x03; // voltage bits 000, threshold bits 11 (invalid)
+	no_os_field_get_ExpectAndReturn(MAX17616_NOMINAL_VOLTAGE_MASK, 0x03, 0x00);
+	no_os_field_get_ExpectAndReturn(MAX17616_PGOOD_MASK, 0x03, 0x03);
 	result = max17616_get_vout_uv_fault_limit_config(&device, &voltage, &threshold);
 	TEST_ASSERT_EQUAL_INT(-EINVAL, result);
 }
