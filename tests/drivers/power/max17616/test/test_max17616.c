@@ -863,7 +863,7 @@ void test_max17616_get_vout_uv_fault_limit_config_success(void)
 	no_os_i2c_write_IgnoreAndReturn(0);
 	no_os_i2c_read_Stub(test_i2c_read_callback);
 	test_expected_read_data = test_value;
-	
+
 	// Mock no_os_field_get calls for extracting voltage and threshold bits
 	no_os_field_get_IgnoreAndReturn(0x05); // voltage bits (101b = 5)
 	no_os_field_get_IgnoreAndReturn(0x00); // threshold bits (00b = 0)
@@ -1220,8 +1220,10 @@ void test_max17616_enum_setters(void)
 
 	// Test vout uv fault limit config setter
 	no_os_i2c_write_IgnoreAndReturn(0);
-	no_os_field_prep_ExpectAndReturn(MAX17616_NOMINAL_VOLTAGE_MASK, MAX17616_NOMINAL_12V, 0x20);
-	no_os_field_prep_ExpectAndReturn(MAX17616_PGOOD_MASK, MAX17616_PGOOD_MINUS_20_PERCENT, 0x10);
+	no_os_field_prep_ExpectAndReturn(MAX17616_NOMINAL_VOLTAGE_MASK,
+					 MAX17616_NOMINAL_12V, 0x20);
+	no_os_field_prep_ExpectAndReturn(MAX17616_PGOOD_MASK,
+					 MAX17616_PGOOD_MINUS_20_PERCENT, 0x10);
 	result = max17616_set_vout_uv_fault_limit_config(&device, MAX17616_NOMINAL_12V,
 			MAX17616_PGOOD_MINUS_20_PERCENT);
 	TEST_ASSERT_EQUAL_INT(0, result);

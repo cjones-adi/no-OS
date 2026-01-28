@@ -498,7 +498,7 @@ int max17616_set_mfg_specific_config(struct max17616_dev *dev)
  * @brief Read a specific value with automatic data conversion
  * @param dev - Device structure
  * @param value_type - Type of value to read
- * @param value - Pointer to store the converted value (mV/mA/mW/mC)
+ * @param value_milliunit - Pointer to store the converted value (mV/mA/mW/mC)
  * @return 0 on success, negative error code otherwise
  */
 int max17616_read_value(struct max17616_dev *dev,
