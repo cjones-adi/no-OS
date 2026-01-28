@@ -36,7 +36,6 @@
 #include <stdlib.h>
 #include <errno.h>
 #include <stdio.h>
-#include <math.h>
 
 #include "no_os_units.h"
 #include "no_os_util.h"
@@ -166,14 +165,18 @@ int max17616_read_word(struct max17616_dev *dev, uint8_t cmd, uint16_t *word)
  * @param dev - Device structure
  * @param cmd - PMBus command
  * @param data - Address of the read block
- * @param nbytes - Size of the block in bytes
+ * @param nbytes - Expected size of the block in bytes (excluding byte count)
  * @return 0 in case of success, negative error code otherwise
  */
 int max17616_read_block_data(struct max17616_dev *dev, uint8_t cmd,
 			     uint8_t *data, size_t nbytes)
 {
 	int ret;
-	uint8_t rxbuf[nbytes + 2];
+	uint8_t rxbuf[MAX17616_MAX_BLOCK_SIZE + 1];
+	uint8_t byte_count;
+
+	if (!dev || !data || nbytes == 0 || nbytes > MAX17616_MAX_BLOCK_SIZE)
+		return -EINVAL;
 
 	ret = no_os_i2c_write(dev->i2c_desc, &cmd, 1, 0);
 	if (ret)
@@ -183,7 +186,9 @@ int max17616_read_block_data(struct max17616_dev *dev, uint8_t cmd,
 	if (ret)
 		return ret;
 
-	if ((size_t)rxbuf[0] > nbytes)
+	byte_count = rxbuf[0];
+
+	if (byte_count != nbytes)
 		return -EMSGSIZE;
 
 	memcpy(data, &rxbuf[1], nbytes);
@@ -209,26 +214,32 @@ int max17616_write_byte(struct max17616_dev *dev, uint8_t cmd, uint8_t value)
 }
 
 /**
- * @brief Convert DIRECT format raw value to floating-point
+ * @brief Convert DIRECT format raw value to milliunit integer
  * @param raw_value - Raw 16-bit value from device
  * @param coeffs - DIRECT format coefficients
- * @return Converted floating-point value (real-world units)
+ * @return Converted value in milliunits (mV, mA, m°C)
  *
  * This function implements the PMBus DIRECT format formula as specified
  * in the MAX17616 datasheet:
  * X = (1/m) × (Y × 10^(-R) - b)
- * where X is the real-world value (voltage in V, current in A, temp in °C)
+ *
+ * For integer math with milliunit precision:
+ * X_milli = ((Y x 10^(-R) - b) x 1000) / m
+ *
+ * Since R = -1 for all MAX17616 coefficients:
+ * X_milli = ((Y x 10 - b) x 1000) / m
  */
-static float max17616_direct_to_float(uint16_t raw_value,
-				      const struct max17616_direct_coeffs *coeffs)
+static float max17616_direct_to_milliunit(uint16_t raw_value,
+			const struct max17616_direct_coeffs *coeffs)
 {
 	int16_t Y = (int16_t)raw_value;  /* Sign-extend to handle 2's complement */
-	float m = (float)coeffs->m;
-	float b = (float)coeffs->b;
-	float R = (float)coeffs->R;
+	int32_t temp;
 
-	/* Apply PMBus DIRECT formula: X = (1/m) × (Y × 10^(-R) - b) */
-	return (1.0f / m) * ((float)Y * pow(10.0, (double)(-R)) - b);
+	/* Apply PMBus DIRECT formula with integer arithmetic */
+	temp = ((int32_t)Y * MAX17616_DIRECT_EXPONENT_SCALE) - coeffs->b;
+	temp = (temp * MAX17616_MILLIUNIT_SCALE) / (int32_t)coeffs->m;
+
+	return temp;
 }
 
 /**
@@ -456,20 +467,48 @@ int max17616_clear_faults(struct max17616_dev *dev)
 }
 
 /**
+ * @brief Set manufacturer-specific configuration
+ * @param dev - Device structure
+ * @return 0 in case of success, negative error code otherwise
+ */
+int max17616_set_mfg_specific_config(struct max17616_dev *dev)
+{
+	int ret;
+
+	ret = max17616_set_current_limit_mode(dev, MAX17616_CLMODE_AUTO_RETRY);
+	if (ret)
+		return ret;
+
+	ret = max17616_set_istart_ratio(dev, MAX17616_ISTART_HALF);
+	if (ret)
+		return ret;
+
+	ret = max17616_set_overcurrent_timeout(dev, MAX17616_TIMEOUT_4MS);
+	if (ret)
+		return ret;
+
+	ret = max17616_set_overcurrent_limit(dev, MAX17616_OC_LIMIT_1_50);
+	if (ret)
+		return ret;
+
+	return 0;
+}
+
+/**
  * @brief Read a specific value with automatic data conversion
  * @param dev - Device structure
  * @param value_type - Type of value to read
- * @param value - Pointer to store the converted value
+ * @param value - Pointer to store the converted value (mV/mA/mW/mC)
  * @return 0 on success, negative error code otherwise
  */
 int max17616_read_value(struct max17616_dev *dev,
-			enum max17616_value_type value_type, float *value)
+		enum max17616_value_type value_type, int32_t *value_milliunit)
 {
 	uint16_t raw_value;
 	int ret;
-	float vin, iout;
+	uint32_t vout_mv, iout_ma;
 
-	if (!dev || !value)
+	if (!dev || !value_milliunit)
 		return -EINVAL;
 
 	switch (value_type) {
@@ -479,7 +518,7 @@ int max17616_read_value(struct max17616_dev *dev,
 		if (ret)
 			return ret;
 
-		*value = max17616_direct_to_float(raw_value, &max17616_vin_coeffs);
+		*value_milliunit = max17616_direct_to_milliunit(raw_value, &max17616_vin_coeffs);
 		break;
 
 	case MAX17616_VOUT:
@@ -488,7 +527,7 @@ int max17616_read_value(struct max17616_dev *dev,
 		if (ret)
 			return ret;
 
-		*value = max17616_direct_to_float(raw_value, &max17616_vout_coeffs);
+		*value_milliunit = max17616_direct_to_milliunit(raw_value, &max17616_vout_coeffs);
 		break;
 
 	case MAX17616_IOUT:
@@ -497,7 +536,7 @@ int max17616_read_value(struct max17616_dev *dev,
 		if (ret)
 			return ret;
 
-		*value = max17616_direct_to_float(raw_value, &max17616_iout_coeffs);
+		*value_milliunit = max17616_direct_to_milliunit(raw_value, &max17616_iout_coeffs);
 		break;
 
 	case MAX17616_TEMP:
@@ -507,19 +546,19 @@ int max17616_read_value(struct max17616_dev *dev,
 		if (ret)
 			return ret;
 
-		*value = max17616_direct_to_float(raw_value, &max17616_temp_coeffs);
+		*value_milliunit = max17616_direct_to_milliunit(raw_value, &max17616_temp_coeffs);
 		break;
 
 	case MAX17616_POWER:
 		/* Calculate power from voltage and current: P = V × I */
-		ret = max17616_read_value(dev, MAX17616_VOUT, &vin);
+		ret = max17616_read_value(dev, MAX17616_VOUT, &vout_mv);
 		if (ret)
 			return ret;
-		ret = max17616_read_value(dev, MAX17616_IOUT, &iout);
+		ret = max17616_read_value(dev, MAX17616_IOUT, &iout_ma);
 		if (ret)
 			return ret;
 
-		*value = vin * iout;
+		*value_milliunit = (int32_t)(((uint64_t)vout_mv * (uint64_t)iout_ma) / MAX17616_MILLIUNIT_SCALE);
 		break;
 
 	default:
@@ -585,7 +624,7 @@ int max17616_get_current_limit_mode(struct max17616_dev *dev,
 		return ret;
 
 	/* Extract bits 7:6 and convert to enum */
-	switch (raw_value & MAX17616_CLMODE_BITS_MASK) {
+	switch (no_os_field_get(MAX17616_CLMODE_MASK, raw_value)) {
 	case MAX17616_CLMODE_LATCH_OFF_BITS:
 		*clmode = MAX17616_CLMODE_LATCH_OFF;
 		break;
@@ -639,7 +678,7 @@ int max17616_get_istart_ratio(struct max17616_dev *dev,
 		return ret;
 
 	/* Extract bits 3:0 and convert to enum */
-	switch (raw_value & MAX17616_ISTART_BITS_MASK) {
+	switch (no_os_field_get(MAX17616_ISTART_MASK, raw_value)) {
 	case MAX17616_ISTART_FULL_BITS:
 		*istart_ratio = MAX17616_ISTART_FULL;
 		break;
@@ -698,7 +737,7 @@ int max17616_get_overcurrent_timeout(struct max17616_dev *dev,
 	if (ret)
 		return ret;
 
-	switch (raw_value & MAX17616_TIMEOUT_BITS_MASK) {
+	switch (no_os_field_get(MAX17616_TIMEOUT_MASK, raw_value)) {
 	case MAX17616_TIMEOUT_400US_BITS:
 		*timeout = MAX17616_TIMEOUT_400US;
 		break;
@@ -754,7 +793,7 @@ int max17616_get_overcurrent_limit(struct max17616_dev *dev,
 	if (ret)
 		return ret;
 
-	switch (raw_value & MAX17616_OC_LIMIT_BITS_MASK) {
+	switch (no_os_field_get(MAX17616_OC_LIMIT_MASK, raw_value)) {
 	case MAX17616_OC_LIMIT_1_25_BITS:
 		*istlim = MAX17616_OC_LIMIT_1_25;
 		break;
@@ -812,7 +851,8 @@ int max17616_set_vout_uv_fault_limit_config(struct max17616_dev *dev,
 		return -EINVAL;
 
 	/* Combine voltage selection (bits 4:2) and PGOOD threshold (bits 1:0) */
-	reg_value = ((uint8_t)voltage << 2) | (uint8_t)threshold;
+	reg_value = no_os_field_prep(MAX17616_NOMINAL_VOLTAGE_MASK, voltage) |
+		    no_os_field_prep(MAX17616_PGOOD_MASK, threshold);
 
 	return max17616_write_byte(dev, MAX17616_CMD(MAX17616_VOUT_UV_FAULT_LIMIT),
 				   reg_value);
@@ -841,7 +881,7 @@ int max17616_get_vout_uv_fault_limit_config(struct max17616_dev *dev,
 		return ret;
 
 	/* Extract voltage selection (bits 4:2) */
-	uint8_t voltage_bits = (raw_value >> 2) & MAX17616_NOMINAL_VOLTAGE_BITS_MASK;
+	uint8_t voltage_bits = no_os_field_get(MAX17616_NOMINAL_VOLTAGE_MASK, raw_value);
 	switch (voltage_bits) {
 	case MAX17616_NOMINAL_5V_BITS:
 		*voltage = MAX17616_NOMINAL_5V;
@@ -872,7 +912,7 @@ int max17616_get_vout_uv_fault_limit_config(struct max17616_dev *dev,
 	}
 
 	/* Extract PGOOD threshold (bits 1:0) */
-	uint8_t threshold_bits = raw_value & MAX17616_PGOOD_THRESHOLD_BITS_MASK;
+	uint8_t threshold_bits = no_os_field_get(MAX17616_PGOOD_MASK, raw_value);
 	switch (threshold_bits) {
 	case MAX17616_PGOOD_MINUS_10_PERCENT_BITS:
 		*threshold = MAX17616_PGOOD_MINUS_10_PERCENT;
@@ -982,26 +1022,27 @@ int max17616_read_telemetry_all(struct max17616_dev *dev,
 	/* Initialize telemetry structure */
 	memset(telemetry, 0, sizeof(struct max17616_telemetry));
 
-	ret = max17616_read_value(dev, MAX17616_VIN, &telemetry->vin);
+	ret = max17616_read_value(dev, MAX17616_VIN, &telemetry->vin_mv);
 	if (ret == 0)
 		telemetry->valid_mask |= NO_OS_BIT(0);
 
-	ret = max17616_read_value(dev, MAX17616_VOUT, &telemetry->vout);
+	ret = max17616_read_value(dev, MAX17616_VOUT, &telemetry->vout_mv);
 	if (ret == 0)
 		telemetry->valid_mask |= NO_OS_BIT(1);
 
-	ret = max17616_read_value(dev, MAX17616_IOUT, &telemetry->iout);
+	ret = max17616_read_value(dev, MAX17616_IOUT, &telemetry->iout_ma);
 	if (ret == 0)
 		telemetry->valid_mask |= NO_OS_BIT(3);
 
-	ret = max17616_read_value(dev, MAX17616_TEMP, &telemetry->temp1);
+	ret = max17616_read_value(dev, MAX17616_TEMP, &telemetry->temp1_mc);
 	if (ret == 0)
 		telemetry->valid_mask |= NO_OS_BIT(4);
 
-	/* Calculate power (P = V * I) */
+	/* Calculate power (P(mW) = V(mV) x I(mA) / 1000) */
 	if ((telemetry->valid_mask & NO_OS_BIT(1)) &&
 	    (telemetry->valid_mask & NO_OS_BIT(3))) {
-		telemetry->pout = (telemetry->vout * telemetry->iout);
+		telemetry->pout_mw = (int32_t)(((int64_t)telemetry->vout_mv *
+			(int64_t)telemetry->iout_ma) / MAX17616_MILLIUNIT_SCALE);
 		telemetry->valid_mask |= NO_OS_BIT(5);
 	}
 
@@ -1036,6 +1077,10 @@ int max17616_init(struct max17616_dev **device,
 		goto dev_err;
 
 	ret = max17616_clear_faults(dev);
+	if (ret)
+		goto dev_err;
+
+	ret = max17616_set_mfg_specific_config(dev);
 	if (ret)
 		goto dev_err;
 

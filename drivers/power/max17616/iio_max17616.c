@@ -431,7 +431,7 @@ STATIC int max17616_iio_read_attr(void *device, char *buf, uint32_t len,
 				return ret;
 			if (!(telemetry.valid_mask & NO_OS_BIT(0)))
 				return -ENODATA;
-			return snprintf(buf, len, "%.3f", telemetry.vin);
+			return snprintf(buf, len, "%.3f", telemetry.vin_mv);
 		} else if (priv == 1) {
 			return snprintf(buf, len, "1");
 		}
@@ -445,7 +445,7 @@ STATIC int max17616_iio_read_attr(void *device, char *buf, uint32_t len,
 				return ret;
 			if (!(telemetry.valid_mask & NO_OS_BIT(1)))
 				return -ENODATA;
-			return snprintf(buf, len, "%.3f", telemetry.vout);
+			return snprintf(buf, len, "%.3f", telemetry.vout_mv);
 		} else if (priv == 1) {
 			return snprintf(buf, len, "1");
 		}
@@ -459,7 +459,7 @@ STATIC int max17616_iio_read_attr(void *device, char *buf, uint32_t len,
 				return ret;
 			if (!(telemetry.valid_mask & NO_OS_BIT(3)))
 				return -ENODATA;
-			return snprintf(buf, len, "%.3f", telemetry.iout);
+			return snprintf(buf, len, "%.3f", telemetry.iout_ma);
 		} else if (priv == 1) {
 			return snprintf(buf, len, "1");
 		}
@@ -473,7 +473,7 @@ STATIC int max17616_iio_read_attr(void *device, char *buf, uint32_t len,
 				return ret;
 			if (!(telemetry.valid_mask & NO_OS_BIT(4)))
 				return -ENODATA;
-			return snprintf(buf, len, "%.1f", telemetry.temp1);
+			return snprintf(buf, len, "%.1f", telemetry.temp1_mc);
 		} else if (priv == 1) {
 			return snprintf(buf, len, "1");
 		}
@@ -487,7 +487,7 @@ STATIC int max17616_iio_read_attr(void *device, char *buf, uint32_t len,
 				return ret;
 			if (!(telemetry.valid_mask & NO_OS_BIT(5)))
 				return -ENODATA;
-			return snprintf(buf, len, "%.3f", telemetry.pout);
+			return snprintf(buf, len, "%.3f", telemetry.pout_mw);
 		} else if (priv == 1) {
 			return snprintf(buf, len, "1");
 		}
@@ -809,7 +809,7 @@ int max17616_iio_remove(struct max17616_iio_desc *iio_desc)
 	if (!iio_desc)
 		return -ENODEV;
 
-	if (iio_desc->iio_dev)
+	if (iio_desc->max17616_dev)
 		max17616_remove(iio_desc->max17616_dev);
 
 	no_os_free(iio_desc);

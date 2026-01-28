@@ -71,32 +71,6 @@ static void process_fault_bits(uint8_t fault_value, uint16_t fault_group,
 }
 
 /**
- * @brief Display raw register values for debugging
- * @param dev - MAX17616 device structure
- */
-static void display_raw_values(struct max17616_dev *dev)
-{
-	uint16_t raw_vin, raw_vout, raw_iout;
-	int ret;
-
-	pr_info("=== Raw Register Values (Debug) ===\n\r");
-
-	ret = max17616_read_word(dev, MAX17616_CMD(MAX17616_READ_VIN), &raw_vin);
-	if (ret == 0)
-		pr_info("VIN  raw: 0x%04X (%d)\n\r", raw_vin, (int16_t)raw_vin);
-
-	ret = max17616_read_word(dev, MAX17616_CMD(MAX17616_READ_VOUT), &raw_vout);
-	if (ret == 0)
-		pr_info("VOUT raw: 0x%04X (%d)\n\r", raw_vout, (int16_t)raw_vout);
-
-	ret = max17616_read_word(dev, MAX17616_CMD(MAX17616_READ_IOUT), &raw_iout);
-	if (ret == 0)
-		pr_info("IOUT raw: 0x%04X (%d)\n\r", raw_iout, (int16_t)raw_iout);
-
-	pr_info("\n\r");
-}
-
-/**
  * @brief Display telemetry data in a formatted way
  * @param telemetry - Telemetry structure to display
  */
@@ -105,29 +79,19 @@ static void display_telemetry(struct max17616_telemetry *telemetry)
 	pr_info("=== MAX17616 Telemetry ===\n\r");
 
 	if (telemetry->valid_mask & NO_OS_BIT(0))
-		pr_info("VIN:         %.3f V\n\r", telemetry->vin);
+		pr_info("VIN:         %.3f V\n\r", telemetry->vin_mv);
 
 	if (telemetry->valid_mask & NO_OS_BIT(1))
-		pr_info("VOUT:        %.3f V\n\r", telemetry->vout);
-
-	if ((telemetry->valid_mask & NO_OS_BIT(0)) &&
-	    (telemetry->valid_mask & NO_OS_BIT(1))) {
-		float vdiff = telemetry->vin - telemetry->vout;
-		pr_info("VIN-VOUT:    %.3f V", vdiff);
-		if (vdiff < 0)
-			pr_info(" (measurement tolerance)\n\r");
-		else
-			pr_info("\n\r");
-	}
+		pr_info("VOUT:        %.3f V\n\r", telemetry->vout_mv);
 
 	if (telemetry->valid_mask & NO_OS_BIT(3))
-		pr_info("IOUT:        %.3f A\n\r", telemetry->iout);
+		pr_info("IOUT:        %.3f A\n\r", telemetry->iout_ma);
 
 	if (telemetry->valid_mask & NO_OS_BIT(4))
-		pr_info("Temperature: %.1f °C\n\r", telemetry->temp1);
+		pr_info("Temperature: %.1f °C\n\r", telemetry->temp1_mc);
 
 	if (telemetry->valid_mask & NO_OS_BIT(5))
-		pr_info("Power:       %.3f W\n\r", telemetry->pout);
+		pr_info("Power:       %.3f W\n\r", telemetry->pout_mw);
 
 	pr_info("\n\r");
 }
@@ -370,10 +334,8 @@ int example_main(void)
 		ret = max17616_read_telemetry_all(max17616_dev, &telemetry);
 		if (ret)
 			pr_err("Failed to read telemetry: %d\n\r", ret);
-		else {
-			display_raw_values(max17616_dev);
+		else
 			display_telemetry(&telemetry);
-		}
 
 		/* Check for faults */
 		display_fault_status(max17616_dev);
@@ -400,18 +362,6 @@ int example_main(void)
 			}
 			pr_info("Current Limit Mode: %s (0x%02X)\n\r", mode_str, (uint8_t)clmode);
 		}
-
-		/* Example of setting current limit mode */
-		/* ret = max17616_set_current_limit_mode(max17616_dev, MAX17616_CLMODE_AUTO_RETRY); */
-
-		/* Example of setting current start ratio (hardware current limit / 2) */
-		/* ret = max17616_set_istart_ratio(max17616_dev, MAX17616_ISTART_HALF); */
-
-		/* Example of setting overcurrent timeout */
-		/* ret = max17616_set_overcurrent_timeout(max17616_dev, MAX17616_TIMEOUT_4MS); */
-
-		/* Example of setting overcurrent limit ratio */
-		/* ret = max17616_set_overcurrent_limit(max17616_dev, MAX17616_OC_LIMIT_1_50); */
 
 		pr_info("\n\r");
 

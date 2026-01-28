@@ -90,19 +90,19 @@ bool max17616_test_validate_telemetry(const struct max17616_telemetry
 
 	/* Check reasonable ranges for valid values */
 	if (telemetry->valid_mask & 0x01) { /* VIN */
-		if (telemetry->vin < 0 || telemetry->vin > 100000) { /* 0-100V */
+		if (telemetry->vin_mv < 0 || telemetry->vin_mv > 1000) { /* 0-100V */
 			return false;
 		}
 	}
 
 	if (telemetry->valid_mask & 0x02) { /* VOUT */
-		if (telemetry->vout < 0 || telemetry->vout > 50000) { /* 0-50V */
+		if (telemetry->vout_mv < 0 || telemetry->vout_mv > 500) { /* 0-50V */
 			return false;
 		}
 	}
 
 	if (telemetry->valid_mask & 0x08) { /* IOUT */
-		if (telemetry->iout < 0 || telemetry->iout > 100000) { /* 0-100A */
+		if (telemetry->iout_ma < 0 || telemetry->iout_ma > 1000) { /* 0-100A */
 			return false;
 		}
 	}

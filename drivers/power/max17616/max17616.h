@@ -97,6 +97,15 @@
 #define MAX17616_STATUS_WORD_TYPE_MSK		0x80
 #define MAX17616_STATUS_ALL_TYPE_MSK		0xFF
 
+/* Maximum PMBus block transfer size per PMBus spec */
+#define MAX17616_MAX_BLOCK_SIZE		255
+
+/**
+ * Direct exponent scale factor for voltage/current/temperature readings
+ */
+#define MAX17616_DIRECT_EXPONENT_SCALE	10	/* 10^(-R) for R=-1 */
+#define MAX17616_MILLIUNIT_SCALE	1000	/* mV, mA, m°C conversion */
+
 #ifdef TEST
 #define STATIC
 #else
@@ -162,13 +171,13 @@ enum max17616_pgood_threshold {
 };
 
 /* Bit field macros for current limit mode */
-#define MAX17616_CLMODE_BITS_MASK		0xC0
+#define MAX17616_CLMODE_MASK			NO_OS_GENMASK(7, 6)
 #define MAX17616_CLMODE_LATCH_OFF_BITS		0x00
 #define MAX17616_CLMODE_CONTINUOUS_BITS		0x40
 #define MAX17616_CLMODE_AUTO_RETRY_BITS		0x80
 
 /* Bit field macros for ISTART ratio */
-#define MAX17616_ISTART_BITS_MASK		0x0F
+#define MAX17616_ISTART_MASK			NO_OS_GENMASK(3, 0)
 #define MAX17616_ISTART_FULL_BITS		0x00
 #define MAX17616_ISTART_HALF_BITS		0x01
 #define MAX17616_ISTART_QUARTER_BITS		0x02
@@ -176,21 +185,21 @@ enum max17616_pgood_threshold {
 #define MAX17616_ISTART_SIXTEENTH_BITS		0x04
 
 /* Bit field macros for overcurrent timeout */
-#define MAX17616_TIMEOUT_BITS_MASK		0x03
+#define MAX17616_TIMEOUT_MASK			NO_OS_GENMASK(1, 0)
 #define MAX17616_TIMEOUT_400US_BITS		0x00
 #define MAX17616_TIMEOUT_1MS_BITS		0x01
 #define MAX17616_TIMEOUT_4MS_BITS		0x02
 #define MAX17616_TIMEOUT_24MS_BITS		0x03
 
 /* Bit field macros for overcurrent limit */
-#define MAX17616_OC_LIMIT_BITS_MASK		0x03
+#define MAX17616_OC_LIMIT_MASK			NO_OS_GENMASK(1, 0)
 #define MAX17616_OC_LIMIT_1_25_BITS		0x00
 #define MAX17616_OC_LIMIT_1_50_BITS		0x01
 #define MAX17616_OC_LIMIT_1_75_BITS		0x02
 #define MAX17616_OC_LIMIT_2_00_BITS		0x03
 
 /* Bit field macros for nominal voltage configuration */
-#define MAX17616_NOMINAL_VOLTAGE_BITS_MASK	0x07
+#define MAX17616_NOMINAL_VOLTAGE_MASK		NO_OS_GENMASK(4, 2)
 #define MAX17616_NOMINAL_5V_BITS		0x00
 #define MAX17616_NOMINAL_9V_BITS		0x01
 #define MAX17616_NOMINAL_12V_BITS		0x02
@@ -201,7 +210,7 @@ enum max17616_pgood_threshold {
 #define MAX17616_NOMINAL_72V_BITS		0x07
 
 /* Bit field macros for PGOOD threshold configuration */
-#define MAX17616_PGOOD_THRESHOLD_BITS_MASK	0x03
+#define MAX17616_PGOOD_MASK			NO_OS_GENMASK(1, 0)
 #define MAX17616_PGOOD_MINUS_10_PERCENT_BITS	0x00
 #define MAX17616_PGOOD_MINUS_20_PERCENT_BITS	0x01
 #define MAX17616_PGOOD_MINUS_30_PERCENT_BITS	0x02
@@ -209,9 +218,9 @@ enum max17616_pgood_threshold {
 /* Value types for high-level read/write functions */
 enum max17616_value_type {
 	MAX17616_VIN,		/* Input voltage in volts */
-	MAX17616_VOUT,		/* Output voltage in volt */
+	MAX17616_VOUT,		/* Output voltage in volts */
 	MAX17616_IOUT,		/* Output current in amps */
-	MAX17616_TEMP,		/* Temperature in degreesCelsius */
+	MAX17616_TEMP,		/* Temperature in degrees Celsius */
 	MAX17616_POWER,		/* Power in watts */
 };
 
@@ -378,15 +387,17 @@ struct max17616_fault_info {
 	bool is_supported;
 };
 
-/* MAX17616 telemetry data */
-/* MAX17616 telemetry data */
+/**
+ * @struct max17616_telemetry
+ * @brief Telemetry data structure with milliunits
+ */
 struct max17616_telemetry {
-	float vin;		/* Input voltage in volts */
-	float vout;		/* Output voltage in volts */
-	float iout;		/* Output current in amps */
-	float pin;		/* Input power in watts */
-	float pout;		/* Output power in watts */
-	float temp1;		/* Temperature in degrees Celsius */
+	int32_t vin_mv;		/* Input voltage in millivolts */
+	int32_t vout_mv;	/* Output voltage in millivolts */
+	int32_t iout_ma;	/* Output current in milliamps */
+	int32_t pin_mw;		/* Input power in milliwatts */
+	int32_t pout_mw;	/* Output power in milliwatts */
+	int32_t temp1_mc;	/* Temperature in millidegrees Celsius */
 	uint8_t valid_mask;	/* Bitmask indicating which values are valid */
 };
 
@@ -425,7 +436,8 @@ const char *max17616_get_fault_description(uint16_t group, uint8_t bit);
 
 /* High-level value reading functions */
 int max17616_read_value(struct max17616_dev *dev,
-			enum max17616_value_type value_type, float *value);
+			enum max17616_value_type value_type,
+			int32_t *value_milliunit);
 
 /* Enhanced operation control functions */
 int max17616_set_operation_state(struct max17616_dev *dev, bool enable);

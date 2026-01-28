@@ -329,11 +329,11 @@ void setUp(void)
 
 	/* Initialize test telemetry data */
 	memset(&test_telemetry, 0, sizeof(test_telemetry));
-	test_telemetry.vin = 12000;   /* 12V in mV */
-	test_telemetry.vout = 5000;   /* 5V in mV */
-	test_telemetry.iout = 2000;   /* 2A in mA */
-	test_telemetry.temp1 = 25;    /* 25°C */
-	test_telemetry.pout = 10000;  /* 10W in mW */
+	test_telemetry.vin_mv = 12000;   /* 12V in mV */
+	test_telemetry.vout_mv = 5000;   /* 5V in mV */
+	test_telemetry.iout_ma = 2000;   /* 2A in mA */
+	test_telemetry.temp1_mc = 25;    /* 25°C */
+	test_telemetry.pout_mw = 10000;  /* 10W in mW */
 	test_telemetry.valid_mask = 0x3F; /* All valid */
 
 	/* Initialize test status data */
@@ -517,7 +517,7 @@ void test_max17616_iio_read_attr_vin_raw(void)
 	};
 
 	/* Setup test data */
-	test_telemetry.vin = 12.345f;  // Float value in volts
+	test_telemetry.vin_mv = 12.345f;  // Float value in volts
 	test_telemetry.valid_mask = NO_OS_BIT(0); /* VIN valid */
 
 	/* Setup mock */
@@ -548,7 +548,7 @@ void test_max17616_iio_read_attr_vout_raw(void)
 	};
 
 	/* Setup test data */
-	test_telemetry.vout = 5.678f;  // Float value in volts
+	test_telemetry.vout_mv = 5.678f;  // Float value in volts
 	test_telemetry.valid_mask = NO_OS_BIT(1); /* VOUT valid */
 
 	/* Setup mock */
@@ -579,7 +579,7 @@ void test_max17616_iio_read_attr_iout_raw(void)
 	};
 
 	/* Setup test data */
-	test_telemetry.iout = 1.500f;  // Float value in amps
+	test_telemetry.iout_ma = 1.500f;  // Float value in amps
 	test_telemetry.valid_mask = NO_OS_BIT(3); /* IOUT valid */
 
 	/* Setup mock */
@@ -610,7 +610,7 @@ void test_max17616_iio_read_attr_temp_raw(void)
 	};
 
 	/* Setup test data */
-	test_telemetry.temp1 = 65.0f;  // Float value in °C
+	test_telemetry.temp1_mc = 65.0f;  // Float value in °C
 	test_telemetry.valid_mask = NO_OS_BIT(4); /* TEMP valid */
 
 	/* Setup mock */
@@ -641,7 +641,7 @@ void test_max17616_iio_read_attr_pout_raw(void)
 	};
 
 	/* Setup test data */
-	test_telemetry.pout = 8.500f;  // Float value in watts
+	test_telemetry.pout_mw = 8.500f;  // Float value in watts
 	test_telemetry.valid_mask = NO_OS_BIT(5); /* POUT valid */
 
 	/* Setup mock */
@@ -676,7 +676,7 @@ void test_max17616_iio_read_attr_telemetry_invalid_data(void)
 	};
 
 	/* Setup test data with invalid mask */
-	test_telemetry.vin = 12000;
+	test_telemetry.vin_mv = 12000;
 	test_telemetry.valid_mask = 0; /* No valid data */
 
 	/* Setup mock */
@@ -735,7 +735,7 @@ void test_max17616_iio_read_attr_vout_telemetry_invalid_data(void)
 	};
 
 	/* Setup test data with invalid mask for VOUT (bit 1) */
-	test_telemetry.vout = 3300;
+	test_telemetry.vout_mv = 3300;
 	test_telemetry.valid_mask = 0; /* No valid data */
 
 	/* Setup mock */
@@ -790,7 +790,7 @@ void test_max17616_iio_read_attr_iout_telemetry_invalid_data(void)
 	};
 
 	/* Setup test data with invalid mask for IOUT (bit 3) */
-	test_telemetry.iout = 1500;
+	test_telemetry.iout_ma = 1500;
 	test_telemetry.valid_mask = 0; /* No valid data */
 
 	/* Setup mock */
@@ -845,7 +845,7 @@ void test_max17616_iio_read_attr_temp_telemetry_invalid_data(void)
 	};
 
 	/* Setup test data with invalid mask for TEMP (bit 4) */
-	test_telemetry.temp1 = 25;
+	test_telemetry.temp1_mc = 25;
 	test_telemetry.valid_mask = 0; /* No valid data */
 
 	/* Setup mock */
@@ -900,7 +900,7 @@ void test_max17616_iio_read_attr_pout_telemetry_invalid_data(void)
 	};
 
 	/* Setup test data with invalid mask for POUT (bit 5) */
-	test_telemetry.pout = 4950;
+	test_telemetry.pout_mw = 4950;
 	test_telemetry.valid_mask = 0; /* No valid data */
 
 	/* Setup mock */
