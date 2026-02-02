@@ -182,16 +182,11 @@ int max17616_read_block_data(struct max17616_dev *dev, uint8_t cmd,
 	if (ret)
 		return ret;
 
-	ret = no_os_i2c_read(dev->i2c_desc, rxbuf, nbytes + 1, 1);
+	ret = no_os_i2c_read(dev->i2c_desc, rxbuf, nbytes, 1);
 	if (ret)
 		return ret;
 
-	byte_count = rxbuf[0];
-
-	if (byte_count != nbytes)
-		return -EMSGSIZE;
-
-	memcpy(data, &rxbuf[1], nbytes);
+	memcpy(data, &rxbuf[1], rxbuf[0]);
 
 	return 0;
 }
@@ -479,15 +474,15 @@ int max17616_set_mfg_specific_config(struct max17616_dev *dev)
 	if (ret)
 		return ret;
 
-	ret = max17616_set_istart_ratio(dev, MAX17616_ISTART_HALF);
+	ret = max17616_set_istart_ratio(dev, MAX17616_ISTART_QUARTER);
 	if (ret)
 		return ret;
 
-	ret = max17616_set_overcurrent_timeout(dev, MAX17616_TIMEOUT_4MS);
+	ret = max17616_set_overcurrent_timeout(dev, MAX17616_TIMEOUT_400US);
 	if (ret)
 		return ret;
 
-	ret = max17616_set_overcurrent_limit(dev, MAX17616_OC_LIMIT_1_50);
+	ret = max17616_set_overcurrent_limit(dev, MAX17616_OC_LIMIT_2_00);
 	if (ret)
 		return ret;
 

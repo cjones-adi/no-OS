@@ -79,19 +79,34 @@ static void display_telemetry(struct max17616_telemetry *telemetry)
 	pr_info("=== MAX17616 Telemetry ===\n\r");
 
 	if (telemetry->valid_mask & NO_OS_BIT(0))
-		pr_info("VIN:         %.3f V\n\r", telemetry->vin_mv);
+		pr_info("VIN:         %s%ld.%03ld V\n\r",
+			(telemetry->vin_mv < 0) ? "-" : "",
+			abs(telemetry->vin_mv / 1000),
+			abs(telemetry->vin_mv % 1000));
 
 	if (telemetry->valid_mask & NO_OS_BIT(1))
-		pr_info("VOUT:        %.3f V\n\r", telemetry->vout_mv);
+		pr_info("VOUT:        %s%ld.%03ld V\n\r",
+			(telemetry->vout_mv < 0) ? "-" : "",
+			abs(telemetry->vout_mv / 1000),
+			abs(telemetry->vout_mv % 1000));
 
 	if (telemetry->valid_mask & NO_OS_BIT(3))
-		pr_info("IOUT:        %.3f A\n\r", telemetry->iout_ma);
+		pr_info("IOUT:        %s%ld.%03ld A\n\r",
+			(telemetry->iout_ma < 0) ? "-" : "",
+			abs(telemetry->iout_ma / 1000),
+			abs(telemetry->iout_ma % 1000));
 
 	if (telemetry->valid_mask & NO_OS_BIT(4))
-		pr_info("Temperature: %.1f °C\n\r", telemetry->temp1_mc);
+		pr_info("Temperature: %s%ld.%03ld degC\n\r",
+			(telemetry->temp1_mc < 0) ? "-" : "",
+			abs(telemetry->temp1_mc / 1000),
+			abs(telemetry->temp1_mc % 1000));
 
 	if (telemetry->valid_mask & NO_OS_BIT(5))
-		pr_info("Power:       %.3f W\n\r", telemetry->pout_mw);
+		pr_info("Power:       %s%ld.%03ld mW\n\r",
+			(telemetry->pout_mw < 0) ? "-" : "",
+			abs(telemetry->pout_mw / 1000),
+			abs(telemetry->pout_mw % 1000));
 
 	pr_info("\n\r");
 }

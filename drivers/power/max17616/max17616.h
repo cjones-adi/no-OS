@@ -120,9 +120,9 @@ enum max17616_chip_id {
 
 /* Current limit mode options */
 enum max17616_current_limit_mode {
-	MAX17616_CLMODE_LATCH_OFF,		/* 00b - latch-off mode */
-	MAX17616_CLMODE_CONTINUOUS,		/* 01b - continuous mode */
-	MAX17616_CLMODE_AUTO_RETRY		/* 10b - auto-retry mode */
+	MAX17616_CLMODE_LATCH_OFF = 0x00,	/* bit[7:6] 00b - latch-off mode */
+	MAX17616_CLMODE_CONTINUOUS = 0x40,	/* bit[7:6] 01b - continuous mode */
+	MAX17616_CLMODE_AUTO_RETRY = 0x80	/* bit[7:6] 10b - auto-retry mode */
 };
 
 /* Current start ratio options - fractions of hardware-configured current limit
