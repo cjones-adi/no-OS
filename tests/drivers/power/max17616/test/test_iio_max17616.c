@@ -1402,8 +1402,8 @@ void test_max17616_iio_read_attr_clmode(void)
 					    0);
 
 	/* Verify results */
-	TEST_ASSERT_EQUAL_INT(1, result); /* Length of "1" */
-	TEST_ASSERT_EQUAL_STRING("1", buffer);
+	TEST_ASSERT_EQUAL_INT(2, result); /* Length of "2" */
+	TEST_ASSERT_EQUAL_STRING("64", buffer);
 }
 
 /**

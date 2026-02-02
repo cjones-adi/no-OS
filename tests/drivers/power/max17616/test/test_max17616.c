@@ -498,7 +498,19 @@ void test_max17616_init_success_flow(void)
 	// Step 4: Mock clear faults
 	no_os_i2c_write_IgnoreAndReturn(0);  // Clear faults command
 
-	// Step 5: Mock set operation
+	// Step 5a: Mock set CLMODE
+	no_os_i2c_write_IgnoreAndReturn(0);  // Set CLMODE command
+
+	// Step 5b: Mock set ISTART RATIO
+	no_os_i2c_write_IgnoreAndReturn(0);  // Set ISTART RATIO command
+
+	// Step 5c: Mock set TSTOC
+	no_os_i2c_write_IgnoreAndReturn(0);  // Set TSTOC command
+
+	// Step 5d: Mock set ISTLIM
+	no_os_i2c_write_IgnoreAndReturn(0);  // Set ISTLIM command
+
+	// Step 6: Mock set operation
 	no_os_i2c_write_IgnoreAndReturn(0);  // Set operation command
 
 	// Use the enhanced callback to handle all three read calls properly

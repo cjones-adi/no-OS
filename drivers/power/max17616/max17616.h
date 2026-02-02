@@ -44,7 +44,8 @@
 #define MAX17616_DS_1B			(1 << 8) /* Byte */
 #define MAX17616_DS_2B			(2 << 8) /* Word */
 #define MAX17616_DS_3B			(3 << 8) /* Block of size 3*/
-#define MAX17616_DS_6B			(6 << 8) /* Block of size 6*/
+#define MAX17616_DS_5B			(5 << 8) /* Block of size 5*/
+#define MAX17616_DS_9B			(9 << 8) /* Block of size 9*/
 #define MAX17616_DS_10B			(10 << 8) /* Block of size 10*/
 #define MAX17616_DF_NONE		(0 << 12) /* None */
 #define MAX17616_DF_LINEAR11		(1 << 12) /* Linear 11 */
@@ -76,14 +77,14 @@
 #define MAX17616_READ_TEMPERATURE_1	(MAX17616_DF_DIRECT | MAX17616_DS_2B | 0x8D)
 #define MAX17616_PMBUS_REVISION		(MAX17616_DS_2B | 0x98)
 
-#define MAX17616_MFR_ID			(MAX17616_DS_6B | 0x99)
+#define MAX17616_MFR_ID			(MAX17616_DS_5B | 0x99)
 #define MAX17616_MFR_MODEL		(MAX17616_DS_10B | 0x9A)
 #define MAX17616_MFR_REVISION		(MAX17616_DS_3B | 0x9B)
 #define MAX17616_SET_CLMODE		(MAX17616_DS_1B | 0xC4)
 #define MAX17616_SET_ISTART_RATIO	(MAX17616_DS_1B | 0xC5)
 #define MAX17616_SET_TSTOC		(MAX17616_DS_1B | 0xC6)
 #define MAX17616_SET_ISTLIM		(MAX17616_DS_1B | 0xC7)
-#define MAX17616_IC_DEVICE_ID		(MAX17616_DS_10B | 0xAD)
+#define MAX17616_IC_DEVICE_ID		(MAX17616_DS_9B | 0xAD)
 #define MAX17616_IC_DEVICE_REV		(MAX17616_DS_3B | 0xAE)
 
 /* Status types masks */

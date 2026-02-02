@@ -182,11 +182,16 @@ int max17616_read_block_data(struct max17616_dev *dev, uint8_t cmd,
 	if (ret)
 		return ret;
 
-	ret = no_os_i2c_read(dev->i2c_desc, rxbuf, nbytes, 1);
+	ret = no_os_i2c_read(dev->i2c_desc, rxbuf, nbytes + 1, 1);
 	if (ret)
 		return ret;
 
-	memcpy(data, &rxbuf[1], rxbuf[0]);
+	byte_count = rxbuf[0];
+
+	if (byte_count != nbytes)
+		return -EMSGSIZE;
+
+	memcpy(data, &rxbuf[1], byte_count);
 
 	return 0;
 }
