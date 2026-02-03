@@ -229,7 +229,7 @@ int max17616_write_byte(struct max17616_dev *dev, uint8_t cmd, uint8_t value)
  * Since R = -1 for all MAX17616 coefficients:
  * X_milli = ((Y x 10 - b) x 1000) / m
  */
-static float max17616_direct_to_milliunit(uint16_t raw_value,
+static int32_t max17616_direct_to_milliunit(uint16_t raw_value,
 		const struct max17616_direct_coeffs *coeffs)
 {
 	int16_t Y = (int16_t)raw_value;  /* Sign-extend to handle 2's complement */
@@ -250,6 +250,9 @@ static float max17616_direct_to_milliunit(uint16_t raw_value,
  */
 int max17616_read_status_byte(struct max17616_dev *dev, uint8_t *status_byte)
 {
+	if (!dev || !status_byte)
+		return -EINVAL;
+
 	return max17616_read_byte(dev, MAX17616_CMD(MAX17616_STATUS_BYTE),
 				  status_byte);
 }
@@ -506,7 +509,7 @@ int max17616_read_value(struct max17616_dev *dev,
 {
 	uint16_t raw_value;
 	int ret;
-	uint32_t vout_mv, iout_ma;
+	int32_t vout_mv, iout_ma;
 
 	if (!dev || !value_milliunit)
 		return -EINVAL;
@@ -562,7 +565,8 @@ int max17616_read_value(struct max17616_dev *dev,
 		if (ret)
 			return ret;
 
-		*value_milliunit = (int32_t)(((uint64_t)vout_mv * (uint64_t)iout_ma) /
+		*value_milliunit = (int32_t)(((uint64_t)(uint32_t)vout_mv *
+					      (uint64_t)(uint32_t)iout_ma) /
 					     MAX17616_MILLIUNIT_SCALE);
 		break;
 

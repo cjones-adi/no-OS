@@ -229,7 +229,7 @@ static struct iio_channel max17616_channels[] = {
 	},
 	{
 		.name = "pout",
-		.ch_type = IIO_ALTVOLTAGE,
+		.ch_type = IIO_POWER,
 		.channel = MAX17616_IIO_POUT_CHAN,
 		.address = MAX17616_IIO_POUT_CHAN,
 		.indexed = 1,
@@ -418,7 +418,6 @@ STATIC int max17616_iio_read_attr(void *device, char *buf, uint32_t len,
 	struct max17616_iio_desc *iio_max17616 = (struct max17616_iio_desc *)device;
 	struct max17616_telemetry telemetry;
 	struct max17616_status status;
-	uint16_t raw_value;
 	int ret;
 
 	/* Handle measurement channels */
@@ -650,6 +649,44 @@ STATIC int max17616_iio_write_attr(void *device, char *buf, uint32_t len,
 		ret = max17616_set_overcurrent_limit(iio_max17616->max17616_dev,
 						     (enum max17616_overcurrent_limit)value);
 		break;
+
+	case MAX17616_IIO_NOMINAL_VOLTAGE_CHAN: {
+		enum max17616_nominal_voltage voltage;
+		enum max17616_pgood_threshold threshold;
+
+		/* Read current configuration to preserve threshold value */
+		ret = max17616_get_vout_uv_fault_limit_config(iio_max17616->max17616_dev,
+				&voltage, &threshold);
+		if (ret)
+			return ret;
+
+		/* Update voltage with new value */
+		voltage = (enum max17616_nominal_voltage)value;
+
+		/* Write back both parameters */
+		ret = max17616_set_vout_uv_fault_limit_config(iio_max17616->max17616_dev,
+				voltage, threshold);
+		break;
+	}
+
+	case MAX17616_IIO_PGOOD_THRESHOLD_CHAN: {
+		enum max17616_nominal_voltage voltage;
+		enum max17616_pgood_threshold threshold;
+
+		/* Read current configuration to preserve voltage value */
+		ret = max17616_get_vout_uv_fault_limit_config(iio_max17616->max17616_dev,
+				&voltage, &threshold);
+		if (ret)
+			return ret;
+
+		/* Update threshold with new value */
+		threshold = (enum max17616_pgood_threshold)value;
+
+		/* Write back both parameters */
+		ret = max17616_set_vout_uv_fault_limit_config(iio_max17616->max17616_dev,
+				voltage, threshold);
+		break;
+	}
 
 	default:
 		return -EINVAL;

@@ -50,8 +50,11 @@
  * 7. CONFIGURATION CHANNEL READ TESTS
  *    - Success Path Tests (CLMODE, ISTART_RATIO, NOMINAL_VOLTAGE, PGOOD_THRESHOLD)
  * 8. CONFIGURATION CHANNEL WRITE TESTS
- * 9. ERROR/EDGE CASE TESTS
- * 10. INVALID CHANNEL TESTS
+ *    - Success Path Tests (CLMODE, TSTOC, ISTLIM, ISTART_RATIO, NOMINAL_VOLTAGE, PGOOD_THRESHOLD)
+ *    - Error Tests (read failure, write failure, invalid format, invalid channel)
+ * 9. GLOBAL ATTRIBUTE TESTS
+ * 10. ERROR/EDGE CASE TESTS
+ * 11. INVALID CHANNEL TESTS
  */
 
 /*******************************************************************************
@@ -102,6 +105,7 @@ enum max17616_iio_channels {
 	MAX17616_IIO_ISTART_RATIO_CHAN,
 	MAX17616_IIO_TSTOC_CHAN,
 	MAX17616_IIO_ISTLIM_CHAN,
+	MAX17616_IIO_CAPABILITY_CHAN,
 	MAX17616_IIO_NOMINAL_VOLTAGE_CHAN,
 	MAX17616_IIO_PGOOD_THRESHOLD_CHAN,
 };
@@ -1570,6 +1574,19 @@ void test_max17616_iio_read_attr_pgood_threshold(void)
 /*******************************************************************************
  *    CONFIGURATION CHANNEL WRITE TESTS
  ******************************************************************************/
+/*
+ * Tests for writing configuration channel attributes:
+ * - test_max17616_iio_write_attr_clmode
+ * - test_max17616_iio_write_attr_tstoc
+ * - test_max17616_iio_write_attr_istlim
+ * - test_max17616_iio_write_attr_istart_ratio
+ * - test_max17616_iio_write_attr_nominal_voltage
+ * - test_max17616_iio_write_attr_pgood_threshold
+ * - test_max17616_iio_write_attr_nominal_voltage_read_failure
+ * - test_max17616_iio_write_attr_pgood_threshold_write_failure
+ * - test_max17616_iio_write_attr_invalid_format
+ * - test_max17616_iio_write_attr_invalid_channel
+ */
 
 /**
  * Test writing CLMODE channel - Note: Due to channel address shift issue mentioned in code
@@ -1674,6 +1691,143 @@ void test_max17616_iio_write_attr_istart_ratio(void)
 
 	/* Should return number of characters written */
 	TEST_ASSERT_EQUAL_INT(strlen(input), result);
+}
+
+/**
+ * Test writing NOMINAL_VOLTAGE channel
+ */
+void test_max17616_iio_write_attr_nominal_voltage(void)
+{
+	char input[] = "3"; /* MAX17616_NOMINAL_24V = 3 */
+	struct iio_ch_info channel = {
+		.ch_num = MAX17616_IIO_NOMINAL_VOLTAGE_CHAN,
+		.address = MAX17616_IIO_NOMINAL_VOLTAGE_CHAN
+	};
+
+	/* Create IIO descriptor */
+	struct max17616_iio_desc iio_desc = {
+		.max17616_dev = &test_max17616_dev
+	};
+
+	/* Set current mock values - write will read these first */
+	mock_nominal_voltage = MAX17616_NOMINAL_12V; /* Current value: 2 */
+	mock_pgood_threshold = MAX17616_PGOOD_MINUS_20_PERCENT; /* Current value: 1 */
+
+	/* Setup mock for read (preserve threshold) - returns current config */
+	max17616_get_vout_uv_fault_limit_config_Stub(
+		mock_get_vout_uv_fault_limit_config_callback);
+
+	/* Setup mock to expect the set call - use Ignore to avoid strict type checking */
+	max17616_set_vout_uv_fault_limit_config_IgnoreAndReturn(0);
+
+	int result = max17616_iio_write_attr(&iio_desc, input, strlen(input), &channel,
+					     0);
+
+	/* Clean up stub */
+	max17616_get_vout_uv_fault_limit_config_Stub(NULL);
+
+	/* Should return number of characters written */
+	TEST_ASSERT_EQUAL_INT(strlen(input), result);
+}
+
+/**
+ * Test writing PGOOD_THRESHOLD channel
+ */
+void test_max17616_iio_write_attr_pgood_threshold(void)
+{
+	char input[] = "2"; /* MAX17616_PGOOD_MINUS_30_PERCENT = 2 */
+	struct iio_ch_info channel = {
+		.ch_num = MAX17616_IIO_PGOOD_THRESHOLD_CHAN,
+		.address = MAX17616_IIO_PGOOD_THRESHOLD_CHAN
+	};
+
+	/* Create IIO descriptor */
+	struct max17616_iio_desc iio_desc = {
+		.max17616_dev = &test_max17616_dev
+	};
+
+	/* Set current mock values - write will read these first */
+	mock_nominal_voltage = MAX17616_NOMINAL_48V; /* Current value: 5 */
+	mock_pgood_threshold = MAX17616_PGOOD_MINUS_10_PERCENT; /* Current value: 0 */
+
+	/* Setup mock for read (preserve voltage) - returns current config */
+	max17616_get_vout_uv_fault_limit_config_Stub(
+		mock_get_vout_uv_fault_limit_config_callback);
+
+	/* Setup mock to expect the set call - use Ignore to avoid strict type checking */
+	max17616_set_vout_uv_fault_limit_config_IgnoreAndReturn(0);
+
+	int result = max17616_iio_write_attr(&iio_desc, input, strlen(input), &channel,
+					     0);
+
+	/* Clean up stub */
+	max17616_get_vout_uv_fault_limit_config_Stub(NULL);
+
+	/* Should return number of characters written */
+	TEST_ASSERT_EQUAL_INT(strlen(input), result);
+}
+
+/**
+ * Test writing NOMINAL_VOLTAGE channel with driver failure on read
+ */
+void test_max17616_iio_write_attr_nominal_voltage_read_failure(void)
+{
+	char input[] = "3";
+	struct iio_ch_info channel = {
+		.ch_num = MAX17616_IIO_NOMINAL_VOLTAGE_CHAN,
+		.address = MAX17616_IIO_NOMINAL_VOLTAGE_CHAN
+	};
+
+	/* Create IIO descriptor */
+	struct max17616_iio_desc iio_desc = {
+		.max17616_dev = &test_max17616_dev
+	};
+
+	/* Setup mock to return failure on read */
+	max17616_get_vout_uv_fault_limit_config_IgnoreAndReturn(-EIO);
+
+	int result = max17616_iio_write_attr(&iio_desc, input, strlen(input), &channel,
+					     0);
+
+	/* Should return error from read operation */
+	TEST_ASSERT_EQUAL_INT(-EIO, result);
+}
+
+/**
+ * Test writing PGOOD_THRESHOLD channel with driver failure on write
+ */
+void test_max17616_iio_write_attr_pgood_threshold_write_failure(void)
+{
+	char input[] = "1";
+	struct iio_ch_info channel = {
+		.ch_num = MAX17616_IIO_PGOOD_THRESHOLD_CHAN,
+		.address = MAX17616_IIO_PGOOD_THRESHOLD_CHAN
+	};
+
+	/* Create IIO descriptor */
+	struct max17616_iio_desc iio_desc = {
+		.max17616_dev = &test_max17616_dev
+	};
+
+	/* Set mock values for successful read */
+	mock_nominal_voltage = MAX17616_NOMINAL_12V;
+	mock_pgood_threshold = MAX17616_PGOOD_MINUS_10_PERCENT;
+
+	/* Setup mock for read (will succeed) */
+	max17616_get_vout_uv_fault_limit_config_Stub(
+		mock_get_vout_uv_fault_limit_config_callback);
+
+	/* Setup mock to return failure on write */
+	max17616_set_vout_uv_fault_limit_config_IgnoreAndReturn(-EBUSY);
+
+	int result = max17616_iio_write_attr(&iio_desc, input, strlen(input), &channel,
+					     0);
+
+	/* Clean up stub */
+	max17616_get_vout_uv_fault_limit_config_Stub(NULL);
+
+	/* Should return error from write operation */
+	TEST_ASSERT_EQUAL_INT(-EBUSY, result);
 }
 
 /**

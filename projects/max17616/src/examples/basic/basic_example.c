@@ -384,10 +384,10 @@ int example_main(void)
 	}
 
 exit:
-	if (ret)
-		pr_err("Error %d\n", ret);
 	if (max17616_dev)
 		max17616_remove(max17616_dev);
+	if (uart_desc)
+		no_os_uart_remove(uart_desc);
 
 	return ret;
 }
