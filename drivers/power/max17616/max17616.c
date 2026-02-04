@@ -662,6 +662,12 @@ int max17616_set_current_limit_mode(struct max17616_dev *dev,
 	if (!dev)
 		return -EINVAL;
 
+	/* Validate: only 3 valid values */
+	if (clmode != MAX17616_CLMODE_LATCH_OFF &&
+	    clmode != MAX17616_CLMODE_CONTINUOUS &&
+	    clmode != MAX17616_CLMODE_AUTO_RETRY)
+		return -EINVAL;
+
 	return max17616_write_byte(dev, MAX17616_CMD(MAX17616_SET_CLMODE),
 				   (uint8_t)clmode);
 }
@@ -722,6 +728,11 @@ int max17616_set_istart_ratio(struct max17616_dev *dev,
 	if (!dev)
 		return -EINVAL;
 
+	/* Validate: 0-4 (FULL, HALF, QUARTER, EIGHTH, SIXTEENTH) */
+	if (istart_ratio < MAX17616_ISTART_FULL ||
+	    istart_ratio > MAX17616_ISTART_SIXTEENTH)
+		return -EINVAL;
+
 	return max17616_write_byte(dev, MAX17616_CMD(MAX17616_SET_ISTART_RATIO),
 				   (uint8_t)istart_ratio);
 }
@@ -778,6 +789,10 @@ int max17616_set_overcurrent_timeout(struct max17616_dev *dev,
 	if (!dev)
 		return -EINVAL;
 
+	/* Validate: 0-3 (400US, 1MS, 4MS, 24MS) */
+	if (timeout < MAX17616_TIMEOUT_400US || timeout > MAX17616_TIMEOUT_24MS)
+		return -EINVAL;
+
 	return max17616_write_byte(dev, MAX17616_CMD(MAX17616_SET_TSTOC),
 				   (uint8_t)timeout);
 }
@@ -832,6 +847,10 @@ int max17616_set_overcurrent_limit(struct max17616_dev *dev,
 				   enum max17616_overcurrent_limit istlimit)
 {
 	if (!dev)
+		return -EINVAL;
+
+	/* Validate: 0-3 (1.25, 1.50, 1.75, 2.00) */
+	if (istlimit < MAX17616_OC_LIMIT_1_25 || istlimit > MAX17616_OC_LIMIT_2_00)
 		return -EINVAL;
 
 	return max17616_write_byte(dev, MAX17616_CMD(MAX17616_SET_ISTLIM),
@@ -1051,12 +1070,14 @@ int max17616_read_telemetry_all(struct max17616_dev *dev,
 	/* Calculate power (P(mW) = V(mV) x I(mA) / 1000) */
 	if ((telemetry->valid_mask & NO_OS_BIT(1)) &&
 	    (telemetry->valid_mask & NO_OS_BIT(3))) {
-		telemetry->pout_mw = (int32_t)(((int64_t)telemetry->vout_mv *
-						(int64_t)telemetry->iout_ma) / MAX17616_MILLIUNIT_SCALE);
+		telemetry->pout_mw = (int32_t)(((uint64_t)(uint32_t)telemetry->vout_mv *
+						(uint64_t)(uint32_t)telemetry->iout_ma) /
+					       MAX17616_MILLIUNIT_SCALE);
 		telemetry->valid_mask |= NO_OS_BIT(5);
 	}
 
-	return 0;
+	/* Return success if any telemetry was read successfully */
+	return (telemetry->valid_mask != 0) ? 0 : -EIO;
 }
 
 /**

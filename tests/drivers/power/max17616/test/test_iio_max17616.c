@@ -23,7 +23,8 @@
  * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
  * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO
  * EVENT SHALL ANALOG DEVICES, INC. BE LIABLE FOR ANY DIRECT, INDIRECT,
- * INCIDENTAL, SPECIAL, EXEMPLARY, OR SERVICES; LOSS OF USE, DATA,
+ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
  * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
  * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
@@ -2080,7 +2081,7 @@ void test_max17616_iio_write_global_attr_operation_enable_1(void)
 	int result = max17616_iio_write_global_attr(&iio_desc, input, strlen(input),
 			&channel, 0);
 
-	TEST_ASSERT_EQUAL_INT(0, result);
+	TEST_ASSERT_EQUAL_INT(strlen(input), result);
 }
 
 /**
@@ -2102,7 +2103,7 @@ void test_max17616_iio_write_global_attr_operation_enable_string(void)
 	int result = max17616_iio_write_global_attr(&iio_desc, input, strlen(input),
 			&channel, 0);
 
-	TEST_ASSERT_EQUAL_INT(0, result);
+	TEST_ASSERT_EQUAL_INT(strlen(input), result);
 }
 
 /**
@@ -2124,7 +2125,7 @@ void test_max17616_iio_write_global_attr_operation_disable_0(void)
 	int result = max17616_iio_write_global_attr(&iio_desc, input, strlen(input),
 			&channel, 0);
 
-	TEST_ASSERT_EQUAL_INT(0, result);
+	TEST_ASSERT_EQUAL_INT(strlen(input), result);
 }
 
 /**
@@ -2146,7 +2147,7 @@ void test_max17616_iio_write_global_attr_clear_faults(void)
 	int result = max17616_iio_write_global_attr(&iio_desc, input, strlen(input),
 			&channel, 1);
 
-	TEST_ASSERT_EQUAL_INT(0, result);
+	TEST_ASSERT_EQUAL_INT(strlen(input), result);
 }
 
 /**

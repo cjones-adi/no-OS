@@ -782,6 +782,7 @@ STATIC int max17616_iio_write_global_attr(void *device, char *buf, uint32_t len,
 		intptr_t priv)
 {
 	struct max17616_iio_desc *iio_max17616 = (struct max17616_iio_desc *)device;
+	int ret;
 
 	switch (priv) {
 	case MAX17616_IIO_OPERATION_ATTR: {
@@ -789,11 +790,17 @@ STATIC int max17616_iio_write_global_attr(void *device, char *buf, uint32_t len,
 		if (!strncmp(buf, "1", 1) || !strncasecmp(buf, "enable", 6)) {
 			enable = 1;
 		}
-		return max17616_set_operation_state(iio_max17616->max17616_dev, enable);
+		ret = max17616_set_operation_state(iio_max17616->max17616_dev, enable);
+		if (ret)
+			return ret;
+		return len;
 	}
 
 	case MAX17616_IIO_CLEAR_FAULTS_ATTR:
-		return max17616_clear_faults(iio_max17616->max17616_dev);
+		ret = max17616_clear_faults(iio_max17616->max17616_dev);
+		if (ret)
+			return ret;
+		return len;
 
 	default:
 		return -EINVAL;

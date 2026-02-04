@@ -347,10 +347,15 @@ int example_main(void)
 	while (1) {
 		/* Read telemetry */
 		ret = max17616_read_telemetry_all(max17616_dev, &telemetry);
-		if (ret)
+		if (ret) {
 			pr_err("Failed to read telemetry: %d\n\r", ret);
-		else
+			pr_err("All telemetry reads failed - device communication lost\n\r");
+			goto exit;
+		} else if (telemetry.valid_mask == 0) {
+			pr_warning("No valid telemetry data available\n\r");
+		} else {
 			display_telemetry(&telemetry);
+		}
 
 		/* Check for faults */
 		display_fault_status(max17616_dev);
