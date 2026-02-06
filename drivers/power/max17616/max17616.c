@@ -101,6 +101,9 @@ int max17616_send_byte(struct max17616_dev *dev, uint8_t cmd)
 {
 	uint8_t tx_buf[2] = {0};
 
+	if (!dev)
+		return -EINVAL;
+
 	tx_buf[0] = cmd;
 
 	return no_os_i2c_write(dev->i2c_desc, tx_buf, 1, 1);
@@ -119,6 +122,9 @@ int max17616_read_byte(struct max17616_dev *dev, uint8_t cmd, uint8_t *data)
 	uint8_t rx_buf[2];
 	uint8_t tx_buf[2] = {0};
 	tx_buf[0] = cmd;
+
+	if (!dev)
+		return -EINVAL;
 
 	ret = no_os_i2c_write(dev->i2c_desc, tx_buf, 1, 0);
 	if (ret)
@@ -1138,15 +1144,10 @@ i2c_err:
  */
 int max17616_remove(struct max17616_dev *dev)
 {
-	int ret;
-
-	ret = no_os_i2c_remove(dev->i2c_desc);
-	if (ret)
-		return ret;
-
+	no_os_i2c_remove(dev->i2c_desc);
 	no_os_free(dev);
 
-	return ret;
+	return 0;
 }
 
 /* Fault information lookup table */
