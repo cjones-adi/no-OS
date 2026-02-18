@@ -1,0 +1,17 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/api/no_os_mdio.c" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/api/no_os_mdio.c">
+<area shape="rect" id="Node000001" title="Source file for MDIO interface driver." alt="" coords="14,5,179,60"/>
+<area shape="rect" id="Node000002" href="$errno_8h.html" title="Error macro definition for ARM Compiler." alt="" coords="5,108,73,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="81,62,57,98,53,95,77,59"/>
+<area shape="rect" id="Node000003" href="$no__os__mdio_8h.html" title="Header file for MDIO interface driver." alt="" coords="98,108,210,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="116,59,141,95,136,98,112,62"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="11,255,94,280"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="141,135,118,156,95,183,77,213,64,243,59,241,72,211,91,180,114,153,138,132"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="213,255,284,280"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="171,132,195,153,218,180,234,210,244,240,239,242,229,213,213,183,191,156,168,136"/>
+<area shape="rect" id="Node000006" href="$no__os__util_8h.html" title="Header file of utility functions." alt="" coords="104,181,204,207"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="157,134,157,168,151,168,151,134"/>
+<area shape="poly" id="edge8_Node000006_Node000004" title=" " alt="" coords="139,209,82,249,79,244,136,204"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="171,205,224,244,221,248,168,209"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="119,255,189,280"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="157,207,157,241,151,241,151,207"/>
+</map>

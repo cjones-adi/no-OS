@@ -1,0 +1,16 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/photo&#45;electronic/adpd188/adpd188.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/photo&#45;electronic/adpd188/adpd188.h">
+<area shape="rect" id="Node000001" title="ADPD188 driver header file." alt="" coords="70,5,293,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="208,181,278,207"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="73,63,41,76,18,92,11,101,8,111,10,121,16,132,27,141,44,150,90,165,195,184,194,190,89,170,42,155,24,146,12,135,5,122,3,110,6,99,14,89,38,71,71,58"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="26,108,108,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="148,62,95,102,92,97,145,58"/>
+<area shape="rect" id="Node000004" href="$no__os__i2c_8h.html" title="Header file of I2C Interface." alt="" coords="132,108,231,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="184,60,184,94,179,94,179,60"/>
+<area shape="rect" id="Node000005" href="$no__os__spi_8h.html" title="Header file of SPI Interface." alt="" coords="255,108,354,133"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="221,58,278,98,275,102,218,62"/>
+<area shape="rect" id="Node000006" href="$no__os__gpio_8h.html" title="Header file of GPIO Interface." alt="" coords="378,108,484,133"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="259,58,386,101,384,106,257,63"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="194,132,226,169,222,173,190,135"/>
+<area shape="poly" id="edge6_Node000005_Node000002" title=" " alt="" coords="296,135,264,173,260,169,292,132"/>
+<area shape="poly" id="edge8_Node000006_Node000002" title=" " alt="" coords="402,136,288,179,286,174,400,131"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/adc/ad4080/ad4080.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/adc/ad4080/ad4080.h">
+<area shape="rect" id="Node000001" title="Header file of AD4080 Driver." alt="" coords="100,5,265,60"/>
+<area shape="rect" id="Node000002" href="$ad4080_8c.html" title="Implementation of AD4080 Driver." alt="" coords="5,108,171,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="151,72,115,110,111,106,147,68"/>
+<area shape="rect" id="Node000003" href="$iio__ad4080_8h.html" title="Implementation of iio_ad4080.c." alt="" coords="195,108,360,163"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="219,68,255,106,251,110,215,72"/>
+<area shape="rect" id="Node000004" href="$iio__ad4080_8c.html" title="Implementation of iio_ad4080.c." alt="" coords="80,218,245,273"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="241,175,193,220,189,216,237,171"/>
+<area shape="rect" id="Node000005" href="$adalm-mmsc_2src_2examples_2iio__example_2iio__example_8c.html" title="Implementation of iio_example.c." alt="" coords="269,211,512,280"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="317,171,357,209,353,212,313,175"/>
+</map>

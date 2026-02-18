@@ -1,0 +1,55 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/digital&#45;io/max149x6/max149x6&#45;base.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/digital&#45;io/max149x6/max149x6&#45;base.h">
+<area shape="rect" id="Node000001" title="Header file of MAX149X6 Base Driver." alt="" coords="1529,5,1763,60"/>
+<area shape="rect" id="Node000002" href="$max14906_8h.html" title="Header file of MAX14906 Driver." alt="" coords="623,108,821,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1516,51,821,126,821,121,1515,46"/>
+<area shape="rect" id="Node000010" href="$max14906_2src_2common_2common__data_8h.html" title="Defines common data to be used by max14906 examples." alt="" coords="833,218,1051,273"/>
+<area shape="poly" id="edge27_Node000001_Node000010" title=" " alt="" coords="1531,66,1369,111,1021,220,1019,215,1368,105,1530,61"/>
+<area shape="rect" id="Node000012" href="$max14906_2src_2examples_2basic_2basic__example_8c.html" title="Source file for basic example." alt="" coords="1075,211,1292,280"/>
+<area shape="poly" id="edge28_Node000001_Node000012" title=" " alt="" coords="1577,68,1258,213,1256,208,1575,63"/>
+<area shape="rect" id="Node000015" href="$max14916_8h.html" title="Header file of MAX14916 Driver." alt="" coords="1547,108,1745,163"/>
+<area shape="poly" id="edge18_Node000001_Node000015" title=" " alt="" coords="1649,74,1649,108,1643,108,1643,74"/>
+<area shape="rect" id="Node000020" href="$max14916_2src_2common_2common__data_8h.html" title="Defines common data to be used by max14916 examples." alt="" coords="1780,218,1997,273"/>
+<area shape="poly" id="edge29_Node000001_Node000020" title=" " alt="" coords="1703,65,1758,106,1809,155,1867,216,1863,220,1805,159,1755,110,1700,70"/>
+<area shape="rect" id="Node000022" href="$max14916_2src_2examples_2basic_2basic__example_8c.html" title="Source file for basic example." alt="" coords="2021,211,2239,280"/>
+<area shape="poly" id="edge30_Node000001_Node000022" title=" " alt="" coords="1726,63,1764,83,1802,106,1819,121,1831,134,1842,148,1859,160,2022,210,2020,215,1857,165,1838,151,1827,138,1816,124,1799,110,1762,87,1723,68"/>
+<area shape="rect" id="Node000023" href="$max149x6-base_8c.html" title="Source file of MAX149X6 Base Driver." alt="" coords="1870,108,2102,163"/>
+<area shape="poly" id="edge26_Node000001_Node000023" title=" " alt="" coords="1748,61,1898,105,1897,111,1747,66"/>
+<area shape="rect" id="Node000003" href="$iio__max14906_8c.html" title="Source file of IIO MAX14906 Driver." alt="" coords="245,335,463,390"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="612,168,567,188,526,213,510,229,500,245,490,263,475,282,438,312,401,337,398,333,435,308,471,278,486,260,495,243,505,226,523,209,565,183,609,164"/>
+<area shape="rect" id="Node000004" href="$iio__max14906_8h.html" title="Header file of MAX14906 IIO Driver." alt="" coords="537,218,757,273"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="698,176,668,219,663,216,694,173"/>
+<area shape="rect" id="Node000007" href="$swiot_8h.html" title="Header file for the swiot IIO device." alt="" coords="831,335,1026,390"/>
+<area shape="poly" id="edge17_Node000002_Node000007" title=" " alt="" coords="748,173,788,233,823,278,855,308,889,333,886,337,852,312,819,282,784,236,744,176"/>
+<area shape="rect" id="Node000009" href="$max14906_8c.html" title="Source file of MAX14906 Driver." alt="" coords="27,218,223,273"/>
+<area shape="poly" id="edge11_Node000002_Node000009" title=" " alt="" coords="610,152,433,176,235,213,206,221,205,215,233,208,432,171,609,146"/>
+<area shape="poly" id="edge12_Node000002_Node000010" title=" " alt="" coords="789,167,890,215,887,220,787,171"/>
+<area shape="poly" id="edge14_Node000002_Node000012" title=" " alt="" coords="835,157,1063,208,1075,211,1074,216,1061,213,834,162"/>
+<area shape="rect" id="Node000013" href="$swiot1l_2src_2common_2common__data_8h.html" title="Defines common data to be used by the swiot1l project." alt="" coords="247,218,461,273"/>
+<area shape="poly" id="edge15_Node000002_Node000013" title=" " alt="" coords="620,169,444,221,443,215,619,164"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="569,280,422,338,420,333,567,275"/>
+<area shape="rect" id="Node000005" href="$max14906_2src_2examples_2iio__example_2iio__example_8c.html" title="Source file for iio example." alt="" coords="539,328,756,397"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="650,286,650,328,645,328,645,286"/>
+<area shape="rect" id="Node000006" href="$swiot_8c.html" title="Source file for the swiot IIO driver." alt="" coords="507,445,702,500"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="575,282,548,303,528,329,521,347,519,362,528,396,545,422,567,443,563,447,541,425,524,398,513,362,516,346,524,327,545,299,571,278"/>
+<area shape="poly" id="edge7_Node000004_Node000007" title=" " alt="" coords="725,275,866,333,864,338,723,280"/>
+<area shape="rect" id="Node000008" href="$swiot__fw_8c.html" title="Main project file for the swiot1l project." alt="" coords="763,445,958,500"/>
+<area shape="poly" id="edge10_Node000004_Node000008" title=" " alt="" coords="708,278,740,300,769,326,807,378,847,443,843,446,803,381,765,330,737,304,705,283"/>
+<area shape="poly" id="edge8_Node000007_Node000006" title=" " alt="" coords="838,397,684,448,682,443,836,392"/>
+<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="907,403,880,447,875,444,902,401"/>
+<area shape="rect" id="Node000011" href="$max14906_2src_2common_2common__data_8c.html" title="Defines common data to be used by max14906 examples." alt="" coords="1051,335,1268,390"/>
+<area shape="poly" id="edge13_Node000010_Node000011" title=" " alt="" coords="1005,277,1111,333,1109,338,1002,281"/>
+<area shape="rect" id="Node000014" href="$swiot1l_2src_2common_2common__data_8c.html" title="Defines common data to be used by the SWIOT1L firmware." alt="" coords="5,335,220,390"/>
+<area shape="poly" id="edge16_Node000013_Node000014" title=" " alt="" coords="288,281,169,338,166,333,286,276"/>
+<area shape="rect" id="Node000016" href="$iio__max14916_8h.html" title="Header file of IIO MAX14916 Driver." alt="" coords="1536,218,1756,273"/>
+<area shape="poly" id="edge19_Node000015_Node000016" title=" " alt="" coords="1649,177,1649,218,1643,218,1643,177"/>
+<area shape="rect" id="Node000019" href="$max14916_8c.html" title="Source file of MAX14916 Driver." alt="" coords="1316,218,1512,273"/>
+<area shape="poly" id="edge22_Node000015_Node000019" title=" " alt="" coords="1578,171,1472,220,1469,215,1576,166"/>
+<area shape="poly" id="edge23_Node000015_Node000020" title=" " alt="" coords="1719,166,1831,215,1828,220,1717,171"/>
+<area shape="poly" id="edge25_Node000015_Node000022" title=" " alt="" coords="1759,155,2011,208,2021,211,2020,216,2009,213,1758,160"/>
+<area shape="rect" id="Node000017" href="$iio__max14916_8c.html" title="Source file of IIO MAX14916 Driver." alt="" coords="1295,335,1514,390"/>
+<area shape="poly" id="edge20_Node000016_Node000017" title=" " alt="" coords="1580,281,1461,338,1458,333,1578,276"/>
+<area shape="rect" id="Node000018" href="$max14916_2src_2examples_2iio__example_2iio__example_8c.html" title="Source file for iio example." alt="" coords="1539,328,1756,397"/>
+<area shape="poly" id="edge21_Node000016_Node000018" title=" " alt="" coords="1649,286,1650,328,1644,328,1644,286"/>
+<area shape="rect" id="Node000021" href="$max14916_2src_2common_2common__data_8c.html" title="Defines common data to be used by max14916 examples." alt="" coords="1780,335,1997,390"/>
+<area shape="poly" id="edge24_Node000020_Node000021" title=" " alt="" coords="1891,286,1891,335,1886,335,1886,286"/>
+</map>

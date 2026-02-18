@@ -1,0 +1,15 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/linux/linux_spi.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/linux/linux_spi.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="244,5,441,60"/>
+<area shape="rect" id="Node000002" href="$linux__spi_8c.html" title="Implementation of Linux platform SPI Driver." alt="" coords="5,108,203,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="269,68,167,110,165,105,267,63"/>
+<area shape="rect" id="Node000003" href="$ad9545_2src_2platform_2linux_2parameters_8h.html" title="Definitions specific to Maxim platform used by ad9545 project." alt="" coords="227,108,459,163"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="345,74,345,108,340,108,340,74"/>
+<area shape="rect" id="Node000005" href="$max14916_2src_2platform_2linux_2parameters_8h.html" title="Definition of FTD2XX platform data used by max14916 project." alt="" coords="483,108,715,163"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="423,62,533,105,531,110,421,67"/>
+<area shape="rect" id="Node000004" href="$ad9545_2src_2platform_2linux_2parameters_8c.html" title="Definitions specific to Linux platform used by ad9545 project." alt="" coords="227,211,458,265"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="345,176,345,211,340,211,340,176"/>
+<area shape="rect" id="Node000006" href="$max14916_2src_2platform_2linux_2main_8c.html" title="Main file for FTD2XX platform of max14916 project." alt="" coords="486,211,703,265"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="600,177,598,211,593,210,594,176"/>
+<area shape="rect" id="Node000007" href="$max14916_2src_2platform_2linux_2parameters_8c.html" title="Definition of FTD2XX platform data used by max14916 project." alt="" coords="727,211,958,265"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="676,165,780,208,778,213,674,170"/>
+</map>

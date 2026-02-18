@@ -1,0 +1,19 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/frequency/adf4350/adf4350.c" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/frequency/adf4350/adf4350.c">
+<area shape="rect" id="Node000001" title="Implementation of ADF4350 Driver." alt="" coords="88,5,295,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,108,84,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="148,62,78,103,75,99,145,58"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="225,181,291,207"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="205,59,250,167,245,170,200,61"/>
+<area shape="rect" id="Node000004" href="$adf4350_8h.html" title="Header file of ADF4350 Driver." alt="" coords="108,108,195,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="182,61,165,97,160,94,177,59"/>
+<area shape="rect" id="Node000007" href="$no__os__alloc_8h.html" title=" " alt="" coords="271,108,381,133"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="234,58,298,98,295,103,231,62"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="72,255,143,280"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="135,136,111,155,92,182,89,197,89,212,98,242,93,243,84,213,84,196,88,180,107,152,131,132"/>
+<area shape="rect" id="Node000006" href="$no__os__spi_8h.html" title="Header file of SPI Interface." alt="" coords="102,181,201,207"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="154,134,154,168,149,168,149,134"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="146,208,124,244,119,242,142,206"/>
+<area shape="poly" id="edge8_Node000007_Node000003" title=" " alt="" coords="317,136,281,173,277,169,313,132"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="316,181,387,207"/>
+<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="333,133,345,168,340,169,328,135"/>
+</map>

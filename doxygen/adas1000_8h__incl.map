@@ -1,0 +1,10 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/ecg/adas1000/adas1000.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/ecg/adas1000/adas1000.h">
+<area shape="rect" id="Node000001" title="Header file of ADAS1000 Driver." alt="" coords="5,5,173,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="71,181,142,207"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="62,62,49,78,39,96,35,114,38,132,54,154,75,172,71,176,50,158,34,134,30,114,34,94,45,75,58,58"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="48,108,131,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="92,60,92,94,87,94,87,60"/>
+<area shape="rect" id="Node000004" href="$no__os__spi_8h.html" title="Header file of SPI Interface." alt="" coords="155,108,253,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="126,58,179,97,176,102,123,62"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="190,136,135,175,132,171,187,131"/>
+</map>

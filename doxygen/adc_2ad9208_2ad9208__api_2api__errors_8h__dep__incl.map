@@ -1,0 +1,13 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/adc/ad9208/ad9208_api/api_errors.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/adc/ad9208/ad9208_api/api_errors.h">
+<area shape="rect" id="Node000001" title="API error codes header file." alt="" coords="515,5,693,75"/>
+<area shape="rect" id="Node000002" href="$ad9208__adc__api_8c.html" title="Contains AD9208 APIs for ADC, DDC, NCO configuration and control." alt="" coords="5,123,211,192"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="502,64,369,91,223,125,212,128,210,123,222,120,368,86,501,58"/>
+<area shape="rect" id="Node000003" href="$ad9208__api_8c.html" title="Contains AD9208 APIs for ADC Chip Level Configuration and Control." alt="" coords="235,130,477,185"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="520,83,413,132,411,128,518,78"/>
+<area shape="rect" id="Node000004" href="$ad9208__jesd__api_8c.html" title="Contains AD9208 APIs for ADC JESD Configuration and Control." alt="" coords="501,123,707,192"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="607,89,607,122,601,122,601,89"/>
+<area shape="rect" id="Node000005" href="$ad9208__reg_8c.html" title="Contains AD9208 APIs for ADC Register Configuration and Control." alt="" coords="731,130,975,185"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="690,78,798,128,796,132,688,83"/>
+<area shape="rect" id="Node000006" href="$ad9208__signal__monitor__api_8c.html" title="Contains AD9208 APIs for Signal Monitoring Features." alt="" coords="1000,123,1205,192"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="707,58,841,86,989,120,1000,123,999,128,987,125,840,91,706,63"/>
+</map>

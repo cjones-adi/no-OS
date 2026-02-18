@@ -1,0 +1,19 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/afe/ad4110/ad4110.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/afe/ad4110/ad4110.h">
+<area shape="rect" id="Node000001" title="Header file of AD4110 Driver." alt="" coords="177,5,343,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="293,181,363,207"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="178,43,109,53,47,71,25,83,12,96,9,112,19,132,36,145,62,156,131,172,209,183,279,188,279,193,209,188,130,178,60,161,33,149,15,135,4,113,7,94,22,78,45,66,108,48,177,38"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="29,108,112,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="203,62,109,105,107,100,201,58"/>
+<area shape="rect" id="Node000004" href="$no__os__delay_8h.html" title="Header file of Delay functions." alt="" coords="137,108,250,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="242,62,213,99,209,95,238,58"/>
+<area shape="rect" id="Node000005" href="$no__os__gpio_8h.html" title="Header file of GPIO Interface." alt="" coords="275,108,381,133"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="283,58,312,95,308,99,279,62"/>
+<area shape="rect" id="Node000006" href="$no__os__spi_8h.html" title="Header file of SPI Interface." alt="" coords="405,108,504,133"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="321,58,417,100,415,105,318,63"/>
+<area shape="rect" id="Node000007" href="$no__os__irq_8h.html" title="Header file of IRQ interface." alt="" coords="528,108,624,133"/>
+<area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="344,54,521,102,520,107,342,59"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="216,131,295,172,293,177,214,136"/>
+<area shape="poly" id="edge6_Node000005_Node000002" title=" " alt="" coords="331,134,331,168,325,168,325,134"/>
+<area shape="poly" id="edge8_Node000006_Node000002" title=" " alt="" coords="436,136,362,177,359,172,433,131"/>
+<area shape="poly" id="edge10_Node000007_Node000002" title=" " alt="" coords="537,136,378,181,376,176,535,131"/>
+</map>

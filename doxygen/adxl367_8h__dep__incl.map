@@ -1,0 +1,13 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/accel/adxl367/adxl367.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/accel/adxl367/adxl367.h">
+<area shape="rect" id="Node000001" title="Header file of ADXL367 Driver." alt="" coords="329,5,504,60"/>
+<area shape="rect" id="Node000002" href="$adxl367_8c.html" title="Implementation of ADXL367 Driver." alt="" coords="5,115,180,170"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="325,67,194,111,172,118,170,113,192,105,324,62"/>
+<area shape="rect" id="Node000003" href="$iio__adxl367_8c.html" title="IIO part of the ADXL367 driver." alt="" coords="204,115,379,170"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="377,72,324,117,320,113,374,67"/>
+<area shape="rect" id="Node000004" href="$eval-adxl367z_2src_2common_2common__data_8h.html" title="Defines common data to be used by eval&#45;adxl367z examples." alt="" coords="403,115,681,170"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="460,67,513,113,510,117,456,72"/>
+<area shape="rect" id="Node000006" href="$eval-adxl367z_2src_2examples_2dummy_2dummy__example_8c.html" title="DUMMY example for eval&#45;adxl367z project." alt="" coords="706,108,911,177"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="518,58,695,105,706,109,705,114,693,111,517,63"/>
+<area shape="rect" id="Node000005" href="$eval-adxl367z_2src_2common_2common__data_8c.html" title="Defines common data to be used by eval&#45;adxl367z examples." alt="" coords="403,225,681,280"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="545,184,545,225,539,225,539,184"/>
+</map>

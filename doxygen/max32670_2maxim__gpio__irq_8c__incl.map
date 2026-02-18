@@ -1,0 +1,44 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/maxim/max32670/maxim_gpio_irq.c" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/maxim/max32670/maxim_gpio_irq.c">
+<area shape="rect" id="Node000001" title="Source file for GPIO IRQ driver." alt="" coords="299,5,564,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="120,181,191,207"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="299,45,264,54,229,67,198,86,171,110,162,123,158,138,155,168,150,168,152,136,158,120,167,106,195,81,227,63,262,49,298,40"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="381,255,452,280"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="415,62,384,115,369,148,358,182,355,194,358,206,371,227,389,244,385,248,367,230,353,208,350,194,353,181,364,146,379,113,411,59"/>
+<area shape="rect" id="Node000004" href="$errno_8h.html" title="Error macro definition for ARM Compiler." alt="" coords="917,181,985,207"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="564,43,744,68,823,85,879,106,898,119,915,135,940,168,936,171,911,139,895,123,877,110,822,90,743,73,564,49"/>
+<area shape="rect" id="Node000005" href="$no__os__error_8h.html" title="Error codes definition." alt="" coords="941,108,1050,133"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="565,51,922,105,928,106,927,111,922,111,564,57"/>
+<area shape="rect" id="Node000006" href="$no__os__util_8h.html" title="Header file of utility functions." alt="" coords="5,108,105,133"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="317,63,119,108,118,102,316,57"/>
+<area shape="rect" id="Node000008" href="$no__os__alloc_8h.html" title=" " alt="" coords="181,108,292,133"/>
+<area shape="poly" id="edge10_Node000001_Node000008" title=" " alt="" coords="373,63,276,105,274,100,371,58"/>
+<area shape="rect" id="Node000010" href="$no__os__list_8h.html" title="List library header." alt="" coords="367,181,466,207"/>
+<area shape="poly" id="edge13_Node000001_Node000010" title=" " alt="" coords="426,61,415,108,415,133,417,168,412,168,410,133,410,108,420,60"/>
+<area shape="rect" id="Node000011" href="$no__os__irq_8h.html" title="Header file of IRQ interface." alt="" coords="490,181,586,207"/>
+<area shape="poly" id="edge16_Node000001_Node000011" title=" " alt="" coords="436,60,443,96,459,132,480,154,504,172,501,176,476,158,454,135,438,97,431,61"/>
+<area shape="rect" id="Node000012" href="$no__os__gpio_8h.html" title="Header file of GPIO Interface." alt="" coords="759,108,866,133"/>
+<area shape="poly" id="edge18_Node000001_Node000012" title=" " alt="" coords="548,57,749,102,748,108,547,63"/>
+<area shape="rect" id="Node000013" href="$max32670_2maxim__gpio__irq_8h.html" title="Header file of GPIO IRQ interface for Maxim platform." alt="" coords="469,108,607,133"/>
+<area shape="poly" id="edge20_Node000001_Node000013" title=" " alt="" coords="466,58,514,97,511,101,462,62"/>
+<area shape="rect" id="Node000014" href="$max32670_2maxim__irq_8h.html" title="Header file for maxim irq specifics." alt="" coords="631,108,735,133"/>
+<area shape="poly" id="edge22_Node000001_Node000014" title=" " alt="" coords="509,58,637,101,636,106,507,63"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="990,135,968,171,963,168,986,132"/>
+<area shape="poly" id="edge8_Node000006_Node000002" title=" " alt="" coords="73,131,129,171,126,175,70,136"/>
+<area shape="poly" id="edge7_Node000006_Node000003" title=" " alt="" coords="61,132,78,169,92,188,109,204,128,214,155,224,225,239,368,259,367,264,224,244,154,229,126,219,106,209,88,192,73,171,57,135"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="133,255,215,280"/>
+<area shape="poly" id="edge9_Node000006_Node000007" title=" " alt="" coords="56,134,54,168,58,187,66,205,90,230,121,247,118,252,87,234,61,208,53,189,49,168,51,133"/>
+<area shape="poly" id="edge12_Node000008_Node000002" title=" " alt="" coords="225,135,181,174,177,170,222,131"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="215,181,282,207"/>
+<area shape="poly" id="edge11_Node000008_Node000009" title=" " alt="" coords="241,133,247,167,242,168,236,134"/>
+<area shape="poly" id="edge14_Node000010_Node000003" title=" " alt="" coords="419,207,419,241,414,241,414,207"/>
+<area shape="poly" id="edge15_Node000010_Node000007" title=" " alt="" coords="378,209,227,253,225,248,377,204"/>
+<area shape="poly" id="edge17_Node000011_Node000003" title=" " alt="" coords="520,209,449,250,447,245,517,204"/>
+<area shape="poly" id="edge19_Node000012_Node000003" title=" " alt="" coords="819,133,824,169,821,190,811,208,786,226,750,239,656,257,553,266,466,269,466,263,553,261,656,252,749,234,784,221,807,205,816,188,818,169,814,134"/>
+<area shape="poly" id="edge21_Node000013_Node000011" title=" " alt="" coords="541,134,541,168,535,168,535,134"/>
+<area shape="poly" id="edge25_Node000014_Node000010" title=" " alt="" coords="641,136,474,180,473,175,640,131"/>
+<area shape="poly" id="edge24_Node000014_Node000011" title=" " alt="" coords="661,136,575,178,573,173,659,131"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="695,181,797,207"/>
+<area shape="poly" id="edge23_Node000014_Node000015" title=" " alt="" coords="696,132,729,169,725,173,692,135"/>
+<area shape="rect" id="Node000016" title=" " alt="" coords="611,181,671,207"/>
+<area shape="poly" id="edge26_Node000014_Node000016" title=" " alt="" coords="679,135,657,171,652,168,674,132"/>
+</map>

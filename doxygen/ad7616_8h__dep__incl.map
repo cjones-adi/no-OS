@@ -1,0 +1,16 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/adc/ad7616/ad7616.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/adc/ad7616/ad7616.h">
+<area shape="rect" id="Node000001" title="Header file of AD7616 Driver." alt="" coords="315,5,480,60"/>
+<area shape="rect" id="Node000002" href="$ad7616_8c.html" title="Implementation of AD7616 Driver." alt="" coords="5,108,171,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="305,67,169,110,168,105,303,62"/>
+<area shape="rect" id="Node000003" href="$iio__ad7616_8h.html" title="Header file for AD7616 IIO interface." alt="" coords="195,108,360,163"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="357,71,310,110,307,106,354,67"/>
+<area shape="rect" id="Node000004" href="$ad7616-st_2src_2examples_2iio_2iio__example_8c.html" title="IIO example header for eval&#45;ad7616 project." alt="" coords="239,211,435,280"/>
+<area shape="poly" id="edge7_Node000001_Node000004" title=" " alt="" coords="394,74,375,163,356,212,351,210,369,162,389,73"/>
+<area shape="rect" id="Node000005" href="$ad7616__sdz_8c.html" title="Implementation of Main Function." alt="" coords="435,108,631,163"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="445,66,499,106,496,110,442,70"/>
+<area shape="rect" id="Node000006" href="$ad7616-st_2src_2common_2common__data_8h.html" title="Defines common data to be used by eval&#45;ad7616 examples." alt="" coords="656,108,888,163"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="494,57,675,105,674,110,492,62"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="301,174,321,209,316,212,297,177"/>
+<area shape="rect" id="Node000007" href="$ad7616-st_2src_2common_2common__data_8c.html" title="Defines common data to be used by eval&#45;ad7616 examples." alt="" coords="657,218,887,273"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="775,177,775,218,769,218,769,177"/>
+</map>

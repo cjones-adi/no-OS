@@ -1,0 +1,14 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/projects/ad7746&#45;ebz/src/app/parameters.h" name="/home/runner/work/no&#45;OS/no&#45;OS/projects/ad7746&#45;ebz/src/app/parameters.h">
+<area shape="rect" id="Node000001" title="Configuration parameters for AD7746&#45;EBZ demo project." alt="" coords="176,5,372,60"/>
+<area shape="rect" id="Node000002" href="$aducm3029__irq_8h.html" title="Header file of IRQ driver for ADuCM302x." alt="" coords="207,108,341,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="277,60,277,94,271,94,271,60"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,181,169,207"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="245,136,131,179,130,174,243,131"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="194,181,277,207"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="270,135,250,171,246,168,265,132"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="321,255,392,280"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="283,132,346,241,341,244,278,135"/>
+<area shape="rect" id="Node000006" href="$no__os__irq_8h.html" title="Header file of IRQ interface." alt="" coords="351,181,447,207"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="295,131,368,172,366,177,293,136"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="395,208,373,244,368,242,390,206"/>
+</map>

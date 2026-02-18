@@ -1,0 +1,13 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/frequency/hmc7044/hmc7044.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/frequency/hmc7044/hmc7044.h">
+<area shape="rect" id="Node000001" title="Header file of HMC7044, HMC7043 Driver." alt="" coords="69,5,275,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,108,88,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="135,62,76,102,73,98,132,58"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="185,181,255,207"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="161,61,150,96,150,115,154,132,170,154,190,172,186,176,166,158,150,134,145,115,145,95,156,60"/>
+<area shape="rect" id="Node000004" href="$no__os__delay_8h.html" title="Header file of Delay functions." alt="" coords="163,108,277,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="189,59,209,95,204,97,184,61"/>
+<area shape="rect" id="Node000005" href="$no__os__spi_8h.html" title="Header file of SPI Interface." alt="" coords="301,108,400,133"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="228,58,316,100,313,104,225,62"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="223,134,223,168,217,168,217,134"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="331,136,254,177,252,172,328,131"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/adc/ad7799/ad7799.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/adc/ad7799/ad7799.h">
+<area shape="rect" id="Node000001" title="Header file of AD7798/AD7799 Driver." alt="" coords="100,5,265,60"/>
+<area shape="rect" id="Node000002" href="$ad7799_8c.html" title="Implementation of AD7798/AD7799 Driver." alt="" coords="5,108,171,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="151,72,115,110,111,106,147,68"/>
+<area shape="rect" id="Node000003" href="$iio__ad7799_8c.html" title="Implementation of AD7799 iio." alt="" coords="195,108,360,163"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="219,68,255,106,251,110,215,72"/>
+</map>

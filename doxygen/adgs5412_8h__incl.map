@@ -1,0 +1,8 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/mux/adgs5412/adgs5412.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/mux/adgs5412/adgs5412.h">
+<area shape="rect" id="Node000001" title="Header file of ADGS5412 Driver." alt="" coords="5,5,176,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="55,181,126,207"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="84,61,77,95,76,133,84,168,79,169,71,134,71,95,79,59"/>
+<area shape="rect" id="Node000003" href="$no__os__spi_8h.html" title="Header file of SPI Interface." alt="" coords="85,108,184,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="106,59,125,94,120,97,102,61"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="130,135,107,171,103,168,125,132"/>
+</map>

@@ -1,0 +1,21 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/adc/ad9250/ad9250.c" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/adc/ad9250/ad9250.c">
+<area shape="rect" id="Node000001" title="Implementation of AD9250 Driver." alt="" coords="181,5,347,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="182,181,253,207"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="259,61,227,169,222,167,254,59"/>
+<area shape="rect" id="Node000003" href="$ad9250_8h.html" title="Header file of AD9250 Driver." alt="" coords="97,108,180,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="227,62,168,102,165,98,224,58"/>
+<area shape="rect" id="Node000006" href="$no__os__error_8h.html" title="Error codes definition." alt="" coords="391,108,500,133"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="321,58,410,100,408,105,318,62"/>
+<area shape="rect" id="Node000008" href="$no__os__alloc_8h.html" title=" " alt="" coords="255,108,366,133"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="281,59,300,95,295,97,276,61"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="62,255,133,280"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="138,134,119,207,108,242,103,240,113,206,133,133"/>
+<area shape="rect" id="Node000005" href="$no__os__spi_8h.html" title="Header file of SPI Interface." alt="" coords="5,181,104,207"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="127,135,81,174,77,170,123,131"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="64,206,86,242,81,244,59,208"/>
+<area shape="rect" id="Node000007" href="$errno_8h.html" title="Error macro definition for ARM Compiler." alt="" coords="411,181,479,207"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="448,134,448,168,443,168,443,134"/>
+<area shape="poly" id="edge10_Node000008_Node000002" title=" " alt="" coords="297,135,245,175,242,171,294,131"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="277,181,344,207"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="313,134,313,168,308,168,308,134"/>
+</map>

@@ -1,0 +1,29 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/projects/ltc7871/src/common/common_data.c" name="/home/runner/work/no&#45;OS/no&#45;OS/projects/ltc7871/src/common/common_data.c">
+<area shape="rect" id="Node000001" title="Defines common data to be used by ltc7871 examples." alt="" coords="146,5,361,60"/>
+<area shape="rect" id="Node000002" href="$ltc7871_2src_2common_2common__data_8h.html" title="Defines common data to be used by ltc7871 examples." alt="" coords="190,108,317,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="256,60,256,94,251,94,251,60"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="139,181,248,207"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="245,135,214,173,210,169,241,132"/>
+<area shape="rect" id="Node000004" href="$ltc7871_8h.html" title="Header file for the LTC7871 Driver." alt="" coords="272,181,355,207"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="265,132,297,169,293,173,261,135"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="5,328,88,353"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="272,207,150,235,73,257,64,269,57,284,50,315,45,314,52,282,59,266,71,252,149,230,271,202"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="323,328,394,353"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="319,206,341,279,353,314,348,316,336,281,314,208"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="209,255,276,280"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="304,209,266,247,262,243,300,205"/>
+<area shape="rect" id="Node000008" href="$no__os__gpio_8h.html" title="Header file of GPIO Interface." alt="" coords="351,255,457,280"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="330,205,380,244,377,248,326,209"/>
+<area shape="rect" id="Node000009" href="$no__os__spi_8h.html" title="Header file of SPI Interface." alt="" coords="617,255,716,280"/>
+<area shape="poly" id="edge9_Node000004_Node000009" title=" " alt="" coords="355,201,605,251,603,256,354,206"/>
+<area shape="rect" id="Node000010" href="$no__os__units_8h.html" title="Header file of Units." alt="" coords="482,255,593,280"/>
+<area shape="poly" id="edge11_Node000004_Node000010" title=" " alt="" coords="350,204,489,248,487,253,349,209"/>
+<area shape="rect" id="Node000011" href="$no__os__util_8h.html" title="Header file of utility functions." alt="" coords="85,255,185,280"/>
+<area shape="poly" id="edge12_Node000004_Node000011" title=" " alt="" coords="286,209,177,252,175,247,284,204"/>
+<area shape="poly" id="edge8_Node000008_Node000006" title=" " alt="" coords="399,282,376,318,371,315,394,279"/>
+<area shape="poly" id="edge10_Node000009_Node000006" title=" " alt="" coords="618,283,408,331,407,326,617,277"/>
+<area shape="poly" id="edge15_Node000011_Node000005" title=" " alt="" coords="122,282,73,321,70,317,119,278"/>
+<area shape="poly" id="edge13_Node000011_Node000006" title=" " alt="" coords="171,277,311,321,309,327,170,283"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="113,328,183,353"/>
+<area shape="poly" id="edge14_Node000011_Node000012" title=" " alt="" coords="139,280,146,314,141,315,134,281"/>
+</map>

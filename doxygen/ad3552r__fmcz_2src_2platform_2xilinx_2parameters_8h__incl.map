@@ -1,0 +1,19 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/projects/ad3552r_fmcz/src/platform/xilinx/parameters.h" name="/home/runner/work/no&#45;OS/no&#45;OS/projects/ad3552r_fmcz/src/platform/xilinx/parameters.h">
+<area shape="rect" id="Node000001" title="Parameters Definitions." alt="" coords="157,5,358,75"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,123,123,148"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="189,77,101,119,99,114,186,72"/>
+<area shape="rect" id="Node000003" href="$xilinx__spi_8h.html" title=" " alt="" coords="147,123,243,148"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="237,76,212,113,208,110,233,73"/>
+<area shape="rect" id="Node000006" href="$xilinx__gpio_8h.html" title=" " alt="" coords="267,123,373,148"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="282,73,307,110,302,113,278,76"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="397,123,491,148"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="326,72,410,114,407,119,324,77"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="178,269,249,295"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="184,150,159,182,152,201,155,220,168,241,186,259,182,263,164,245,149,222,147,201,154,180,179,147"/>
+<area shape="rect" id="Node000005" href="$no__os__spi_8h.html" title="Header file of SPI Interface." alt="" coords="164,196,263,221"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="200,148,209,182,204,184,195,149"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="216,222,216,256,211,256,211,222"/>
+<area shape="poly" id="edge7_Node000006_Node000004" title=" " alt="" coords="318,149,301,183,277,223,240,262,236,258,273,220,297,181,313,147"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="337,196,420,221"/>
+<area shape="poly" id="edge8_Node000006_Node000007" title=" " alt="" coords="332,147,363,184,359,187,328,150"/>
+</map>

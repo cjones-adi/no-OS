@@ -1,0 +1,36 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/maxim/max32662/maxim_pwm.c" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/maxim/max32662/maxim_pwm.c">
+<area shape="rect" id="Node000001" title="Maxim platform specific implementation PWM API." alt="" coords="191,5,437,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="118,181,174,207"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="287,62,234,110,169,173,166,169,231,106,283,58"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="398,108,494,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="356,58,418,98,415,103,353,62"/>
+<area shape="rect" id="Node000004" href="$no__os__alloc_8h.html" title=" " alt="" coords="5,108,116,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="237,63,108,106,107,101,236,58"/>
+<area shape="rect" id="Node000007" href="$no__os__error_8h.html" title="Error codes definition." alt="" coords="518,108,627,133"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="394,58,526,101,525,106,392,63"/>
+<area shape="rect" id="Node000009" href="$no__os__util_8h.html" title="Header file of utility functions." alt="" coords="199,181,299,207"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="281,62,261,83,246,109,241,139,244,167,239,168,236,138,241,107,257,80,278,58"/>
+<area shape="rect" id="Node000012" href="$no__os__units_8h.html" title="Header file of Units." alt="" coords="652,108,763,133"/>
+<area shape="poly" id="edge12_Node000001_Node000012" title=" " alt="" coords="435,57,643,103,641,108,434,63"/>
+<area shape="rect" id="Node000013" href="$max32662_2maxim__pwm_8h.html" title="Maxim platform specific implementation PWM API." alt="" coords="255,108,373,133"/>
+<area shape="poly" id="edge13_Node000001_Node000013" title=" " alt="" coords="317,60,317,94,311,94,311,60"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="27,181,94,207"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="63,134,63,168,58,168,58,134"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="61,255,132,280"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="49,135,35,150,22,167,15,187,18,206,36,228,59,246,56,250,32,232,13,208,9,186,17,165,30,146,45,132"/>
+<area shape="rect" id="Node000008" href="$errno_8h.html" title="Error macro definition for ARM Compiler." alt="" coords="544,181,612,207"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="576,133,579,168,573,168,571,134"/>
+<area shape="poly" id="edge10_Node000009_Node000006" title=" " alt="" coords="225,209,135,251,133,246,223,204"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="400,255,471,280"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="280,204,393,247,391,252,278,209"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="235,255,318,280"/>
+<area shape="poly" id="edge11_Node000009_Node000011" title=" " alt="" coords="256,206,270,241,265,243,251,208"/>
+<area shape="poly" id="edge14_Node000013_Node000002" title=" " alt="" coords="288,136,187,178,185,173,286,131"/>
+<area shape="poly" id="edge19_Node000013_Node000009" title=" " alt="" coords="305,135,270,173,267,169,301,132"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="323,181,385,207"/>
+<area shape="poly" id="edge15_Node000013_Node000014" title=" " alt="" coords="323,132,343,168,338,171,318,135"/>
+<area shape="rect" id="Node000015" href="$no__os__pwm_8h.html" title="Header file of PWM Interface." alt="" coords="409,181,520,207"/>
+<area shape="poly" id="edge16_Node000013_Node000015" title=" " alt="" coords="339,131,429,173,426,178,337,136"/>
+<area shape="poly" id="edge17_Node000015_Node000010" title=" " alt="" coords="462,208,448,243,443,241,457,206"/>
+<area shape="poly" id="edge18_Node000015_Node000011" title=" " alt="" coords="435,209,321,252,319,247,434,204"/>
+</map>

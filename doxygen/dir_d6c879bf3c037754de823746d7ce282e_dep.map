@@ -1,0 +1,13 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/maxim/max32690" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/maxim/max32690">
+<area shape="rect" id="node1" href="dir_08ebeda7a5c374f406e42d45438e2353.html" title="common" alt="" coords="33,125,111,151"/>
+<area shape="rect" id="node2" href="dir_d6c879bf3c037754de823746d7ce282e.html" title="max32690" alt="" coords="27,52,117,77"/>
+<area shape="poly" id="edge1" href="dir_000817_000359.html" alt="" coords="75,78,75,112,69,112,69,78"/>
+<area shape="rect" id="edge1-headlabel" href="dir_000817_000359.html" title="2" alt="" coords="76,100,85,114"/>
+<area shape="rect" id="node3" href="dir_3f3f8f80b724d4673ee87adfe7b9b568.html" title="mbed" alt="" coords="139,125,197,151"/>
+<area shape="poly" id="edge2" href="dir_000817_000894.html" alt="" coords="89,75,143,115,140,119,86,80"/>
+<area shape="rect" id="edge2-headlabel" href="dir_000817_000894.html" title="8" alt="" coords="138,100,147,115"/>
+<area shape="rect" id="node4" href="dir_6b32e8ebbe7a92323e8e3528c2c140d7.html" title="include" alt="" coords="221,125,291,151"/>
+<area shape="poly" id="edge3" href="dir_000817_000711.html" alt="" coords="103,75,214,118,212,123,101,80"/>
+<area shape="rect" id="edge3-headlabel" href="dir_000817_000711.html" title="62" alt="" coords="203,103,221,118"/>
+<area shape="rect" id="clust1" href="dir_64935e7fc31c67e17cd41e921221ca77.html" title="maxim" alt="" coords="16,16,128,161"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/adc/ad9250/ad9250.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/adc/ad9250/ad9250.h">
+<area shape="rect" id="Node000001" title="Header file of AD9250 Driver." alt="" coords="5,5,171,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="53,181,123,207"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="82,61,74,95,73,133,82,168,77,169,68,134,69,95,76,59"/>
+<area shape="rect" id="Node000003" href="$no__os__spi_8h.html" title="Header file of SPI Interface." alt="" coords="83,108,181,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="104,59,122,94,117,97,99,61"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="127,135,105,171,100,168,122,132"/>
+</map>

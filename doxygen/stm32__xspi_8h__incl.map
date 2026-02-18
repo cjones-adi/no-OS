@@ -1,0 +1,14 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/stm32/stm32_xspi.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/stm32/stm32_xspi.h">
+<area shape="rect" id="Node000001" title="Header file for the stm32 xspi driver." alt="" coords="22,5,219,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="46,181,117,207"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="61,62,33,83,12,109,9,127,17,143,31,159,49,172,46,176,28,163,12,146,4,127,7,107,29,79,58,58"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="22,108,104,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="105,62,81,98,76,95,101,59"/>
+<area shape="rect" id="Node000004" href="$no__os__spi_8h.html" title="Header file of SPI Interface." alt="" coords="128,108,227,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="140,59,164,95,160,98,136,62"/>
+<area shape="rect" id="Node000005" href="$stm32__hal_8h.html" title=" " alt="" coords="252,108,354,133"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="177,58,267,100,265,105,175,62"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="164,136,110,175,107,171,161,131"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="270,181,336,207"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="306,134,306,168,300,168,300,134"/>
+</map>

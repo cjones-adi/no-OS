@@ -1,0 +1,11 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/projects/iio_demo/src/platform/xilinx/parameters.c" name="/home/runner/work/no&#45;OS/no&#45;OS/projects/iio_demo/src/platform/xilinx/parameters.c">
+<area shape="rect" id="Node000001" title="Definition of xilinx platform data used by iio_demo project." alt="" coords="100,5,289,75"/>
+<area shape="rect" id="Node000002" href="$iio__demo_2src_2platform_2xilinx_2parameters_8h.html" title="Definitions specific to xilinx platform used by iio_demo project." alt="" coords="140,123,249,148"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="197,75,197,109,192,109,192,75"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,196,123,221"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="175,150,98,192,96,187,172,146"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="147,196,242,221"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="197,148,197,182,192,182,192,148"/>
+<area shape="rect" id="Node000005" href="$xilinx__uart_8h.html" title=" " alt="" coords="266,196,369,221"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="216,146,287,187,284,191,213,150"/>
+</map>

@@ -1,0 +1,15 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/api/no_os_irq.c" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/api/no_os_irq.c">
+<area shape="rect" id="Node000001" title="Implementation of the IRQ Interface." alt="" coords="122,5,287,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,108,92,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="158,62,83,104,80,99,156,58"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="116,108,187,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="191,61,168,98,164,95,186,59"/>
+<area shape="rect" id="Node000004" href="$no__os__irq_8h.html" title="Header file of IRQ interface." alt="" coords="211,108,307,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="224,59,247,95,242,98,219,62"/>
+<area shape="rect" id="Node000006" href="$no__os__error_8h.html" title="Error codes definition." alt="" coords="331,108,441,133"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="261,58,351,100,348,105,259,62"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="224,181,295,207"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="262,134,262,168,257,168,257,134"/>
+<area shape="rect" id="Node000007" href="$errno_8h.html" title="Error macro definition for ARM Compiler." alt="" coords="352,181,420,207"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="389,134,389,168,383,168,383,134"/>
+</map>

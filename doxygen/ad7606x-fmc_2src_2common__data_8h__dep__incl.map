@@ -1,0 +1,9 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/projects/ad7606x&#45;fmc/src/common_data.h" name="/home/runner/work/no&#45;OS/no&#45;OS/projects/ad7606x&#45;fmc/src/common_data.h">
+<area shape="rect" id="Node000001" title="Header file for init parameters." alt="" coords="233,5,437,60"/>
+<area shape="rect" id="Node000002" href="$ad7606x-fmc_2src_2basic__example_8c.html" title="Implementation of a basic example." alt="" coords="5,108,209,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="265,68,168,110,166,106,262,63"/>
+<area shape="rect" id="Node000003" href="$ad7606x-fmc_2src_2common__data_8c.html" title="Definitions of initialization parameters common for all project variants." alt="" coords="233,108,437,163"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="338,74,338,108,333,108,333,74"/>
+<area shape="rect" id="Node000004" href="$ad7606x-fmc_2src_2iio__example_8c.html" title="Implementation of an example with the IIO interface." alt="" coords="461,108,665,163"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="408,63,505,106,503,110,406,68"/>
+</map>

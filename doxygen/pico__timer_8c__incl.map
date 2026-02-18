@@ -1,0 +1,30 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/pico/pico_timer.c" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/pico/pico_timer.c">
+<area shape="rect" id="Node000001" title="Implementation of pico timer driver." alt="" coords="356,5,553,60"/>
+<area shape="rect" id="Node000002" href="$no__os__error_8h.html" title="Error codes definition." alt="" coords="5,108,115,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="356,58,126,108,125,103,355,53"/>
+<area shape="rect" id="Node000004" href="$no__os__util_8h.html" title="Header file of utility functions." alt="" coords="145,108,245,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="376,63,243,106,241,101,374,58"/>
+<area shape="rect" id="Node000008" href="$no__os__timer_8h.html" title="Timer control module header." alt="" coords="453,181,566,207"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="488,59,507,81,521,107,525,139,520,169,515,168,520,139,516,109,502,84,484,62"/>
+<area shape="rect" id="Node000009" href="$no__os__alloc_8h.html" title=" " alt="" coords="269,108,379,133"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="416,62,355,103,352,98,413,58"/>
+<area shape="rect" id="Node000011" href="$pico__timer_8h.html" title="Header file for the pico timer driver." alt="" coords="403,108,506,133"/>
+<area shape="poly" id="edge12_Node000001_Node000011" title=" " alt="" coords="457,60,457,94,452,94,452,60"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="581,108,715,133"/>
+<area shape="poly" id="edge14_Node000001_Node000012" title=" " alt="" coords="515,58,611,100,609,105,513,63"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="739,108,855,133"/>
+<area shape="poly" id="edge15_Node000001_Node000013" title=" " alt="" coords="554,56,739,102,738,107,553,61"/>
+<area shape="rect" id="Node000003" href="$errno_8h.html" title="Error macro definition for ARM Compiler." alt="" coords="15,181,83,207"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="61,134,56,168,50,167,56,133"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="279,255,350,280"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="182,135,166,150,152,168,144,187,145,196,149,205,173,229,203,245,235,255,266,261,265,266,234,260,200,250,169,233,144,208,140,198,139,187,147,166,162,147,178,131"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="266,181,337,207"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="213,131,274,171,271,176,210,136"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="159,181,241,207"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="198,133,201,168,195,168,193,134"/>
+<area shape="poly" id="edge8_Node000008_Node000005" title=" " alt="" coords="479,209,360,252,358,247,477,204"/>
+<area shape="poly" id="edge11_Node000009_Node000006" title=" " alt="" coords="323,134,312,169,307,167,318,133"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="361,181,428,207"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="338,132,376,170,372,174,334,136"/>
+<area shape="poly" id="edge13_Node000011_Node000008" title=" " alt="" coords="466,132,494,169,490,172,462,135"/>
+</map>

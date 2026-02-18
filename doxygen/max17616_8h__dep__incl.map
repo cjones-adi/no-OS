@@ -1,0 +1,18 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/power/max17616/max17616.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/power/max17616/max17616.h">
+<area shape="rect" id="Node000001" title="Header file of the MAX17616 Driver." alt="" coords="371,5,552,60"/>
+<area shape="rect" id="Node000002" href="$iio__max17616_8c.html" title="Source file of the MAX17616 IIO Driver." alt="" coords="5,233,208,287"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="357,47,291,57,225,71,169,89,148,99,134,110,116,138,107,171,104,204,106,232,100,233,99,204,102,170,111,136,130,106,146,94,167,84,224,66,290,52,357,42"/>
+<area shape="rect" id="Node000003" href="$iio__max17616_8h.html" title="Header file of the MAX17616 IIO Driver." alt="" coords="144,115,347,170"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="397,69,299,118,297,113,395,64"/>
+<area shape="rect" id="Node000005" href="$max17616_8c.html" title="Source file of the MAX17616 Driver." alt="" coords="371,115,552,170"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="464,74,464,115,459,115,459,74"/>
+<area shape="rect" id="Node000006" href="$max17616_2src_2common_2common__data_8h.html" title="Defines common data to be used by max17616 examples." alt="" coords="577,115,794,170"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="529,64,632,113,630,118,527,69"/>
+<area shape="rect" id="Node000008" href="$max17616_2src_2examples_2basic_2basic__example_8c.html" title="Basic example source file for max17616 project." alt="" coords="818,108,1035,177"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="566,52,807,105,818,108,817,113,806,111,565,57"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="205,181,140,234,137,230,202,177"/>
+<area shape="rect" id="Node000004" href="$max17616_2src_2examples_2iio__example_2iio__example_8c.html" title="IIO example source file for max17616 project." alt="" coords="233,225,450,295"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="278,179,315,223,311,227,274,182"/>
+<area shape="rect" id="Node000007" href="$max17616_2src_2common_2common__data_8c.html" title="Defines common data to be used by max17616 examples." alt="" coords="577,233,794,287"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="688,184,688,232,683,232,683,184"/>
+</map>

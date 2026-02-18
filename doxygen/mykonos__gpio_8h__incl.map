@@ -1,0 +1,10 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/projects/ad9371/src/devices/mykonos/mykonos_gpio.h" name="/home/runner/work/no&#45;OS/no&#45;OS/projects/ad9371/src/devices/mykonos/mykonos_gpio.h">
+<area shape="rect" id="Node000001" title="Contains macro definitions and function prototypes for mykonos_gpio.c." alt="" coords="5,5,277,60"/>
+<area shape="rect" id="Node000002" href="$t__mykonos_8h.html" title="Contains type definitions for Mykonos API." alt="" coords="15,108,121,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="121,62,89,99,85,96,117,58"/>
+<area shape="rect" id="Node000004" href="$t__mykonos__gpio_8h.html" title="Mykonos GPIO error handling and type defines." alt="" coords="145,108,285,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="166,58,198,96,194,99,162,62"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="96,181,187,207"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="82,132,121,170,118,174,78,136"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="204,136,165,174,161,170,201,132"/>
+</map>

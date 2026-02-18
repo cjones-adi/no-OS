@@ -1,0 +1,24 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/rf&#45;transceiver/hmc630x/hmc630x.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/rf&#45;transceiver/hmc630x/hmc630x.h">
+<area shape="rect" id="Node000001" title="hmc6300 and hmc6301 device driver header." alt="" coords="291,5,531,60"/>
+<area shape="rect" id="Node000002" href="$hmc630x_8c.html" title="hmc6300 and hmc6301 device driver implementation." alt="" coords="5,115,244,170"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="330,67,195,118,193,113,328,62"/>
+<area shape="rect" id="Node000003" href="$iio__hmc630x_8c.html" title="Source file of hmc6300 and hmc6301 driver extension for IIOD." alt="" coords="319,225,503,295"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="414,74,414,225,409,225,409,74"/>
+<area shape="rect" id="Node000004" href="$iio__hmc630x_8h.html" title="Header file of hmc6300 and hmc6301 driver extension for IIOD." alt="" coords="449,108,633,177"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="456,67,502,106,499,110,452,71"/>
+<area shape="rect" id="Node000005" href="$wethlink_2src_2app_2main_8c.html" title=" " alt="" coords="464,445,668,500"/>
+<area shape="poly" id="edge12_Node000001_Node000005" title=" " alt="" coords="379,72,344,118,313,174,303,204,298,235,300,265,310,294,326,320,346,344,394,385,446,418,496,443,494,447,443,423,391,390,343,348,322,323,305,296,294,266,292,234,297,203,308,172,339,115,375,69"/>
+<area shape="rect" id="Node000006" href="$mwc_8h.html" title=" " alt="" coords="579,233,783,287"/>
+<area shape="poly" id="edge13_Node000001_Node000006" title=" " alt="" coords="546,49,600,71,625,87,647,106,666,136,678,170,683,203,684,232,679,232,678,204,672,171,661,138,643,110,622,91,597,76,544,54"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="495,188,451,227,448,223,491,184"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="547,191,567,445,561,445,542,192"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="594,184,651,231,647,235,590,188"/>
+<area shape="poly" id="edge7_Node000006_Node000005" title=" " alt="" coords="651,300,620,344,595,398,577,446,572,444,590,396,616,341,647,297"/>
+<area shape="rect" id="Node000007" href="$mwc_8c.html" title=" " alt="" coords="629,343,833,397"/>
+<area shape="poly" id="edge8_Node000006_Node000007" title=" " alt="" coords="701,299,721,341,717,344,697,301"/>
+<area shape="rect" id="Node000008" href="$net_8h.html" title=" " alt="" coords="857,343,1061,397"/>
+<area shape="poly" id="edge9_Node000006_Node000008" title=" " alt="" coords="762,290,893,340,891,345,760,295"/>
+<area shape="poly" id="edge10_Node000008_Node000005" title=" " alt="" coords="844,403,669,448,667,443,843,398"/>
+<area shape="rect" id="Node000009" href="$net_8c.html" title=" " alt="" coords="857,445,1061,500"/>
+<area shape="poly" id="edge11_Node000008_Node000009" title=" " alt="" coords="962,411,962,445,957,445,957,411"/>
+</map>

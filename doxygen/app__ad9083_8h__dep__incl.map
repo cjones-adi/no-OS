@@ -1,0 +1,9 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/projects/ad9083/src/app_ad9083.h" name="/home/runner/work/no&#45;OS/no&#45;OS/projects/ad9083/src/app_ad9083.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="225,5,421,60"/>
+<area shape="rect" id="Node000002" href="$ad9083_2src_2app_8c.html" title="AD9083 application example." alt="" coords="5,108,201,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="255,68,162,110,160,106,252,63"/>
+<area shape="rect" id="Node000003" href="$app__ad9083_8c.html" title="Implementation of app_ad9083." alt="" coords="225,108,421,163"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="326,74,326,108,321,108,321,74"/>
+<area shape="rect" id="Node000004" href="$ad9083_2src_2app__clocking_8c.html" title="Clock setup and initialization routines." alt="" coords="445,108,641,163"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="394,63,487,106,485,110,392,68"/>
+</map>

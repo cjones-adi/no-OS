@@ -1,0 +1,26 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/projects/iio_demo_freeRTOS/src/platform/maxim/parameters.c" name="/home/runner/work/no&#45;OS/no&#45;OS/projects/iio_demo_freeRTOS/src/platform/maxim/parameters.c">
+<area shape="rect" id="Node000001" title="Definition of Maxim platform data used by iio_demo_freeRTOS project." alt="" coords="364,5,580,75"/>
+<area shape="rect" id="Node000002" href="$iio__demo__free_r_t_o_s_2src_2platform_2maxim_2parameters_8h.html" title="Definitions specific to Maxim platform used by iio_demo project." alt="" coords="417,123,527,148"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="475,75,475,109,469,109,469,75"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,196,109,221"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="418,148,123,198,122,193,417,143"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="134,196,247,221"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="427,151,250,195,249,190,426,145"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="272,196,387,221"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="450,150,366,192,364,187,448,146"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="411,196,533,221"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="475,148,475,182,469,182,469,148"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="557,196,683,221"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="497,146,585,188,582,192,495,150"/>
+<area shape="rect" id="Node000008" href="$no__os__util_8h.html" title="Header file of utility functions." alt="" coords="845,196,945,221"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="527,143,831,193,831,198,526,148"/>
+<area shape="rect" id="Node000012" href="$no__os__timer_8h.html" title="Timer control module header." alt="" coords="707,196,821,221"/>
+<area shape="poly" id="edge11_Node000002_Node000012" title=" " alt="" coords="520,145,704,190,703,195,518,151"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="746,269,817,295"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="878,224,813,264,810,260,875,219"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="850,269,921,295"/>
+<area shape="poly" id="edge9_Node000008_Node000010" title=" " alt="" coords="896,222,891,256,886,255,890,221"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="945,269,1028,295"/>
+<area shape="poly" id="edge10_Node000008_Node000011" title=" " alt="" coords="911,219,963,259,959,263,908,223"/>
+<area shape="poly" id="edge12_Node000012_Node000009" title=" " alt="" coords="769,221,778,256,773,257,764,222"/>
+</map>

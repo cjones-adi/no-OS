@@ -1,0 +1,14 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/adc/ad469x/ad469x.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/adc/ad469x/ad469x.h">
+<area shape="rect" id="Node000001" title="Header file for ad469x Driver." alt="" coords="285,5,451,60"/>
+<area shape="rect" id="Node000002" href="$ad469x_8c.html" title="Implementation of ad69x Driver." alt="" coords="5,115,171,170"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="288,67,157,118,155,113,286,62"/>
+<area shape="rect" id="Node000003" href="$ad469x__evb_2src_2common_2common__data_8c.html" title="Defines common data to be used by ad469x_evb examples." alt="" coords="165,225,411,280"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="278,69,254,87,236,109,228,127,226,141,236,176,248,202,264,224,260,227,244,204,231,178,221,142,223,125,231,107,250,83,275,65"/>
+<area shape="rect" id="Node000004" href="$ad469x__evb_2src_2common_2common__data_8h.html" title="Defines common data to be used by ad469x_evb examples." alt="" coords="245,115,491,170"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="371,74,371,115,365,115,365,74"/>
+<area shape="rect" id="Node000005" href="$ad469x__evb_2src_2examples_2basic__example_2basic__example_8c.html" title="Implementation of Basic example." alt="" coords="515,108,714,177"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="442,63,539,105,537,110,440,68"/>
+<area shape="rect" id="Node000006" href="$ad469x__evb_2src_2examples_2iio__example_2iio__example_8c.html" title="Implementation of IIO example for ad469x_evb project." alt="" coords="738,108,966,177"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="465,50,727,105,739,108,737,113,726,111,464,55"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="342,183,310,227,305,224,338,180"/>
+</map>

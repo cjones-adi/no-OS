@@ -1,0 +1,9 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/adc/ad719x/ad719x.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/adc/ad719x/ad719x.h">
+<area shape="rect" id="Node000001" title="Header file of AD7190/2/3/4/5 Driver." alt="" coords="112,5,277,60"/>
+<area shape="rect" id="Node000002" href="$ad719x_8c.html" title="Implementation of AD7190/2/3/4/5 Driver." alt="" coords="5,108,171,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="159,72,118,110,114,106,155,68"/>
+<area shape="rect" id="Node000003" href="$ad719x_2src_2common_2common__data_8h.html" title="Defines common data to be used by ad719x examples." alt="" coords="195,108,410,163"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="235,68,276,106,273,110,231,72"/>
+<area shape="rect" id="Node000004" href="$ad719x_2src_2common_2common__data_8c.html" title="Defines common data to be used by ad719x examples." alt="" coords="195,211,410,265"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="305,176,305,211,300,211,300,176"/>
+</map>

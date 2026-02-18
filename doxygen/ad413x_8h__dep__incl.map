@@ -1,0 +1,12 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/afe/ad413x/ad413x.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/afe/ad413x/ad413x.h">
+<area shape="rect" id="Node000001" title="Header file of AD413X Driver." alt="" coords="185,5,351,60"/>
+<area shape="rect" id="Node000002" href="$ad413x_8c.html" title="Implementation of AD413X Driver." alt="" coords="5,108,171,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="210,69,137,110,134,105,208,64"/>
+<area shape="rect" id="Node000003" href="$iio__ad413x_8c.html" title=" " alt="" coords="185,211,351,265"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="249,73,236,109,232,135,236,162,244,187,255,209,250,212,239,189,231,163,227,135,231,107,244,71"/>
+<area shape="rect" id="Node000004" href="$iio__ad413x_8h.html" title="Header file of iio_ad413x." alt="" coords="245,108,411,163"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="293,70,315,107,310,109,288,73"/>
+<area shape="rect" id="Node000005" href="$ad413x_2src_2app_2main_8c.html" title="Implementation of Main Function." alt="" coords="435,108,631,163"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="351,62,465,105,463,110,349,67"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="308,176,286,212,281,209,303,173"/>
+</map>

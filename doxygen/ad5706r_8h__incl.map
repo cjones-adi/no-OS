@@ -1,0 +1,18 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/dac/ad5706r/ad5706r.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/dac/ad5706r/ad5706r.h">
+<area shape="rect" id="Node000001" title="Header file of AD5706R Driver." alt="" coords="103,5,269,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="215,181,285,207"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="104,53,61,67,27,85,15,95,9,106,9,118,16,132,28,142,45,151,94,166,202,185,201,190,92,171,43,155,25,146,12,135,4,119,4,105,11,92,24,81,59,62,102,48"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="26,108,109,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="151,62,96,102,93,98,148,58"/>
+<area shape="rect" id="Node000004" href="$no__os__gpio_8h.html" title="Header file of GPIO Interface." alt="" coords="133,108,239,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="189,60,189,94,183,94,183,60"/>
+<area shape="rect" id="Node000005" href="$no__os__spi_8h.html" title="Header file of SPI Interface." alt="" coords="263,108,362,133"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="226,58,286,98,283,102,223,62"/>
+<area shape="rect" id="Node000006" href="$no__os__crc8_8h.html" title="Header file of CRC&#45;8 computation." alt="" coords="386,108,493,133"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="264,58,393,101,392,106,263,63"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="199,132,233,169,229,173,195,135"/>
+<area shape="poly" id="edge6_Node000005_Node000002" title=" " alt="" coords="304,135,271,173,267,169,300,132"/>
+<area shape="poly" id="edge8_Node000006_Node000002" title=" " alt="" coords="410,136,295,179,293,174,408,131"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="402,181,477,207"/>
+<area shape="poly" id="edge9_Node000006_Node000007" title=" " alt="" coords="442,134,442,168,437,168,437,134"/>
+</map>

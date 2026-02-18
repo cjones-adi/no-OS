@@ -1,0 +1,9 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/stm32/stm32_timer.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/stm32/stm32_timer.h">
+<area shape="rect" id="Node000001" title="Header file for the stm32 timer driver." alt="" coords="115,5,312,60"/>
+<area shape="rect" id="Node000002" href="$stm32__timer_8c.html" title="Implementation of stm32 timer driver." alt="" coords="5,115,203,170"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="179,72,133,117,129,113,175,68"/>
+<area shape="rect" id="Node000003" href="$iio__demo_2src_2platform_2stm32_2parameters_8h.html" title="Definitions specific to stm32 platform used by iio_demo project." alt="" coords="227,108,421,177"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="252,68,291,106,288,110,249,72"/>
+<area shape="rect" id="Node000004" href="$iio__demo_2src_2platform_2stm32_2parameters_8c.html" title="Definition of stm32 platform data used by iio_demo project." alt="" coords="227,225,421,295"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="327,191,327,225,321,225,321,191"/>
+</map>

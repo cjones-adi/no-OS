@@ -1,0 +1,15 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/axi_core/jesd204/altera_adxcvr.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/axi_core/jesd204/altera_adxcvr.h">
+<area shape="rect" id="Node000001" title="Driver for the Altera ADXCVR Configuration." alt="" coords="214,5,430,60"/>
+<area shape="rect" id="Node000002" href="$altera__a10__atx__pll_8h.html" title=" " alt="" coords="99,108,284,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="281,71,234,110,231,106,278,67"/>
+<area shape="rect" id="Node000004" href="$altera__adxcvr_8c.html" title="Driver for the Altera ADXCVR Configuration." alt="" coords="215,233,429,287"/>
+<area shape="poly" id="edge7_Node000001_Node000004" title=" " alt="" coords="325,74,325,233,319,233,319,74"/>
+<area shape="rect" id="Node000005" href="$altera__a10__cdr__pll_8h.html" title="Driver for the Altera CDR/CMU PLL dynamic reconfiguration." alt="" coords="360,108,545,177"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="366,67,413,106,410,110,363,71"/>
+<area shape="rect" id="Node000003" href="$altera__a10__atx__pll_8c.html" title="Driver for the Altera ATX PLL dynamic reconfiguration." alt="" coords="5,225,191,295"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="157,190,127,227,123,223,153,187"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="241,184,294,231,291,235,238,188"/>
+<area shape="poly" id="edge6_Node000005_Node000004" title=" " alt="" coords="406,188,353,235,350,231,403,184"/>
+<area shape="rect" id="Node000006" href="$altera__a10__cdr__pll_8c.html" title="Driver for the Altera CDR/CMU PLL dynamic reconfiguration." alt="" coords="453,225,639,295"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="491,187,521,223,517,227,487,190"/>
+</map>

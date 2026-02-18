@@ -1,0 +1,13 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/accel/adxl355/adxl355.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/accel/adxl355/adxl355.h">
+<area shape="rect" id="Node000001" title="Header file of ADXL355 Driver." alt="" coords="311,5,485,60"/>
+<area shape="rect" id="Node000002" href="$adxl355_8c.html" title="Implementation of ADXL355 Driver." alt="" coords="5,115,180,170"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="312,67,168,118,166,113,310,62"/>
+<area shape="rect" id="Node000003" href="$iio__adxl355_8c.html" title="Implementation of IIO ADXL355 Driver." alt="" coords="204,115,379,170"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="364,72,319,117,316,113,360,68"/>
+<area shape="rect" id="Node000004" href="$eval-adxl355-pmdz_2src_2common_2common__data_8h.html" title="Defines common data to be used by eval&#45;adxl355&#45;pmdz examples." alt="" coords="403,108,607,177"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="436,68,473,106,469,110,432,72"/>
+<area shape="rect" id="Node000006" href="$eval-adxl355-pmdz_2src_2examples_2dummy_2dummy__example_8c.html" title="DUMMY example header for eval&#45;adxl355&#45;pmdz project." alt="" coords="631,108,842,177"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="494,62,632,105,631,110,493,67"/>
+<area shape="rect" id="Node000005" href="$eval-adxl355-pmdz_2src_2common_2common__data_8c.html" title="Defines common data to be used by eval&#45;adxl355&#45;pmdz examples." alt="" coords="403,225,607,295"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="507,191,507,225,502,225,502,191"/>
+</map>

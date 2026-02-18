@@ -1,0 +1,19 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/adc/ad9208/ad9208_api/ad9208_reg.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/adc/ad9208/ad9208_api/ad9208_reg.h">
+<area shape="rect" id="Node000001" title="AD9208 SPI Register Definition Header File." alt="" coords="649,5,895,60"/>
+<area shape="rect" id="Node000002" href="$ad9208_8h.html" title="Header file of AD9208 Driver." alt="" coords="108,115,273,170"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="636,50,468,74,376,91,286,111,261,118,259,113,285,105,375,85,467,69,635,45"/>
+<area shape="rect" id="Node000005" href="$ad9208__adc__api_8c.html" title="Contains AD9208 APIs for ADC, DDC, NCO configuration and control." alt="" coords="297,108,503,177"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="669,66,515,111,504,114,502,109,514,105,667,61"/>
+<area shape="rect" id="Node000006" href="$ad9208__api_8c.html" title="Contains AD9208 APIs for ADC Chip Level Configuration and Control." alt="" coords="527,115,769,170"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="733,71,680,117,677,113,729,67"/>
+<area shape="rect" id="Node000007" href="$ad9208__jesd__api_8c.html" title="Contains AD9208 APIs for ADC JESD Configuration and Control." alt="" coords="793,108,999,177"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="815,68,859,106,856,110,811,72"/>
+<area shape="rect" id="Node000008" href="$ad9208__reg_8c.html" title="Contains AD9208 APIs for ADC Register Configuration and Control." alt="" coords="1023,115,1267,170"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="876,61,1055,113,1054,118,875,66"/>
+<area shape="rect" id="Node000009" href="$ad9208__signal__monitor__api_8c.html" title="Contains AD9208 APIs for Signal Monitoring Features." alt="" coords="1292,108,1497,177"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="909,46,1087,70,1281,105,1292,108,1291,113,1279,111,1086,75,908,51"/>
+<area shape="rect" id="Node000003" href="$ad9208_8c.html" title="Implementation of AD9208 Driver." alt="" coords="5,225,171,280"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="158,182,115,227,111,223,154,178"/>
+<area shape="rect" id="Node000004" href="$ad9208_2src_2main_8c.html" title="Implementation of Main Function." alt="" coords="195,225,391,280"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="227,178,270,223,266,227,223,182"/>
+</map>

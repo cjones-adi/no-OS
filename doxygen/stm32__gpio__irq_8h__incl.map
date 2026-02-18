@@ -1,0 +1,11 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/stm32/stm32_gpio_irq.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/stm32/stm32_gpio_irq.h">
+<area shape="rect" id="Node000001" title="Header file for stm32 gpio irq specifics." alt="" coords="16,5,213,60"/>
+<area shape="rect" id="Node000002" href="$no__os__irq_8h.html" title="Header file of IRQ interface." alt="" coords="5,108,101,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="98,62,72,98,68,95,94,59"/>
+<area shape="rect" id="Node000004" href="$stm32__hal_8h.html" title=" " alt="" coords="126,108,229,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="136,58,163,95,158,98,132,62"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="18,181,89,207"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="56,134,56,168,51,168,51,134"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="144,181,211,207"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="180,134,180,168,175,168,175,134"/>
+</map>

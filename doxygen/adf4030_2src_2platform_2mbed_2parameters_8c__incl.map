@@ -1,0 +1,28 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/projects/adf4030/src/platform/mbed/parameters.c" name="/home/runner/work/no&#45;OS/no&#45;OS/projects/adf4030/src/platform/mbed/parameters.c">
+<area shape="rect" id="Node000001" title="Definition of Mbed platform data used by ADF4030 project." alt="" coords="127,5,363,60"/>
+<area shape="rect" id="Node000002" href="$adf4030_2src_2platform_2mbed_2parameters_8h.html" title="Definitions specific to Mbed platform used by ADF4030 project." alt="" coords="190,108,299,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="247,60,247,94,242,94,242,60"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,181,105,207"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="215,136,100,179,98,174,213,131"/>
+<area shape="rect" id="Node000004" href="$mbed__uart_8h.html" title="Header containing extra types required for UART interface." alt="" coords="130,181,234,207"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="236,135,203,173,199,169,232,132"/>
+<area shape="rect" id="Node000007" href="$mbed__spi_8h.html" title="Header containing extra types required for SPI interface." alt="" coords="259,181,356,207"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="257,132,290,169,286,173,253,135"/>
+<area shape="rect" id="Node000008" href="$no__os__uart_8h.html" title="Header file of UART interface." alt="" coords="395,181,500,207"/>
+<area shape="poly" id="edge9_Node000002_Node000008" title=" " alt="" coords="278,131,403,174,401,179,276,136"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="203,255,270,280"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="193,205,222,242,217,245,189,209"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="291,328,374,353"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="183,207,181,242,185,261,194,278,211,296,232,310,279,328,277,333,230,315,208,300,189,282,180,263,176,242,177,207"/>
+<area shape="poly" id="edge7_Node000007_Node000005" title=" " alt="" coords="298,209,260,247,256,243,294,205"/>
+<area shape="poly" id="edge8_Node000007_Node000006" title=" " alt="" coords="312,207,331,314,326,315,307,208"/>
+<area shape="poly" id="edge11_Node000008_Node000006" title=" " alt="" coords="434,209,410,230,385,256,364,287,347,317,342,314,359,284,381,253,406,226,431,205"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="525,328,596,353"/>
+<area shape="poly" id="edge10_Node000008_Node000009" title=" " alt="" coords="478,204,512,224,543,253,557,284,562,314,557,315,552,285,538,256,509,228,475,209"/>
+<area shape="rect" id="Node000010" href="$no__os__lf256fifo_8h.html" title="SPSC lock&#45;free fifo of fixed size (256), specialized for UART." alt="" coords="395,255,529,280"/>
+<area shape="poly" id="edge12_Node000008_Node000010" title=" " alt="" coords="452,206,459,241,454,242,447,208"/>
+<area shape="poly" id="edge15_Node000010_Node000006" title=" " alt="" coords="442,282,367,323,365,319,440,278"/>
+<area shape="poly" id="edge14_Node000010_Node000009" title=" " alt="" coords="479,278,535,318,532,322,476,282"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="427,328,497,353"/>
+<area shape="poly" id="edge13_Node000010_Node000011" title=" " alt="" coords="465,280,465,314,459,314,459,280"/>
+</map>

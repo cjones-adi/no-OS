@@ -1,0 +1,32 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/ftd2xx/mpsse/ftd2xx_i2c.c" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/ftd2xx/mpsse/ftd2xx_i2c.c">
+<area shape="rect" id="Node000001" title=" " alt="" coords="349,5,547,60"/>
+<area shape="rect" id="Node000002" href="$no__os__error_8h.html" title="Error codes definition." alt="" coords="5,108,115,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="350,58,126,108,124,102,349,53"/>
+<area shape="rect" id="Node000004" href="$no__os__i2c_8h.html" title="Header file of I2C Interface." alt="" coords="403,181,501,207"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="451,60,454,168,449,168,446,60"/>
+<area shape="rect" id="Node000006" href="$no__os__alloc_8h.html" title=" " alt="" coords="299,108,410,133"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="421,62,379,100,376,96,418,58"/>
+<area shape="rect" id="Node000009" href="$no__os__print__log_8h.html" title="Print messages helpers." alt="" coords="139,108,275,133"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="375,63,253,106,251,101,373,58"/>
+<area shape="rect" id="Node000010" href="$ftd2xx__i2c_8h.html" title=" " alt="" coords="485,108,587,133"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="477,58,516,96,513,100,473,62"/>
+<area shape="rect" id="Node000013" href="$ftd2xx__platform_8h.html" title="Implementation of HAL for ftd2xx platform." alt="" coords="611,108,749,133"/>
+<area shape="poly" id="edge14_Node000001_Node000013" title=" " alt="" coords="520,58,637,101,635,106,518,63"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="774,108,893,133"/>
+<area shape="poly" id="edge16_Node000001_Node000014" title=" " alt="" coords="547,53,769,102,768,108,546,58"/>
+<area shape="rect" id="Node000003" href="$errno_8h.html" title="Error macro definition for ARM Compiler." alt="" coords="26,181,94,207"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="63,134,63,168,57,168,57,134"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="417,255,487,280"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="455,207,455,241,449,241,449,207"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="192,181,259,207"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="335,136,260,177,258,172,333,131"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="307,181,378,207"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="355,134,350,168,344,167,350,133"/>
+<area shape="poly" id="edge9_Node000009_Node000007" title=" " alt="" coords="212,133,221,168,216,169,207,134"/>
+<area shape="poly" id="edge12_Node000010_Node000004" title=" " alt="" coords="524,135,478,174,475,170,521,131"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="525,181,608,207"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="544,133,559,168,554,170,539,135"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="639,181,713,207"/>
+<area shape="poly" id="edge13_Node000010_Node000012" title=" " alt="" coords="560,131,642,173,640,177,557,136"/>
+<area shape="poly" id="edge15_Node000013_Node000012" title=" " alt="" coords="682,134,680,168,675,168,677,134"/>
+</map>

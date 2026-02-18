@@ -1,0 +1,20 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/eeprom/m24512/m24512.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/eeprom/m24512/m24512.h">
+<area shape="rect" id="Node000001" title="Header file for M24512 EEPROM driver." alt="" coords="151,5,342,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="213,181,283,207"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="152,45,91,57,39,74,21,86,11,99,9,114,18,132,29,141,47,150,94,165,200,185,199,190,92,171,44,155,26,146,14,135,4,115,6,97,17,82,36,70,89,52,151,40"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="28,108,111,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="194,62,107,104,104,100,191,58"/>
+<area shape="rect" id="Node000004" href="$no__os__i2c_8h.html" title="Header file of I2C Interface." alt="" coords="135,108,233,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="230,62,203,98,199,95,225,58"/>
+<area shape="rect" id="Node000005" href="$no__os__gpio_8h.html" title="Header file of GPIO Interface." alt="" coords="257,108,364,133"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="268,58,296,95,292,99,264,62"/>
+<area shape="rect" id="Node000006" href="$no__os__error_8h.html" title="Error codes definition." alt="" coords="543,108,652,133"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="343,55,538,102,537,107,342,60"/>
+<area shape="rect" id="Node000008" href="$no__os__eeprom_8h.html" title="Header file for EEPROM APIs." alt="" coords="389,108,518,133"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="311,58,414,100,412,105,309,63"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="197,132,231,169,227,173,193,135"/>
+<area shape="poly" id="edge6_Node000005_Node000002" title=" " alt="" coords="302,135,269,173,265,169,298,132"/>
+<area shape="rect" id="Node000007" href="$errno_8h.html" title="Error macro definition for ARM Compiler." alt="" coords="563,181,631,207"/>
+<area shape="poly" id="edge8_Node000006_Node000007" title=" " alt="" coords="600,134,600,168,595,168,595,134"/>
+<area shape="poly" id="edge10_Node000008_Node000002" title=" " alt="" coords="421,136,295,179,293,174,420,131"/>
+</map>

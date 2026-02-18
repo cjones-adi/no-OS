@@ -1,0 +1,17 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/projects/ltc7841/src/platform/maxim/main.c" name="/home/runner/work/no&#45;OS/no&#45;OS/projects/ltc7841/src/platform/maxim/main.c">
+<area shape="rect" id="Node000001" title="Main file for Maxim platform of ltc7841 project." alt="" coords="239,5,441,60"/>
+<area shape="rect" id="Node000002" href="$ltc7841_2src_2platform_2maxim_2parameters_8h.html" title="Definitions used by the LTC7841 project." alt="" coords="143,108,252,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="298,62,229,103,227,99,295,58"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="277,108,403,133"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="343,60,343,94,337,94,337,60"/>
+<area shape="rect" id="Node000007" href="$no__os__error_8h.html" title="Error codes definition." alt="" coords="428,108,537,133"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="385,58,453,99,451,103,382,62"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,181,120,207"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="177,136,98,177,96,172,174,131"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="144,181,251,207"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="200,134,200,168,195,168,195,134"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="275,181,389,207"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="220,131,299,172,297,177,218,136"/>
+<area shape="rect" id="Node000008" href="$errno_8h.html" title="Error macro definition for ARM Compiler." alt="" coords="449,181,517,207"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="485,134,485,168,480,168,480,134"/>
+</map>

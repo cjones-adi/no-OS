@@ -1,0 +1,28 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/projects/eval&#45;pqmon/src/common/pqlib_afe.h" name="/home/runner/work/no&#45;OS/no&#45;OS/projects/eval&#45;pqmon/src/common/pqlib_afe.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="883,5,1115,60"/>
+<area shape="rect" id="Node000002" href="$iio__pqm_8h.html" title=" " alt="" coords="535,108,759,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="895,66,739,111,738,105,893,61"/>
+<area shape="rect" id="Node000011" href="$pqlib__afe_8c.html" title=" " alt="" coords="883,218,1114,273"/>
+<area shape="poly" id="edge14_Node000001_Node000011" title=" " alt="" coords="1001,74,1001,217,996,217,996,74"/>
+<area shape="rect" id="Node000003" href="$eval-pqmon_2src_2common_2common__data_8h.html" title=" " alt="" coords="130,218,395,273"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="533,169,349,221,347,215,531,164"/>
+<area shape="rect" id="Node000010" href="$iio__pqm_8c.html" title=" " alt="" coords="419,218,642,273"/>
+<area shape="poly" id="edge11_Node000002_Node000010" title=" " alt="" coords="610,175,561,220,557,216,606,171"/>
+<area shape="poly" id="edge12_Node000002_Node000011" title=" " alt="" coords="746,164,914,215,912,221,744,169"/>
+<area shape="rect" id="Node000012" href="$pqlib__example_8c.html" title=" " alt="" coords="667,211,859,280"/>
+<area shape="poly" id="edge13_Node000002_Node000012" title=" " alt="" coords="687,170,728,209,725,212,683,174"/>
+<area shape="poly" id="edge9_Node000003_Node000002" title=" " alt="" coords="376,212,560,160,562,165,378,217"/>
+<area shape="rect" id="Node000004" href="$afe__config_8h.html" title=" " alt="" coords="771,335,1010,390"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="386,273,407,277,599,313,771,341,771,346,598,318,406,283,385,278"/>
+<area shape="rect" id="Node000008" href="$eval-pqmon_2src_2common_2common__data_8c.html" title=" " alt="" coords="5,335,269,390"/>
+<area shape="poly" id="edge8_Node000003_Node000008" title=" " alt="" coords="226,284,168,337,164,333,222,280"/>
+<area shape="rect" id="Node000009" href="$pqlib__convert_8c.html" title=" " alt="" coords="293,328,485,397"/>
+<area shape="poly" id="edge10_Node000003_Node000009" title=" " alt="" coords="303,280,354,326,350,330,300,284"/>
+<area shape="poly" id="edge7_Node000004_Node000001" title=" " alt="" coords="1022,343,1052,333,1079,319,1104,301,1124,279,1137,250,1139,221,1131,191,1116,161,1074,105,1029,62,1033,58,1078,102,1121,158,1136,189,1144,221,1143,252,1129,281,1108,305,1082,324,1054,338,1024,348"/>
+<area shape="rect" id="Node000005" href="$afe__calibration_8c.html" title=" " alt="" coords="479,453,747,507"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="816,398,678,455,675,450,814,393"/>
+<area shape="rect" id="Node000006" href="$afe__config_8c.html" title=" " alt="" coords="771,453,1010,507"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="893,404,893,452,888,452,888,404"/>
+<area shape="rect" id="Node000007" href="$flash__storage_8c.html" title=" " alt="" coords="1034,445,1225,515"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="958,394,1061,443,1058,448,956,398"/>
+</map>

@@ -1,0 +1,26 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/potentiometer/ad525x/ad525x.c" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/potentiometer/ad525x/ad525x.c">
+<area shape="rect" id="Node000001" title=" " alt="" coords="414,5,648,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="542,181,613,207"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="540,60,560,133,572,167,567,169,555,134,535,61"/>
+<area shape="rect" id="Node000003" href="$ad525x_8h.html" title="Header file of AD525X Driver for Microblaze processor. This driver supporting the following devices :..." alt="" coords="242,108,324,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="456,63,330,106,328,101,454,58"/>
+<area shape="rect" id="Node000009" href="$no__os__alloc_8h.html" title=" " alt="" coords="569,108,680,133"/>
+<area shape="poly" id="edge12_Node000001_Node000009" title=" " alt="" coords="561,58,603,96,600,100,558,62"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="184,255,254,280"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="242,128,181,134,114,145,54,161,31,171,17,183,9,201,13,215,27,227,49,238,109,252,170,260,170,265,108,258,47,243,24,232,8,218,3,200,13,180,29,167,52,156,113,140,181,129,241,122"/>
+<area shape="rect" id="Node000005" href="$no__os__delay_8h.html" title="Header file of Delay functions." alt="" coords="28,181,141,207"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="252,136,131,179,129,174,250,131"/>
+<area shape="rect" id="Node000006" href="$no__os__gpio_8h.html" title="Header file of GPIO Interface." alt="" coords="166,181,272,207"/>
+<area shape="poly" id="edge6_Node000003_Node000006" title=" " alt="" coords="274,135,240,173,236,169,271,132"/>
+<area shape="rect" id="Node000007" href="$no__os__spi_8h.html" title="Header file of SPI Interface." alt="" coords="296,181,395,207"/>
+<area shape="poly" id="edge8_Node000003_Node000007" title=" " alt="" coords="295,132,328,169,324,173,291,135"/>
+<area shape="rect" id="Node000008" href="$no__os__i2c_8h.html" title="Header file of I2C Interface." alt="" coords="419,181,518,207"/>
+<area shape="poly" id="edge10_Node000003_Node000008" title=" " alt="" coords="314,131,427,174,425,179,312,136"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="107,204,186,246,184,250,105,209"/>
+<area shape="poly" id="edge7_Node000006_Node000004" title=" " alt="" coords="222,207,222,241,216,241,216,207"/>
+<area shape="poly" id="edge9_Node000007_Node000004" title=" " alt="" coords="327,209,253,250,251,245,324,204"/>
+<area shape="poly" id="edge11_Node000008_Node000004" title=" " alt="" coords="429,209,268,255,267,250,428,204"/>
+<area shape="poly" id="edge14_Node000009_Node000002" title=" " alt="" coords="619,135,595,171,591,168,614,132"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="638,181,704,207"/>
+<area shape="poly" id="edge13_Node000009_Node000010" title=" " alt="" coords="634,132,658,168,654,171,630,135"/>
+</map>

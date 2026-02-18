@@ -1,0 +1,23 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/switch/adg1736/adg1736.c" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/switch/adg1736/adg1736.c">
+<area shape="rect" id="Node000001" title="Implementation of ADG1736 Driver." alt="" coords="109,5,292,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,181,76,207"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="131,62,97,83,68,110,53,138,46,168,41,167,48,136,64,106,94,78,129,58"/>
+<area shape="rect" id="Node000003" href="$no__os__error_8h.html" title="Error codes definition." alt="" coords="214,108,323,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="224,58,253,95,249,99,219,62"/>
+<area shape="rect" id="Node000005" href="$no__os__alloc_8h.html" title=" " alt="" coords="79,108,189,133"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="182,62,154,99,149,95,178,58"/>
+<area shape="rect" id="Node000007" href="$adg1736_8h.html" title="Header file of ADG1736 Driver." alt="" coords="361,108,451,133"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="264,58,367,100,365,105,262,63"/>
+<area shape="rect" id="Node000004" href="$errno_8h.html" title="Error macro definition for ARM Compiler." alt="" coords="228,181,296,207"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="270,134,267,168,262,168,265,133"/>
+<area shape="poly" id="edge6_Node000005_Node000002" title=" " alt="" coords="121,135,68,175,65,171,117,131"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="101,181,167,207"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="137,134,137,168,131,168,131,134"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="397,255,468,280"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="393,136,379,150,366,168,359,187,362,206,378,228,400,245,396,249,374,232,357,208,354,186,362,165,375,147,390,132"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="371,181,454,207"/>
+<area shape="poly" id="edge9_Node000007_Node000009" title=" " alt="" coords="410,133,413,168,408,168,404,134"/>
+<area shape="rect" id="Node000010" href="$no__os__gpio_8h.html" title="Header file of GPIO Interface." alt="" coords="478,181,585,207"/>
+<area shape="poly" id="edge10_Node000007_Node000010" title=" " alt="" coords="427,131,500,172,498,177,425,136"/>
+<area shape="poly" id="edge11_Node000010_Node000008" title=" " alt="" coords="517,209,461,249,458,244,514,205"/>
+</map>

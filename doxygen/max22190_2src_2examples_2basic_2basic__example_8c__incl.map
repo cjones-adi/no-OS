@@ -1,0 +1,35 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/projects/max22190/src/examples/basic/basic_example.c" name="/home/runner/work/no&#45;OS/no&#45;OS/projects/max22190/src/examples/basic/basic_example.c">
+<area shape="rect" id="Node000001" title="Basic example sources file for max22190." alt="" coords="325,5,543,75"/>
+<area shape="rect" id="Node000002" href="$max22190_2src_2examples_2basic_2basic__example_8h.html" title="Basic example header file for max22190." alt="" coords="5,123,137,148"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="326,72,130,122,128,117,325,67"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="161,123,288,148"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="360,77,264,120,262,115,357,72"/>
+<area shape="rect" id="Node000004" href="$max22190_8h.html" title="Header file of MAX22190 Driver." alt="" coords="312,123,415,148"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="411,76,383,113,378,110,406,73"/>
+<area shape="rect" id="Node000011" href="$no__os__delay_8h.html" title="Header file of Delay functions." alt="" coords="556,196,669,221"/>
+<area shape="poly" id="edge14_Node000001_Node000011" title=" " alt="" coords="472,73,592,185,588,189,468,77"/>
+<area shape="rect" id="Node000012" href="$no__os__print__log_8h.html" title="Print messages helpers." alt="" coords="570,123,706,148"/>
+<area shape="poly" id="edge16_Node000001_Node000012" title=" " alt="" coords="509,72,601,114,599,119,507,77"/>
+<area shape="rect" id="Node000014" href="$no__os__irq_8h.html" title="Header file of IRQ interface." alt="" coords="743,123,839,148"/>
+<area shape="poly" id="edge18_Node000001_Node000014" title=" " alt="" coords="543,67,735,117,734,122,542,72"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="383,269,453,295"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="342,150,320,164,300,181,289,201,288,210,292,220,308,238,327,251,370,269,368,274,324,256,304,242,288,223,283,211,284,199,296,178,317,160,339,146"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="47,269,130,295"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="312,149,193,173,142,187,116,198,106,210,99,225,92,256,87,255,94,223,101,208,112,194,140,182,192,168,311,144"/>
+<area shape="rect" id="Node000007" href="$no__os__gpio_8h.html" title="Header file of GPIO Interface." alt="" coords="302,196,409,221"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="365,149,361,183,355,182,359,148"/>
+<area shape="rect" id="Node000008" href="$no__os__spi_8h.html" title="Header file of SPI Interface." alt="" coords="433,196,531,221"/>
+<area shape="poly" id="edge8_Node000004_Node000008" title=" " alt="" coords="384,146,452,186,449,191,381,150"/>
+<area shape="rect" id="Node000009" href="$no__os__util_8h.html" title="Header file of utility functions." alt="" coords="127,196,227,221"/>
+<area shape="poly" id="edge10_Node000004_Node000009" title=" " alt="" coords="334,151,221,193,219,189,332,146"/>
+<area shape="poly" id="edge7_Node000007_Node000005" title=" " alt="" coords="368,220,401,257,397,261,364,223"/>
+<area shape="poly" id="edge9_Node000008_Node000005" title=" " alt="" coords="473,223,439,261,435,257,469,220"/>
+<area shape="poly" id="edge11_Node000009_Node000005" title=" " alt="" coords="216,219,370,264,368,269,215,224"/>
+<area shape="poly" id="edge13_Node000009_Node000006" title=" " alt="" coords="164,223,115,263,112,258,161,219"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="155,269,225,295"/>
+<area shape="poly" id="edge12_Node000009_Node000010" title=" " alt="" coords="181,221,188,255,183,256,176,222"/>
+<area shape="poly" id="edge15_Node000011_Node000005" title=" " alt="" coords="582,224,463,267,462,262,580,219"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="694,196,761,221"/>
+<area shape="poly" id="edge17_Node000012_Node000013" title=" " alt="" coords="654,146,704,185,700,189,651,150"/>
+<area shape="poly" id="edge19_Node000014_Node000005" title=" " alt="" coords="795,149,793,185,787,206,775,223,752,238,720,250,637,267,546,277,468,282,467,276,546,271,636,261,718,245,750,233,771,219,782,203,788,184,790,148"/>
+</map>

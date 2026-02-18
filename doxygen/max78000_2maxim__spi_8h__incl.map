@@ -1,0 +1,33 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/maxim/max78000/maxim_spi.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/maxim/max78000/maxim_spi.h">
+<area shape="rect" id="Node000001" title="maxim specific header for SPI driver" alt="" coords="50,5,283,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="207,328,278,353"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="176,59,239,314,234,315,171,61"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="66,108,129,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="148,62,118,99,113,95,143,58"/>
+<area shape="rect" id="Node000004" href="$no__os__spi_8h.html" title="Header file of SPI Interface." alt="" coords="5,181,104,207"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="105,62,77,83,56,109,48,138,51,167,45,168,43,138,51,107,73,79,102,58"/>
+<area shape="rect" id="Node000005" href="$no__os__dma_8h.html" title="Platform independent function definitions and data types for the DMA API." alt="" coords="387,181,495,207"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="246,58,297,79,347,106,389,137,423,169,419,173,385,141,344,110,294,84,244,62"/>
+<area shape="rect" id="Node000012" href="$maxim__dma_8h.html" title="Maxim platform specific header DMA API." alt="" coords="217,108,333,133"/>
+<area shape="poly" id="edge15_Node000001_Node000012" title=" " alt="" coords="201,58,251,97,247,101,198,62"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="68,205,103,239,150,278,211,319,209,323,146,282,100,243,64,209"/>
+<area shape="poly" id="edge8_Node000005_Node000002" title=" " alt="" coords="392,209,342,228,317,241,295,257,271,285,254,316,250,314,266,282,292,253,315,236,340,223,390,204"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="572,255,639,280"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="469,204,567,247,565,252,467,209"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="663,255,734,280"/>
+<area shape="poly" id="edge7_Node000005_Node000007" title=" " alt="" coords="483,204,651,250,650,255,482,209"/>
+<area shape="rect" id="Node000008" href="$no__os__list_8h.html" title="List library header." alt="" coords="759,255,857,280"/>
+<area shape="poly" id="edge9_Node000005_Node000008" title=" " alt="" coords="496,203,745,251,744,256,495,208"/>
+<area shape="rect" id="Node000010" href="$no__os__irq_8h.html" title="Header file of IRQ interface." alt="" coords="305,255,401,280"/>
+<area shape="poly" id="edge12_Node000005_Node000010" title=" " alt="" coords="429,209,380,248,377,244,426,205"/>
+<area shape="rect" id="Node000011" href="$no__os__mutex_8h.html" title=" " alt="" coords="426,255,547,280"/>
+<area shape="poly" id="edge14_Node000005_Node000011" title=" " alt="" coords="451,206,474,242,470,245,447,208"/>
+<area shape="poly" id="edge10_Node000008_Node000002" title=" " alt="" coords="759,281,747,283,491,316,292,337,291,332,490,311,746,277,758,275"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="767,328,849,353"/>
+<area shape="poly" id="edge11_Node000008_Node000009" title=" " alt="" coords="811,280,811,314,805,314,805,280"/>
+<area shape="poly" id="edge13_Node000010_Node000002" title=" " alt="" coords="337,282,274,323,271,318,334,278"/>
+<area shape="poly" id="edge16_Node000012_Node000002" title=" " alt="" coords="268,135,256,156,245,182,239,217,238,253,242,314,236,315,232,253,234,217,240,181,251,154,264,132"/>
+<area shape="poly" id="edge17_Node000012_Node000005" title=" " alt="" coords="302,131,403,173,401,178,300,136"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="255,181,318,207"/>
+<area shape="poly" id="edge18_Node000012_Node000013" title=" " alt="" coords="279,133,285,167,280,168,274,134"/>
+</map>

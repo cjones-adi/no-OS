@@ -1,0 +1,29 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/projects/ades1754/src/common/common_data.h" name="/home/runner/work/no&#45;OS/no&#45;OS/projects/ades1754/src/common/common_data.h">
+<area shape="rect" id="Node000001" title="Defines common data to be used by ades1754 examples." alt="" coords="103,5,318,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="92,108,201,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="193,62,166,99,161,95,189,58"/>
+<area shape="rect" id="Node000003" href="$ades1754_8h.html" title="Header file for the ADES1754 Driver." alt="" coords="226,108,323,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="232,58,260,95,256,99,228,62"/>
+<area shape="rect" id="Node000004" href="$no__os__spi_8h.html" title="Header file of SPI Interface." alt="" coords="5,255,104,280"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="258,136,85,249,82,245,256,131"/>
+<area shape="rect" id="Node000006" href="$no__os__uart_8h.html" title="Header file of UART interface." alt="" coords="267,181,373,207"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="284,132,308,168,303,171,280,135"/>
+<area shape="rect" id="Node000010" href="$no__os__util_8h.html" title="Header file of utility functions." alt="" coords="179,255,279,280"/>
+<area shape="poly" id="edge12_Node000003_Node000010" title=" " alt="" coords="274,135,240,242,235,241,268,133"/>
+<area shape="rect" id="Node000011" href="$no__os__units_8h.html" title="Header file of Units." alt="" coords="397,181,507,207"/>
+<area shape="poly" id="edge16_Node000003_Node000011" title=" " alt="" coords="304,131,412,174,410,179,302,136"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="115,328,186,353"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="72,278,125,317,122,322,69,282"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="268,205,215,223,190,237,169,256,156,284,152,314,147,313,150,283,165,253,187,233,213,218,266,200"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="329,328,412,353"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="374,203,417,221,436,235,452,253,456,274,447,293,430,310,409,324,406,319,426,306,443,290,451,273,447,256,432,239,414,226,372,208"/>
+<area shape="rect" id="Node000008" href="$no__os__lf256fifo_8h.html" title="SPSC lock&#45;free fifo of fixed size (256), specialized for UART." alt="" coords="304,255,437,280"/>
+<area shape="poly" id="edge8_Node000006_Node000008" title=" " alt="" coords="331,205,357,242,352,245,326,209"/>
+<area shape="poly" id="edge10_Node000008_Node000005" title=" " alt="" coords="336,283,200,326,198,321,335,277"/>
+<area shape="poly" id="edge11_Node000008_Node000007" title=" " alt="" coords="373,280,373,314,368,314,368,280"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="226,328,297,353"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="355,282,292,323,289,318,352,278"/>
+<area shape="poly" id="edge13_Node000010_Node000005" title=" " alt="" coords="218,282,175,321,172,317,215,278"/>
+<area shape="poly" id="edge15_Node000010_Node000007" title=" " alt="" coords="253,278,337,319,334,324,251,282"/>
+<area shape="poly" id="edge14_Node000010_Node000009" title=" " alt="" coords="237,279,253,315,248,317,232,281"/>
+</map>

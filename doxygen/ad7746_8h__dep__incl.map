@@ -1,0 +1,11 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/cdc/ad7746/ad7746.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/cdc/ad7746/ad7746.h">
+<area shape="rect" id="Node000001" title="Header file of AD7746 Driver." alt="" coords="297,5,463,60"/>
+<area shape="rect" id="Node000002" href="$ad7746_8c.html" title="Implementation of AD7746 Driver." alt="" coords="5,108,171,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="292,67,165,110,163,105,290,62"/>
+<area shape="rect" id="Node000003" href="$iio__ad7746_8c.html" title=" " alt="" coords="195,108,360,163"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="345,72,306,110,302,106,342,68"/>
+<area shape="rect" id="Node000004" href="$ad7746-ebz_2src_2app_2headless_8c.html" title="AD7746&#45;EBZ demo project main file." alt="" coords="385,108,581,163"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="418,68,458,106,454,110,415,72"/>
+<area shape="rect" id="Node000005" href="$cn0552_2src_2app_2headless_8c.html" title="CN0552 IIO demo project main file." alt="" coords="605,108,800,163"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="477,61,619,105,618,110,475,66"/>
+</map>

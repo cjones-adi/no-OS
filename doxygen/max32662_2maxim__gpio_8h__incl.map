@@ -1,0 +1,17 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/maxim/max32662/maxim_gpio.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/maxim/max32662/maxim_gpio.h">
+<area shape="rect" id="Node000001" title="Header file for maxim gpio specifics." alt="" coords="152,5,395,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,108,88,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="205,63,91,106,89,101,203,58"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="175,181,246,207"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="205,62,175,83,153,109,150,126,155,142,168,157,183,171,180,175,164,161,151,144,144,126,148,107,172,79,202,58"/>
+<area shape="rect" id="Node000004" href="$no__os__irq_8h.html" title="Header file of IRQ interface." alt="" coords="163,108,259,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="256,62,230,98,225,95,252,58"/>
+<area shape="rect" id="Node000005" href="$no__os__gpio_8h.html" title="Header file of GPIO Interface." alt="" coords="283,108,389,133"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="295,58,321,95,317,98,290,62"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="414,108,517,133"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="333,58,428,100,426,105,331,63"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="541,108,603,133"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="365,58,528,104,527,109,364,63"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="213,134,213,168,208,168,208,134"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="317,136,244,177,242,172,315,131"/>
+</map>

@@ -1,0 +1,18 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/projects/adf5611/src/examples/basic/basic_example.c" name="/home/runner/work/no&#45;OS/no&#45;OS/projects/adf5611/src/examples/basic/basic_example.c">
+<area shape="rect" id="Node000001" title="Basic example eval&#45;adf5611 project." alt="" coords="116,5,318,75"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="178,196,245,221"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="117,59,88,70,60,83,35,101,15,124,8,142,13,157,27,170,49,180,107,195,165,202,165,207,106,200,47,185,24,174,8,160,3,142,11,121,32,97,57,79,86,65,115,54"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="26,123,96,148"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="162,77,94,118,91,113,159,72"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="120,123,191,148"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="197,76,173,113,169,110,193,73"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="215,123,342,148"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="241,73,266,110,261,113,237,76"/>
+<area shape="rect" id="Node000006" href="$no__os__delay_8h.html" title="Header file of Delay functions." alt="" coords="527,123,640,148"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="318,64,526,117,525,122,317,69"/>
+<area shape="rect" id="Node000008" href="$no__os__print__log_8h.html" title="Print messages helpers." alt="" coords="366,123,502,148"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="297,72,396,115,394,120,295,77"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="548,196,619,221"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="586,148,586,182,581,182,581,148"/>
+<area shape="poly" id="edge8_Node000008_Node000002" title=" " alt="" coords="399,151,259,195,257,190,398,145"/>
+</map>

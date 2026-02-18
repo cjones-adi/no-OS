@@ -1,0 +1,40 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/projects/iio_demo/src/examples/iio_timer_trigger_example/iio_timer_trigger_example.c" name="/home/runner/work/no&#45;OS/no&#45;OS/projects/iio_demo/src/examples/iio_timer_trigger_example/iio_timer_trigger_example.c">
+<area shape="rect" id="Node000001" title=" " alt="" coords="347,5,545,89"/>
+<area shape="rect" id="Node000002" href="$iio__demo_2src_2examples_2iio__timer__trigger__example_2iio__timer__trigger__example_8h.html" title=" " alt="" coords="5,137,212,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="347,81,161,136,160,131,346,76"/>
+<area shape="rect" id="Node000003" href="$iio__adc__demo_8h.html" title="Header file of ADC Demo iio." alt="" coords="236,137,360,163"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="387,92,328,132,325,127,384,87"/>
+<area shape="rect" id="Node000011" href="$iio__dac__demo_8h.html" title="Header file of DAC Demo iio." alt="" coords="384,137,508,163"/>
+<area shape="poly" id="edge14_Node000001_Node000011" title=" " alt="" coords="449,89,449,124,443,124,443,89"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="656,137,783,163"/>
+<area shape="poly" id="edge20_Node000001_Node000013" title=" " alt="" coords="546,83,676,130,675,135,545,88"/>
+<area shape="rect" id="Node000014" href="$no__os__util_8h.html" title="Header file of utility functions." alt="" coords="532,137,632,163"/>
+<area shape="poly" id="edge21_Node000001_Node000014" title=" " alt="" coords="503,87,557,127,554,131,500,91"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="387,211,457,236"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="319,160,391,201,389,206,317,165"/>
+<area shape="rect" id="Node000005" href="$iio__types_8h.html" title="Header file for iio_types." alt="" coords="302,284,395,309"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="305,162,343,270,338,272,300,164"/>
+<area shape="rect" id="Node000009" href="$adc__demo_8h.html" title="Header file of ADC Demo Driver." alt="" coords="138,211,239,236"/>
+<area shape="poly" id="edge9_Node000003_Node000009" title=" " alt="" coords="282,165,220,205,217,201,279,160"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="450,357,533,383"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="373,307,457,349,455,353,370,312"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="316,431,387,456"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="361,308,377,329,390,357,392,374,388,391,373,421,368,418,383,389,386,374,385,358,373,332,357,311"/>
+<area shape="rect" id="Node000008" href="$no__os__circular__buffer_8h.html" title="Circular buffer library header." alt="" coords="205,357,375,383"/>
+<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="341,311,310,349,306,345,337,308"/>
+<area shape="poly" id="edge8_Node000008_Node000007" title=" " alt="" coords="302,381,334,418,330,422,298,385"/>
+<area shape="poly" id="edge11_Node000009_Node000005" title=" " alt="" coords="215,234,311,276,309,281,213,238"/>
+<area shape="poly" id="edge10_Node000009_Node000007" title=" " alt="" coords="188,237,181,265,176,303,179,344,185,363,195,381,217,403,244,419,274,429,303,435,302,441,272,434,242,424,214,407,191,384,180,366,174,345,171,303,176,264,182,236"/>
+<area shape="rect" id="Node000010" href="$no__os__irq_8h.html" title="Header file of IRQ interface." alt="" coords="34,284,130,309"/>
+<area shape="poly" id="edge12_Node000009_Node000010" title=" " alt="" coords="173,238,112,279,109,274,170,234"/>
+<area shape="poly" id="edge13_Node000010_Node000007" title=" " alt="" coords="90,308,114,344,130,364,150,380,187,401,228,416,303,434,302,439,226,421,185,406,147,385,127,368,109,347,86,311"/>
+<area shape="poly" id="edge15_Node000011_Node000004" title=" " alt="" coords="445,164,433,198,428,197,440,162"/>
+<area shape="poly" id="edge16_Node000011_Node000005" title=" " alt="" coords="428,165,401,185,376,212,362,241,355,271,350,270,357,240,372,209,397,181,425,161"/>
+<area shape="rect" id="Node000012" href="$dac__demo_8h.html" title="Header file of DAC Demo Driver." alt="" coords="482,211,583,236"/>
+<area shape="poly" id="edge17_Node000011_Node000012" title=" " alt="" coords="462,161,510,200,506,204,458,165"/>
+<area shape="poly" id="edge19_Node000012_Node000005" title=" " alt="" coords="504,239,393,281,391,276,502,234"/>
+<area shape="poly" id="edge18_Node000012_Node000007" title=" " alt="" coords="541,235,552,264,561,303,562,345,557,366,547,384,516,413,478,431,438,441,401,445,400,440,437,435,476,426,513,408,543,381,552,364,557,345,556,304,547,266,536,237"/>
+<area shape="poly" id="edge23_Node000014_Node000004" title=" " alt="" coords="557,165,462,207,460,203,555,160"/>
+<area shape="poly" id="edge24_Node000014_Node000006" title=" " alt="" coords="590,162,600,196,601,217,598,237,582,271,561,302,517,350,513,346,557,299,577,268,593,235,596,216,595,197,585,164"/>
+<area shape="poly" id="edge22_Node000014_Node000007" title=" " alt="" coords="593,161,607,183,618,210,622,260,614,309,595,352,571,385,531,412,487,430,441,440,401,444,400,439,441,435,485,425,529,407,567,381,590,349,608,307,617,259,613,211,602,185,589,164"/>
+</map>
