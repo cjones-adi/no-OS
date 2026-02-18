@@ -1,0 +1,18 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/gmsl/common/gmsl_cam_des.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/gmsl/common/gmsl_cam_des.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,201,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="216,328,287,353"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="96,61,83,108,84,166,90,206,113,244,145,275,180,301,213,320,211,324,177,305,141,279,109,247,85,208,79,166,78,108,91,60"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="115,181,198,207"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="115,59,151,167,146,169,110,61"/>
+<area shape="rect" id="Node000004" href="$no__os__i2c_8h.html" title="Header file of I2C Interface." alt="" coords="159,255,258,280"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="98,61,92,92,89,130,92,169,106,205,128,230,157,247,155,252,125,234,101,208,87,170,83,130,87,91,93,60"/>
+<area shape="rect" id="Node000005" href="$gmsl__common_8h.html" title=" " alt="" coords="205,108,335,133"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="155,58,237,99,234,104,153,62"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="218,279,240,315,235,318,213,282"/>
+<area shape="poly" id="edge6_Node000005_Node000002" title=" " alt="" coords="311,131,340,143,367,159,384,181,386,194,383,208,363,244,337,275,282,322,279,318,333,271,359,240,378,206,381,194,379,183,363,163,338,148,309,136"/>
+<area shape="poly" id="edge7_Node000005_Node000003" title=" " alt="" coords="253,136,188,176,185,172,250,131"/>
+<area shape="rect" id="Node000006" href="$gmsl__reg__access_8h.html" title=" " alt="" coords="223,181,368,207"/>
+<area shape="poly" id="edge8_Node000005_Node000006" title=" " alt="" coords="277,133,289,168,284,169,272,135"/>
+<area shape="poly" id="edge9_Node000006_Node000002" title=" " alt="" coords="294,208,273,281,262,316,257,314,267,279,289,206"/>
+<area shape="poly" id="edge10_Node000006_Node000004" title=" " alt="" coords="283,209,235,248,232,244,280,205"/>
+</map>

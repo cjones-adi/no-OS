@@ -1,0 +1,24 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/projects/ad74413r/src/examples/dummy/dummy_example.c" name="/home/runner/work/no&#45;OS/no&#45;OS/projects/ad74413r/src/examples/dummy/dummy_example.c">
+<area shape="rect" id="Node000001" title="DUMMY example header for ad74413r project." alt="" coords="159,5,381,75"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,123,132,148"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="198,77,107,119,105,114,196,72"/>
+<area shape="rect" id="Node000003" href="$ad74413r_8h.html" title="Header file of AD74413r Driver." alt="" coords="156,123,251,148"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="248,76,222,113,218,110,244,73"/>
+<area shape="rect" id="Node000008" href="$no__os__delay_8h.html" title="Header file of Delay functions." alt="" coords="280,123,393,148"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="296,73,322,110,318,113,292,76"/>
+<area shape="rect" id="Node000009" href="$no__os__print__log_8h.html" title="Print messages helpers." alt="" coords="421,123,557,148"/>
+<area shape="poly" id="edge11_Node000001_Node000009" title=" " alt="" coords="350,72,450,115,448,120,348,77"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="229,269,300,295"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="157,149,84,170,54,184,36,198,32,209,36,220,47,229,64,238,111,253,216,272,215,278,110,258,62,243,44,234,32,223,26,209,32,194,51,179,83,165,155,144"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="46,196,129,221"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="186,150,119,191,117,186,183,146"/>
+<area shape="rect" id="Node000006" href="$no__os__spi_8h.html" title="Header file of SPI Interface." alt="" coords="153,196,251,221"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="206,148,205,183,200,182,200,148"/>
+<area shape="rect" id="Node000007" href="$no__os__gpio_8h.html" title="Header file of GPIO Interface." alt="" coords="275,196,382,221"/>
+<area shape="poly" id="edge7_Node000003_Node000007" title=" " alt="" coords="225,146,298,187,295,191,222,150"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="214,220,247,257,243,261,210,223"/>
+<area shape="poly" id="edge8_Node000007_Node000004" title=" " alt="" coords="320,223,286,261,282,257,316,220"/>
+<area shape="poly" id="edge10_Node000008_Node000004" title=" " alt="" coords="356,146,374,161,391,179,401,200,401,212,396,223,380,242,359,256,314,274,312,269,357,252,376,238,392,220,395,211,396,201,387,182,370,165,352,150"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="457,196,523,221"/>
+<area shape="poly" id="edge12_Node000009_Node000010" title=" " alt="" coords="492,148,492,182,487,183,486,148"/>
+</map>

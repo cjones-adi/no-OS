@@ -1,0 +1,18 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/net/adin1300.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/net/adin1300.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="185,5,351,60"/>
+<area shape="rect" id="Node000002" href="$adin1300_8c.html" title=" " alt="" coords="5,108,171,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="210,69,137,110,134,105,208,64"/>
+<area shape="rect" id="Node000003" href="$iio__adin1300_8c.html" title=" " alt="" coords="245,211,411,265"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="282,73,323,209,318,211,277,74"/>
+<area shape="rect" id="Node000004" href="$iio__adin1300_8h.html" title=" " alt="" coords="351,108,516,163"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="324,65,391,105,389,110,321,69"/>
+<area shape="rect" id="Node000005" href="$net_8c.html" title=" " alt="" coords="302,313,506,368"/>
+<area shape="poly" id="edge9_Node000001_Node000005" title=" " alt="" coords="250,73,233,116,220,165,217,191,219,217,224,241,236,264,249,280,265,294,303,315,301,319,262,298,245,284,231,267,219,243,213,218,212,191,215,165,228,114,245,71"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="398,174,357,213,354,209,394,170"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="434,177,425,266,414,314,409,313,420,265,429,176"/>
+<area shape="rect" id="Node000006" href="$net_8h.html" title=" " alt="" coords="486,211,690,265"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="487,168,549,208,546,213,484,172"/>
+<area shape="poly" id="edge8_Node000006_Node000005" title=" " alt="" coords="530,274,454,315,451,311,527,269"/>
+<area shape="rect" id="Node000007" href="$wethlink_2src_2app_2main_8c.html" title=" " alt="" coords="530,313,734,368"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="607,277,623,312,618,314,603,279"/>
+</map>

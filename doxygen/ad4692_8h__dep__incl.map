@@ -1,0 +1,18 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/adc/ad4692/ad4692.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/adc/ad4692/ad4692.h">
+<area shape="rect" id="Node000001" title="Header file for ad4692 Driver." alt="" coords="185,5,351,60"/>
+<area shape="rect" id="Node000002" href="$ad4692_8c.html" title="Implementation of ad4692 Driver." alt="" coords="5,108,171,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="210,69,137,110,134,105,208,64"/>
+<area shape="rect" id="Node000003" href="$iio__ad4692_8c.html" title="Source file of ad4692 IIO driver." alt="" coords="40,218,205,273"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="246,73,185,164,145,219,140,216,180,161,241,70"/>
+<area shape="rect" id="Node000004" href="$iio__ad4692_8h.html" title="Header file of ad4692 IIO driver." alt="" coords="245,108,411,163"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="293,70,315,107,310,109,288,73"/>
+<area shape="rect" id="Node000007" href="$ad4692__ardz_2src_2common_2common__data_8h.html" title="Defines common data to be used by ad469x examples." alt="" coords="564,108,815,163"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="365,54,580,105,579,111,363,59"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="267,172,174,220,171,215,265,167"/>
+<area shape="rect" id="Node000005" href="$ad4692__ardz_2src_2examples_2iio_2iio__example_8c.html" title="Source file for iio example." alt="" coords="230,211,426,280"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="331,177,331,210,325,210,325,177"/>
+<area shape="rect" id="Node000006" href="$ad4692__ardz_2src_2examples_2iio__trigger_2iio__trigger__example_8c.html" title="Implementation of IIO trigger example for AD4692 project." alt="" coords="451,211,669,280"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="398,166,489,208,486,213,396,171"/>
+<area shape="rect" id="Node000008" href="$ad4692__ardz_2src_2common_2common__data_8c.html" title="Defines common data to be used by ad469x examples." alt="" coords="694,218,943,273"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="733,170,789,216,785,220,730,174"/>
+</map>

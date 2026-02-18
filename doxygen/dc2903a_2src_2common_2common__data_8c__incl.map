@@ -1,0 +1,22 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/projects/dc2903a/src/common/common_data.c" name="/home/runner/work/no&#45;OS/no&#45;OS/projects/dc2903a/src/common/common_data.c">
+<area shape="rect" id="Node000001" title="Defines common data to be used by DC2903A examples." alt="" coords="44,5,259,60"/>
+<area shape="rect" id="Node000002" href="$dc2903a_2src_2common_2common__data_8h.html" title="Defines common data to be used by DC2903A examples." alt="" coords="88,108,215,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="154,60,154,94,149,94,149,60"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,181,156,207"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="142,136,104,174,100,170,138,132"/>
+<area shape="rect" id="Node000004" href="$ltc2672_8h.html" title="Header file of ltc2672 Driver." alt="" coords="181,181,263,207"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="165,132,203,170,199,174,161,136"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="91,328,161,353"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="181,207,107,228,75,242,56,256,52,273,59,289,74,305,94,319,90,323,71,309,55,292,46,273,52,253,72,237,105,223,180,202"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="66,255,149,280"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="205,209,139,250,136,245,202,204"/>
+<area shape="rect" id="Node000007" href="$no__os__spi_8h.html" title="Header file of SPI Interface." alt="" coords="173,255,271,280"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="225,207,225,241,219,241,219,207"/>
+<area shape="rect" id="Node000008" href="$no__os__error_8h.html" title="Error codes definition." alt="" coords="295,255,405,280"/>
+<area shape="poly" id="edge8_Node000004_Node000008" title=" " alt="" coords="244,204,318,245,316,250,241,209"/>
+<area shape="rect" id="Node000010" href="$no__os__units_8h.html" title="Header file of Units." alt="" coords="429,255,540,280"/>
+<area shape="poly" id="edge10_Node000004_Node000010" title=" " alt="" coords="264,204,430,248,428,254,263,209"/>
+<area shape="poly" id="edge7_Node000007_Node000005" title=" " alt="" coords="208,282,154,322,151,317,205,278"/>
+<area shape="rect" id="Node000009" href="$errno_8h.html" title="Error macro definition for ARM Compiler." alt="" coords="316,328,384,353"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="353,280,353,314,347,314,347,280"/>
+</map>

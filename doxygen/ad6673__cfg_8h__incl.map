@@ -1,0 +1,14 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/adc/ad6673/ad6673_cfg.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/adc/ad6673/ad6673_cfg.h">
+<area shape="rect" id="Node000001" title="Header file of AD6673 Driver Configuration." alt="" coords="5,5,171,60"/>
+<area shape="rect" id="Node000002" href="$ad6673_8h.html" title="Header file of AD6673 Driver." alt="" coords="47,108,129,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="91,60,91,94,85,94,85,60"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="9,255,79,280"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="71,136,48,155,29,182,26,197,26,212,34,242,29,243,21,213,20,196,24,180,44,152,68,132"/>
+<area shape="rect" id="Node000004" href="$no__os__spi_8h.html" title="Header file of SPI Interface." alt="" coords="39,181,137,207"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="91,134,91,168,85,168,85,134"/>
+<area shape="rect" id="Node000005" href="$no__os__error_8h.html" title="Error codes definition." alt="" coords="161,181,271,207"/>
+<area shape="poly" id="edge5_Node000002_Node000005" title=" " alt="" coords="110,131,184,172,182,177,107,136"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="83,208,61,244,56,242,78,206"/>
+<area shape="rect" id="Node000006" href="$errno_8h.html" title="Error macro definition for ARM Compiler." alt="" coords="182,255,250,280"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="219,207,219,241,213,241,213,207"/>
+</map>

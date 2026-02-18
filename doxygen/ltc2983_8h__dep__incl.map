@@ -1,0 +1,13 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/temperature/ltc2983/ltc2983.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/temperature/ltc2983/ltc2983.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="373,5,596,60"/>
+<area shape="rect" id="Node000002" href="$iio__ltc2983_8c.html" title="Implementation of IIO LTC2983 driver." alt="" coords="5,115,228,170"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="383,66,207,118,205,113,381,61"/>
+<area shape="rect" id="Node000003" href="$ltc2983_8c.html" title="Implementation of LTC2983 Driver." alt="" coords="252,115,475,170"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="446,71,395,117,391,113,443,67"/>
+<area shape="rect" id="Node000004" href="$ltc2983_2src_2common_2common__data_8h.html" title=" " alt="" coords="499,115,713,170"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="527,67,578,113,575,117,523,71"/>
+<area shape="rect" id="Node000006" href="$ltc2983_2src_2examples_2basic_2basic__example_8c.html" title=" " alt="" coords="737,108,933,177"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="584,62,738,109,736,114,583,67"/>
+<area shape="rect" id="Node000005" href="$ltc2983_2src_2common_2common__data_8c.html" title=" " alt="" coords="499,225,713,280"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="609,184,609,225,603,225,603,184"/>
+</map>

@@ -1,0 +1,19 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/frequency/adf4377/adf4377.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/frequency/adf4377/adf4377.h">
+<area shape="rect" id="Node000001" title="Header file for adf4377 Driver." alt="" coords="133,5,339,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="158,181,229,207"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="209,62,191,84,177,109,174,124,175,139,184,168,178,169,170,140,169,123,172,107,186,81,205,58"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="407,181,489,207"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="341,55,385,76,423,106,441,136,448,167,443,169,436,138,419,110,382,80,338,60"/>
+<area shape="rect" id="Node000004" href="$no__os__spi_8h.html" title="Header file of SPI Interface." alt="" coords="187,108,285,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="239,60,239,94,233,94,233,60"/>
+<area shape="rect" id="Node000005" href="$no__os__gpio_8h.html" title="Header file of GPIO Interface." alt="" coords="5,108,112,133"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="183,62,96,104,94,100,181,58"/>
+<area shape="rect" id="Node000006" href="$no__os__util_8h.html" title="Header file of utility functions." alt="" coords="310,108,410,133"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="275,58,333,98,330,102,272,62"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="231,135,209,171,205,168,227,132"/>
+<area shape="poly" id="edge6_Node000005_Node000002" title=" " alt="" coords="82,131,160,172,158,177,79,136"/>
+<area shape="poly" id="edge8_Node000006_Node000002" title=" " alt="" coords="334,136,234,178,232,173,332,131"/>
+<area shape="poly" id="edge10_Node000006_Node000003" title=" " alt="" coords="376,131,425,170,421,175,372,135"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="311,181,382,207"/>
+<area shape="poly" id="edge9_Node000006_Node000007" title=" " alt="" coords="360,134,354,168,349,167,355,133"/>
+</map>

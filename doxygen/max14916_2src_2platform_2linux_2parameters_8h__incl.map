@@ -1,0 +1,19 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/projects/max14916/src/platform/linux/parameters.h" name="/home/runner/work/no&#45;OS/no&#45;OS/projects/max14916/src/platform/linux/parameters.h">
+<area shape="rect" id="Node000001" title="Definition of FTD2XX platform data used by max14916 project." alt="" coords="5,5,237,60"/>
+<area shape="rect" id="Node000002" href="$linux__spi_8h.html" title=" " alt="" coords="15,108,107,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="105,62,80,98,75,95,101,59"/>
+<area shape="rect" id="Node000003" href="$linux__uart_8h.html" title=" " alt="" coords="132,108,231,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="142,59,168,95,163,98,137,62"/>
+<area shape="rect" id="Node000004" href="$no__os__uart_8h.html" title="Header file of UART interface." alt="" coords="129,181,234,207"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="184,134,184,168,179,168,179,134"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="47,328,118,353"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="160,209,131,229,105,256,92,285,87,315,81,314,87,284,100,253,127,225,157,205"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="243,328,325,353"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="205,205,235,225,262,253,277,284,284,314,279,315,272,286,258,256,231,229,202,209"/>
+<area shape="rect" id="Node000007" href="$no__os__lf256fifo_8h.html" title="SPSC lock&#45;free fifo of fixed size (256), specialized for UART." alt="" coords="115,255,248,280"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="184,207,184,241,179,241,179,207"/>
+<area shape="poly" id="edge8_Node000007_Node000005" title=" " alt="" coords="167,282,111,322,108,318,164,278"/>
+<area shape="poly" id="edge9_Node000007_Node000006" title=" " alt="" coords="199,278,257,318,254,322,196,282"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="146,328,217,353"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="184,280,184,314,179,314,179,280"/>
+</map>

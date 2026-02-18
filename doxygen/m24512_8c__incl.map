@@ -1,0 +1,35 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/eeprom/m24512/m24512.c" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/eeprom/m24512/m24512.c">
+<area shape="rect" id="Node000001" title="Implementation of M24512 EEPROM driver." alt="" coords="181,5,372,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,108,76,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="205,63,86,106,84,101,204,58"/>
+<area shape="rect" id="Node000003" href="$m24512_8h.html" title="Header file for M24512 EEPROM driver." alt="" coords="361,108,448,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="317,58,378,98,375,103,314,62"/>
+<area shape="rect" id="Node000007" href="$no__os__gpio_8h.html" title="Header file of GPIO Interface." alt="" coords="106,181,213,207"/>
+<area shape="poly" id="edge18_Node000001_Node000007" title=" " alt="" coords="268,62,251,98,227,135,187,175,183,171,223,132,246,95,264,59"/>
+<area shape="rect" id="Node000010" href="$no__os__eeprom_8h.html" title="Header file for EEPROM APIs." alt="" coords="237,181,367,207"/>
+<area shape="poly" id="edge19_Node000001_Node000010" title=" " alt="" coords="283,60,301,167,295,168,278,61"/>
+<area shape="rect" id="Node000011" href="$no__os__alloc_8h.html" title=" " alt="" coords="785,108,896,133"/>
+<area shape="poly" id="edge13_Node000001_Node000011" title=" " alt="" coords="373,46,772,106,771,112,372,51"/>
+<area shape="rect" id="Node000014" href="$no__os__delay_8h.html" title="Header file of Delay functions." alt="" coords="100,108,213,133"/>
+<area shape="poly" id="edge16_Node000001_Node000014" title=" " alt="" coords="242,62,186,102,183,98,238,58"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="267,255,337,280"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="406,134,398,169,380,208,359,231,336,249,333,245,356,227,376,205,393,167,401,133"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="565,181,647,207"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="438,131,561,174,560,179,436,136"/>
+<area shape="rect" id="Node000006" href="$no__os__i2c_8h.html" title="Header file of I2C Interface." alt="" coords="442,181,541,207"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="420,131,468,170,465,175,417,135"/>
+<area shape="poly" id="edge7_Node000003_Node000007" title=" " alt="" coords="366,136,213,180,211,175,365,131"/>
+<area shape="rect" id="Node000008" href="$no__os__error_8h.html" title="Error codes definition." alt="" coords="671,181,781,207"/>
+<area shape="poly" id="edge9_Node000003_Node000008" title=" " alt="" coords="449,129,662,176,661,181,447,134"/>
+<area shape="poly" id="edge11_Node000003_Node000010" title=" " alt="" coords="390,136,332,175,329,171,387,131"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="462,209,347,252,345,247,460,204"/>
+<area shape="poly" id="edge8_Node000007_Node000004" title=" " alt="" coords="183,204,268,246,265,251,181,209"/>
+<area shape="rect" id="Node000009" href="$errno_8h.html" title="Error macro definition for ARM Compiler." alt="" coords="692,255,760,280"/>
+<area shape="poly" id="edge10_Node000008_Node000009" title=" " alt="" coords="729,207,729,241,723,241,723,207"/>
+<area shape="poly" id="edge12_Node000010_Node000004" title=" " alt="" coords="305,207,305,241,299,241,299,207"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="901,181,967,207"/>
+<area shape="poly" id="edge14_Node000011_Node000012" title=" " alt="" coords="857,131,910,171,906,175,854,135"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="805,181,876,207"/>
+<area shape="poly" id="edge15_Node000011_Node000013" title=" " alt="" coords="843,134,843,168,838,168,838,134"/>
+<area shape="poly" id="edge17_Node000014_Node000004" title=" " alt="" coords="139,136,119,150,101,168,92,187,92,196,96,205,120,222,161,236,254,256,252,262,159,241,118,227,92,208,87,197,86,186,97,165,116,146,136,131"/>
+</map>

@@ -1,0 +1,17 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/projects/ad74413r/src/common/common_data.h" name="/home/runner/work/no&#45;OS/no&#45;OS/projects/ad74413r/src/common/common_data.h">
+<area shape="rect" id="Node000001" title="Defines common data to be used by ad74413r examples." alt="" coords="15,5,230,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,108,115,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="106,62,79,98,75,95,101,58"/>
+<area shape="rect" id="Node000003" href="$ad74413r_8h.html" title="Header file of AD74413r Driver." alt="" coords="139,108,234,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="144,58,172,95,168,99,140,62"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="209,255,279,280"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="149,136,118,148,90,165,74,184,73,194,78,205,102,229,132,245,164,255,196,261,195,266,163,260,130,250,99,233,74,208,68,195,69,182,86,161,115,144,147,131"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="88,181,171,207"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="179,135,149,172,145,169,175,132"/>
+<area shape="rect" id="Node000006" href="$no__os__spi_8h.html" title="Header file of SPI Interface." alt="" coords="195,181,293,207"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="198,132,228,169,224,172,194,135"/>
+<area shape="rect" id="Node000007" href="$no__os__gpio_8h.html" title="Header file of GPIO Interface." alt="" coords="317,181,424,207"/>
+<area shape="poly" id="edge7_Node000003_Node000007" title=" " alt="" coords="217,131,329,174,327,179,215,136"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="247,207,247,241,241,241,241,207"/>
+<area shape="poly" id="edge8_Node000007_Node000004" title=" " alt="" coords="352,209,278,250,275,245,349,204"/>
+</map>

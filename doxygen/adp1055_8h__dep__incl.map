@@ -1,0 +1,18 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/power/adp1055/adp1055.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/power/adp1055/adp1055.h">
+<area shape="rect" id="Node000001" title="Header file for the ADP1055 Driver." alt="" coords="261,5,443,60"/>
+<area shape="rect" id="Node000002" href="$adp1055_8c.html" title="Source file for the ADP1055 Driver." alt="" coords="5,115,187,170"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="278,68,159,118,157,113,276,63"/>
+<area shape="rect" id="Node000003" href="$iio__adp1055_8c.html" title="Source file for the ADP1055 IIO Driver." alt="" coords="88,233,269,287"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="296,70,272,89,251,110,230,140,212,174,189,233,184,231,208,171,225,138,247,106,269,85,292,66"/>
+<area shape="rect" id="Node000004" href="$iio__adp1055_8h.html" title="Header file for the ADP1055 IIO Driver." alt="" coords="261,115,443,170"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="355,74,355,115,349,115,349,74"/>
+<area shape="rect" id="Node000006" href="$adp1055_2src_2common_2common__data_8h.html" title="Defines common data to be used by adp1055 examples." alt="" coords="467,115,682,170"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="420,64,522,113,519,118,417,69"/>
+<area shape="rect" id="Node000008" href="$adp1055_2src_2examples_2basic_2basic__example_8c.html" title="Basic example source file for adp1055 project." alt="" coords="706,108,910,177"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="457,52,695,105,706,108,705,113,694,111,456,57"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="303,180,220,235,217,230,300,175"/>
+<area shape="rect" id="Node000005" href="$adp1055_2src_2examples_2iio__example_2iio__example_8c.html" title="IIO example source file for adp1055 project." alt="" coords="294,225,498,295"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="369,182,386,224,381,226,364,184"/>
+<area shape="rect" id="Node000007" href="$adp1055_2src_2common_2common__data_8c.html" title="Defines common data to be used by adp1055 examples." alt="" coords="522,233,737,287"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="595,181,619,231,614,234,590,183"/>
+</map>

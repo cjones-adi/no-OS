@@ -1,0 +1,13 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/projects/adv7511/src/app_config.h" name="/home/runner/work/no&#45;OS/no&#45;OS/projects/adv7511/src/app_config.h">
+<area shape="rect" id="Node000001" title="Config file of ADV7511 no&#45;OS project." alt="" coords="233,5,437,60"/>
+<area shape="rect" id="Node000002" href="$cf__hdmi_8h.html" title=" " alt="" coords="233,108,437,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="338,74,338,108,333,108,333,74"/>
+<area shape="rect" id="Node000004" href="$adv7511_2src_2main_8c.html" title="The implementation of the main function of the app." alt="" coords="5,211,209,265"/>
+<area shape="poly" id="edge5_Node000001_Node000004" title=" " alt="" coords="279,69,222,110,170,163,129,212,125,209,166,159,219,106,276,65"/>
+<area shape="rect" id="Node000005" href="$transmitter_8c.html" title=" " alt="" coords="461,211,665,265"/>
+<area shape="poly" id="edge6_Node000001_Node000005" title=" " alt="" coords="395,65,452,106,505,159,546,209,542,212,501,163,448,110,392,69"/>
+<area shape="rect" id="Node000003" href="$cf__hdmi_8c.html" title=" " alt="" coords="233,211,437,265"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="338,176,338,211,333,211,333,176"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="265,171,168,213,166,208,262,166"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="408,166,505,208,503,213,406,171"/>
+</map>

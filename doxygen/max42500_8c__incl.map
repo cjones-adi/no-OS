@@ -1,0 +1,35 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/power/max42500/max42500.c" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/power/max42500/max42500.c">
+<area shape="rect" id="Node000001" title="Source file of MAX42500 Driver." alt="" coords="468,5,649,60"/>
+<area shape="rect" id="Node000002" href="$max42500_8h.html" title="Header file of MAX42500 Driver." alt="" coords="221,108,323,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="472,63,324,107,323,102,470,58"/>
+<area shape="rect" id="Node000007" href="$no__os__error_8h.html" title="Error codes definition." alt="" coords="776,108,885,133"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="643,58,782,101,781,106,641,63"/>
+<area shape="rect" id="Node000009" href="$no__os__util_8h.html" title="Header file of utility functions." alt="" coords="379,108,479,133"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="521,62,460,103,457,98,518,58"/>
+<area shape="rect" id="Node000011" href="$no__os__alloc_8h.html" title=" " alt="" coords="503,108,614,133"/>
+<area shape="poly" id="edge14_Node000001_Node000011" title=" " alt="" coords="561,60,561,94,556,94,556,60"/>
+<area shape="rect" id="Node000013" href="$no__os__crc8_8h.html" title="Header file of CRC&#45;8 computation." alt="" coords="639,108,745,133"/>
+<area shape="poly" id="edge17_Node000001_Node000013" title=" " alt="" coords="601,58,664,98,661,103,598,62"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="237,255,307,280"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="275,134,275,241,269,241,269,134"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="309,181,392,207"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="286,131,330,170,326,174,283,135"/>
+<area shape="rect" id="Node000005" href="$no__os__i2c_8h.html" title="Header file of I2C Interface." alt="" coords="5,181,104,207"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="238,136,104,180,102,174,236,131"/>
+<area shape="rect" id="Node000006" href="$no__os__gpio_8h.html" title="Header file of GPIO Interface." alt="" coords="128,181,235,207"/>
+<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="259,135,209,175,205,170,256,131"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="90,204,225,248,223,253,89,209"/>
+<area shape="poly" id="edge7_Node000006_Node000003" title=" " alt="" coords="198,205,248,244,245,248,194,209"/>
+<area shape="rect" id="Node000008" href="$errno_8h.html" title="Error macro definition for ARM Compiler." alt="" coords="803,181,871,207"/>
+<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="834,133,838,168,832,168,829,134"/>
+<area shape="poly" id="edge11_Node000009_Node000003" title=" " alt="" coords="431,134,425,170,418,190,406,208,388,225,366,239,322,257,320,252,364,234,384,221,402,205,413,188,420,168,426,133"/>
+<area shape="poly" id="edge13_Node000009_Node000004" title=" " alt="" coords="418,135,375,174,372,170,415,131"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="467,181,538,207"/>
+<area shape="poly" id="edge12_Node000009_Node000010" title=" " alt="" coords="443,132,483,170,479,174,440,136"/>
+<area shape="poly" id="edge16_Node000011_Node000010" title=" " alt="" coords="552,135,522,172,518,169,547,132"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="563,181,629,207"/>
+<area shape="poly" id="edge15_Node000011_Node000012" title=" " alt="" coords="567,132,586,168,581,171,562,135"/>
+<area shape="poly" id="edge18_Node000013_Node000003" title=" " alt="" coords="709,131,726,147,741,166,749,188,748,198,742,209,720,220,680,230,563,247,321,266,321,261,563,242,679,225,718,215,738,205,743,197,744,188,736,169,722,151,705,135"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="653,181,728,207"/>
+<area shape="poly" id="edge19_Node000013_Node000014" title=" " alt="" coords="694,134,694,168,688,168,689,134"/>
+</map>

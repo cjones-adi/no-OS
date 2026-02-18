@@ -1,0 +1,17 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/projects/eval&#45;adgs6414d/src/platform/maxim/main.c" name="/home/runner/work/no&#45;OS/no&#45;OS/projects/eval&#45;adgs6414d/src/platform/maxim/main.c">
+<area shape="rect" id="Node000001" title="Main file for Maxim platform of adgs6414d project." alt="" coords="249,5,431,75"/>
+<area shape="rect" id="Node000002" href="$eval-adgs6414d_2src_2platform_2maxim_2parameters_8h.html" title="Definitions specific to Maxim platform used by adgs6414d project." alt="" coords="141,123,251,148"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="289,77,227,117,224,113,287,73"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="277,123,403,148"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="343,75,343,109,337,109,337,75"/>
+<area shape="rect" id="Node000007" href="$no__os__error_8h.html" title="Error codes definition." alt="" coords="429,123,539,148"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="393,73,456,113,453,117,391,77"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,196,112,221"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="175,150,94,192,92,187,173,146"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="137,196,250,221"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="198,148,197,183,192,182,193,148"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="275,196,427,221"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="222,146,314,188,312,193,220,150"/>
+<area shape="rect" id="Node000008" href="$errno_8h.html" title="Error macro definition for ARM Compiler." alt="" coords="451,196,519,221"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="487,148,488,182,482,183,482,148"/>
+</map>

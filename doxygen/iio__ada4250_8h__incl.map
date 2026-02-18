@@ -1,0 +1,12 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/amplifiers/ada4250/iio_ada4250.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/amplifiers/ada4250/iio_ada4250.h">
+<area shape="rect" id="Node000001" title="Header file of ada4250 iio." alt="" coords="22,5,229,60"/>
+<area shape="rect" id="Node000002" href="$iio__types_8h.html" title="Header file for iio_types." alt="" coords="79,108,172,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="128,60,128,94,123,94,123,60"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,181,88,207"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="114,135,71,174,68,170,111,131"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="151,255,222,280"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="130,133,139,166,153,206,173,242,169,245,148,208,134,168,125,135"/>
+<area shape="rect" id="Node000005" href="$no__os__circular__buffer_8h.html" title="Circular buffer library header." alt="" coords="163,181,333,207"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="146,131,218,172,215,177,144,136"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="240,209,208,246,204,242,236,205"/>
+</map>

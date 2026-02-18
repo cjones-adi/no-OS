@@ -1,0 +1,32 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/win/win_uart.c" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/win/win_uart.c">
+<area shape="rect" id="Node000001" title="Implementation of Windows platform UART Driver." alt="" coords="279,5,476,60"/>
+<area shape="rect" id="Node000002" href="$no__os__error_8h.html" title="Error codes definition." alt="" coords="5,108,115,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="281,63,116,107,115,102,280,57"/>
+<area shape="rect" id="Node000004" href="$no__os__alloc_8h.html" title=" " alt="" coords="190,108,301,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="338,62,276,103,273,98,336,58"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="119,181,185,207"/>
+<area shape="poly" id="edge15_Node000001_Node000005" title=" " alt="" coords="279,54,226,75,201,91,179,110,163,138,156,169,151,167,158,136,175,106,198,87,223,71,277,49"/>
+<area shape="rect" id="Node000007" href="$win__uart_8h.html" title=" " alt="" coords="332,108,423,133"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="380,60,380,94,375,94,375,60"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="440,328,523,353"/>
+<area shape="poly" id="edge16_Node000001_Node000010" title=" " alt="" coords="403,59,437,107,469,178,484,254,486,314,481,314,479,255,463,180,432,109,399,62"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="569,108,644,133"/>
+<area shape="poly" id="edge14_Node000001_Node000012" title=" " alt="" coords="448,58,564,101,562,106,446,63"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="668,108,759,133"/>
+<area shape="poly" id="edge17_Node000001_Node000013" title=" " alt="" coords="477,57,656,102,655,107,476,62"/>
+<area shape="rect" id="Node000003" href="$errno_8h.html" title="Error macro definition for ARM Compiler." alt="" coords="26,181,94,207"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="63,134,63,168,57,168,57,134"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="232,135,180,175,176,171,229,131"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="203,328,274,353"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="248,134,242,314,237,314,242,134"/>
+<area shape="rect" id="Node000008" href="$no__os__uart_8h.html" title="Header file of UART interface." alt="" coords="325,181,430,207"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="380,134,380,168,375,168,375,134"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="313,328,383,353"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="353,209,324,228,311,241,301,256,298,272,302,288,325,317,321,320,298,290,293,272,296,254,307,238,321,224,350,205"/>
+<area shape="poly" id="edge9_Node000008_Node000010" title=" " alt="" coords="401,205,431,225,458,253,473,284,481,314,476,315,468,286,454,256,427,229,398,209"/>
+<area shape="rect" id="Node000011" href="$no__os__lf256fifo_8h.html" title="SPSC lock&#45;free fifo of fixed size (256), specialized for UART." alt="" coords="311,255,444,280"/>
+<area shape="poly" id="edge10_Node000008_Node000011" title=" " alt="" coords="380,207,380,241,375,241,375,207"/>
+<area shape="poly" id="edge11_Node000011_Node000006" title=" " alt="" coords="356,282,275,324,272,319,354,278"/>
+<area shape="poly" id="edge12_Node000011_Node000009" title=" " alt="" coords="375,281,360,316,356,314,370,279"/>
+<area shape="poly" id="edge13_Node000011_Node000010" title=" " alt="" coords="396,278,454,318,451,322,393,282"/>
+</map>

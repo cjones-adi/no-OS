@@ -1,0 +1,40 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/gmsl/serializer/camera/max96793/max96793_csi.c" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/gmsl/serializer/camera/max96793/max96793_csi.c">
+<area shape="rect" id="Node000001" title=" " alt="" coords="405,5,617,75"/>
+<area shape="rect" id="Node000002" href="$max96793__csi_8h.html" title=" " alt="" coords="303,123,431,148"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="461,77,398,117,395,113,458,73"/>
+<area shape="rect" id="Node000006" href="$gmsl__reg__access_8h.html" title=" " alt="" coords="5,269,151,295"/>
+<area shape="poly" id="edge20_Node000001_Node000006" title=" " alt="" coords="406,61,334,80,257,107,182,146,147,170,116,198,97,226,86,257,81,255,92,224,112,194,144,166,179,142,255,103,333,75,405,56"/>
+<area shape="rect" id="Node000010" href="$gmsl__dbg_8h.html" title=" " alt="" coords="485,196,583,221"/>
+<area shape="poly" id="edge15_Node000001_Node000010" title=" " alt="" coords="519,75,533,182,528,183,513,75"/>
+<area shape="rect" id="Node000013" href="$no__os__error_8h.html" title="Error codes definition." alt="" coords="549,123,658,148"/>
+<area shape="poly" id="edge21_Node000001_Node000013" title=" " alt="" coords="546,73,584,111,580,114,543,77"/>
+<area shape="rect" id="Node000015" href="$max96793__regs_8h.html" title=" " alt="" coords="682,123,821,148"/>
+<area shape="poly" id="edge23_Node000001_Node000015" title=" " alt="" coords="599,72,710,115,708,120,597,77"/>
+<area shape="rect" id="Node000003" href="$gmsl__common_8h.html" title=" " alt="" coords="126,196,257,221"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="340,150,234,193,232,188,338,146"/>
+<area shape="rect" id="Node000008" href="$gmsl__cam__ser_8h.html" title=" " alt="" coords="283,196,409,221"/>
+<area shape="poly" id="edge9_Node000002_Node000008" title=" " alt="" coords="366,149,356,184,351,182,361,148"/>
+<area shape="rect" id="Node000009" href="$no__os__delay_8h.html" title="Header file of Delay functions." alt="" coords="383,343,496,368"/>
+<area shape="poly" id="edge13_Node000002_Node000009" title=" " alt="" coords="384,146,405,167,423,195,435,230,441,267,444,329,438,329,436,267,430,231,418,197,401,171,380,150"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="232,416,303,441"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="197,221,217,294,259,402,254,404,211,296,191,222"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="226,269,309,295"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="205,219,247,258,243,262,202,223"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="175,224,109,264,106,260,172,219"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="76,296,67,330,68,349,75,366,104,394,142,411,181,421,219,425,218,430,180,426,140,416,102,398,70,370,62,351,62,330,70,294"/>
+<area shape="rect" id="Node000007" href="$no__os__i2c_8h.html" title="Header file of I2C Interface." alt="" coords="85,343,183,368"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="89,293,119,330,114,333,85,297"/>
+<area shape="poly" id="edge8_Node000007_Node000004" title=" " alt="" coords="157,366,235,407,232,412,154,370"/>
+<area shape="poly" id="edge10_Node000008_Node000004" title=" " alt="" coords="351,222,354,255,350,295,338,328,322,358,288,407,284,404,317,355,333,326,345,294,349,255,346,222"/>
+<area shape="poly" id="edge11_Node000008_Node000005" title=" " alt="" coords="335,223,292,262,288,258,332,219"/>
+<area shape="poly" id="edge12_Node000008_Node000007" title=" " alt="" coords="348,222,343,258,335,279,323,296,295,318,263,334,229,345,197,352,196,346,228,340,261,329,292,314,319,293,330,276,338,257,343,221"/>
+<area shape="poly" id="edge14_Node000009_Node000004" title=" " alt="" coords="413,370,309,413,307,408,411,366"/>
+<area shape="poly" id="edge17_Node000010_Node000004" title=" " alt="" coords="539,221,541,250,540,290,531,332,522,352,509,370,496,380,476,389,426,405,317,424,316,419,425,399,475,384,493,376,505,366,518,350,526,331,535,289,536,251,533,222"/>
+<area shape="poly" id="edge16_Node000010_Node000005" title=" " alt="" coords="492,224,323,269,322,264,490,219"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="572,269,643,295"/>
+<area shape="poly" id="edge18_Node000010_Node000011" title=" " alt="" coords="548,220,587,258,584,262,544,224"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="667,269,734,295"/>
+<area shape="poly" id="edge19_Node000010_Node000012" title=" " alt="" coords="562,219,662,261,660,266,560,224"/>
+<area shape="rect" id="Node000014" href="$errno_8h.html" title="Error macro definition for ARM Compiler." alt="" coords="607,196,675,221"/>
+<area shape="poly" id="edge22_Node000013_Node000014" title=" " alt="" coords="612,147,631,183,626,185,607,150"/>
+</map>

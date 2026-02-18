@@ -1,0 +1,48 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/projects/ad405x/src/platform/stm32/parameters.c" name="/home/runner/work/no&#45;OS/no&#45;OS/projects/ad405x/src/platform/stm32/parameters.c">
+<area shape="rect" id="Node000001" title="Definition of STM32 platform data used by ad405x project." alt="" coords="218,5,458,60"/>
+<area shape="rect" id="Node000002" href="$ad405x_2src_2platform_2stm32_2parameters_8h.html" title="Definitions specific to STM32 platform used by ad405x project." alt="" coords="283,108,393,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="341,60,341,94,335,94,335,60"/>
+<area shape="rect" id="Node000003" href="$stm32__hal_8h.html" title=" " alt="" coords="208,328,311,353"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="315,136,283,154,245,181,209,215,182,256,180,274,188,291,204,306,224,319,221,324,201,310,184,294,174,275,177,254,205,211,242,177,280,150,313,131"/>
+<area shape="rect" id="Node000005" href="$stm32__irq_8h.html" title="Header file for stm32 irq specifics." alt="" coords="351,255,450,280"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="346,133,393,241,388,243,341,135"/>
+<area shape="rect" id="Node000008" href="$stm32__gpio__irq_8h.html" title="Header file for stm32 gpio irq specifics." alt="" coords="192,255,327,280"/>
+<area shape="poly" id="edge8_Node000002_Node000008" title=" " alt="" coords="334,135,274,244,270,241,329,133"/>
+<area shape="rect" id="Node000009" href="$stm32__gpio_8h.html" title="Header file for stm32 gpio specifics." alt="" coords="5,255,116,280"/>
+<area shape="poly" id="edge11_Node000002_Node000009" title=" " alt="" coords="284,132,211,150,173,165,137,184,103,213,78,245,73,241,99,209,134,179,170,160,209,145,282,127"/>
+<area shape="rect" id="Node000011" href="$stm32__uart_8h.html" title="Header file of UART driver for STM32." alt="" coords="475,255,583,280"/>
+<area shape="poly" id="edge15_Node000002_Node000011" title=" " alt="" coords="355,132,504,244,501,248,352,136"/>
+<area shape="rect" id="Node000015" href="$stm32__uart__stdio_8h.html" title="Header file of stm32 UART driver stdout/stdin redirection." alt="" coords="491,181,638,207"/>
+<area shape="poly" id="edge27_Node000002_Node000015" title=" " alt="" coords="375,131,516,175,514,180,374,136"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="226,401,293,427"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="262,354,262,388,257,388,257,354"/>
+<area shape="poly" id="edge7_Node000005_Node000003" title=" " alt="" coords="379,282,296,324,293,319,377,278"/>
+<area shape="rect" id="Node000006" href="$no__os__irq_8h.html" title="Header file of IRQ interface." alt="" coords="345,328,441,353"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="402,281,398,315,393,314,397,280"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="443,475,513,500"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="402,352,466,461,462,464,397,355"/>
+<area shape="poly" id="edge10_Node000008_Node000003" title=" " alt="" coords="262,280,262,314,257,314,257,280"/>
+<area shape="poly" id="edge9_Node000008_Node000006" title=" " alt="" coords="282,278,360,319,358,324,280,282"/>
+<area shape="poly" id="edge14_Node000009_Node000003" title=" " alt="" coords="93,278,215,321,213,326,92,283"/>
+<area shape="poly" id="edge12_Node000009_Node000007" title=" " alt="" coords="65,279,72,309,85,349,107,391,121,409,138,424,160,436,190,446,269,463,355,474,429,480,429,486,354,479,268,468,189,452,158,441,135,429,117,413,102,393,80,351,67,311,60,281"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="563,475,646,500"/>
+<area shape="poly" id="edge13_Node000009_Node000010" title=" " alt="" coords="70,279,91,309,124,349,166,391,215,424,550,475,549,480,213,429,163,395,120,353,87,312,66,282"/>
+<area shape="poly" id="edge26_Node000011_Node000003" title=" " alt="" coords="486,283,317,327,315,322,485,277"/>
+<area shape="poly" id="edge25_Node000011_Node000006" title=" " alt="" coords="508,282,428,324,426,319,506,278"/>
+<area shape="poly" id="edge16_Node000011_Node000007" title=" " alt="" coords="527,281,513,329,485,462,480,461,507,327,522,280"/>
+<area shape="poly" id="edge17_Node000011_Node000010" title=" " alt="" coords="535,279,599,461,594,463,530,281"/>
+<area shape="rect" id="Node000012" href="$no__os__uart_8h.html" title="Header file of UART interface." alt="" coords="577,328,683,353"/>
+<area shape="poly" id="edge18_Node000011_Node000012" title=" " alt="" coords="546,278,604,318,601,322,543,282"/>
+<area shape="poly" id="edge19_Node000012_Node000007" title=" " alt="" coords="619,356,502,467,498,463,616,352"/>
+<area shape="poly" id="edge20_Node000012_Node000010" title=" " alt="" coords="631,354,612,461,606,461,625,353"/>
+<area shape="rect" id="Node000013" href="$no__os__lf256fifo_8h.html" title="SPSC lock&#45;free fifo of fixed size (256), specialized for UART." alt="" coords="667,401,801,427"/>
+<area shape="poly" id="edge21_Node000012_Node000013" title=" " alt="" coords="648,351,707,391,704,395,645,356"/>
+<area shape="poly" id="edge23_Node000013_Node000007" title=" " alt="" coords="694,429,527,475,526,470,692,424"/>
+<area shape="poly" id="edge24_Node000013_Node000010" title=" " alt="" coords="714,429,639,470,637,465,712,424"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="699,475,769,500"/>
+<area shape="poly" id="edge22_Node000013_Node000014" title=" " alt="" coords="737,427,737,461,731,461,731,427"/>
+<area shape="poly" id="edge30_Node000015_Node000011" title=" " alt="" coords="561,208,543,244,538,241,556,206"/>
+<area shape="poly" id="edge29_Node000015_Node000012" title=" " alt="" coords="632,204,673,222,692,236,707,253,712,273,703,293,687,309,667,323,664,319,683,305,699,289,707,273,702,256,688,240,671,227,630,209"/>
+<area shape="rect" id="Node000016" title=" " alt="" coords="607,255,693,280"/>
+<area shape="poly" id="edge28_Node000015_Node000016" title=" " alt="" coords="580,205,627,244,624,248,577,209"/>
+</map>

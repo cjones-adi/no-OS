@@ -1,0 +1,23 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/xilinx/xilinx_timer.c" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/xilinx/xilinx_timer.c">
+<area shape="rect" id="Node000001" title="Timer and GIC control module source." alt="" coords="164,5,361,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="181,181,251,207"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="258,61,226,169,221,167,252,59"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,181,123,207"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="165,47,134,56,105,69,78,87,57,109,51,123,50,138,56,168,51,169,44,138,46,122,52,107,75,82,102,64,132,51,163,42"/>
+<area shape="rect" id="Node000004" href="$no__os__timer_8h.html" title="Timer control module header." alt="" coords="389,108,502,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="320,58,410,100,407,105,317,62"/>
+<area shape="rect" id="Node000006" href="$xilinx__timer_8h.html" title="Timer control module header." alt="" coords="67,108,178,133"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="221,62,155,103,152,98,219,58"/>
+<area shape="rect" id="Node000007" href="$no__os__error_8h.html" title="Error codes definition." alt="" coords="527,108,636,133"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="361,57,527,102,525,107,359,63"/>
+<area shape="rect" id="Node000009" href="$no__os__alloc_8h.html" title=" " alt="" coords="254,108,365,133"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="279,59,299,95,294,97,275,61"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="410,181,481,207"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="448,134,448,168,443,168,443,134"/>
+<area shape="poly" id="edge6_Node000006_Node000003" title=" " alt="" coords="115,135,84,173,80,169,111,132"/>
+<area shape="rect" id="Node000008" href="$errno_8h.html" title="Error macro definition for ARM Compiler." alt="" coords="547,181,615,207"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="584,134,584,168,579,168,579,134"/>
+<area shape="poly" id="edge11_Node000009_Node000002" title=" " alt="" coords="296,135,244,175,240,171,293,131"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="276,181,343,207"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="312,134,312,168,307,168,307,134"/>
+</map>

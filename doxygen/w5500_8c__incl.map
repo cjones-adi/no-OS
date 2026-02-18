@@ -1,0 +1,31 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/net/w5500/w5500.c" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/net/w5500/w5500.c">
+<area shape="rect" id="Node000001" title="Implementation of W5500 Driver." alt="" coords="145,5,310,60"/>
+<area shape="rect" id="Node000002" href="$w5500_8h.html" title="Header file W5500 Driver." alt="" coords="287,108,365,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="259,58,304,97,300,101,256,62"/>
+<area shape="rect" id="Node000009" href="$errno_8h.html" title="Error macro definition for ARM Compiler." alt="" coords="100,108,168,133"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="201,62,159,100,155,96,197,58"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="192,108,263,133"/>
+<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="230,60,230,94,225,94,225,60"/>
+<area shape="rect" id="Node000011" href="$no__os__alloc_8h.html" title=" " alt="" coords="500,108,611,133"/>
+<area shape="poly" id="edge12_Node000001_Node000011" title=" " alt="" coords="311,53,499,102,497,107,309,58"/>
+<area shape="rect" id="Node000013" href="$no__os__delay_8h.html" title="Header file of Delay functions." alt="" coords="5,181,119,207"/>
+<area shape="poly" id="edge15_Node000001_Node000013" title=" " alt="" coords="154,62,119,83,89,110,74,138,67,168,62,167,69,136,85,106,116,78,151,58"/>
+<area shape="rect" id="Node000003" href="$no__os__spi_8h.html" title="Header file of SPI Interface." alt="" coords="274,181,373,207"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="328,134,327,168,322,168,323,134"/>
+<area shape="rect" id="Node000005" href="$no__os__gpio_8h.html" title="Header file of GPIO Interface." alt="" coords="143,181,250,207"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="306,136,231,177,229,172,304,131"/>
+<area shape="rect" id="Node000006" href="$no__os__util_8h.html" title="Header file of utility functions." alt="" coords="397,181,497,207"/>
+<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="347,131,417,172,415,177,344,136"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="225,255,296,280"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="315,209,282,246,278,242,311,205"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="209,205,243,243,239,246,205,209"/>
+<area shape="poly" id="edge7_Node000006_Node000004" title=" " alt="" coords="418,209,305,252,303,247,416,204"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="552,255,623,280"/>
+<area shape="poly" id="edge8_Node000006_Node000007" title=" " alt="" coords="471,204,554,246,551,251,469,209"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="406,255,489,280"/>
+<area shape="poly" id="edge9_Node000006_Node000008" title=" " alt="" coords="450,207,450,241,445,241,445,207"/>
+<area shape="poly" id="edge14_Node000011_Node000007" title=" " alt="" coords="570,132,588,153,603,181,606,212,600,242,595,241,601,212,598,182,584,156,566,135"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="522,181,589,207"/>
+<area shape="poly" id="edge13_Node000011_Node000012" title=" " alt="" coords="558,134,558,168,553,168,553,134"/>
+<area shape="poly" id="edge16_Node000013_Node000004" title=" " alt="" coords="95,204,216,247,214,252,93,209"/>
+</map>

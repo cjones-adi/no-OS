@@ -1,0 +1,7 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/motor/tmc5240/tmc5240.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/motor/tmc5240/tmc5240.h">
+<area shape="rect" id="Node000001" title="Header file for TMC5240 driver." alt="" coords="107,5,287,60"/>
+<area shape="rect" id="Node000002" href="$iio__tmc5240_8c.html" title="Implementation of IIO TMC5240 driver." alt="" coords="5,108,185,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="162,72,124,110,120,106,158,68"/>
+<area shape="rect" id="Node000003" href="$tmc5240_8c.html" title="Implementation of TMC5240 driver." alt="" coords="209,108,389,163"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="235,68,274,106,271,110,231,72"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/temperature/adt75/iio_adt75.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/temperature/adt75/iio_adt75.h">
+<area shape="rect" id="Node000001" title="Header file of the IIO ADT75 Driver." alt="" coords="240,5,463,60"/>
+<area shape="rect" id="Node000002" href="$iio__adt75_8c.html" title="Source file of IIO ADT75 Driver." alt="" coords="5,115,228,170"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="283,68,175,118,173,113,280,63"/>
+<area shape="rect" id="Node000003" href="$adt75_2src_2examples_2iio__example_2iio__example_8c.html" title="Implementation of IIO example for AD74413R project." alt="" coords="253,108,450,177"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="354,74,354,108,349,108,349,74"/>
+<area shape="rect" id="Node000004" href="$swiot__fw_8c.html" title="Main project file for the swiot1l project." alt="" coords="474,115,669,170"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="419,64,519,113,517,118,416,69"/>
+</map>

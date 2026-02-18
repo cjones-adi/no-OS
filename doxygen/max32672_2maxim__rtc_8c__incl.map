@@ -1,0 +1,35 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/maxim/max32672/maxim_rtc.c" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/maxim/max32672/maxim_rtc.c">
+<area shape="rect" id="Node000001" title="Implementation of RTC driver." alt="" coords="334,5,565,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="249,181,319,207"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="391,63,358,83,327,110,307,139,294,169,289,167,303,136,323,106,354,79,389,58"/>
+<area shape="rect" id="Node000003" href="$errno_8h.html" title="Error macro definition for ARM Compiler." alt="" coords="58,108,126,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="339,63,140,110,139,105,337,57"/>
+<area shape="rect" id="Node000004" href="$no__os__irq_8h.html" title="Header file of IRQ interface." alt="" coords="5,181,101,207"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="334,42,249,50,164,63,92,82,65,95,47,110,41,123,39,137,45,168,40,169,34,138,36,121,43,106,62,91,90,77,163,57,249,44,334,36"/>
+<area shape="rect" id="Node000006" href="$no__os__rtc_8h.html" title="Header of the RTC interface." alt="" coords="552,181,648,207"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="566,48,615,70,636,86,654,107,660,125,655,143,643,160,628,174,625,171,639,156,650,141,654,125,650,109,633,90,612,75,564,53"/>
+<area shape="rect" id="Node000007" href="$no__os__util_8h.html" title="Header file of utility functions." alt="" coords="337,108,437,133"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="432,62,406,98,401,95,428,58"/>
+<area shape="rect" id="Node000009" href="$no__os__alloc_8h.html" title=" " alt="" coords="150,108,261,133"/>
+<area shape="poly" id="edge11_Node000001_Node000009" title=" " alt="" coords="376,63,252,106,250,101,374,58"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="589,108,640,133"/>
+<area shape="poly" id="edge14_Node000001_Node000011" title=" " alt="" coords="501,58,582,99,579,104,499,62"/>
+<area shape="rect" id="Node000012" href="$max32672_2maxim__rtc_8h.html" title="Header file of RTC driver." alt="" coords="461,108,565,133"/>
+<area shape="poly" id="edge15_Node000001_Node000012" title=" " alt="" coords="471,58,499,95,494,99,467,62"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="715,108,837,133"/>
+<area shape="poly" id="edge18_Node000001_Node000013" title=" " alt="" coords="550,57,720,102,719,107,548,63"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="861,108,968,133"/>
+<area shape="poly" id="edge19_Node000001_Node000014" title=" " alt="" coords="565,53,849,105,848,110,564,58"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="454,255,525,280"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="102,201,441,255,440,261,101,206"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="584,209,521,249,518,245,581,204"/>
+<area shape="poly" id="edge9_Node000007_Node000002" title=" " alt="" coords="372,136,314,175,311,171,369,131"/>
+<area shape="poly" id="edge8_Node000007_Node000005" title=" " alt="" coords="400,132,441,180,479,241,475,244,437,183,396,135"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="344,181,427,207"/>
+<area shape="poly" id="edge10_Node000007_Node000008" title=" " alt="" coords="389,134,388,168,383,168,384,134"/>
+<area shape="poly" id="edge13_Node000009_Node000002" title=" " alt="" coords="220,131,263,170,259,174,216,135"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="157,181,224,207"/>
+<area shape="poly" id="edge12_Node000009_Node000010" title=" " alt="" coords="206,134,198,168,193,167,200,133"/>
+<area shape="poly" id="edge16_Node000012_Node000005" title=" " alt="" coords="514,134,496,241,491,241,509,133"/>
+<area shape="poly" id="edge17_Node000012_Node000006" title=" " alt="" coords="529,131,577,170,574,175,526,135"/>
+</map>

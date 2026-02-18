@@ -1,0 +1,574 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/iio/iio.h" name="/home/runner/work/no&#45;OS/no&#45;OS/iio/iio.h">
+<area shape="rect" id="Node000001" title="Header file of iio." alt="" coords="15663,5,15829,45"/>
+<area shape="rect" id="Node000002" href="$iio__adxl313_8h.html" title="Header file of IIO ADXL355 Driver." alt="" coords="217,101,392,155"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="15649,29,12788,32,7709,42,5081,51,2793,62,1142,77,648,86,425,96,388,103,387,98,424,91,648,81,1142,72,2793,57,5081,45,7708,37,12788,27,15649,24"/>
+<area shape="rect" id="Node000005" href="$iio__adxl355_8h.html" title="Header file of IIO ADXL355 Driver." alt="" coords="8056,101,8231,155"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="15649,30,14457,34,12446,45,10304,65,9398,79,8718,96,8452,109,8231,123,8231,118,8452,103,8718,91,9398,74,10304,60,12446,40,14457,29,15649,24"/>
+<area shape="rect" id="Node000010" href="$iio__adxl355__trig_8c.html" title="Implementation of adxl355 iio trigger." alt="" coords="1245,225,1442,280"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="15650,29,13013,29,8373,36,5977,44,3893,56,2389,73,1939,84,1805,90,1737,96,1639,122,1543,157,1458,195,1392,228,1390,223,1456,190,1541,152,1637,117,1736,91,1805,84,1939,78,2389,67,3893,50,5977,38,8373,30,13013,24,15650,24"/>
+<area shape="rect" id="Node000011" href="$iio__adxl367_8h.html" title="Header file of IIO ADXL367 Driver." alt="" coords="24296,101,24471,155"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="15842,24,17484,25,20237,31,21656,39,22902,51,23826,68,24120,79,24277,91,24311,98,24309,103,24276,96,24120,84,23826,73,22902,57,21656,45,20237,37,17484,30,15842,29"/>
+<area shape="rect" id="Node000014" href="$iio__ad74413r_8h.html" title="Header file of the IIO AD74413r Driver." alt="" coords="1888,225,2103,280"/>
+<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="15650,29,13119,29,8684,34,6397,42,4407,54,2972,72,2543,83,2415,89,2351,96,2261,122,2175,157,2099,195,2039,228,2037,223,2096,190,2172,152,2259,117,2349,91,2415,84,2543,78,2972,66,4407,49,6397,37,8684,29,13119,24,15650,24"/>
+<area shape="rect" id="Node000018" href="$swiot_8c.html" title="Source file for the swiot IIO driver." alt="" coords="693,482,887,537"/>
+<area shape="poly" id="edge338_Node000001_Node000018" title=" " alt="" coords="15650,29,12810,35,7788,48,2969,68,1380,81,921,88,736,96,651,110,582,124,552,135,524,152,497,177,471,212,455,244,452,274,458,302,473,328,494,353,521,377,585,424,640,456,698,480,696,484,638,461,582,429,518,381,490,357,468,331,453,303,446,274,450,243,466,209,493,174,521,148,550,131,580,119,650,105,735,91,921,83,1380,76,2969,63,7788,43,12810,30,15650,24"/>
+<area shape="rect" id="Node000021" href="$iio__ad405x_8h.html" title=" " alt="" coords="10038,101,10203,155"/>
+<area shape="poly" id="edge22_Node000001_Node000021" title=" " alt="" coords="15650,29,14597,31,12910,38,12034,47,11248,58,10632,75,10414,85,10270,96,10204,108,10203,102,10270,91,10414,79,10632,69,11248,53,12034,41,12910,33,14597,25,15650,24"/>
+<area shape="rect" id="Node000024" href="$iio__ad4080_8h.html" title="Implementation of iio_ad4080.c." alt="" coords="10282,101,10447,155"/>
+<area shape="poly" id="edge25_Node000001_Node000024" title=" " alt="" coords="15649,30,14644,33,13043,44,12214,53,11469,64,10886,78,10680,87,10544,96,10448,111,10447,106,10543,91,10680,81,10886,73,11469,59,12214,47,13043,39,14644,28,15649,24"/>
+<area shape="rect" id="Node000027" href="$iio__ad4692_8h.html" title="Header file of ad4692 IIO driver." alt="" coords="3794,101,3959,155"/>
+<area shape="poly" id="edge28_Node000001_Node000027" title=" " alt="" coords="15650,29,13470,33,9686,44,7721,52,5990,64,4705,78,4295,87,4077,96,3960,112,3959,107,4076,91,4295,81,4705,73,5990,58,7721,47,9686,38,13470,28,15650,24"/>
+<area shape="rect" id="Node000031" href="$iio__ad7091r8_8h.html" title="Header file of IIO AD7091R8 driver header file." alt="" coords="8730,101,8917,155"/>
+<area shape="poly" id="edge32_Node000001_Node000031" title=" " alt="" coords="15650,29,14809,30,13333,38,11502,58,10542,74,9599,96,9221,110,8917,124,8917,119,9220,104,9599,91,10542,69,11502,52,13333,32,14809,25,15650,24"/>
+<area shape="rect" id="Node000033" href="$iio__ad7091r8__trig_8c.html" title="Implementation of iio_ad7091r8_trig.c." alt="" coords="3323,218,3497,287"/>
+<area shape="poly" id="edge37_Node000001_Node000033" title=" " alt="" coords="15650,29,13368,31,9413,39,7378,47,5609,59,4335,75,3954,85,3840,90,3782,96,3695,120,3609,153,3532,188,3469,220,3467,216,3530,183,3607,148,3693,115,3782,91,3840,85,3954,79,4335,70,5609,53,7378,42,9413,34,13367,26,15650,24"/>
+<area shape="rect" id="Node000036" href="$iio__ad7124_8c.html" title="Implementation of iio_ad7124.c." alt="" coords="4175,225,4341,280"/>
+<area shape="poly" id="edge38_Node000001_Node000036" title=" " alt="" coords="15650,29,13463,34,9704,46,7781,55,6122,66,4945,80,4606,87,4469,96,4432,116,4383,151,4290,227,4286,223,4380,147,4429,112,4468,91,4605,82,4945,74,6122,61,7781,49,9704,40,13463,29,15650,24"/>
+<area shape="rect" id="Node000037" href="$iio__ad7124_8h.html" title="Header file of iio_ad7124." alt="" coords="4175,101,4341,155"/>
+<area shape="poly" id="edge39_Node000001_Node000037" title=" " alt="" coords="15650,30,13472,35,9715,47,6107,68,4898,81,4536,88,4373,96,4337,103,4336,98,4372,91,4536,83,4898,76,6107,62,9715,42,13472,29,15650,24"/>
+<area shape="rect" id="Node000038" href="$ad7124-8pmdz_2src_2main_8c.html" title="Implementation of Main Function." alt="" coords="3955,225,4151,280"/>
+<area shape="poly" id="edge329_Node000001_Node000038" title=" " alt="" coords="15650,29,13407,30,9542,36,7565,44,5859,56,4650,73,4303,84,4205,90,4164,96,4129,122,4100,157,4079,194,4064,226,4060,224,4074,192,4096,154,4125,119,4162,91,4205,84,4302,78,4650,67,5859,50,7565,38,9542,31,13407,24,15650,24"/>
+<area shape="rect" id="Node000039" href="$iio__ad738x_8h.html" title="Header file for AD738X IIO interface." alt="" coords="4481,101,4646,155"/>
+<area shape="poly" id="edge42_Node000001_Node000039" title=" " alt="" coords="15650,30,13524,35,9870,48,6363,68,5188,81,4837,88,4678,96,4643,103,4642,98,4678,91,4837,83,5188,76,6363,63,9870,43,13524,30,15650,24"/>
+<area shape="rect" id="Node000040" href="$ad738x__fmcz_2src_2examples_2iio__example_2iio__example_8c.html" title="IIO example header for eval&#45;ad738x project." alt="" coords="4365,218,4601,287"/>
+<area shape="poly" id="edge330_Node000001_Node000040" title=" " alt="" coords="15649,30,13515,35,9857,48,6374,69,5229,81,4899,89,4767,96,4734,109,4712,126,4690,144,4659,165,4554,220,4552,216,4657,160,4686,140,4708,121,4732,105,4765,91,4899,83,5229,76,6374,63,9857,43,13515,30,15649,24"/>
+<area shape="rect" id="Node000041" href="$iio__ad7490_8h.html" title="Header file of iio_ad7490." alt="" coords="24495,101,24661,155"/>
+<area shape="poly" id="edge44_Node000001_Node000041" title=" " alt="" coords="15842,24,17519,23,20341,28,21795,35,23073,47,24020,66,24321,77,24482,91,24513,98,24511,103,24482,96,24321,82,24020,71,23073,53,21795,41,20341,33,17519,28,15842,29"/>
+<area shape="rect" id="Node000043" href="$iio__ad7606_8c.html" title="Implementation of AD7606 IIO interface." alt="" coords="4854,225,5019,280"/>
+<area shape="poly" id="edge46_Node000001_Node000043" title=" " alt="" coords="15650,30,13645,34,10220,46,8464,55,6940,66,5841,80,5513,88,5365,96,5258,122,5154,157,5062,194,4989,228,4987,223,5059,190,5152,152,5256,116,5364,91,5513,82,5841,74,6939,61,8464,50,10220,41,13645,29,15650,24"/>
+<area shape="rect" id="Node000044" href="$iio__ad7606_8h.html" title="Header file for AD7606 IIO interface." alt="" coords="4854,101,5019,155"/>
+<area shape="poly" id="edge47_Node000001_Node000044" title=" " alt="" coords="15650,29,13639,30,10181,36,8389,44,6812,56,5642,73,5269,84,5070,96,5020,105,5019,100,5070,91,5269,78,5641,68,6812,51,8389,39,10181,31,13639,24,15650,24"/>
+<area shape="rect" id="Node000045" href="$ad7606x-fmc_2src_2iio__example_8c.html" title="Implementation of an example with the IIO interface." alt="" coords="4625,225,4829,280"/>
+<area shape="poly" id="edge331_Node000001_Node000045" title=" " alt="" coords="15650,29,13527,31,9892,38,8035,46,6434,58,5299,74,4973,84,4881,90,4843,96,4807,122,4777,157,4755,194,4740,226,4735,224,4750,192,4773,154,4803,119,4841,91,4881,85,4972,79,5299,69,6434,53,8035,41,9892,33,13527,25,15650,24"/>
+<area shape="rect" id="Node000046" href="$iio__ad7616_8h.html" title="Header file for AD7616 IIO interface." alt="" coords="5377,101,5542,155"/>
+<area shape="poly" id="edge50_Node000001_Node000046" title=" " alt="" coords="15650,30,13745,35,10490,49,7323,69,6224,82,5873,89,5686,96,5543,114,5542,109,5686,91,5873,83,6224,76,7323,64,10490,43,13745,30,15650,24"/>
+<area shape="rect" id="Node000047" href="$ad7616-st_2src_2examples_2iio_2iio__example_8c.html" title="IIO example header for eval&#45;ad7616 project." alt="" coords="5044,218,5240,287"/>
+<area shape="poly" id="edge332_Node000001_Node000047" title=" " alt="" coords="15650,29,13763,29,10542,34,8876,42,7410,54,6323,72,5977,83,5793,96,5725,110,5674,127,5622,146,5555,165,5470,180,5403,187,5336,195,5252,213,5228,220,5226,215,5251,208,5335,190,5402,182,5469,175,5553,160,5621,141,5672,122,5724,105,5792,91,5977,78,6323,66,7410,48,8876,36,10542,29,13763,23,15650,24"/>
+<area shape="rect" id="Node000048" href="$iio__adc__demo_8c.html" title="Implementation of iio_adc_demo." alt="" coords="24685,101,24884,155"/>
+<area shape="poly" id="edge52_Node000001_Node000048" title=" " alt="" coords="15843,24,17552,25,20436,31,21924,39,23231,51,24200,68,24508,79,24673,91,24708,98,24707,103,24672,96,24508,84,24200,73,23231,57,21924,45,20436,37,17552,30,15843,29"/>
+<area shape="rect" id="Node000049" href="$iio__adc__demo__trig_8c.html" title="Implementation of iio_adc_demo_trig.c." alt="" coords="1466,218,1653,287"/>
+<area shape="poly" id="edge53_Node000001_Node000049" title=" " alt="" coords="15650,29,13050,30,8480,36,6122,44,4069,56,2589,73,2147,84,2015,90,1948,96,1856,120,1767,153,1687,188,1621,220,1619,216,1685,183,1765,148,1855,115,1947,91,2014,84,2147,78,2589,67,4069,50,6122,38,8480,31,13050,24,15650,24"/>
+<area shape="rect" id="Node000050" href="$iio__adm1177_8h.html" title="Header file of iio_adm1177." alt="" coords="12006,101,12193,155"/>
+<area shape="poly" id="edge54_Node000001_Node000050" title=" " alt="" coords="15649,30,15179,34,14431,44,13531,64,13062,78,12602,96,12382,108,12193,122,12193,117,12382,103,12602,91,13062,73,13530,58,14431,39,15179,28,15649,24"/>
+<area shape="rect" id="Node000053" href="$iio__ltc2378_8c.html" title="Implementation of iio_ltc2378.c." alt="" coords="6849,225,7014,280"/>
+<area shape="poly" id="edge57_Node000001_Node000053" title=" " alt="" coords="15650,29,14037,29,11336,36,9946,43,8724,55,7820,73,7532,83,7378,96,7267,121,7158,157,7062,194,6986,228,6984,223,7060,189,7156,152,7265,116,7378,91,7531,78,7819,67,8724,50,9946,38,11336,30,14037,24,15650,24"/>
+<area shape="rect" id="Node000054" href="$iio__ltc2378_8h.html" title="Header file of the LTC2378 IIO Driver." alt="" coords="9611,101,9777,155"/>
+<area shape="poly" id="edge58_Node000001_Node000054" title=" " alt="" coords="15650,29,14658,31,13027,38,12142,46,11302,58,10574,75,10026,96,9895,106,9777,119,9776,114,9894,101,10026,91,10573,69,11301,53,12142,41,13027,33,14658,25,15650,24"/>
+<area shape="rect" id="Node000056" href="$iio__max11205_8h.html" title="Header file of iio max11205 driver." alt="" coords="24909,101,25111,155"/>
+<area shape="poly" id="edge61_Node000001_Node000056" title=" " alt="" coords="15842,24,17591,24,20547,31,22074,39,23415,51,24410,68,24726,79,24896,91,24932,98,24931,103,24895,96,24726,84,24410,73,23415,56,22074,44,20547,37,17591,30,15842,29"/>
+<area shape="rect" id="Node000059" href="$iio__pulsar__adc_8c.html" title="Implementation of pulsar_adc IIO Driver." alt="" coords="7508,225,7712,280"/>
+<area shape="poly" id="edge64_Node000001_Node000059" title=" " alt="" coords="15649,29,14039,33,11373,44,10021,53,8858,64,8036,78,7800,87,7707,96,7693,113,7671,147,7626,226,7622,224,7667,144,7689,109,7705,91,7800,81,8036,73,8858,59,10021,47,11372,39,14039,28,15649,24"/>
+<area shape="rect" id="Node000060" href="$iio__pulsar__adc_8h.html" title="Header file for PULSAR_ADC IIO interface." alt="" coords="7438,101,7643,155"/>
+<area shape="poly" id="edge65_Node000001_Node000060" title=" " alt="" coords="15649,29,14085,32,11478,41,10137,50,8960,61,8088,77,7811,86,7662,96,7625,103,7624,98,7662,91,7810,80,8088,71,8960,56,10137,44,11478,36,14085,27,15649,24"/>
+<area shape="rect" id="Node000061" href="$pulsar-adc_2src_2examples_2iio__example_2iio__example_8c.html" title="IIO example header for eval&#45;pulsar_adc project." alt="" coords="7259,218,7484,287"/>
+<area shape="poly" id="edge337_Node000001_Node000061" title=" " alt="" coords="15650,29,13989,31,11226,39,9824,47,8619,59,7767,75,7523,85,7455,90,7427,96,7404,121,7388,153,7379,187,7375,218,7370,218,7374,186,7383,151,7399,118,7425,91,7454,85,7523,80,7767,70,8619,54,9824,42,11226,34,13989,26,15650,24"/>
+<area shape="rect" id="Node000062" href="$iio__ad413x_8c.html" title=" " alt="" coords="26447,225,26613,280"/>
+<area shape="poly" id="edge68_Node000001_Node000062" title=" " alt="" coords="15843,24,17693,27,20811,37,22399,45,23766,57,24734,72,25012,81,25090,86,25124,91,25143,107,25151,127,25159,145,25175,160,25208,171,25258,180,25404,191,25591,196,25799,197,26197,197,26346,200,26435,208,26479,223,26477,228,26433,213,26346,205,26197,202,25799,203,25591,201,25404,196,25258,185,25206,176,25173,165,25154,148,25146,129,25139,111,25122,96,25090,91,25012,86,24734,77,23766,62,22399,51,20811,42,17693,32,15843,29"/>
+<area shape="rect" id="Node000063" href="$iio__ad413x_8h.html" title="Header file of iio_ad413x." alt="" coords="25186,101,25351,155"/>
+<area shape="poly" id="edge69_Node000001_Node000063" title=" " alt="" coords="15842,24,17678,30,20781,44,23746,64,24737,77,25033,83,25168,91,25200,98,25198,103,25167,96,25033,89,24737,82,23745,69,20781,49,17678,36,15842,30"/>
+<area shape="rect" id="Node000064" href="$iio__adl8113_8h.html" title="Header file for ADL8113 IIO Driver." alt="" coords="11308,101,11515,155"/>
+<area shape="poly" id="edge71_Node000001_Node000064" title=" " alt="" coords="15650,29,14816,31,13525,39,12861,48,12266,59,11801,75,11637,85,11528,96,11492,103,11491,98,11527,91,11636,80,11801,70,12266,54,12861,42,13525,34,14816,26,15650,24"/>
+<area shape="rect" id="Node000067" href="$iio__axi__adc_8c.html" title="Implementation of iio_axi_adc. This instantiates iio_axi_adc and iio_axi_dac devices,..." alt="" coords="25375,93,25541,163"/>
+<area shape="poly" id="edge74_Node000001_Node000067" title=" " alt="" coords="15842,24,17712,30,20880,42,23910,62,24924,76,25227,83,25364,91,25376,93,25375,98,25363,96,25226,88,24924,81,23910,68,20880,47,17712,35,15842,30"/>
+<area shape="rect" id="Node000068" href="$iio__axi__dac_8c.html" title="Implementation of iio_axi_dac. Instantiates iio_axi_adc and iio_axi_dac devices, for reading/writing ..." alt="" coords="25565,93,25730,163"/>
+<area shape="poly" id="edge75_Node000001_Node000068" title=" " alt="" coords="15842,24,17746,29,20978,42,24070,62,25104,75,25413,83,25553,91,25565,93,25564,98,25552,96,25413,88,25104,81,24070,67,20978,47,17746,35,15842,30"/>
+<area shape="rect" id="Node000069" href="$iio__ad7746_8c.html" title=" " alt="" coords="10729,225,10894,280"/>
+<area shape="poly" id="edge76_Node000001_Node000069" title=" " alt="" coords="15649,29,14774,30,13410,37,12707,44,12077,56,11585,73,11411,84,11296,96,11175,122,11058,157,10953,194,10871,228,10869,223,10951,189,11056,152,11174,116,11295,91,11410,79,11585,68,12077,51,12707,39,13410,31,14774,24,15649,24"/>
+<area shape="rect" id="Node000070" href="$iio__ad7746_8h.html" title="Header file of iio_ad7746." alt="" coords="10729,101,10894,155"/>
+<area shape="poly" id="edge77_Node000001_Node000070" title=" " alt="" coords="15650,29,14824,31,13503,40,12792,48,12117,60,11533,76,11094,96,10990,105,10895,117,10894,112,10990,100,11094,91,11533,70,12117,54,12792,43,13503,34,14824,26,15650,24"/>
+<area shape="rect" id="Node000071" href="$cn0552_2src_2app_2headless_8c.html" title="CN0552 IIO demo project main file." alt="" coords="10510,225,10705,280"/>
+<area shape="poly" id="edge335_Node000001_Node000071" title=" " alt="" coords="15649,29,14604,32,12967,40,12145,49,11438,60,10933,76,10783,85,10718,96,10683,123,10654,157,10633,194,10619,226,10614,224,10629,192,10650,154,10679,119,10716,91,10783,80,10933,71,11438,55,12145,43,12967,35,14604,26,15649,24"/>
+<area shape="rect" id="Node000072" href="$iio__ad3552r_8c.html" title="IIO implementation for ad3552r Driver." alt="" coords="25755,101,25924,155"/>
+<area shape="poly" id="edge80_Node000001_Node000072" title=" " alt="" coords="15843,24,17780,29,21075,42,24229,62,25284,75,25600,83,25742,91,25773,98,25772,103,25742,96,25599,88,25284,81,24229,67,21075,47,17780,35,15843,30"/>
+<area shape="rect" id="Node000073" href="$iio__ad5791_8h.html" title="Header of AD5791 IIO Driver." alt="" coords="11539,101,11705,155"/>
+<area shape="poly" id="edge81_Node000001_Node000073" title=" " alt="" coords="15650,29,14850,30,13621,37,12989,45,12424,57,11983,74,11827,84,11724,96,11693,103,11692,98,11723,91,11826,79,11983,69,12424,52,12989,40,13621,32,14850,25,15650,24"/>
+<area shape="rect" id="Node000075" href="$cn0531_2src_2main_8c.html" title="Implementation of Main Function." alt="" coords="11555,225,11750,280"/>
+<area shape="poly" id="edge334_Node000001_Node000075" title=" " alt="" coords="15649,30,14802,35,13517,47,12877,55,12327,67,11935,80,11819,88,11769,96,11674,227,11670,223,11766,91,11819,82,11935,75,12327,61,12876,50,13517,41,14802,29,15649,24"/>
+<area shape="rect" id="Node000076" href="$iio__ad8460_8h.html" title="Implementation of IIO AD8460 Driver." alt="" coords="25949,101,26114,155"/>
+<area shape="poly" id="edge84_Node000001_Node000076" title=" " alt="" coords="15842,24,17813,29,21173,41,24391,62,25468,75,25790,82,25936,91,25966,98,25965,103,25935,96,25790,88,25468,80,24391,67,21173,47,17813,34,15842,30"/>
+<area shape="rect" id="Node000078" href="$iio__dac__demo_8c.html" title="Implementation of iio_dac_demo." alt="" coords="26139,101,26337,155"/>
+<area shape="poly" id="edge86_Node000001_Node000078" title=" " alt="" coords="15842,24,17847,30,21270,43,24551,64,25649,76,25978,83,26126,91,26161,98,26160,103,26126,96,25977,89,25649,82,24551,69,21270,49,17847,35,15842,30"/>
+<area shape="rect" id="Node000079" href="$iio__dac__demo__trig_8c.html" title="Implementation of iio_dac_demo_trig.c." alt="" coords="1677,218,1863,287"/>
+<area shape="poly" id="edge87_Node000001_Node000079" title=" " alt="" coords="15650,29,13086,30,8586,36,6265,44,4245,56,2788,73,2353,84,2223,90,2157,96,2066,120,1977,153,1897,188,1832,220,1829,216,1895,183,1975,148,2064,115,2156,91,2223,84,2353,78,2788,68,4245,51,6265,39,8586,31,13086,24,15650,24"/>
+<area shape="rect" id="Node000080" href="$iio__max22017_8h.html" title="Header file of IIO MAX22017 Driver." alt="" coords="12614,101,12817,155"/>
+<area shape="poly" id="edge88_Node000001_Node000080" title=" " alt="" coords="15650,30,15050,36,14171,49,13327,68,13017,81,12834,96,12798,103,12797,98,12834,91,13017,76,13327,63,14171,43,15050,31,15649,25"/>
+<area shape="rect" id="Node000083" href="$iio__max14906_8h.html" title="Header file of MAX14906 IIO Driver." alt="" coords="481,225,701,280"/>
+<area shape="poly" id="edge91_Node000001_Node000083" title=" " alt="" coords="15650,29,12841,34,7878,46,5325,56,3116,67,1546,80,1093,88,910,96,829,122,752,157,684,195,631,227,628,223,681,190,749,152,827,117,910,91,1093,82,1546,75,3116,61,5325,50,7878,41,12841,29,15650,24"/>
+<area shape="rect" id="Node000086" href="$iio__max14916_8h.html" title="Header file of IIO MAX14916 Driver." alt="" coords="12847,101,13067,155"/>
+<area shape="poly" id="edge97_Node000001_Node000086" title=" " alt="" coords="15650,33,13067,125,13067,120,15650,27"/>
+<area shape="rect" id="Node000089" href="$iio__max22190_8h.html" title="Header file of MAX22190 IIO Driver." alt="" coords="15148,101,15368,155"/>
+<area shape="poly" id="edge100_Node000001_Node000089" title=" " alt="" coords="15650,44,15521,67,15380,96,15351,103,15349,98,15379,91,15520,62,15649,39"/>
+<area shape="rect" id="Node000092" href="$iio__max22196_8h.html" title="Header file of IIO MAX22196 Driver." alt="" coords="15392,101,15612,155"/>
+<area shape="poly" id="edge103_Node000001_Node000092" title=" " alt="" coords="15689,53,15567,103,15565,98,15687,48"/>
+<area shape="rect" id="Node000095" href="$iio__max22200_8h.html" title="Header file of IIO MAX22200 Driver." alt="" coords="15636,101,15856,155"/>
+<area shape="poly" id="edge106_Node000001_Node000095" title=" " alt="" coords="15749,59,15749,100,15743,100,15743,59"/>
+<area shape="rect" id="Node000098" href="$iio__adf4030_8h.html" title="Implementation of IIO ADF4030 Driver." alt="" coords="15880,101,16087,155"/>
+<area shape="poly" id="edge109_Node000001_Node000098" title=" " alt="" coords="15804,48,15922,98,15920,103,15802,53"/>
+<area shape="rect" id="Node000101" href="$iio__adf4368_8h.html" title="Implementation of IIO ADF4368 Driver." alt="" coords="16111,101,16317,155"/>
+<area shape="poly" id="edge112_Node000001_Node000101" title=" " alt="" coords="15843,40,15965,62,16099,91,16127,98,16126,103,16097,96,15964,67,15842,45"/>
+<area shape="rect" id="Node000104" href="$iio__adf4377_8h.html" title="Implementation of IIO ADF4377 Driver." alt="" coords="16341,101,16548,155"/>
+<area shape="poly" id="edge115_Node000001_Node000104" title=" " alt="" coords="15842,30,16066,51,16198,68,16329,91,16361,98,16360,103,16328,96,16197,73,16065,56,15842,35"/>
+<area shape="rect" id="Node000107" href="$iio__adf4382_8h.html" title="Implementation of IIO ADF4382 Driver." alt="" coords="16573,101,16780,155"/>
+<area shape="poly" id="edge118_Node000001_Node000107" title=" " alt="" coords="15843,26,15983,31,16163,42,16361,62,16560,91,16593,98,16592,103,16559,96,16361,67,16162,48,15983,37,15843,31"/>
+<area shape="rect" id="Node000110" href="$iio__adf5611_8h.html" title="Implementation of IIO ADF5611 Driver." alt="" coords="17037,101,17244,155"/>
+<area shape="poly" id="edge121_Node000001_Node000110" title=" " alt="" coords="15842,29,16255,53,16792,91,17037,113,17037,119,16791,96,16255,59,15842,34"/>
+<area shape="rect" id="Node000113" href="$iio__admfm2000_8h.html" title="Header file for admfm2000 IIO Driver." alt="" coords="26361,101,26584,155"/>
+<area shape="poly" id="edge124_Node000001_Node000113" title=" " alt="" coords="15842,24,17841,23,21275,29,23054,37,24620,49,25782,66,26151,78,26349,91,26388,98,26387,103,26348,96,26151,83,25781,72,24620,54,23054,42,21275,34,17841,29,15842,29"/>
+<area shape="rect" id="Node000115" href="$iio__adxrs290_8c.html" title="Implementation of ADXRS290 iio." alt="" coords="26609,101,26793,155"/>
+<area shape="poly" id="edge126_Node000001_Node000115" title=" " alt="" coords="15842,24,17929,29,21510,42,24945,62,26096,75,26440,83,26596,91,26629,98,26628,103,26595,96,26440,88,26096,81,24945,67,21510,47,17929,35,15842,30"/>
+<area shape="rect" id="Node000116" href="$iio__adxrs290__trig_8c.html" title="Implementation of adxrs290 iio trigger." alt="" coords="2127,225,2341,280"/>
+<area shape="poly" id="edge127_Node000001_Node000116" title=" " alt="" coords="15649,29,13116,34,8690,46,6418,55,4455,66,3061,80,2659,87,2497,96,2429,122,2365,157,2309,195,2266,227,2263,223,2306,190,2362,153,2427,117,2496,91,2659,82,3061,74,4455,61,6418,49,8690,40,13116,29,15649,24"/>
+<area shape="rect" id="Node000117" href="$iio__adis__internals_8h.html" title="Internal include file used for specific chip IIO driver definitions which are not useful for the user..." alt="" coords="5805,101,5972,155"/>
+<area shape="poly" id="edge128_Node000001_Node000117" title=" " alt="" coords="15649,30,14150,34,11542,46,8743,66,7557,80,6667,96,6278,110,5972,125,5972,119,6278,105,6667,91,7557,74,8743,61,11542,41,14150,29,15649,24"/>
+<area shape="rect" id="Node000131" href="$iio__adis__trig_8c.html" title="Implementation of adis iio trigger." alt="" coords="2365,225,2532,280"/>
+<area shape="poly" id="edge142_Node000001_Node000131" title=" " alt="" coords="15649,29,13129,29,8728,34,6471,42,4521,54,3137,72,2739,83,2628,89,2580,96,2541,122,2508,157,2482,194,2463,226,2459,224,2477,191,2504,154,2537,118,2578,91,2627,84,2739,78,3137,66,4521,49,6471,37,8728,29,13129,24,15649,24"/>
+<area shape="rect" id="Node000132" href="$iio__tmc5240_8c.html" title="Implementation of IIO TMC5240 driver." alt="" coords="26817,101,26997,155"/>
+<area shape="poly" id="edge143_Node000001_Node000132" title=" " alt="" coords="15842,24,17966,29,21617,41,23492,50,25121,61,26295,75,26646,82,26805,91,26837,98,26836,103,26804,96,26646,88,26295,80,25121,66,23492,55,21617,46,17966,34,15842,30"/>
+<area shape="rect" id="Node000133" href="$iio__adin1300_8c.html" title=" " alt="" coords="6409,225,6574,280"/>
+<area shape="poly" id="edge144_Node000001_Node000133" title=" " alt="" coords="15649,30,13995,34,11217,45,9785,54,8527,65,7594,79,7297,87,7138,96,6981,115,6859,136,6739,167,6587,213,6548,228,6546,223,6585,208,6737,162,6858,131,6980,110,7138,91,7297,82,7594,74,8527,60,9785,49,11217,40,13995,29,15649,24"/>
+<area shape="rect" id="Node000134" href="$iio__adin1300_8h.html" title=" " alt="" coords="7718,101,7883,155"/>
+<area shape="poly" id="edge145_Node000001_Node000134" title=" " alt="" coords="15649,29,14220,32,11831,41,10578,50,9449,61,8564,77,8250,86,8044,96,7884,115,7883,110,8043,91,8250,80,8564,71,9449,56,10578,44,11831,36,14220,27,15649,24"/>
+<area shape="rect" id="Node000137" href="$iio__max24287_8c.html" title=" " alt="" coords="9833,225,9998,280"/>
+<area shape="poly" id="edge151_Node000001_Node000137" title=" " alt="" coords="15650,30,14616,34,12987,46,12160,54,11437,66,10904,79,10734,87,10644,96,10591,111,10552,129,10513,148,10460,165,10392,179,10334,185,10234,188,10135,191,10078,199,10011,213,9969,228,9968,223,10009,208,10077,193,10134,186,10234,182,10334,180,10391,173,10459,160,10511,143,10550,124,10589,106,10643,91,10734,82,10904,74,11437,60,12160,49,12987,40,14616,29,15650,24"/>
+<area shape="rect" id="Node000138" href="$iio__max24287_8h.html" title=" " alt="" coords="11779,101,11945,155"/>
+<area shape="poly" id="edge152_Node000001_Node000138" title=" " alt="" coords="15650,30,14899,34,13755,45,12645,65,12235,79,12090,87,11994,96,11945,105,11944,100,11994,91,12090,82,12235,74,12645,60,13755,40,14899,29,15650,24"/>
+<area shape="rect" id="Node000139" href="$iio__adpd188_8h.html" title="Header of the ADPD188 IIO driver." alt="" coords="17269,93,17447,163"/>
+<area shape="poly" id="edge156_Node000001_Node000139" title=" " alt="" coords="15843,25,16147,30,16555,40,16960,60,17128,74,17256,91,17269,93,17268,99,17255,96,17128,79,16960,65,16555,46,16147,35,15843,30"/>
+<area shape="rect" id="Node000142" href="$iio__adp1050_8h.html" title="Header file for the ADP1050 IIO Driver." alt="" coords="17715,101,17897,155"/>
+<area shape="poly" id="edge159_Node000001_Node000142" title=" " alt="" coords="15843,26,16518,45,16984,64,17460,91,17715,114,17715,119,17459,96,16984,69,16518,50,15842,31"/>
+<area shape="rect" id="Node000145" href="$iio__adp1055_8h.html" title="Header file for the ADP1055 IIO Driver." alt="" coords="17943,101,18125,155"/>
+<area shape="poly" id="edge162_Node000001_Node000145" title=" " alt="" coords="15843,24,16262,26,16860,35,17172,44,17466,55,17718,71,17909,91,17947,98,17946,103,17908,96,17718,76,17465,61,17172,49,16860,41,16262,32,15843,29"/>
+<area shape="rect" id="Node000148" href="$iio__adp5055_8h.html" title="Header file for the ADP5055 IIO Driver." alt="" coords="18415,101,18597,155"/>
+<area shape="poly" id="edge165_Node000001_Node000148" title=" " alt="" coords="15843,25,16213,28,16778,39,17448,58,17796,73,18137,91,18415,114,18415,120,18136,96,17796,78,17448,64,16777,44,16213,34,15843,30"/>
+<area shape="rect" id="Node000151" href="$iio__lt3074_8h.html" title="Header file for the LT3074 IIO Driver." alt="" coords="18641,101,18822,155"/>
+<area shape="poly" id="edge168_Node000001_Node000151" title=" " alt="" coords="15842,25,16433,31,17297,44,18125,64,18429,76,18609,91,18646,98,18645,103,18608,96,18429,82,18125,69,17296,50,16433,37,15842,30"/>
+<area shape="rect" id="Node000154" href="$iio__lt7170_8h.html" title="Header file for the LT7170 IIO Driver." alt="" coords="19094,101,19275,155"/>
+<area shape="poly" id="edge171_Node000001_Node000154" title=" " alt="" coords="15843,24,16305,24,17040,31,17924,51,18383,68,18834,91,19094,114,19094,119,18834,96,18383,73,17923,56,17040,36,16305,29,15843,29"/>
+<area shape="rect" id="Node000157" href="$iio__lt7182s_8h.html" title="Header file for the LT7182S IIO Driver." alt="" coords="19778,101,19959,155"/>
+<area shape="poly" id="edge174_Node000001_Node000157" title=" " alt="" coords="15843,24,16363,28,17208,39,18231,59,19287,91,19555,104,19778,118,19777,123,19554,109,19287,96,18231,64,17208,44,16363,34,15843,30"/>
+<area shape="rect" id="Node000160" href="$iio__lt8491_8h.html" title="Implementation of IIO LT8491 Driver." alt="" coords="27022,101,27203,155"/>
+<area shape="poly" id="edge177_Node000001_Node000160" title=" " alt="" coords="15842,24,18001,29,21720,41,23632,50,25292,61,26489,75,26847,82,27009,91,27042,98,27041,103,27008,96,26847,88,26489,80,25292,66,23631,55,21720,46,18001,34,15842,29"/>
+<area shape="rect" id="Node000162" href="$iio__lt8722_8h.html" title="Header file for the LT8722 IIO Driver." alt="" coords="21691,101,21873,155"/>
+<area shape="poly" id="edge179_Node000001_Node000162" title=" " alt="" coords="15842,25,19971,91,21691,122,21691,128,19971,96,15842,31"/>
+<area shape="rect" id="Node000165" href="$iio__ltc4162l_8h.html" title="Implementation of IIO LTC4162L Driver." alt="" coords="27227,101,27409,155"/>
+<area shape="poly" id="edge182_Node000001_Node000165" title=" " alt="" coords="15843,24,18038,29,21827,40,23774,49,25466,60,26686,74,27051,82,27216,91,27248,98,27247,103,27215,96,27051,87,26686,79,25466,66,23774,54,21827,45,18038,34,15843,29"/>
+<area shape="rect" id="Node000167" href="$iio__ltc7841_8h.html" title="Header file for the LTC7841 IIO Driver." alt="" coords="22118,101,22299,155"/>
+<area shape="poly" id="edge184_Node000001_Node000167" title=" " alt="" coords="15843,24,16900,24,18652,30,19605,38,20511,50,21295,67,21619,78,21885,91,22007,100,22118,112,22117,118,22006,106,21884,96,21619,84,21295,73,20510,56,19605,43,18652,36,16900,29,15843,29"/>
+<area shape="rect" id="Node000170" href="$iio__ltc7871_8h.html" title=" " alt="" coords="22339,101,22521,155"/>
+<area shape="poly" id="edge187_Node000001_Node000170" title=" " alt="" coords="15843,24,17139,29,19247,40,20325,49,21270,60,21970,74,22192,82,22312,91,22348,98,22347,103,22311,96,22192,87,21970,80,21270,66,20325,55,19247,46,17139,34,15843,30"/>
+<area shape="rect" id="Node000173" href="$iio__ltm4686_8h.html" title="Header file for the LTM4686 IIO Driver." alt="" coords="23455,101,23637,155"/>
+<area shape="poly" id="edge190_Node000001_Node000173" title=" " alt="" coords="15843,24,17338,25,19818,33,21093,41,22211,53,23039,69,23303,79,23444,91,23476,98,23475,103,23443,96,23302,85,23039,75,22211,59,21093,47,19818,39,17338,31,15843,29"/>
+<area shape="rect" id="Node000176" href="$iio__ltp8800_8h.html" title="Header file for the LTP8800 IIO Driver." alt="" coords="23813,101,23994,155"/>
+<area shape="poly" id="edge193_Node000001_Node000176" title=" " alt="" coords="15843,24,17400,26,19995,34,21330,42,22502,54,23370,70,23647,80,23794,91,23829,98,23828,103,23794,96,23646,85,23370,75,22502,59,21330,47,19995,39,17400,31,15843,29"/>
+<area shape="rect" id="Node000179" href="$iio__max17616_8c.html" title="Source file of the MAX17616 IIO Driver." alt="" coords="25099,225,25302,280"/>
+<area shape="poly" id="edge196_Node000001_Node000179" title=" " alt="" coords="15843,24,17533,28,20350,39,21780,48,23011,59,23882,73,24133,82,24234,91,24252,107,24261,127,24268,145,24285,160,24317,174,24356,185,24451,199,24561,203,24678,203,24910,197,25009,199,25088,208,25139,223,25137,228,25087,213,25009,204,24910,203,24679,208,24560,209,24450,204,24355,190,24315,179,24282,165,24264,148,24256,129,24248,110,24232,96,24132,87,23882,79,23011,65,21780,53,20350,44,17533,33,15843,29"/>
+<area shape="rect" id="Node000180" href="$iio__max17616_8h.html" title="Header file of the MAX17616 IIO Driver." alt="" coords="24018,101,24221,155"/>
+<area shape="poly" id="edge197_Node000001_Node000180" title=" " alt="" coords="15843,24,17436,26,20101,34,21473,42,22678,54,23570,70,23854,80,24006,91,24042,98,24041,103,24006,96,23854,85,23570,75,22677,59,21473,47,20101,39,17436,31,15843,29"/>
+<area shape="rect" id="Node000182" href="$iio__ad9361_8h.html" title="Header file of iio_ad9361." alt="" coords="27433,93,27605,163"/>
+<area shape="poly" id="edge200_Node000001_Node000182" title=" " alt="" coords="15843,24,18074,28,21932,39,23915,48,25639,59,26882,73,27253,82,27421,91,27434,93,27433,98,27420,96,27253,87,26881,79,25639,64,23915,53,21932,44,18074,33,15843,29"/>
+<area shape="rect" id="Node000184" href="$iio__hmc630x_8c.html" title="Source file of hmc6300 and hmc6301 driver extension for IIOD." alt="" coords="23395,218,23579,287"/>
+<area shape="poly" id="edge202_Node000001_Node000184" title=" " alt="" coords="15842,24,17118,28,19218,39,20315,48,21303,59,22077,73,22351,82,22533,91,22774,107,22963,124,23053,136,23149,153,23384,208,23408,215,23407,220,23383,213,23148,158,23052,141,22962,129,22774,113,22533,96,22351,87,22077,79,21303,64,20315,53,19218,44,17118,33,15842,30"/>
+<area shape="rect" id="Node000185" href="$iio__hmc630x_8h.html" title="Header file of hmc6300 and hmc6301 driver extension for IIOD." alt="" coords="23247,93,23431,163"/>
+<area shape="poly" id="edge203_Node000001_Node000185" title=" " alt="" coords="15843,24,17055,26,19104,34,20222,42,21287,54,22210,70,22903,91,23087,102,23247,115,23247,120,23087,107,22903,96,22210,75,21287,59,20222,47,19104,39,17055,31,15843,29"/>
+<area shape="rect" id="Node000186" href="$mwc_8h.html" title=" " alt="" coords="23655,225,23859,280"/>
+<area shape="poly" id="edge340_Node000001_Node000186" title=" " alt="" coords="15842,24,17427,29,20047,40,21375,49,22517,60,23324,74,23556,82,23650,91,23667,109,23692,144,23743,224,23738,226,23688,147,23663,113,23647,96,23556,87,23324,79,22517,66,21375,54,20047,45,17427,34,15842,30"/>
+<area shape="rect" id="Node000187" href="$mwc_8c.html" title=" " alt="" coords="23680,357,23884,412"/>
+<area shape="poly" id="edge339_Node000001_Node000187" title=" " alt="" coords="15842,24,17435,29,20070,40,21406,49,22555,60,23367,74,23601,82,23695,91,23714,107,23722,125,23730,143,23745,161,23762,171,23779,176,23812,179,23843,185,23858,194,23872,209,23883,231,23886,251,23882,272,23872,296,23850,331,23821,359,23818,355,23846,328,23868,293,23876,271,23881,251,23878,233,23868,212,23855,198,23842,190,23811,185,23778,181,23760,176,23742,165,23725,146,23718,127,23710,110,23693,96,23600,87,23367,80,22555,66,21406,55,20070,46,17435,34,15842,30"/>
+<area shape="rect" id="Node000188" href="$iio__adg2128_8c.html" title=" " alt="" coords="27681,225,27864,280"/>
+<area shape="poly" id="edge210_Node000001_Node000188" title=" " alt="" coords="15842,24,18135,24,22097,31,24125,39,25876,51,27117,68,27474,78,27574,84,27618,91,27638,106,27648,123,27657,141,27671,161,27740,223,27736,227,27667,164,27652,144,27643,125,27634,109,27616,96,27574,90,27474,84,27117,73,25876,56,24125,44,22097,36,18135,30,15842,29"/>
+<area shape="rect" id="Node000189" href="$iio__adg2128_8h.html" title="Header file of iio_adg2128." alt="" coords="27681,101,27864,155"/>
+<area shape="poly" id="edge211_Node000001_Node000189" title=" " alt="" coords="15842,24,18116,29,22054,41,24080,50,25841,61,27111,75,27491,82,27662,91,27697,98,27696,103,27662,96,27490,88,27111,80,25841,66,24080,55,22054,46,18116,34,15842,29"/>
+<area shape="rect" id="Node000190" href="$iio__adt7420_8h.html" title="Header file of IIO ADT7420 Driver." alt="" coords="27888,101,28111,155"/>
+<area shape="poly" id="edge213_Node000001_Node000190" title=" " alt="" coords="15842,24,18153,29,22162,42,26020,63,27314,76,27701,83,27876,91,27914,98,27913,103,27875,96,27700,88,27314,81,26020,68,22162,48,18153,35,15842,30"/>
+<area shape="rect" id="Node000193" href="$iio__adt75_8c.html" title="Source file of IIO ADT75 Driver." alt="" coords="725,225,948,280"/>
+<area shape="poly" id="edge216_Node000001_Node000193" title=" " alt="" coords="15650,29,12858,30,7929,36,5394,44,3202,56,1645,73,1196,84,1070,90,1016,96,967,122,922,157,886,194,858,227,854,223,882,190,919,153,964,118,1015,91,1070,84,1196,78,1645,68,3202,51,5394,39,7929,31,12858,24,15650,24"/>
+<area shape="rect" id="Node000194" href="$iio__adt75_8h.html" title="Header file of the IIO ADT75 Driver." alt="" coords="1028,101,1251,155"/>
+<area shape="poly" id="edge217_Node000001_Node000194" title=" " alt="" coords="15649,29,13153,29,8692,34,6319,42,4169,54,2479,71,1881,83,1487,96,1365,105,1251,116,1251,111,1365,99,1487,91,1881,78,2479,66,4169,48,6319,36,8692,29,13153,23,15649,24"/>
+<area shape="rect" id="Node000196" href="$iio__ltc2983_8c.html" title="Implementation of IIO LTC2983 driver." alt="" coords="28397,225,28620,280"/>
+<area shape="poly" id="edge221_Node000001_Node000196" title=" " alt="" coords="15842,24,18222,29,22353,42,26298,63,27596,76,27971,83,28123,91,28159,105,28185,122,28209,141,28243,160,28431,223,28429,228,28241,165,28206,146,28182,127,28157,110,28121,96,27971,88,27596,81,26298,68,22353,48,18222,35,15842,30"/>
+<area shape="rect" id="Node000197" href="$iio__ltc2983_8h.html" title="Header file of IIO LTC2983 driver." alt="" coords="28255,101,28477,155"/>
+<area shape="poly" id="edge222_Node000001_Node000197" title=" " alt="" coords="15842,24,18158,24,22205,30,24309,38,26163,50,27540,67,27979,78,28213,91,28260,98,28260,103,28212,96,27979,83,27540,72,26163,55,24309,43,22205,35,18158,29,15842,29"/>
+<area shape="rect" id="Node000198" href="$iio__max31827_8h.html" title="Implementation of IIO MAX31827 Driver." alt="" coords="28513,101,28736,155"/>
+<area shape="poly" id="edge224_Node000001_Node000198" title=" " alt="" coords="15842,24,18259,30,22474,43,26535,63,27897,76,28305,83,28489,91,28531,98,28530,103,28488,96,28304,89,27897,81,26535,69,22474,48,18259,35,15842,30"/>
+<area shape="rect" id="Node000200" href="$iio__max31855_8c.html" title="Implementation of IIO MAX31855 driver." alt="" coords="28891,225,29113,280"/>
+<area shape="poly" id="edge226_Node000001_Node000200" title=" " alt="" coords="15842,24,18333,24,22678,29,24906,37,26831,49,28197,67,28590,78,28700,84,28748,91,28769,106,28780,124,28790,142,28806,161,28864,196,28924,223,28921,228,28861,201,28803,165,28785,146,28775,127,28765,110,28746,96,28700,89,28590,83,28197,72,26831,55,24906,42,22678,35,18333,29,15842,29"/>
+<area shape="rect" id="Node000201" href="$iio__max31855_8h.html" title="Header file of IIO MAX31855 driver." alt="" coords="28817,101,29040,155"/>
+<area shape="poly" id="edge227_Node000001_Node000201" title=" " alt="" coords="15842,24,18313,29,22631,42,26793,62,28190,75,28608,83,28797,91,28838,98,28837,103,28796,96,28608,88,28190,81,26793,68,22631,47,18312,35,15842,29"/>
+<area shape="rect" id="Node000202" href="$iio_8c.html" title="Implementation of iio." alt="" coords="29137,233,29302,273"/>
+<area shape="poly" id="edge229_Node000001_Node000202" title=" " alt="" coords="15843,24,18388,23,22836,28,25118,35,27089,47,27876,55,28488,65,28890,77,29003,84,29052,91,29072,106,29083,123,29092,141,29107,161,29150,199,29192,230,29189,235,29147,203,29103,164,29087,144,29078,125,29069,109,29050,96,29003,89,28890,82,28488,71,27876,61,27089,53,25118,40,22836,33,18388,28,15843,29"/>
+<area shape="rect" id="Node000203" href="$iio__app_8h.html" title="Header file of iio_app." alt="" coords="14187,101,14353,155"/>
+<area shape="poly" id="edge230_Node000001_Node000203" title=" " alt="" coords="15650,36,14353,124,14353,118,15649,31"/>
+<area shape="rect" id="Node000204" href="$ad463x__fmcz_2src_2examples_2iio__example_2iio__example_8c.html" title="IIO example header for ad463x_fmcz project." alt="" coords="14661,218,14897,287"/>
+<area shape="poly" id="edge327_Node000001_Node000204" title=" " alt="" coords="15650,34,15337,56,15179,73,15114,84,15065,96,14998,122,14933,154,14827,220,14824,216,14930,150,14996,117,15064,91,15113,79,15178,68,15336,50,15649,29"/>
+<area shape="rect" id="Node000206" href="$ada4250__ardz_8c.html" title="Implementation of Main Function." alt="" coords="14921,225,15125,280"/>
+<area shape="poly" id="edge333_Node000001_Node000206" title=" " alt="" coords="15650,30,15518,35,15368,46,15231,65,15176,79,15137,96,15102,124,15073,159,15051,195,15036,226,15031,224,15046,192,15069,156,15098,120,15134,91,15175,74,15230,60,15368,40,15518,30,15649,25"/>
+<area shape="rect" id="Node000214" href="$eval-pqmon_2src_2common_2common__data_8h.html" title=" " alt="" coords="23935,225,24200,280"/>
+<area shape="poly" id="edge336_Node000001_Node000214" title=" " alt="" coords="15842,24,17443,29,20095,42,21439,51,22596,62,23414,75,23649,83,23744,91,23765,106,23776,125,23785,143,23802,161,23831,176,23873,192,23972,223,23970,228,23871,197,23829,180,23799,165,23781,146,23771,127,23761,110,23742,96,23649,88,23414,80,22596,67,21439,56,20095,47,17443,35,15842,30"/>
+<area shape="rect" id="Node000226" href="$iio__trigger_8c.html" title="Implementation of generic iio trigger." alt="" coords="2920,233,3108,273"/>
+<area shape="poly" id="edge302_Node000001_Node000226" title=" " alt="" coords="15650,30,13333,35,9311,48,5441,69,4143,82,3755,89,3580,96,3448,117,3347,141,3120,213,3060,235,3058,230,3118,208,3346,135,3447,111,3579,91,3755,83,4143,76,5441,63,9311,43,13333,30,15650,24"/>
+<area shape="rect" id="Node000227" href="$iio__trigger_8h.html" title="Header file for iio_trigger." alt="" coords="2591,108,2781,148"/>
+<area shape="poly" id="edge303_Node000001_Node000227" title=" " alt="" coords="15649,30,13432,35,9520,47,5567,67,4091,81,3225,96,2985,108,2781,122,2781,117,2985,103,3225,91,4091,75,5567,62,9520,42,13432,29,15649,24"/>
+<area shape="rect" id="Node000229" href="$iiod_8h.html" title="Header file of iiod." alt="" coords="29117,108,29282,148"/>
+<area shape="poly" id="edge322_Node000001_Node000229" title=" " alt="" coords="15842,24,18365,27,22784,37,25063,45,27046,57,28476,72,28904,81,29097,91,29153,105,29151,111,29096,96,28903,86,28476,77,27046,62,25063,51,22784,42,18365,32,15842,29"/>
+<area shape="rect" id="Node000231" href="$iiod__private_8h.html" title="Private header file of iiod." alt="" coords="29307,108,29508,148"/>
+<area shape="poly" id="edge325_Node000001_Node000231" title=" " alt="" coords="15842,24,18399,28,22884,38,25198,47,27211,59,28664,73,29098,81,29294,91,29356,105,29354,111,29294,96,29098,87,28663,78,27211,64,25197,52,22884,44,18399,33,15842,29"/>
+<area shape="rect" id="Node000232" href="$ad469x__evb_2src_2examples_2iio__example_2iio__example_8c.html" title="Implementation of IIO example for ad469x_evb project." alt="" coords="29532,93,29760,163"/>
+<area shape="poly" id="edge328_Node000001_Node000232" title=" " alt="" coords="15843,24,18438,28,22999,40,25353,49,27401,60,28879,74,29321,82,29521,91,29532,92,29531,98,29520,96,29321,87,28879,79,27401,66,25353,54,22999,45,18438,34,15843,29"/>
+<area shape="rect" id="Node000003" href="$iio__adxl313_8c.html" title=" " alt="" coords="5,225,180,280"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="249,165,139,228,137,223,246,160"/>
+<area shape="rect" id="Node000004" href="$eval-adxl313z_2src_2examples_2iio__example_2iio__example_8c.html" title="Implementation of IIO example for eval&#45;adxl313z project." alt="" coords="204,218,405,287"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="307,169,307,218,302,218,302,169"/>
+<area shape="rect" id="Node000006" href="$iio__adxl355_8c.html" title="Implementation of IIO ADXL355 Driver." alt="" coords="7839,225,8013,280"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="8086,165,7974,228,7971,223,8083,160"/>
+<area shape="rect" id="Node000007" href="$eval-adxl355-pmdz_2src_2examples_2iio__example_2iio__example_8c.html" title="Implementation of IIO example for eval&#45;adxl355&#45;pmdz project." alt="" coords="8483,218,8694,287"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="8245,149,8355,176,8472,208,8496,215,8494,220,8471,213,8353,181,8243,154"/>
+<area shape="rect" id="Node000008" href="$iio__lwip__example_8c.html" title="Implementation of IIO LWIP example for eval&#45;adxl355&#45;pmdz project." alt="" coords="8038,211,8249,295"/>
+<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="8146,169,8146,211,8141,211,8141,169"/>
+<area shape="rect" id="Node000009" href="$eval-adxl355-pmdz_2src_2examples_2iio__trigger__example_2iio__trigger__example_8c.html" title="Implementation of IIO trigger example for eval&#45;adxl355&#45;pmdz project." alt="" coords="6598,211,6825,295"/>
+<area shape="poly" id="edge8_Node000005_Node000009" title=" " alt="" coords="8042,148,7896,165,7734,176,7597,179,7364,174,7252,172,7132,176,6996,189,6837,213,6825,216,6824,210,6836,208,6996,184,7131,171,7252,167,7364,168,7597,173,7734,171,7895,160,8042,142"/>
+<area shape="rect" id="Node000012" href="$iio__adxl367_8c.html" title="IIO part of the ADXL367 driver." alt="" coords="25327,225,25501,280"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="24467,156,24484,160,24609,179,24716,185,24811,184,24899,180,24988,175,25083,176,25190,185,25315,208,25360,223,25358,228,25313,213,25189,191,25083,181,24988,181,24900,185,24811,190,24716,191,24608,184,24483,165,24466,162"/>
+<area shape="rect" id="Node000013" href="$eval-adxl367z_2src_2examples_2iio__example_2iio__example_8c.html" title="Implementation of IIO example for eval&#45;adxl367z project." alt="" coords="25525,218,25727,287"/>
+<area shape="poly" id="edge12_Node000011_Node000013" title=" " alt="" coords="24467,156,24484,160,24639,183,24771,190,24888,189,24998,182,25108,176,25226,175,25358,184,25513,208,25542,215,25541,220,25512,213,25358,189,25226,180,25108,181,24999,187,24889,194,24771,196,24638,188,24483,165,24466,162"/>
+<area shape="rect" id="Node000015" href="$iio__ad74413r_8c.html" title="Source file of the IIO AD74413r Driver." alt="" coords="1889,357,2102,412"/>
+<area shape="poly" id="edge14_Node000014_Node000015" title=" " alt="" coords="1998,294,1998,357,1993,357,1993,294"/>
+<area shape="rect" id="Node000016" href="$ad74413r_2src_2examples_2iio__example_2iio__example_8c.html" title="Implementation of IIO example for AD74413R project." alt="" coords="8792,350,9001,419"/>
+<area shape="poly" id="edge15_Node000014_Node000016" title=" " alt="" coords="2074,282,2116,292,2200,299,2357,305,2850,316,4254,330,6395,340,8792,379,8792,384,6395,345,4254,335,2849,321,2357,311,2199,304,2115,297,2073,287"/>
+<area shape="rect" id="Node000017" href="$ad74413r_2src_2examples_2iio__trigger__example_2iio__trigger__example_8c.html" title="Implementation of IIO trigger example for AD74413R project." alt="" coords="2381,350,2612,419"/>
+<area shape="poly" id="edge16_Node000014_Node000017" title=" " alt="" coords="2082,282,2116,292,2254,328,2382,357,2381,362,2252,333,2115,297,2081,287"/>
+<area shape="poly" id="edge17_Node000014_Node000018" title=" " alt="" coords="1908,287,1876,297,1792,320,1708,345,1653,368,1612,390,1570,410,1513,429,888,500,887,495,1512,424,1568,405,1610,385,1651,363,1706,340,1790,315,1875,292,1906,282"/>
+<area shape="rect" id="Node000019" href="$swiot_8h.html" title="Header file for the swiot IIO device." alt="" coords="962,357,1157,412"/>
+<area shape="poly" id="edge18_Node000014_Node000019" title=" " alt="" coords="1915,287,1876,297,1785,313,1707,323,1575,328,1441,330,1363,335,1272,345,1158,365,1157,360,1271,340,1363,330,1441,325,1574,323,1707,317,1784,308,1875,292,1914,282"/>
+<area shape="rect" id="Node000020" href="$swiot__fw_8c.html" title="Main project file for the swiot1l project." alt="" coords="1110,482,1305,537"/>
+<area shape="poly" id="edge21_Node000014_Node000020" title=" " alt="" coords="1952,290,1845,362,1778,399,1708,429,1603,461,1495,483,1393,497,1305,506,1305,500,1392,492,1494,478,1602,456,1706,424,1776,394,1842,357,1949,286"/>
+<area shape="poly" id="edge19_Node000019_Node000018" title=" " alt="" coords="990,420,849,484,847,479,988,415"/>
+<area shape="poly" id="edge20_Node000019_Node000020" title=" " alt="" coords="1103,419,1177,480,1174,484,1100,423"/>
+<area shape="rect" id="Node000022" href="$iio__ad405x_8c.html" title=" " alt="" coords="8953,225,9118,280"/>
+<area shape="poly" id="edge23_Node000021_Node000022" title=" " alt="" coords="10025,142,9789,165,9688,172,9603,174,9457,173,9387,174,9312,180,9229,192,9131,213,9088,228,9086,223,9129,208,9228,187,9312,175,9386,169,9457,167,9602,168,9688,166,9788,160,10024,137"/>
+<area shape="rect" id="Node000023" href="$ad405x_2src_2examples_2iio__example_2iio__example_8c.html" title=" " alt="" coords="10022,218,10219,287"/>
+<area shape="poly" id="edge24_Node000021_Node000023" title=" " alt="" coords="10123,169,10123,218,10118,218,10118,169"/>
+<area shape="rect" id="Node000025" href="$iio__ad4080_8c.html" title="Implementation of iio_ad4080.c." alt="" coords="9390,225,9555,280"/>
+<area shape="poly" id="edge26_Node000024_Node000025" title=" " alt="" coords="10269,156,10216,165,10117,177,10033,181,9889,179,9820,179,9747,183,9664,193,9568,213,9526,228,9524,223,9567,208,9664,188,9747,178,9820,174,9889,174,10033,176,10117,171,10215,160,10268,150"/>
+<area shape="rect" id="Node000026" href="$adalm-mmsc_2src_2examples_2iio__example_2iio__example_8c.html" title="Implementation of iio_example.c." alt="" coords="10243,218,10486,287"/>
+<area shape="poly" id="edge27_Node000024_Node000026" title=" " alt="" coords="10367,169,10367,218,10362,218,10362,169"/>
+<area shape="rect" id="Node000028" href="$iio__ad4692_8c.html" title="Source file of ad4692 IIO driver." alt="" coords="3522,225,3687,280"/>
+<area shape="poly" id="edge29_Node000027_Node000028" title=" " alt="" coords="3808,163,3664,228,3662,223,3805,158"/>
+<area shape="rect" id="Node000029" href="$ad4692__ardz_2src_2examples_2iio_2iio__example_8c.html" title="Source file for iio example." alt="" coords="7039,218,7235,287"/>
+<area shape="poly" id="edge30_Node000027_Node000029" title=" " alt="" coords="3974,140,4164,160,4365,166,4701,168,5596,170,6067,173,6491,179,6826,190,6946,198,7026,208,7056,215,7055,221,7026,213,6946,203,6826,195,6491,184,6066,178,5596,175,4701,174,4365,171,4163,165,3973,146"/>
+<area shape="rect" id="Node000030" href="$ad4692__ardz_2src_2examples_2iio__trigger_2iio__trigger__example_8c.html" title="Implementation of IIO trigger example for AD4692 project." alt="" coords="3711,218,3930,287"/>
+<area shape="poly" id="edge31_Node000027_Node000030" title=" " alt="" coords="3861,169,3838,219,3834,217,3856,167"/>
+<area shape="rect" id="Node000032" href="$iio__ad7091r8_8c.html" title="Implementation of IIO AD7091R8 Driver." alt="" coords="8273,225,8459,280"/>
+<area shape="poly" id="edge33_Node000031_Node000032" title=" " alt="" coords="8717,153,8599,179,8472,213,8430,228,8429,223,8471,208,8597,174,8716,147"/>
+<area shape="poly" id="edge34_Node000031_Node000033" title=" " alt="" coords="8716,140,8498,153,8242,165,7428,169,5874,173,5051,178,4321,185,3777,197,3603,204,3510,213,3484,221,3483,215,3510,208,3603,199,3776,191,4321,180,5051,172,5874,168,7428,164,8242,160,8497,148,8716,134"/>
+<area shape="rect" id="Node000034" href="$ad7091r8-sdz_2src_2examples_2iio__example_2iio__example_8c.html" title="Implementation of IIO example for eval&#45;ad7091r8&#45;sdz project." alt="" coords="9142,218,9366,287"/>
+<area shape="poly" id="edge35_Node000031_Node000034" title=" " alt="" coords="8931,153,9131,208,9155,215,9153,221,9129,213,8929,159"/>
+<area shape="rect" id="Node000035" href="$ad7091r8-sdz_2src_2examples_2iio__timer__trigger__example_2iio__timer__trigger__example_8c.html" title="Implementation of IIO timer trigger example for eval&#45;ad7091r8&#45;sdz project." alt="" coords="8719,211,8928,295"/>
+<area shape="poly" id="edge36_Node000031_Node000035" title=" " alt="" coords="8826,169,8826,211,8821,211,8821,169"/>
+<area shape="poly" id="edge40_Node000037_Node000036" title=" " alt="" coords="4261,169,4261,225,4255,225,4255,169"/>
+<area shape="poly" id="edge41_Node000037_Node000038" title=" " alt="" coords="4203,165,4098,227,4095,223,4201,160"/>
+<area shape="poly" id="edge43_Node000039_Node000040" title=" " alt="" coords="4541,169,4507,219,4503,216,4536,166"/>
+<area shape="rect" id="Node000042" href="$iio__ad7490_8c.html" title="Source file of iio_ad7490." alt="" coords="25751,225,25917,280"/>
+<area shape="poly" id="edge45_Node000041_Node000042" title=" " alt="" coords="24658,156,24673,160,24757,174,24833,184,24970,191,25092,187,25206,179,25320,171,25442,169,25579,180,25655,191,25739,208,25783,223,25781,228,25737,213,25655,196,25578,185,25442,174,25321,176,25207,184,25092,193,24970,196,24833,189,24756,180,24672,165,24656,162"/>
+<area shape="poly" id="edge48_Node000044_Node000043" title=" " alt="" coords="4939,169,4939,225,4934,225,4934,169"/>
+<area shape="poly" id="edge49_Node000044_Node000045" title=" " alt="" coords="4882,165,4774,228,4771,223,4879,160"/>
+<area shape="poly" id="edge51_Node000046_Node000047" title=" " alt="" coords="5380,163,5230,220,5228,215,5378,158"/>
+<area shape="rect" id="Node000051" href="$iio__adm1177_8c.html" title="Source file of iio_adm1177." alt="" coords="11875,225,12062,280"/>
+<area shape="poly" id="edge55_Node000050_Node000051" title=" " alt="" coords="12063,167,11998,227,11995,223,12059,163"/>
+<area shape="rect" id="Node000052" href="$wethlink_2src_2app_2main_8c.html" title=" " alt="" coords="14523,482,14727,537"/>
+<area shape="poly" id="edge56_Node000050_Node000052" title=" " alt="" coords="12096,169,12094,200,12097,234,12107,266,12127,293,12147,308,12177,322,12261,349,12374,373,12512,394,12670,413,12844,430,13223,458,13614,478,13984,491,14523,504,14523,509,13984,497,13614,483,13222,463,12843,436,12669,419,12511,400,12373,378,12260,354,12175,327,12145,312,12123,297,12103,268,12092,235,12089,200,12090,169"/>
+<area shape="poly" id="edge59_Node000054_Node000053" title=" " alt="" coords="9597,137,8929,165,7976,175,7381,188,7159,199,7079,205,7027,213,6983,228,6981,223,7025,208,7079,200,7158,193,7381,182,7976,170,8929,160,9597,131"/>
+<area shape="rect" id="Node000055" href="$ltc2378_2src_2examples_2iio_2iio__example_8c.html" title=" " alt="" coords="9580,225,9808,280"/>
+<area shape="poly" id="edge60_Node000054_Node000055" title=" " alt="" coords="9697,169,9697,225,9691,225,9691,169"/>
+<area shape="rect" id="Node000057" href="$iio__max11205_8c.html" title="Implementation of iio max11205 driver." alt="" coords="25941,225,26143,280"/>
+<area shape="poly" id="edge62_Node000056_Node000057" title=" " alt="" coords="25109,156,25130,160,25251,176,25354,182,25445,182,25530,179,25615,177,25706,179,25809,188,25929,208,25980,223,25979,228,25928,213,25808,193,25706,184,25615,182,25530,185,25445,187,25354,187,25250,181,25130,165,25108,161"/>
+<area shape="rect" id="Node000058" href="$max11205pmb1_2src_2examples_2iio__example_2iio__example_8c.html" title="Implementation of IIO example for max11205pmb1 project." alt="" coords="26168,218,26423,287"/>
+<area shape="poly" id="edge63_Node000056_Node000058" title=" " alt="" coords="25108,156,25130,160,25285,180,25417,187,25534,187,25643,183,25752,179,25869,179,26001,187,26156,208,26191,215,26190,221,26155,213,26000,193,25869,184,25752,184,25643,188,25534,193,25417,193,25285,185,25130,165,25108,161"/>
+<area shape="poly" id="edge66_Node000060_Node000059" title=" " alt="" coords="7565,166,7598,224,7593,227,7560,169"/>
+<area shape="poly" id="edge67_Node000060_Node000061" title=" " alt="" coords="7495,166,7419,220,7416,216,7492,161"/>
+<area shape="poly" id="edge70_Node000063_Node000062" title=" " alt="" coords="25348,156,25364,160,25448,174,25525,184,25663,191,25785,187,25900,179,26014,170,26137,169,26274,179,26351,191,26435,208,26479,223,26477,228,26433,213,26350,196,26273,185,26136,174,26014,176,25900,184,25785,193,25663,196,25524,189,25447,180,25363,165,25347,162"/>
+<area shape="rect" id="Node000065" href="$iio__adl8113_8c.html" title="Implementation of ADL8113 IIO Driver." alt="" coords="10919,225,11125,280"/>
+<area shape="poly" id="edge72_Node000064_Node000065" title=" " alt="" coords="11307,162,11139,213,11096,228,11094,223,11137,208,11306,157"/>
+<area shape="rect" id="Node000066" href="$eval-adl8113_2src_2examples_2iio__example_2iio__example_8c.html" title="IIO example source file for eval&#45;adl8113 project." alt="" coords="11340,218,11531,287"/>
+<area shape="poly" id="edge73_Node000064_Node000066" title=" " alt="" coords="11422,168,11431,217,11426,218,11417,170"/>
+<area shape="poly" id="edge78_Node000070_Node000069" title=" " alt="" coords="10814,169,10814,225,10809,225,10809,169"/>
+<area shape="poly" id="edge79_Node000070_Node000071" title=" " alt="" coords="10757,165,10652,227,10650,223,10754,160"/>
+<area shape="rect" id="Node000074" href="$iio__ad5791_8c.html" title="Implementation of AD5791 IIO Driver." alt="" coords="11150,225,11315,280"/>
+<area shape="poly" id="edge82_Node000073_Node000074" title=" " alt="" coords="11537,162,11527,165,11471,180,11427,188,11383,197,11328,213,11290,228,11288,223,11326,208,11382,192,11426,183,11470,174,11525,160,11536,157"/>
+<area shape="poly" id="edge83_Node000073_Node000075" title=" " alt="" coords="11635,169,11649,225,11644,226,11629,170"/>
+<area shape="rect" id="Node000077" href="$iio__ad8460_8c.html" title="Implementation of IIO AD8460 Driver." alt="" coords="26637,225,26802,280"/>
+<area shape="poly" id="edge85_Node000076_Node000077" title=" " alt="" coords="26113,157,26127,160,26201,174,26265,180,26376,181,26487,184,26551,192,26625,208,26667,223,26665,228,26624,213,26550,197,26486,189,26376,187,26265,185,26201,179,26125,165,26111,162"/>
+<area shape="rect" id="Node000081" href="$iio__max22017_8c.html" title="Source file of IIO MAX22017 Driver." alt="" coords="12137,225,12339,280"/>
+<area shape="poly" id="edge89_Node000080_Node000081" title=" " alt="" coords="12601,154,12480,180,12352,213,12307,228,12306,223,12351,208,12479,175,12600,149"/>
+<area shape="rect" id="Node000082" href="$max22017_2src_2examples_2iio__example_2iio__example_8c.html" title="IIO example source file for max22017." alt="" coords="12607,218,12824,287"/>
+<area shape="poly" id="edge90_Node000080_Node000082" title=" " alt="" coords="12718,169,12718,218,12713,218,12713,169"/>
+<area shape="poly" id="edge94_Node000083_Node000018" title=" " alt="" coords="590,294,590,325,593,360,602,394,619,425,634,442,652,457,694,480,691,484,649,461,631,446,614,428,597,396,588,360,584,325,584,294"/>
+<area shape="poly" id="edge95_Node000083_Node000019" title=" " alt="" coords="679,282,713,292,822,316,931,340,981,355,980,360,929,345,821,322,712,297,678,287"/>
+<area shape="poly" id="edge96_Node000083_Node000020" title=" " alt="" coords="683,282,713,292,789,311,822,321,861,340,889,362,907,383,924,404,951,424,990,444,1030,461,1110,485,1109,490,1029,466,988,449,949,429,921,408,903,386,885,366,858,345,820,326,788,316,712,297,681,287"/>
+<area shape="rect" id="Node000084" href="$iio__max14906_8c.html" title="Source file of IIO MAX14906 Driver." alt="" coords="629,357,847,412"/>
+<area shape="poly" id="edge92_Node000083_Node000084" title=" " alt="" coords="633,287,710,355,707,359,629,291"/>
+<area shape="rect" id="Node000085" href="$max14906_2src_2examples_2iio__example_2iio__example_8c.html" title="Source file for iio example." alt="" coords="1284,350,1501,419"/>
+<area shape="poly" id="edge93_Node000083_Node000085" title=" " alt="" coords="674,282,713,292,840,314,940,321,1041,326,1169,340,1284,359,1283,364,1168,345,1040,332,940,327,839,319,712,297,673,287"/>
+<area shape="rect" id="Node000087" href="$iio__max14916_8c.html" title="Source file of IIO MAX14916 Driver." alt="" coords="12363,225,12582,280"/>
+<area shape="poly" id="edge98_Node000086_Node000087" title=" " alt="" coords="12846,161,12829,165,12712,188,12595,213,12547,228,12545,223,12593,208,12710,183,12828,160,12845,156"/>
+<area shape="rect" id="Node000088" href="$max14916_2src_2examples_2iio__example_2iio__example_8c.html" title="Source file for iio example." alt="" coords="12848,218,13065,287"/>
+<area shape="poly" id="edge99_Node000086_Node000088" title=" " alt="" coords="12959,169,12959,218,12954,218,12954,169"/>
+<area shape="rect" id="Node000090" href="$iio__max22190_8c.html" title="Source file of MAX22190 IIO Driver." alt="" coords="16802,225,17021,280"/>
+<area shape="poly" id="edge101_Node000089_Node000090" title=" " alt="" coords="15357,156,15380,160,15491,175,15593,185,15774,192,15935,188,16085,178,16235,169,16395,167,16577,178,16678,190,16789,208,16845,223,16843,228,16788,213,16678,196,16576,183,16395,173,16235,174,16085,183,15935,193,15774,197,15592,190,15490,180,15379,165,15356,161"/>
+<area shape="rect" id="Node000091" href="$max22190_2src_2examples_2iio__example_2iio__example_8c.html" title="IIO example source file for max22190." alt="" coords="15149,218,15367,287"/>
+<area shape="poly" id="edge102_Node000089_Node000091" title=" " alt="" coords="15261,169,15261,218,15255,218,15255,169"/>
+<area shape="rect" id="Node000093" href="$iio__max22196_8c.html" title="Source file of IIO MAX22196 Driver." alt="" coords="17461,225,17679,280"/>
+<area shape="poly" id="edge104_Node000092_Node000093" title=" " alt="" coords="15601,156,15624,160,15706,170,15801,176,16022,183,16537,180,16801,177,17051,179,17272,188,17367,196,17449,208,17505,223,17503,228,17448,213,17366,202,17272,193,17051,184,16801,183,16537,185,16022,188,15800,182,15705,175,15623,165,15600,161"/>
+<area shape="rect" id="Node000094" href="$max22196_2src_2examples_2iio__example_2iio__example_8c.html" title="IIO example source file for max22196." alt="" coords="15391,218,15608,287"/>
+<area shape="poly" id="edge105_Node000092_Node000094" title=" " alt="" coords="15504,170,15503,218,15497,218,15498,169"/>
+<area shape="rect" id="Node000096" href="$iio__max22200_8c.html" title="Source file of IIO MAX22200 Driver." alt="" coords="18161,225,18379,280"/>
+<area shape="poly" id="edge107_Node000095_Node000096" title=" " alt="" coords="15844,156,15868,160,15970,172,16089,180,16365,186,16677,185,17008,179,17339,174,17651,174,17927,184,18045,194,18148,208,18204,223,18203,228,18147,213,18045,199,17926,190,17651,180,17339,180,17008,184,16677,190,16365,192,16089,185,15970,177,15867,165,15843,161"/>
+<area shape="rect" id="Node000097" href="$max22200_2src_2examples_2iio__example_2iio__example_8c.html" title="Source file for iio example." alt="" coords="15632,218,15849,287"/>
+<area shape="poly" id="edge108_Node000095_Node000097" title=" " alt="" coords="15747,170,15745,218,15739,218,15742,169"/>
+<area shape="rect" id="Node000099" href="$iio__adf4030_8c.html" title="Implementation of IIO ADF4030 Driver." alt="" coords="18855,225,19061,280"/>
+<area shape="poly" id="edge110_Node000098_Node000099" title=" " alt="" coords="16077,156,16098,160,16222,174,16365,184,16524,189,16697,191,17073,187,17471,178,17869,170,18245,168,18418,171,18577,179,18719,191,18843,208,18896,223,18894,228,18841,213,18719,196,18576,184,18417,177,18245,173,17869,175,17471,183,17073,192,16697,196,16524,194,16364,189,16221,180,16098,165,16076,161"/>
+<area shape="rect" id="Node000100" href="$adf4030_2src_2examples_2iio__example_2iio__example_8c.html" title="Implementation of IIO example for ADF4030 project." alt="" coords="15873,218,16075,287"/>
+<area shape="poly" id="edge111_Node000098_Node000100" title=" " alt="" coords="15983,170,15979,218,15974,218,15978,169"/>
+<area shape="rect" id="Node000102" href="$iio__adf4368_8c.html" title="Implementation of IIO ADF4368 Driver." alt="" coords="19308,225,19515,280"/>
+<area shape="poly" id="edge113_Node000101_Node000102" title=" " alt="" coords="16307,156,16329,160,16463,175,16617,186,16789,191,16976,193,17383,188,17813,177,18243,168,18650,165,18836,169,19008,177,19163,189,19296,208,19349,223,19348,228,19295,213,19162,195,19008,182,18836,174,18650,171,18243,173,17813,183,17383,193,16976,198,16789,196,16617,191,16462,181,16328,165,16306,161"/>
+<area shape="rect" id="Node000103" href="$adf4368_2src_2examples_2iio__example_2iio__example_8c.html" title="Implementation of IIO example for adf4368 project." alt="" coords="16099,218,16300,287"/>
+<area shape="poly" id="edge114_Node000101_Node000103" title=" " alt="" coords="16212,170,16206,218,16201,218,16207,169"/>
+<area shape="rect" id="Node000105" href="$iio__adf4377_8c.html" title="Implementation of ADF4377 IIO Driver." alt="" coords="19539,225,19745,280"/>
+<area shape="poly" id="edge116_Node000104_Node000105" title=" " alt="" coords="16539,156,16561,160,16694,175,16849,185,17021,191,17208,192,17614,187,18044,177,18474,168,18881,165,19067,169,19239,177,19393,189,19527,208,19580,223,19578,228,19525,213,19393,195,19239,182,19067,174,18881,171,18475,173,18045,182,17614,193,17208,198,17021,196,16848,191,16694,181,16560,165,16538,161"/>
+<area shape="rect" id="Node000106" href="$adf4377__sdz_2src_2examples_2iio__example_2iio__example_8c.html" title="Implementation of IIO example for adf4377 project." alt="" coords="16325,218,16551,287"/>
+<area shape="poly" id="edge117_Node000104_Node000106" title=" " alt="" coords="16445,170,16442,218,16437,218,16440,169"/>
+<area shape="rect" id="Node000108" href="$iio__adf4382_8c.html" title="Implementation of IIO ADF4382 Driver." alt="" coords="19992,225,20199,280"/>
+<area shape="poly" id="edge119_Node000107_Node000108" title=" " alt="" coords="16794,140,17025,160,17233,165,17579,167,18504,169,18989,172,19427,179,19773,190,19897,198,19980,208,20033,223,20032,228,19979,213,19896,203,19773,195,19427,184,18989,178,18504,175,17579,172,17232,170,17025,165,16793,146"/>
+<area shape="rect" id="Node000109" href="$adf4382_2src_2examples_2iio__example_2iio__example_8c.html" title="Implementation of IIO example for adf4382 project." alt="" coords="16576,218,16777,287"/>
+<area shape="poly" id="edge120_Node000107_Node000109" title=" " alt="" coords="16679,169,16679,218,16674,218,16674,169"/>
+<area shape="rect" id="Node000111" href="$iio__adf5611_8c.html" title="Implementation of IIO ADF5611 Driver." alt="" coords="20223,225,20429,280"/>
+<area shape="poly" id="edge122_Node000110_Node000111" title=" " alt="" coords="17235,156,17257,160,17390,175,17544,185,17715,190,17901,192,18306,187,18734,177,19163,168,19567,165,19753,169,19924,177,20078,190,20211,208,20264,223,20262,228,20209,213,20077,195,19924,182,19753,174,19567,171,19163,173,18735,182,18306,193,17901,197,17715,196,17543,190,17389,181,17256,165,17234,161"/>
+<area shape="rect" id="Node000112" href="$adf5611_2src_2examples_2iio__example_2iio__example_8c.html" title="Implementation of IIO example for adf5611 project." alt="" coords="17045,218,17247,287"/>
+<area shape="poly" id="edge123_Node000110_Node000112" title=" " alt="" coords="17145,169,17147,218,17142,218,17140,170"/>
+<area shape="rect" id="Node000114" href="$iio__admfm2000_8c.html" title="Implementation of admfm2000 IIO Driver." alt="" coords="26827,225,27049,280"/>
+<area shape="poly" id="edge125_Node000113_Node000114" title=" " alt="" coords="26582,156,26597,160,26706,183,26815,208,26863,223,26862,228,26813,213,26705,188,26596,165,26580,161"/>
+<area shape="rect" id="Node000118" href="$iio__adis_8c.html" title="Implementation of iio_adis.c." alt="" coords="3132,225,3299,280"/>
+<area shape="poly" id="edge129_Node000117_Node000118" title=" " alt="" coords="5792,144,5554,165,5396,170,5133,172,4430,175,4062,179,3729,186,3466,197,3373,204,3311,213,3267,228,3265,223,3309,208,3372,199,3466,191,3728,180,4061,174,4430,170,5133,166,5396,164,5554,160,5792,138"/>
+<area shape="rect" id="Node000119" href="$iio__adis1646x_8h.html" title="Implementation of iio_adis1646x.h." alt="" coords="6217,225,6384,280"/>
+<area shape="poly" id="edge130_Node000117_Node000119" title=" " alt="" coords="5986,148,6092,174,6206,208,6244,223,6242,228,6204,213,6091,179,5985,153"/>
+<area shape="rect" id="Node000121" href="$iio__adis1647x_8h.html" title="Implementation of iio_adis1647x.h." alt="" coords="5264,225,5431,280"/>
+<area shape="poly" id="edge132_Node000117_Node000121" title=" " alt="" coords="5793,152,5724,165,5644,178,5582,185,5520,194,5443,213,5403,228,5401,223,5441,208,5519,189,5581,179,5644,172,5723,160,5791,147"/>
+<area shape="rect" id="Node000123" href="$iio__adis1650x_8h.html" title="Implementation of iio_adis1650x.h." alt="" coords="5455,225,5621,280"/>
+<area shape="poly" id="edge134_Node000117_Node000123" title=" " alt="" coords="5793,160,5634,213,5597,228,5595,223,5632,208,5791,155"/>
+<area shape="rect" id="Node000125" href="$iio__adis1654x_8h.html" title="Implementation of iio_adis1654x.h." alt="" coords="5645,225,5812,280"/>
+<area shape="poly" id="edge136_Node000117_Node000125" title=" " alt="" coords="5845,166,5765,227,5761,223,5842,162"/>
+<area shape="rect" id="Node000127" href="$iio__adis1655x_8h.html" title="Implementation of iio_adis1655x.h." alt="" coords="5836,225,6003,280"/>
+<area shape="poly" id="edge138_Node000117_Node000127" title=" " alt="" coords="5901,169,5915,225,5910,226,5896,170"/>
+<area shape="rect" id="Node000129" href="$iio__adis1657x_8h.html" title="Implementation of iio_adis1657x.h." alt="" coords="6027,225,6193,280"/>
+<area shape="poly" id="edge140_Node000117_Node000129" title=" " alt="" coords="5949,160,6064,223,6061,228,5947,164"/>
+<area shape="rect" id="Node000120" href="$iio__adis1646x_8c.html" title="Implementation of iio_adis1646x.c." alt="" coords="6217,357,6384,412"/>
+<area shape="poly" id="edge131_Node000119_Node000120" title=" " alt="" coords="6303,294,6303,357,6298,357,6298,294"/>
+<area shape="rect" id="Node000122" href="$iio__adis1647x_8c.html" title="Implementation of iio_adis1647x.c." alt="" coords="5264,357,5431,412"/>
+<area shape="poly" id="edge133_Node000121_Node000122" title=" " alt="" coords="5350,294,5350,357,5345,357,5345,294"/>
+<area shape="rect" id="Node000124" href="$iio__adis1650x_8c.html" title="Implementation of iio_adis1650x.c." alt="" coords="5455,357,5621,412"/>
+<area shape="poly" id="edge135_Node000123_Node000124" title=" " alt="" coords="5541,294,5541,357,5535,357,5535,294"/>
+<area shape="rect" id="Node000126" href="$iio__adis1654x_8c.html" title="Implementation of iio_adis1654x.c." alt="" coords="5645,357,5812,412"/>
+<area shape="poly" id="edge137_Node000125_Node000126" title=" " alt="" coords="5731,294,5731,357,5726,357,5726,294"/>
+<area shape="rect" id="Node000128" href="$iio__adis1655x_8c.html" title="Implementation of iio_adis1655x.c." alt="" coords="5836,357,6003,412"/>
+<area shape="poly" id="edge139_Node000127_Node000128" title=" " alt="" coords="5922,294,5922,357,5917,357,5917,294"/>
+<area shape="rect" id="Node000130" href="$iio__adis1657x_8c.html" title="Implementation of iio_adis1657x.c." alt="" coords="6027,357,6193,412"/>
+<area shape="poly" id="edge141_Node000129_Node000130" title=" " alt="" coords="6113,294,6113,357,6107,357,6107,294"/>
+<area shape="poly" id="edge146_Node000134_Node000133" title=" " alt="" coords="7705,157,7656,165,7493,181,7355,185,7232,181,7118,174,7004,168,6883,170,6746,183,6587,213,6544,228,6542,223,6585,208,6745,178,6882,165,7004,163,7118,168,7232,175,7355,180,7493,176,7655,160,7704,151"/>
+<area shape="rect" id="Node000135" href="$net_8c.html" title=" " alt="" coords="11685,482,11889,537"/>
+<area shape="poly" id="edge147_Node000134_Node000135" title=" " alt="" coords="7785,169,7775,200,7770,233,7774,266,7780,280,7789,292,7815,299,7879,305,8097,315,8746,329,9717,340,10302,377,10872,421,11685,495,11685,500,10872,427,10301,382,9717,345,8746,335,8097,321,7879,310,7814,304,7786,297,7775,283,7768,267,7765,233,7770,199,7780,167"/>
+<area shape="rect" id="Node000136" href="$net_8h.html" title=" " alt="" coords="11825,357,12029,412"/>
+<area shape="poly" id="edge148_Node000134_Node000136" title=" " alt="" coords="7797,169,7795,201,7798,234,7808,266,7827,292,8366,307,9592,334,11825,379,11825,384,9592,339,8366,313,7825,297,7803,269,7793,235,7790,201,7791,169"/>
+<area shape="poly" id="edge149_Node000136_Node000052" title=" " alt="" coords="12026,413,12081,424,12308,448,12608,466,12957,481,13328,491,14035,502,14522,505,14522,510,14035,507,13328,496,12957,486,12608,472,12307,453,12080,429,12024,418"/>
+<area shape="poly" id="edge150_Node000136_Node000135" title=" " alt="" coords="11889,423,11819,484,11816,480,11885,419"/>
+<area shape="poly" id="edge154_Node000138_Node000135" title=" " alt="" coords="11855,169,11815,343,11793,482,11788,481,11810,342,11849,168"/>
+<area shape="poly" id="edge155_Node000138_Node000136" title=" " alt="" coords="11858,170,11856,229,11859,262,11866,294,11882,327,11904,355,11900,359,11878,330,11861,296,11853,263,11850,230,11853,169"/>
+<area shape="poly" id="edge153_Node000138_Node000137" title=" " alt="" coords="11766,157,11717,165,11551,178,11343,182,10861,177,10614,175,10380,178,10175,190,10086,200,10011,213,9967,228,9965,223,10009,208,10086,195,10174,184,10380,173,10614,170,10861,171,11343,176,11550,172,11716,160,11765,152"/>
+<area shape="rect" id="Node000140" href="$iio__adpd188_8c.html" title="Implementation of the ADPD188 IIO driver." alt="" coords="20454,218,20633,287"/>
+<area shape="poly" id="edge157_Node000139_Node000140" title=" " alt="" coords="17461,139,17703,160,17896,165,18217,166,19074,168,19524,171,19930,178,20250,190,20364,198,20441,208,20469,215,20467,221,20440,213,20364,203,20250,195,19930,183,19524,176,19074,173,18217,172,17896,170,17703,165,17461,144"/>
+<area shape="rect" id="Node000141" href="$iio__adpd1080_2src_2main_8c.html" title="Implementation of Main Function." alt="" coords="17271,225,17437,280"/>
+<area shape="poly" id="edge158_Node000139_Node000141" title=" " alt="" coords="17359,176,17358,225,17352,225,17354,176"/>
+<area shape="rect" id="Node000143" href="$iio__adp1050_8c.html" title="Source file for the ADP1050 IIO Driver." alt="" coords="20657,225,20838,280"/>
+<area shape="poly" id="edge160_Node000142_Node000143" title=" " alt="" coords="17907,156,17932,160,18054,173,18195,181,18524,186,18896,181,19290,171,19684,163,20055,162,20226,167,20383,175,20524,189,20645,208,20693,223,20691,228,20644,213,20523,194,20383,181,20226,172,20055,168,19684,168,19290,176,18896,186,18524,191,18195,187,18054,178,17931,165,17906,161"/>
+<area shape="rect" id="Node000144" href="$adp1050_2src_2examples_2iio__example_2iio__example_8c.html" title="IIO example source file for adp1050 project." alt="" coords="17704,218,17908,287"/>
+<area shape="poly" id="edge161_Node000142_Node000144" title=" " alt="" coords="17809,169,17809,218,17803,218,17803,169"/>
+<area shape="rect" id="Node000146" href="$iio__adp1055_8c.html" title="Source file for the ADP1055 IIO Driver." alt="" coords="20862,225,21043,280"/>
+<area shape="poly" id="edge163_Node000145_Node000146" title=" " alt="" coords="18139,138,18403,160,18576,164,18863,166,19629,169,20030,173,20394,180,20680,191,20782,199,20851,208,20898,223,20897,228,20849,213,20781,204,20679,196,20393,185,20030,179,19628,175,18863,172,18575,169,18403,165,18138,143"/>
+<area shape="rect" id="Node000147" href="$adp1055_2src_2examples_2iio__example_2iio__example_8c.html" title="IIO example source file for adp1055 project." alt="" coords="17932,218,18136,287"/>
+<area shape="poly" id="edge164_Node000145_Node000147" title=" " alt="" coords="18037,169,18037,218,18031,218,18031,169"/>
+<area shape="rect" id="Node000149" href="$iio__adp5055_8c.html" title="Source file for the ADP5055 IIO Driver." alt="" coords="21067,225,21249,280"/>
+<area shape="poly" id="edge166_Node000148_Node000149" title=" " alt="" coords="18605,156,18629,160,18738,172,18865,180,19159,185,19492,181,19844,173,20196,166,20528,166,20681,171,20821,179,20947,191,21056,208,21103,223,21102,228,21055,213,20946,196,20821,184,20681,176,20528,172,20196,172,19844,178,19492,186,19159,190,18864,185,18738,177,18628,165,18604,161"/>
+<area shape="rect" id="Node000150" href="$adp5055_2src_2examples_2iio__example_2iio__example_8c.html" title="IIO example source file for adp5055 project." alt="" coords="18404,218,18608,287"/>
+<area shape="poly" id="edge167_Node000148_Node000150" title=" " alt="" coords="18509,169,18509,218,18503,218,18503,169"/>
+<area shape="rect" id="Node000152" href="$iio__lt3074_8c.html" title="Source file for the LT3074 IIO Driver." alt="" coords="21273,225,21454,280"/>
+<area shape="poly" id="edge169_Node000151_Node000152" title=" " alt="" coords="18836,139,19082,160,19491,167,20173,171,20854,182,21109,193,21200,200,21261,208,21309,223,21307,228,21260,213,21199,205,21109,198,20854,188,20173,177,19491,172,19082,165,18835,144"/>
+<area shape="rect" id="Node000153" href="$lt3074_2src_2examples_2iio__example_2iio__example_8c.html" title="IIO example source file for lt3074 project." alt="" coords="18633,218,18830,287"/>
+<area shape="poly" id="edge170_Node000151_Node000153" title=" " alt="" coords="18734,169,18734,218,18729,218,18729,169"/>
+<area shape="rect" id="Node000155" href="$iio__lt7170_8c.html" title="Source file for the LT7170 IIO Driver." alt="" coords="21478,225,21659,280"/>
+<area shape="poly" id="edge172_Node000154_Node000155" title=" " alt="" coords="19289,134,19766,160,19932,164,20139,164,20619,162,20865,164,21097,171,21302,185,21390,195,21467,208,21514,223,21512,228,21465,213,21390,200,21302,190,21097,176,20865,169,20619,167,20139,169,19932,169,19766,165,19289,139"/>
+<area shape="rect" id="Node000156" href="$lt7170_2src_2examples_2iio__example_2iio__example_8c.html" title="IIO example source file for lt7170 project." alt="" coords="19086,218,19283,287"/>
+<area shape="poly" id="edge173_Node000154_Node000156" title=" " alt="" coords="19187,169,19187,218,19182,218,19182,169"/>
+<area shape="rect" id="Node000158" href="$iio__lt7182s_8c.html" title="Source file for the LT7182S IIO Driver." alt="" coords="21905,225,22086,280"/>
+<area shape="poly" id="edge175_Node000157_Node000158" title=" " alt="" coords="19973,126,20373,128,20929,137,21217,147,21487,162,21718,182,21814,194,21893,208,21940,223,21939,228,21892,213,21813,199,21718,187,21486,167,21217,153,20928,143,20373,133,19973,132"/>
+<area shape="rect" id="Node000159" href="$lt7182s_2src_2examples_2iio__example_2iio__example_8c.html" title="IIO example source file for lt7182s project." alt="" coords="19770,218,19967,287"/>
+<area shape="poly" id="edge176_Node000157_Node000159" title=" " alt="" coords="19871,169,19871,218,19866,218,19866,169"/>
+<area shape="rect" id="Node000161" href="$iio__lt8491_8c.html" title="Implementation of IIO LT8491 Driver." alt="" coords="27074,225,27255,280"/>
+<area shape="poly" id="edge178_Node000160_Node000161" title=" " alt="" coords="27132,167,27156,224,27151,226,27127,169"/>
+<area shape="rect" id="Node000163" href="$iio__lt8722_8c.html" title="Source file for the LT8722 IIO Driver." alt="" coords="22553,225,22734,280"/>
+<area shape="poly" id="edge180_Node000162_Node000163" title=" " alt="" coords="21887,138,22541,208,22586,223,22585,228,22540,213,21886,143"/>
+<area shape="rect" id="Node000164" href="$lt8722_2src_2examples_2iio__example_2iio__example_8c.html" title="IIO example source file for lt8722 project." alt="" coords="21683,218,21881,287"/>
+<area shape="poly" id="edge181_Node000162_Node000164" title=" " alt="" coords="21785,169,21785,218,21779,218,21779,169"/>
+<area shape="rect" id="Node000166" href="$iio__ltc4162l_8c.html" title="Implementation of IIO LTC4162L Driver." alt="" coords="27279,225,27461,280"/>
+<area shape="poly" id="edge183_Node000165_Node000166" title=" " alt="" coords="27337,167,27361,224,27356,226,27332,169"/>
+<area shape="rect" id="Node000168" href="$iio__ltc7841_8c.html" title="Source file for the LTC7841 IIO Driver." alt="" coords="22758,225,22939,280"/>
+<area shape="poly" id="edge185_Node000167_Node000168" title=" " alt="" coords="22309,156,22328,160,22445,176,22538,180,22630,186,22684,194,22747,208,22791,223,22790,228,22745,213,22683,200,22630,192,22537,186,22444,182,22327,165,22308,161"/>
+<area shape="rect" id="Node000169" href="$ltc7841_2src_2examples_2iio__example_2iio__example_8c.html" title="IIO example source file for ltc7841 project." alt="" coords="22110,218,22307,287"/>
+<area shape="poly" id="edge186_Node000167_Node000169" title=" " alt="" coords="22211,169,22211,218,22206,218,22206,169"/>
+<area shape="rect" id="Node000171" href="$iio__ltc7871_8c.html" title="Source file for the LTC7871 IIO Driver." alt="" coords="23190,225,23371,280"/>
+<area shape="poly" id="edge188_Node000170_Node000171" title=" " alt="" coords="22534,135,22878,165,23052,186,23179,208,23224,223,23222,228,23177,213,23051,191,22877,171,22534,140"/>
+<area shape="rect" id="Node000172" href="$ltc7871_2src_2examples_2iio__example_2iio__example_8c.html" title="IIO example source file for ltc7871 project." alt="" coords="22331,218,22529,287"/>
+<area shape="poly" id="edge189_Node000170_Node000172" title=" " alt="" coords="22433,169,22433,218,22427,218,22427,169"/>
+<area shape="rect" id="Node000174" href="$iio__ltm4686_8c.html" title="Source file for the LTM4686 IIO Driver." alt="" coords="24225,225,24406,280"/>
+<area shape="poly" id="edge191_Node000173_Node000174" title=" " alt="" coords="23650,141,23801,160,23917,171,24008,176,24098,185,24212,208,24257,223,24255,228,24211,213,24097,190,24007,181,23917,176,23800,165,23650,146"/>
+<area shape="rect" id="Node000175" href="$ltm4686_2src_2examples_2iio__example_2iio__example_8c.html" title="IIO example source file for ltm4686 project." alt="" coords="22963,218,23166,287"/>
+<area shape="poly" id="edge192_Node000173_Node000175" title=" " alt="" coords="23457,162,23444,165,23370,181,23311,189,23252,197,23179,213,23154,221,23153,215,23177,208,23251,192,23310,183,23369,176,23443,160,23456,157"/>
+<area shape="rect" id="Node000177" href="$iio__ltp8800_8c.html" title="Source file for the LTP8800 IIO Driver." alt="" coords="24894,225,25075,280"/>
+<area shape="poly" id="edge194_Node000176_Node000177" title=" " alt="" coords="23990,156,24006,160,24138,179,24251,186,24351,185,24444,180,24538,175,24637,176,24750,185,24881,208,24928,223,24927,228,24880,213,24749,190,24637,181,24538,181,24444,185,24351,190,24251,191,24138,184,24006,165,23988,162"/>
+<area shape="rect" id="Node000178" href="$ltp8800_2src_2examples_2iio__example_2iio__example_8c.html" title="IIO example source file for ltp8800 project." alt="" coords="24430,218,24627,287"/>
+<area shape="poly" id="edge195_Node000176_Node000178" title=" " alt="" coords="23992,157,24007,160,24068,172,24121,178,24212,183,24304,188,24357,195,24419,208,24445,215,24443,221,24417,213,24356,201,24303,193,24212,188,24121,183,24068,177,24005,165,23991,162"/>
+<area shape="poly" id="edge198_Node000180_Node000179" title=" " alt="" coords="24218,156,24240,160,24368,177,24477,183,24574,182,24664,179,24755,176,24851,177,24960,187,25088,208,25139,223,25137,228,25087,213,24960,192,24851,183,24755,181,24664,184,24574,188,24477,188,24367,182,24239,165,24217,161"/>
+<area shape="rect" id="Node000181" href="$max17616_2src_2examples_2iio__example_2iio__example_8c.html" title="IIO example source file for max17616 project." alt="" coords="24652,218,24869,287"/>
+<area shape="poly" id="edge199_Node000180_Node000181" title=" " alt="" coords="24221,156,24240,160,24352,177,24440,182,24528,189,24640,208,24668,215,24666,220,24639,213,24528,194,24440,188,24351,182,24239,165,24220,161"/>
+<area shape="rect" id="Node000183" href="$iio__ad9361_8c.html" title="Implementation of iio_ad9361 This module is a wrapper over &quot;ad9361_api&quot;, and it is used by &quot;iio&quot;." alt="" coords="27485,218,27657,287"/>
+<area shape="poly" id="edge201_Node000182_Node000183" title=" " alt="" coords="27541,174,27559,217,27555,219,27536,176"/>
+<area shape="poly" id="edge205_Node000185_Node000052" title=" " alt="" coords="23445,161,23593,209,23607,232,23612,254,23608,276,23593,297,23579,305,23555,313,23476,327,23358,341,23204,354,22797,379,22276,400,21661,420,20974,437,19466,465,17920,485,16503,498,14727,510,14727,505,16503,493,17920,480,19466,459,20974,432,21661,414,22275,395,22797,373,23204,349,23358,336,23475,322,23554,307,23577,300,23590,293,23603,273,23607,254,23602,234,23590,213,23444,166"/>
+<area shape="poly" id="edge204_Node000185_Node000184" title=" " alt="" coords="23392,169,23448,216,23445,220,23389,173"/>
+<area shape="poly" id="edge206_Node000185_Node000186" title=" " alt="" coords="23445,160,23543,184,23636,208,23683,223,23681,228,23635,213,23541,190,23444,166"/>
+<area shape="poly" id="edge207_Node000186_Node000052" title=" " alt="" coords="23720,291,23669,344,23654,369,23645,391,23634,411,23611,429,23579,434,23504,439,23239,449,22317,465,21014,478,19500,489,16517,504,14727,510,14727,505,16517,499,19500,484,21014,473,22317,460,23239,443,23504,434,23578,429,23609,424,23630,408,23640,389,23649,366,23665,341,23716,288"/>
+<area shape="poly" id="edge209_Node000186_Node000136" title=" " alt="" coords="23654,286,23592,297,23374,311,22966,323,21685,343,19960,358,18000,370,14220,382,12030,386,12030,381,14220,377,18000,364,19960,353,21685,338,22966,318,23374,305,23591,292,23653,281"/>
+<area shape="poly" id="edge208_Node000186_Node000187" title=" " alt="" coords="23767,293,23779,357,23774,358,23762,294"/>
+<area shape="poly" id="edge212_Node000189_Node000188" title=" " alt="" coords="27775,169,27775,225,27770,225,27770,169"/>
+<area shape="rect" id="Node000191" href="$iio__adt7420_8c.html" title="Implementation of IIO ADT7420 Driver." alt="" coords="27888,225,28111,280"/>
+<area shape="poly" id="edge214_Node000190_Node000191" title=" " alt="" coords="28002,169,28002,225,27997,225,27997,169"/>
+<area shape="rect" id="Node000192" href="$adt7420-pmdz_2src_2examples_2iio__example_2iio__example_8c.html" title="IIO example code for adt7420&#45;pmdz project." alt="" coords="28135,218,28373,287"/>
+<area shape="poly" id="edge215_Node000190_Node000192" title=" " alt="" coords="28068,159,28186,216,28183,220,28065,164"/>
+<area shape="poly" id="edge220_Node000194_Node000020" title=" " alt="" coords="1166,167,1185,210,1201,286,1209,363,1211,482,1206,482,1204,363,1196,287,1179,211,1161,169"/>
+<area shape="poly" id="edge218_Node000194_Node000193" title=" " alt="" coords="1063,163,903,228,901,223,1061,158"/>
+<area shape="rect" id="Node000195" href="$adt75_2src_2examples_2iio__example_2iio__example_8c.html" title="Implementation of IIO example for AD74413R project." alt="" coords="973,218,1170,287"/>
+<area shape="poly" id="edge219_Node000194_Node000195" title=" " alt="" coords="1120,169,1092,219,1088,217,1116,166"/>
+<area shape="poly" id="edge223_Node000197_Node000196" title=" " alt="" coords="28409,163,28480,223,28476,227,28406,167"/>
+<area shape="rect" id="Node000199" href="$iio__max31827_8c.html" title="Implementation of IIO MAX31827 Driver." alt="" coords="28644,225,28867,280"/>
+<area shape="poly" id="edge225_Node000198_Node000199" title=" " alt="" coords="28665,163,28729,223,28726,227,28661,167"/>
+<area shape="poly" id="edge228_Node000201_Node000200" title=" " alt="" coords="28954,166,28989,224,28984,227,28949,169"/>
+<area shape="poly" id="edge264_Node000203_Node000007" title=" " alt="" coords="14174,135,13703,150,13078,165,10891,175,9456,189,8953,200,8792,206,8706,213,8676,221,8674,215,8706,208,8792,201,8953,194,9456,184,10891,170,13078,160,13703,144,14174,130"/>
+<area shape="poly" id="edge265_Node000203_Node000008" title=" " alt="" coords="14174,135,13703,150,13078,165,10668,174,9087,187,8532,198,8355,205,8261,213,8250,216,8249,210,8260,208,8355,200,8532,193,9087,182,10668,169,13078,160,13703,145,14174,130"/>
+<area shape="poly" id="edge266_Node000203_Node000009" title=" " alt="" coords="14174,135,13703,150,13078,165,12005,168,9956,171,8870,175,7908,183,7189,196,6960,204,6837,213,6825,216,6824,210,6836,208,6959,198,7189,190,7907,178,8870,170,9956,166,12005,162,13078,160,13703,145,14174,130"/>
+<area shape="poly" id="edge239_Node000203_Node000016" title=" " alt="" coords="14367,136,14403,145,14439,160,14472,181,14499,209,14512,232,14517,254,14513,276,14498,297,14433,306,14269,314,13698,325,12898,334,11983,339,9454,345,9211,360,9002,376,9002,371,9211,354,9454,340,11983,334,12898,328,13698,320,14269,308,14432,301,14495,292,14508,274,14512,254,14507,234,14495,212,14469,185,14437,165,14402,150,14365,141"/>
+<area shape="poly" id="edge240_Node000203_Node000017" title=" " alt="" coords="14174,134,13923,142,13611,157,13460,167,13330,180,13230,195,13196,204,13174,213,13163,222,13157,232,13150,254,13143,277,13135,288,13123,297,13081,304,12985,309,12640,319,11448,332,9782,338,7879,340,4307,338,3111,340,2624,345,2590,353,2589,347,2623,340,3111,334,4307,333,7879,334,9782,333,11448,327,12640,314,12985,304,13081,298,13121,292,13132,284,13138,274,13145,252,13152,229,13159,218,13171,208,13194,199,13229,190,13329,175,13460,162,13610,151,13923,137,14174,129"/>
+<area shape="poly" id="edge300_Node000203_Node000020" title=" " alt="" coords="14174,136,13957,146,13694,162,13461,185,13378,198,13331,213,13320,222,13313,232,13305,254,13296,277,13288,288,13275,297,13217,306,13088,314,12653,325,12052,332,11369,336,10082,340,9454,345,9330,364,9234,387,9138,411,9013,429,8803,443,8486,456,7589,476,6444,490,5175,500,2753,509,1305,511,1305,505,2753,504,5175,495,6444,485,7589,470,8486,450,8803,438,9012,424,9137,405,9233,382,9329,359,9454,340,10082,335,11369,331,12052,327,12653,319,13087,308,13217,301,13273,292,13284,284,13292,274,13300,252,13308,229,13316,218,13329,208,13377,193,13460,179,13694,157,13957,140,14174,130"/>
+<area shape="poly" id="edge231_Node000203_Node000023" title=" " alt="" coords="14174,135,13078,165,12544,168,11653,170,11185,175,10763,182,10430,195,10311,203,10232,213,10203,221,10201,215,10231,208,10311,198,10430,190,10763,177,11185,169,11653,165,12544,162,13078,160,14174,130"/>
+<area shape="poly" id="edge246_Node000203_Node000026" title=" " alt="" coords="14174,135,13078,165,11787,175,10980,188,10679,199,10571,205,10498,213,10464,221,10463,215,10498,208,10570,200,10678,193,10980,182,11787,170,13078,160,14174,130"/>
+<area shape="poly" id="edge233_Node000203_Node000029" title=" " alt="" coords="14174,135,13703,150,13078,165,12075,167,10160,170,9146,174,8246,182,7575,195,7361,203,7246,213,7218,220,7216,215,7246,208,7360,198,7575,189,8246,177,9146,169,10160,164,12075,162,13078,160,13703,145,14174,130"/>
+<area shape="poly" id="edge234_Node000203_Node000030" title=" " alt="" coords="14174,135,13703,150,13078,165,8509,175,5439,189,4396,200,4083,206,3942,213,3911,220,3909,215,3942,208,4083,201,4396,194,5439,184,8509,170,13078,160,13703,145,14174,130"/>
+<area shape="poly" id="edge235_Node000203_Node000034" title=" " alt="" coords="14174,135,13703,150,13078,165,12383,167,11226,167,10619,171,10069,179,9637,192,9482,202,9378,213,9346,221,9345,215,9378,208,9482,196,9636,187,10069,173,10619,165,11226,162,12383,162,13078,160,13703,144,14174,130"/>
+<area shape="poly" id="edge236_Node000203_Node000035" title=" " alt="" coords="14174,135,13703,150,13078,165,11008,176,9650,190,9174,200,9022,206,8941,213,8929,216,8928,210,8940,208,9022,201,9174,195,9650,184,11008,171,13078,160,13703,144,14174,130"/>
+<area shape="poly" id="edge237_Node000203_Node000038" title=" " alt="" coords="14174,135,13703,150,13078,165,8619,174,5624,188,4606,199,4301,206,4164,213,4113,228,4111,223,4163,208,4301,200,4606,193,5624,183,8619,169,13078,160,13703,145,14174,130"/>
+<area shape="poly" id="edge238_Node000203_Node000040" title=" " alt="" coords="14174,135,13703,150,13078,165,8844,177,6000,191,5034,201,4744,207,4613,213,4579,221,4578,215,4612,208,4743,202,5033,196,6000,186,8844,172,13078,160,13703,145,14174,130"/>
+<area shape="poly" id="edge241_Node000203_Node000045" title=" " alt="" coords="14174,135,13703,150,13078,165,8959,176,6192,190,5251,200,4969,206,4842,213,4790,228,4788,223,4842,208,4969,201,5251,195,6192,184,8959,171,13078,160,13703,145,14174,130"/>
+<area shape="poly" id="edge242_Node000203_Node000047" title=" " alt="" coords="14174,135,13703,150,13078,165,9163,176,6534,190,5640,200,5372,206,5252,213,5223,220,5222,215,5251,208,5372,201,5640,195,6534,185,9163,171,13078,160,13703,145,14174,130"/>
+<area shape="poly" id="edge301_Node000203_Node000052" title=" " alt="" coords="14367,142,14488,169,14539,187,14572,209,14595,241,14612,276,14624,315,14631,353,14634,426,14631,482,14626,482,14629,426,14625,354,14619,316,14607,278,14591,243,14568,213,14536,192,14486,174,14366,147"/>
+<area shape="poly" id="edge287_Node000203_Node000055" title=" " alt="" coords="14174,135,13078,165,12467,168,11448,170,10913,174,10429,182,10048,195,9912,203,9821,213,9763,228,9762,223,9820,208,9912,198,10048,189,10429,177,10913,169,11448,165,12467,163,13078,160,14174,130"/>
+<area shape="poly" id="edge299_Node000203_Node000061" title=" " alt="" coords="14174,135,13703,150,13078,165,10285,173,9314,178,8453,185,7810,197,7605,205,7496,213,7463,221,7462,215,7495,208,7605,199,7810,192,8453,180,9314,172,10285,167,13078,160,13703,145,14174,130"/>
+<area shape="poly" id="edge263_Node000203_Node000066" title=" " alt="" coords="14174,135,12691,177,11901,200,11544,213,11516,221,11515,215,11543,208,11901,195,12691,171,14174,129"/>
+<area shape="poly" id="edge261_Node000203_Node000071" title=" " alt="" coords="14174,135,13078,165,11896,173,11158,186,10882,197,10783,205,10717,213,10667,228,10666,223,10716,208,10783,199,10881,192,11157,181,11896,168,13078,160,14174,130"/>
+<area shape="poly" id="edge260_Node000203_Node000075" title=" " alt="" coords="14174,135,12899,174,12212,197,11864,213,11751,232,11750,227,11863,208,12212,192,12899,169,14173,130"/>
+<area shape="poly" id="edge295_Node000203_Node000082" title=" " alt="" coords="14173,134,13883,142,13497,157,13114,181,12956,196,12836,213,12806,220,12805,215,12835,208,12955,191,13114,175,13496,152,13883,137,14173,129"/>
+<area shape="poly" id="edge292_Node000203_Node000085" title=" " alt="" coords="14173,134,13912,140,13583,154,13425,165,13287,178,13182,194,13146,203,13123,213,13113,222,13107,231,13102,254,13097,277,13090,288,13078,297,12941,304,12579,311,11309,321,7481,335,1877,345,1678,358,1502,374,1501,369,1677,353,1877,340,7481,330,11309,316,12579,305,12941,299,13076,292,13086,284,13092,275,13097,252,13103,229,13109,218,13121,208,13144,198,13181,189,13286,172,13424,159,13583,149,13911,135,14173,128"/>
+<area shape="poly" id="edge293_Node000203_Node000088" title=" " alt="" coords="14174,131,13974,133,13703,143,13551,154,13395,168,13238,188,13085,213,13054,221,13053,215,13084,208,13237,183,13394,163,13551,148,13703,138,13974,127,14174,126"/>
+<area shape="poly" id="edge296_Node000203_Node000091" title=" " alt="" coords="14367,129,14516,135,14709,148,14923,172,15032,188,15137,208,15166,215,15165,221,15136,213,15031,193,14922,177,14708,153,14516,140,14366,134"/>
+<area shape="poly" id="edge297_Node000203_Node000094" title=" " alt="" coords="14366,126,14555,128,14807,139,14947,149,15092,164,15237,183,15379,208,15408,215,15407,220,15377,213,15236,188,15091,169,14947,155,14807,144,14554,133,14366,131"/>
+<area shape="poly" id="edge298_Node000203_Node000097" title=" " alt="" coords="14366,129,14641,138,15003,154,15360,177,15508,192,15620,208,15650,215,15649,221,15619,213,15507,197,15359,182,15003,159,14641,143,14366,135"/>
+<area shape="poly" id="edge247_Node000203_Node000100" title=" " alt="" coords="14366,130,15180,162,15611,185,15768,197,15861,208,15890,215,15889,221,15860,213,15767,202,15611,190,15179,168,14366,135"/>
+<area shape="poly" id="edge248_Node000203_Node000103" title=" " alt="" coords="14367,131,15349,172,15852,195,16086,208,16115,215,16114,220,16086,213,15851,200,15349,177,14367,136"/>
+<area shape="poly" id="edge249_Node000203_Node000106" title=" " alt="" coords="14367,130,16312,208,16344,215,16343,221,16311,213,14367,136"/>
+<area shape="poly" id="edge250_Node000203_Node000109" title=" " alt="" coords="14367,131,15135,160,15448,164,15851,166,16058,170,16253,177,16426,189,16564,208,16593,215,16592,221,16563,213,16425,195,16253,182,16058,175,15851,171,15448,169,15135,165,14366,136"/>
+<area shape="poly" id="edge251_Node000203_Node000112" title=" " alt="" coords="14367,131,15135,160,16085,172,16678,185,16900,195,17033,208,17063,215,17061,220,17032,213,16900,200,16678,190,16085,177,15135,165,14366,136"/>
+<area shape="poly" id="edge282_Node000203_Node000141" title=" " alt="" coords="14367,131,15135,160,15534,164,16199,168,16862,181,17110,192,17199,199,17259,208,17303,223,17302,228,17257,213,17198,205,17110,197,16862,186,16199,173,15534,169,15135,165,14366,136"/>
+<area shape="poly" id="edge252_Node000203_Node000144" title=" " alt="" coords="14367,131,15135,160,15615,164,16415,168,16835,173,17214,180,17513,192,17620,199,17692,208,17722,215,17720,220,17691,213,17619,205,17513,197,17214,186,16835,178,16415,173,15615,169,15135,165,14366,136"/>
+<area shape="poly" id="edge253_Node000203_Node000147" title=" " alt="" coords="14367,131,14706,145,15135,160,15658,163,16529,167,16986,171,17399,178,17725,190,17842,198,17920,208,17950,215,17949,221,17919,213,17841,204,17725,196,17399,184,16986,176,16529,172,15658,169,15135,165,14706,151,14366,136"/>
+<area shape="poly" id="edge254_Node000203_Node000150" title=" " alt="" coords="14367,131,14706,145,15135,160,15747,163,16765,164,17300,167,17783,175,18164,188,18300,197,18392,208,18422,215,18421,221,18391,213,18300,202,18164,193,17783,180,17300,173,16765,169,15747,168,15135,165,14706,151,14366,136"/>
+<area shape="poly" id="edge283_Node000203_Node000153" title=" " alt="" coords="14367,131,14706,146,15135,160,15789,162,16880,162,17452,165,17969,173,18376,186,18522,196,18620,208,18650,215,18648,221,18619,213,18521,201,18376,192,17969,178,17452,170,16880,167,15789,167,15135,165,14706,151,14366,136"/>
+<area shape="poly" id="edge284_Node000203_Node000156" title=" " alt="" coords="14367,131,14706,146,15135,160,17105,171,18397,185,18851,195,18996,201,19073,208,19103,215,19102,221,19072,213,18995,206,18851,200,18397,190,17105,177,15135,165,14706,151,14366,137"/>
+<area shape="poly" id="edge285_Node000203_Node000159" title=" " alt="" coords="14367,131,14706,146,15135,160,17448,169,18964,182,19496,193,19666,200,19757,208,19787,215,19786,221,19756,213,19666,205,19496,198,18964,187,17447,175,15135,165,14706,151,14366,137"/>
+<area shape="poly" id="edge286_Node000203_Node000164" title=" " alt="" coords="14367,131,14706,146,15135,160,16259,162,18405,163,19542,166,20550,174,21303,188,21543,197,21672,208,21701,215,21700,220,21671,213,21543,202,21303,193,20550,180,19542,172,18405,168,16259,167,15135,165,14706,151,14366,137"/>
+<area shape="poly" id="edge288_Node000203_Node000169" title=" " alt="" coords="14367,131,14706,146,15135,160,16333,161,18619,161,19830,165,20904,173,21705,186,21961,196,22098,208,22128,215,22127,220,22098,213,21961,202,21705,192,20904,178,19830,170,18619,167,16333,167,15135,165,14706,151,14366,137"/>
+<area shape="poly" id="edge289_Node000203_Node000172" title=" " alt="" coords="14367,131,14706,146,15135,160,16371,161,18730,161,19979,164,21087,172,21914,186,22178,196,22320,208,22349,215,22348,220,22319,213,22178,201,21914,191,21087,177,19979,169,18730,166,16371,167,15135,165,14706,152,14366,137"/>
+<area shape="poly" id="edge290_Node000203_Node000175" title=" " alt="" coords="14367,131,14706,146,15135,160,19045,172,21670,185,22563,195,22831,201,22952,208,22982,215,22981,220,22951,213,22831,207,22563,201,21670,191,19045,177,15135,165,14706,152,14366,137"/>
+<area shape="poly" id="edge291_Node000203_Node000178" title=" " alt="" coords="14367,131,14706,146,15135,160,19778,169,22897,182,23957,193,24275,200,24418,208,24448,215,24447,220,24418,213,24275,205,23957,198,22897,187,19778,174,15135,165,14706,152,14366,137"/>
+<area shape="poly" id="edge294_Node000203_Node000181" title=" " alt="" coords="14367,131,14706,146,15135,160,19889,170,23082,183,24167,194,24493,200,24640,208,24672,215,24671,220,24639,213,24492,206,24167,199,23082,188,19889,175,15135,165,14706,152,14366,137"/>
+<area shape="poly" id="edge232_Node000203_Node000204" title=" " alt="" coords="14367,146,14499,174,14644,208,14671,215,14670,221,14643,213,14497,179,14365,151"/>
+<area shape="rect" id="Node000205" href="$ad796x__fmcz_2src_2examples_2iio__example_2iio__example_8c.html" title="Implementation of IIO example for iio project." alt="" coords="13343,218,13579,287"/>
+<area shape="poly" id="edge243_Node000203_Node000205" title=" " alt="" coords="14174,138,13910,163,13751,184,13592,213,13562,221,13561,215,13591,208,13750,179,13909,157,14173,133"/>
+<area shape="poly" id="edge244_Node000203_Node000206" title=" " alt="" coords="14366,132,14478,142,14614,157,14762,178,14909,208,14958,223,14957,228,14908,213,14761,184,14613,162,14477,147,14366,138"/>
+<area shape="rect" id="Node000207" href="$adalm-lsmspg_2src_2examples_2iio__example_2iio__example_8c.html" title=" " alt="" coords="13603,218,13793,287"/>
+<area shape="poly" id="edge245_Node000203_Node000207" title=" " alt="" coords="14174,143,14001,170,13902,190,13805,213,13782,220,13781,215,13804,208,13901,184,14000,165,14173,138"/>
+<area shape="rect" id="Node000208" href="$adrv902x_2src_2examples_2iio__example_2iio__example_8c.html" title="IIO example for the adrv902x project." alt="" coords="13817,218,14027,287"/>
+<area shape="poly" id="edge255_Node000203_Node000208" title=" " alt="" coords="14183,162,14018,220,14016,215,14182,157"/>
+<area shape="rect" id="Node000209" href="$adrv904x_2src_2examples_2iio__example_2iio__example_8c.html" title="IIO example for the adrv904x project." alt="" coords="14051,218,14260,287"/>
+<area shape="poly" id="edge256_Node000203_Node000209" title=" " alt="" coords="14238,168,14189,220,14185,216,14234,164"/>
+<area shape="rect" id="Node000210" href="$adxrs290-pmdz_2src_2examples_2iio__example_2iio__example_8c.html" title="Implementation of IIO example for eval&#45;adxrs290&#45;pmdz project." alt="" coords="9467,350,9705,419"/>
+<area shape="poly" id="edge257_Node000203_Node000210" title=" " alt="" coords="14367,143,14473,170,14517,188,14544,209,14558,232,14563,254,14559,276,14544,297,14504,307,14413,315,14104,327,13675,336,13186,341,12264,345,11813,345,9706,384,9705,378,11813,340,12264,340,13186,336,13675,331,14104,322,14412,310,14503,301,14540,292,14554,273,14558,254,14553,234,14540,212,14514,193,14471,175,14365,148"/>
+<area shape="rect" id="Node000211" href="$adxrs290-pmdz_2src_2examples_2iio__timer__trigger__example_2iio__timer__trigger__example_8c.html" title="Implementation of IIO trigger example for iio_demo project." alt="" coords="2891,343,3139,427"/>
+<area shape="poly" id="edge258_Node000203_Node000211" title=" " alt="" coords="14174,136,13948,146,13672,162,13426,185,13338,198,13289,213,13276,222,13268,232,13258,254,13248,277,13238,288,13224,297,13119,306,12857,314,11952,326,10687,334,9242,339,6530,344,5251,345,4021,365,3140,383,3140,378,4020,360,5251,340,6530,339,9242,334,10687,329,11951,320,12857,308,13119,301,13222,292,13235,284,13243,274,13253,252,13264,229,13273,218,13286,208,13337,193,13425,179,13672,157,13948,140,14174,130"/>
+<area shape="rect" id="Node000212" href="$adxrs290-pmdz_2src_2examples_2iio__trigger__example_2iio__trigger__example_8c.html" title="Implementation of IIO trigger example for eval&#45;adxrs290&#45;pmdz project." alt="" coords="2636,350,2867,419"/>
+<area shape="poly" id="edge259_Node000203_Node000212" title=" " alt="" coords="14174,134,13934,143,13637,158,13495,169,13372,181,13278,196,13245,204,13225,213,13214,222,13208,232,13201,254,13194,277,13186,288,13174,297,13133,304,13038,309,12701,319,11532,331,9898,338,8032,339,4530,338,3357,340,2880,345,2846,353,2845,347,2879,340,3357,334,4530,333,8032,334,9898,332,11532,326,12700,313,13038,304,13132,298,13172,292,13182,284,13189,275,13196,252,13203,229,13210,218,13222,208,13244,199,13277,191,13371,176,13495,163,13637,153,13933,138,14173,129"/>
+<area shape="rect" id="Node000213" href="$eval-ad7490sdz_2src_2examples_2iio__example_2iio__example_8c.html" title=" " alt="" coords="14284,218,14485,287"/>
+<area shape="poly" id="edge262_Node000203_Node000213" title=" " alt="" coords="14306,164,14355,216,14351,220,14302,168"/>
+<area shape="poly" id="edge267_Node000203_Node000214" title=" " alt="" coords="14367,131,14706,146,15135,160,16637,165,19504,169,21022,173,22370,181,23376,192,23698,199,23870,208,23961,223,23960,228,23870,213,23698,205,23376,197,22370,186,21022,179,19504,174,16637,170,15135,165,14706,152,14366,137"/>
+<area shape="rect" id="Node000215" href="$afe__config_8h.html" title=" " alt="" coords="23908,357,24147,412"/>
+<area shape="poly" id="edge268_Node000214_Node000215" title=" " alt="" coords="24058,294,24038,358,24033,356,24053,292"/>
+<area shape="rect" id="Node000220" href="$iio__pqm_8h.html" title=" " alt="" coords="24073,592,24297,647"/>
+<area shape="poly" id="edge280_Node000214_Node000220" title=" " alt="" coords="24106,287,24129,312,24148,341,24162,375,24171,409,24181,479,24184,543,24184,592,24178,592,24178,543,24176,480,24166,410,24156,376,24144,344,24125,315,24102,291"/>
+<area shape="rect" id="Node000224" href="$eval-pqmon_2src_2common_2common__data_8c.html" title=" " alt="" coords="24246,357,24510,412"/>
+<area shape="poly" id="edge279_Node000214_Node000224" title=" " alt="" coords="24143,283,24316,355,24314,360,24141,288"/>
+<area shape="rect" id="Node000225" href="$pqlib__convert_8c.html" title=" " alt="" coords="24534,350,24726,419"/>
+<area shape="poly" id="edge281_Node000214_Node000225" title=" " alt="" coords="24168,281,24213,292,24300,307,24368,314,24436,322,24523,340,24547,347,24545,352,24521,345,24436,327,24368,319,24299,312,24212,297,24167,286"/>
+<area shape="rect" id="Node000216" href="$afe__calibration_8c.html" title=" " alt="" coords="23359,482,23627,537"/>
+<area shape="poly" id="edge269_Node000215_Node000216" title=" " alt="" coords="23935,419,23896,429,23768,455,23640,477,23606,485,23605,479,23639,472,23767,450,23895,424,23934,413"/>
+<area shape="rect" id="Node000217" href="$afe__config_8c.html" title=" " alt="" coords="23908,482,24147,537"/>
+<area shape="poly" id="edge270_Node000215_Node000217" title=" " alt="" coords="24030,426,24030,482,24025,482,24025,426"/>
+<area shape="rect" id="Node000218" href="$flash__storage_8c.html" title=" " alt="" coords="23144,475,23335,544"/>
+<area shape="poly" id="edge271_Node000215_Node000218" title=" " alt="" coords="23940,418,23896,429,23813,443,23742,450,23621,453,23500,456,23429,464,23346,477,23336,480,23334,474,23346,472,23428,458,23499,451,23621,448,23742,445,23812,438,23895,424,23939,413"/>
+<area shape="rect" id="Node000219" href="$pqlib__afe_8h.html" title=" " alt="" coords="23651,482,23883,537"/>
+<area shape="poly" id="edge272_Node000215_Node000219" title=" " alt="" coords="23960,420,23824,484,23822,479,23958,415"/>
+<area shape="poly" id="edge273_Node000219_Node000220" title=" " alt="" coords="23881,538,23896,541,24083,589,24082,595,23895,547,23880,543"/>
+<area shape="rect" id="Node000222" href="$pqlib__afe_8c.html" title=" " alt="" coords="23785,702,24016,757"/>
+<area shape="poly" id="edge278_Node000219_Node000222" title=" " alt="" coords="23793,547,23887,700,23882,703,23788,550"/>
+<area shape="poly" id="edge274_Node000220_Node000214" title=" " alt="" coords="24194,578,24199,529,24198,469,24188,405,24168,344,24144,310,24113,282,24117,278,24148,306,24172,341,24194,404,24203,468,24204,529,24200,579"/>
+<area shape="rect" id="Node000221" href="$iio__pqm_8c.html" title=" " alt="" coords="24063,702,24285,757"/>
+<area shape="poly" id="edge275_Node000220_Node000221" title=" " alt="" coords="24183,661,24179,702,24174,702,24178,661"/>
+<area shape="poly" id="edge276_Node000220_Node000222" title=" " alt="" coords="24104,654,23971,704,23969,699,24102,649"/>
+<area shape="rect" id="Node000223" href="$pqlib__example_8c.html" title=" " alt="" coords="24310,695,24502,764"/>
+<area shape="poly" id="edge277_Node000220_Node000223" title=" " alt="" coords="24252,650,24338,692,24336,697,24250,655"/>
+<area shape="poly" id="edge321_Node000227_Node000009" title=" " alt="" coords="2795,130,3782,160,4308,163,5186,168,5646,172,6062,180,6390,192,6508,199,6586,208,6598,210,6597,216,6586,213,6507,204,6390,197,6062,185,5646,178,5186,173,4308,169,3782,165,2795,136"/>
+<area shape="poly" id="edge304_Node000227_Node000010" title=" " alt="" coords="2578,135,2323,145,1999,160,1683,183,1553,197,1455,213,1406,228,1404,223,1453,208,1552,192,1683,178,1998,155,2323,139,2578,130"/>
+<area shape="poly" id="edge305_Node000227_Node000014" title=" " alt="" coords="2578,141,2363,167,2239,188,2116,213,2066,228,2064,223,2115,208,2238,182,2362,162,2577,136"/>
+<area shape="poly" id="edge318_Node000227_Node000017" title=" " alt="" coords="2666,161,2524,351,2520,348,2662,157"/>
+<area shape="poly" id="edge317_Node000227_Node000030" title=" " alt="" coords="2794,127,2969,131,3195,143,3447,168,3575,186,3700,208,3729,215,3728,220,3699,213,3574,191,3447,173,3195,149,2969,136,2794,132"/>
+<area shape="poly" id="edge306_Node000227_Node000033" title=" " alt="" coords="2795,132,2903,141,3033,156,3173,178,3311,208,3334,215,3333,221,3309,213,3172,183,3033,161,2903,147,2794,138"/>
+<area shape="poly" id="edge307_Node000227_Node000049" title=" " alt="" coords="2578,137,2101,164,1848,186,1744,199,1665,213,1639,221,1638,215,1664,208,1743,194,1847,181,2100,159,2577,131"/>
+<area shape="poly" id="edge308_Node000227_Node000079" title=" " alt="" coords="2578,134,2437,140,2260,153,2067,177,1970,193,1876,213,1851,221,1849,215,1875,208,1969,188,2067,171,2260,148,2436,134,2578,128"/>
+<area shape="poly" id="edge313_Node000227_Node000116" title=" " alt="" coords="2588,154,2475,181,2353,213,2308,228,2306,223,2352,208,2474,175,2587,148"/>
+<area shape="poly" id="edge314_Node000227_Node000118" title=" " alt="" coords="2795,140,2950,167,3036,185,3120,208,3160,223,3158,228,3119,213,3035,191,2949,172,2794,146"/>
+<area shape="poly" id="edge315_Node000227_Node000131" title=" " alt="" coords="2639,157,2501,228,2498,223,2636,152"/>
+<area shape="poly" id="edge319_Node000227_Node000211" title=" " alt="" coords="2759,151,2809,175,2857,209,2875,230,2885,250,2894,270,2909,293,2960,340,2957,344,2905,296,2889,273,2880,252,2871,233,2854,213,2807,180,2756,156"/>
+<area shape="poly" id="edge320_Node000227_Node000212" title=" " alt="" coords="2669,162,2655,191,2644,224,2641,260,2648,294,2669,323,2696,348,2692,352,2665,327,2644,296,2635,260,2639,223,2650,189,2664,159"/>
+<area shape="poly" id="edge316_Node000227_Node000226" title=" " alt="" coords="2750,150,2964,230,2962,235,2748,155"/>
+<area shape="rect" id="Node000228" href="$iio__adxrs290_8h.html" title="Implementation of ADXRS290 iio." alt="" coords="2659,225,2844,280"/>
+<area shape="poly" id="edge309_Node000227_Node000228" title=" " alt="" coords="2705,159,2740,224,2735,226,2700,162"/>
+<area shape="poly" id="edge310_Node000228_Node000210" title=" " alt="" coords="2849,281,2908,292,3079,307,3335,318,3662,327,4050,333,4956,339,5958,339,7867,334,8583,334,9013,340,9255,354,9467,370,9466,375,9255,359,9013,345,8583,339,7867,339,5958,345,4956,345,4050,339,3662,332,3335,324,3079,312,2907,297,2848,286"/>
+<area shape="poly" id="edge311_Node000228_Node000211" title=" " alt="" coords="2818,284,2933,340,2931,345,2816,289"/>
+<area shape="poly" id="edge312_Node000228_Node000212" title=" " alt="" coords="2754,294,2754,350,2749,350,2749,294"/>
+<area shape="poly" id="edge323_Node000229_Node000202" title=" " alt="" coords="29207,162,29219,232,29214,233,29202,162"/>
+<area shape="rect" id="Node000230" href="$iiod_8c.html" title="Nonblocking implementation of iiod." alt="" coords="29326,233,29491,273"/>
+<area shape="poly" id="edge324_Node000229_Node000230" title=" " alt="" coords="29245,153,29378,230,29375,235,29242,157"/>
+<area shape="poly" id="edge326_Node000231_Node000230" title=" " alt="" coords="29410,162,29411,232,29406,232,29405,162"/>
+</map>

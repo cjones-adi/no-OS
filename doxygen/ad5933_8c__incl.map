@@ -1,0 +1,19 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/impedance&#45;analyzer/ad5933/ad5933.c" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/impedance&#45;analyzer/ad5933/ad5933.c">
+<area shape="rect" id="Node000001" title="Implementation of AD5933 Driver." alt="" coords="105,5,319,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="206,181,277,207"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="206,61,200,96,204,133,212,152,224,169,220,172,208,154,199,134,195,95,201,60"/>
+<area shape="rect" id="Node000003" href="$ad5933_8h.html" title="Header file of AD5933 Driver." alt="" coords="56,108,139,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="179,62,126,102,123,97,175,58"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="214,108,282,133"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="225,59,240,94,235,96,221,61"/>
+<area shape="rect" id="Node000007" href="$no__os__alloc_8h.html" title=" " alt="" coords="306,108,417,133"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="259,58,331,99,328,103,256,62"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="62,255,133,280"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="105,133,119,181,118,214,110,243,105,241,113,213,113,182,100,134"/>
+<area shape="rect" id="Node000005" href="$no__os__i2c_8h.html" title="Header file of I2C Interface." alt="" coords="5,181,104,207"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="93,135,71,171,66,168,88,132"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="64,206,86,242,81,244,59,208"/>
+<area shape="poly" id="edge9_Node000007_Node000002" title=" " alt="" coords="343,136,274,176,272,172,341,131"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="328,181,395,207"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="364,134,364,168,359,168,359,134"/>
+</map>

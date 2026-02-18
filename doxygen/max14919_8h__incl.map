@@ -1,0 +1,20 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/digital&#45;io/max14919/max14919.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/digital&#45;io/max14919/max14919.h">
+<area shape="rect" id="Node000001" title="Header file of MAX14919 Driver." alt="" coords="139,5,336,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="94,181,165,207"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="215,62,177,109,143,170,138,168,172,107,211,59"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="284,181,367,207"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="265,59,284,81,301,107,314,137,323,167,318,168,309,139,296,109,280,84,261,62"/>
+<area shape="rect" id="Node000004" href="$no__os__gpio_8h.html" title="Header file of GPIO Interface." alt="" coords="5,108,112,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="184,62,96,104,94,100,182,58"/>
+<area shape="rect" id="Node000005" href="$no__os__util_8h.html" title="Header file of utility functions." alt="" coords="187,108,287,133"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="240,60,240,94,235,94,235,60"/>
+<area shape="rect" id="Node000007" href="$no__os__error_8h.html" title="Error codes definition." alt="" coords="367,108,476,133"/>
+<area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="295,58,385,100,383,105,292,62"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="72,132,110,170,106,174,68,136"/>
+<area shape="poly" id="edge6_Node000005_Node000002" title=" " alt="" coords="221,136,160,176,157,171,219,131"/>
+<area shape="poly" id="edge8_Node000005_Node000003" title=" " alt="" coords="253,131,302,170,299,175,250,135"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="189,181,259,207"/>
+<area shape="poly" id="edge7_Node000005_Node000006" title=" " alt="" coords="238,134,231,168,226,167,233,133"/>
+<area shape="rect" id="Node000008" href="$errno_8h.html" title="Error macro definition for ARM Compiler." alt="" coords="391,181,459,207"/>
+<area shape="poly" id="edge10_Node000007_Node000008" title=" " alt="" coords="425,134,427,168,421,168,419,134"/>
+</map>

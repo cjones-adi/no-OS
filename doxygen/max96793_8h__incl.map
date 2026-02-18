@@ -1,0 +1,17 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/gmsl/serializer/camera/max96793/max96793.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/gmsl/serializer/camera/max96793/max96793.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,217,75"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="94,196,177,221"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="119,75,134,182,129,183,114,75"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="204,343,275,368"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="97,76,85,107,77,145,75,183,84,220,108,257,139,289,173,314,205,334,202,338,170,319,136,293,104,261,80,222,70,184,71,144,80,106,92,74"/>
+<area shape="rect" id="Node000004" href="$gmsl__common_8h.html" title=" " alt="" coords="149,123,279,148"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="150,73,193,111,189,115,147,77"/>
+<area shape="poly" id="edge5_Node000004_Node000002" title=" " alt="" coords="203,150,160,189,156,185,200,146"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="218,148,239,328,234,329,213,149"/>
+<area shape="rect" id="Node000005" href="$gmsl__reg__access_8h.html" title=" " alt="" coords="252,196,397,221"/>
+<area shape="poly" id="edge6_Node000004_Node000005" title=" " alt="" coords="233,146,296,186,293,191,230,150"/>
+<area shape="poly" id="edge7_Node000005_Node000003" title=" " alt="" coords="320,223,255,332,251,329,315,220"/>
+<area shape="rect" id="Node000006" href="$no__os__i2c_8h.html" title="Header file of I2C Interface." alt="" coords="302,269,401,295"/>
+<area shape="poly" id="edge8_Node000005_Node000006" title=" " alt="" coords="332,221,345,256,340,258,327,223"/>
+<area shape="poly" id="edge9_Node000006_Node000003" title=" " alt="" coords="335,297,271,337,268,333,332,292"/>
+</map>

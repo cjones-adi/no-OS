@@ -1,0 +1,27 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/maxim/max32670/maxim_trng.c" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/maxim/max32670/maxim_trng.c">
+<area shape="rect" id="Node000001" title="MAX32670 implementation of true random number generator." alt="" coords="157,5,396,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,108,65,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="204,63,80,106,78,101,202,58"/>
+<area shape="rect" id="Node000003" href="$max32670_2maxim__trng_8h.html" title="MAX32670 specific header for TRNG driver." alt="" coords="89,108,203,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="238,62,177,103,174,98,235,58"/>
+<area shape="rect" id="Node000006" href="$no__os__util_8h.html" title="Header file of utility functions." alt="" coords="227,108,327,133"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="279,60,279,94,274,94,274,60"/>
+<area shape="rect" id="Node000009" href="$no__os__alloc_8h.html" title=" " alt="" coords="351,108,461,133"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="318,58,379,98,376,103,315,62"/>
+<area shape="rect" id="Node000011" href="$no__os__error_8h.html" title="Error codes definition." alt="" coords="498,108,607,133"/>
+<area shape="poly" id="edge12_Node000001_Node000011" title=" " alt="" coords="362,58,504,101,502,106,360,63"/>
+<area shape="rect" id="Node000004" href="$no__os__trng_8h.html" title="Header file of true random number generator." alt="" coords="55,181,160,207"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="142,135,122,171,118,168,137,132"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="117,255,188,280"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="117,206,140,242,136,245,113,208"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="268,135,225,183,173,245,169,242,221,180,264,132"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="343,181,413,207"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="294,131,352,171,349,175,291,136"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="235,181,318,207"/>
+<area shape="poly" id="edge8_Node000006_Node000008" title=" " alt="" coords="279,134,279,168,274,168,274,134"/>
+<area shape="poly" id="edge11_Node000009_Node000007" title=" " alt="" coords="404,135,390,170,385,168,399,133"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="438,181,505,207"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="419,132,453,169,450,173,415,135"/>
+<area shape="rect" id="Node000012" href="$errno_8h.html" title="Error macro definition for ARM Compiler." alt="" coords="529,181,597,207"/>
+<area shape="poly" id="edge13_Node000011_Node000012" title=" " alt="" coords="557,133,562,167,557,168,552,134"/>
+</map>

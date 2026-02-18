@@ -1,0 +1,11 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/accel/adxl345/adxl345.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/accel/adxl345/adxl345.h">
+<area shape="rect" id="Node000001" title="Header file of ADXL345 Driver." alt="" coords="5,5,180,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="57,181,128,207"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="65,62,47,84,34,109,31,121,34,132,47,153,65,171,61,175,43,157,29,134,26,121,29,107,43,81,61,58"/>
+<area shape="rect" id="Node000003" href="$no__os__i2c_8h.html" title="Header file of I2C Interface." alt="" coords="43,108,142,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="95,60,95,94,90,94,90,60"/>
+<area shape="rect" id="Node000004" href="$no__os__spi_8h.html" title="Header file of SPI Interface." alt="" coords="166,108,265,133"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="132,58,189,98,186,102,129,62"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="95,134,95,168,90,168,90,134"/>
+<area shape="poly" id="edge5_Node000004_Node000002" title=" " alt="" coords="197,136,126,177,123,172,194,131"/>
+</map>

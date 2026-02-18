@@ -1,0 +1,30 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/projects/ltm3360b/src/common/common_data.h" name="/home/runner/work/no&#45;OS/no&#45;OS/projects/ltm3360b/src/common/common_data.h">
+<area shape="rect" id="Node000001" title="Defines common data to be used by LTM3360B examples." alt="" coords="87,5,302,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,108,115,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="155,62,91,103,88,98,152,58"/>
+<area shape="rect" id="Node000003" href="$no__os__uart_8h.html" title="Header file of UART interface." alt="" coords="387,108,493,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="270,58,395,101,394,106,269,63"/>
+<area shape="rect" id="Node000008" href="$no__os__i2c_8h.html" title="Header file of I2C Interface." alt="" coords="63,181,161,207"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="183,61,127,170,122,168,179,59"/>
+<area shape="rect" id="Node000009" href="$ltm3360b_8h.html" title="Header file of the LTM3360B driver." alt="" coords="189,108,285,133"/>
+<area shape="poly" id="edge11_Node000001_Node000009" title=" " alt="" coords="210,59,228,94,223,97,205,61"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="214,255,285,280"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="388,131,329,148,301,163,277,183,260,211,253,242,248,241,255,209,273,180,298,159,327,143,386,126"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="489,255,572,280"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="493,123,523,130,553,140,581,157,604,180,609,200,601,219,585,235,566,250,563,245,581,231,596,216,604,199,599,183,578,161,551,145,521,135,492,129"/>
+<area shape="rect" id="Node000006" href="$no__os__lf256fifo_8h.html" title="SPSC lock&#45;free fifo of fixed size (256), specialized for UART." alt="" coords="412,181,545,207"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="449,132,468,168,464,171,444,135"/>
+<area shape="poly" id="edge7_Node000006_Node000004" title=" " alt="" coords="443,209,299,253,297,248,441,204"/>
+<area shape="poly" id="edge8_Node000006_Node000005" title=" " alt="" coords="489,205,516,242,512,245,485,209"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="378,255,449,280"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="470,209,435,246,431,243,466,205"/>
+<area shape="poly" id="edge10_Node000008_Node000004" title=" " alt="" coords="135,204,216,246,214,251,133,209"/>
+<area shape="poly" id="edge12_Node000009_Node000004" title=" " alt="" coords="237,134,233,167,233,206,242,241,237,242,228,207,227,166,232,133"/>
+<area shape="poly" id="edge13_Node000009_Node000005" title=" " alt="" coords="286,125,447,148,520,163,545,171,559,180,566,195,566,213,551,244,546,242,560,211,561,196,555,183,543,176,519,168,446,153,285,130"/>
+<area shape="poly" id="edge18_Node000009_Node000008" title=" " alt="" coords="219,136,146,177,143,172,216,131"/>
+<area shape="rect" id="Node000010" href="$no__os__util_8h.html" title="Header file of utility functions." alt="" coords="287,181,387,207"/>
+<area shape="poly" id="edge14_Node000009_Node000010" title=" " alt="" coords="255,131,311,171,308,175,252,136"/>
+<area shape="poly" id="edge15_Node000010_Node000004" title=" " alt="" coords="325,209,276,248,273,244,322,205"/>
+<area shape="poly" id="edge17_Node000010_Node000005" title=" " alt="" coords="369,204,487,247,486,252,367,209"/>
+<area shape="poly" id="edge16_Node000010_Node000007" title=" " alt="" coords="351,205,393,243,389,247,348,209"/>
+</map>

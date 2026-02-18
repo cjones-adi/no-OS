@@ -1,0 +1,17 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/amplifiers/adl8113/adl8113.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/amplifiers/adl8113/adl8113.h">
+<area shape="rect" id="Node000001" title="Header file for ADL8113 Driver." alt="" coords="368,5,575,60"/>
+<area shape="rect" id="Node000002" href="$adl8113_8c.html" title="Implementation of ADL8113 Driver." alt="" coords="5,115,212,170"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="371,66,197,118,196,113,369,61"/>
+<area shape="rect" id="Node000003" href="$iio__adl8113_8h.html" title="Header file for ADL8113 IIO Driver." alt="" coords="236,115,443,170"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="430,71,373,117,370,113,427,67"/>
+<area shape="rect" id="Node000006" href="$eval-adl8113_2src_2common_2common__data_8h.html" title="Defines common data to be used by eval&#45;adl8113 project." alt="" coords="467,115,739,170"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="516,67,573,113,569,117,512,71"/>
+<area shape="rect" id="Node000008" href="$eval-adl8113_2src_2examples_2basic_2basic__example_8c.html" title="Basic example for eval&#45;adl8113 project." alt="" coords="763,108,971,177"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="586,61,752,105,764,109,762,114,751,111,585,66"/>
+<area shape="rect" id="Node000004" href="$iio__adl8113_8c.html" title="Implementation of ADL8113 IIO Driver." alt="" coords="19,233,225,287"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="279,179,173,235,170,230,277,174"/>
+<area shape="rect" id="Node000005" href="$eval-adl8113_2src_2examples_2iio__example_2iio__example_8c.html" title="IIO example source file for eval&#45;adl8113 project." alt="" coords="249,225,440,295"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="344,183,346,225,340,225,339,184"/>
+<area shape="rect" id="Node000007" href="$eval-adl8113_2src_2common_2common__data_8c.html" title="Defines common data to be used by eval&#45;adl8113 project." alt="" coords="468,233,739,287"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="606,184,606,232,601,232,601,184"/>
+</map>

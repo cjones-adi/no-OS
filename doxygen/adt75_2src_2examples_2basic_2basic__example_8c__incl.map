@@ -1,0 +1,29 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/projects/adt75/src/examples/basic/basic_example.c" name="/home/runner/work/no&#45;OS/no&#45;OS/projects/adt75/src/examples/basic/basic_example.c">
+<area shape="rect" id="Node000001" title="BASIC example header for ad74413r project." alt="" coords="391,5,581,75"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,123,132,148"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="392,65,134,122,133,117,391,60"/>
+<area shape="rect" id="Node000003" href="$adt75_2src_2examples_2basic_2basic__example_8h.html" title="BASIC example header for adt75 project." alt="" coords="156,123,288,148"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="392,77,269,120,267,115,390,72"/>
+<area shape="rect" id="Node000004" href="$no__os__delay_8h.html" title="Header file of Delay functions." alt="" coords="405,196,519,221"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="484,75,468,183,463,182,479,75"/>
+<area shape="rect" id="Node000006" href="$no__os__i2c_8h.html" title="Header file of I2C Interface." alt="" coords="594,196,693,221"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="551,73,581,95,608,121,627,151,639,182,634,184,622,154,604,124,578,99,548,77"/>
+<area shape="rect" id="Node000007" href="$no__os__print__log_8h.html" title="Print messages helpers." alt="" coords="313,123,449,148"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="450,77,406,115,403,111,446,73"/>
+<area shape="rect" id="Node000009" href="$no__os__util_8h.html" title="Header file of utility functions." alt="" coords="753,123,853,148"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="582,66,752,116,751,121,580,72"/>
+<area shape="rect" id="Node000012" href="$adt75_8h.html" title="Header file of ADT75 Driver." alt="" coords="524,123,595,148"/>
+<area shape="poly" id="edge13_Node000001_Node000012" title=" " alt="" coords="515,73,544,110,540,113,510,76"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="564,269,635,295"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="485,219,566,261,564,265,483,224"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="638,223,616,259,611,256,634,220"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="314,196,381,221"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="378,149,361,185,356,183,373,147"/>
+<area shape="poly" id="edge10_Node000009_Node000005" title=" " alt="" coords="839,146,870,159,899,177,915,198,916,210,909,223,892,237,865,249,796,266,718,276,648,281,648,276,717,271,795,260,863,244,889,233,905,220,911,209,910,200,895,181,868,164,837,151"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="717,196,788,221"/>
+<area shape="poly" id="edge11_Node000009_Node000010" title=" " alt="" coords="797,150,771,186,767,183,793,147"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="813,196,895,221"/>
+<area shape="poly" id="edge12_Node000009_Node000011" title=" " alt="" coords="814,147,840,183,836,186,810,150"/>
+<area shape="poly" id="edge14_Node000012_Node000005" title=" " alt="" coords="565,148,585,221,595,256,590,257,579,222,560,149"/>
+<area shape="poly" id="edge15_Node000012_Node000006" title=" " alt="" coords="575,146,621,185,617,189,571,150"/>
+</map>

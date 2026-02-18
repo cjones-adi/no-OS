@@ -1,0 +1,6 @@
+var dir_ff15894a35e2e58f6f95079eb72955a0 =
+[
+    [ "main.c", "max22017_2src_2platform_2maxim_2main_8c.html", "max22017_2src_2platform_2maxim_2main_8c" ],
+    [ "parameters.c", "max22017_2src_2platform_2maxim_2parameters_8c.html", "max22017_2src_2platform_2maxim_2parameters_8c" ],
+    [ "parameters.h", "max22017_2src_2platform_2maxim_2parameters_8h.html", "max22017_2src_2platform_2maxim_2parameters_8h" ]
+];

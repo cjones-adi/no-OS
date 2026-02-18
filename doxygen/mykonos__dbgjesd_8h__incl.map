@@ -1,0 +1,19 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/projects/ad9371/src/devices/mykonos/mykonos_debug/mykonos_dbgjesd.h" name="/home/runner/work/no&#45;OS/no&#45;OS/projects/ad9371/src/devices/mykonos/mykonos_debug/mykonos_dbgjesd.h">
+<area shape="rect" id="Node000001" title="Contains macro definitions and global structure declarations for mykonos_dbgjesd.c." alt="" coords="312,5,537,75"/>
+<area shape="rect" id="Node000002" href="$mykonos_8h.html" title="Contains macro definitions and function prototypes for mykonos.c." alt="" coords="162,123,255,148"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="348,77,249,120,247,115,346,72"/>
+<area shape="rect" id="Node000006" href="$t__mykonos__gpio_8h.html" title="Mykonos GPIO error handling and type defines." alt="" coords="307,196,447,221"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="412,76,394,123,382,182,377,181,389,122,407,74"/>
+<area shape="rect" id="Node000007" href="$t__mykonos__dbgjesd_8h.html" title="Contains definitions and structure declarations for mykonos_dbgjesd.c." alt="" coords="403,123,566,148"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="449,73,472,109,467,112,444,76"/>
+<area shape="rect" id="Node000008" href="$mykonos__user_8h.html" title="Contains macro definitions and global structure declarations for mykonos_user.c." alt="" coords="591,123,717,148"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="508,72,614,115,612,120,506,77"/>
+<area shape="rect" id="Node000003" href="$t__mykonos_8h.html" title="Contains type definitions for Mykonos API." alt="" coords="5,196,111,221"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="186,150,96,192,94,188,183,146"/>
+<area shape="rect" id="Node000005" href="$mykonos__version_8h.html" title="Contains the version number for the Mykonos API." alt="" coords="135,196,283,221"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="211,148,211,182,206,182,206,148"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="331,269,422,295"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="110,219,318,265,317,270,109,224"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="379,222,379,256,374,256,374,222"/>
+<area shape="poly" id="edge8_Node000007_Node000004" title=" " alt="" coords="486,149,479,183,472,204,461,223,439,246,414,264,411,260,436,242,457,220,467,202,474,182,481,148"/>
+</map>

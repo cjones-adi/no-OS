@@ -1,0 +1,13 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/eeprom/24xx32a/24xx32a.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/eeprom/24xx32a/24xx32a.h">
+<area shape="rect" id="Node000001" title="Header file of 24AA32A/24LC32A Interface." alt="" coords="232,5,423,60"/>
+<area shape="rect" id="Node000002" href="$24xx32a_8c.html" title="24AA32A/24LC32A EEPROM Interfaces" alt="" coords="5,108,196,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="257,68,161,110,159,106,255,63"/>
+<area shape="rect" id="Node000003" href="$adf5611_2src_2common_2common__data_8h.html" title="Defines common data to be used by adf5611 examples." alt="" coords="220,108,435,163"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="330,74,330,108,325,108,325,74"/>
+<area shape="rect" id="Node000005" href="$wethlink_2src_2platform_2maxim_2parameters_8h.html" title=" " alt="" coords="459,108,705,163"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="407,62,517,105,515,110,405,67"/>
+<area shape="rect" id="Node000004" href="$adf5611_2src_2common_2common__data_8c.html" title="Defines common data to be used by adf5611 examples." alt="" coords="220,211,435,265"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="330,176,330,211,325,211,325,176"/>
+<area shape="rect" id="Node000006" href="$wethlink_2src_2platform_2maxim_2parameters_8c.html" title=" " alt="" coords="459,211,705,265"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="585,176,585,211,579,211,579,176"/>
+</map>

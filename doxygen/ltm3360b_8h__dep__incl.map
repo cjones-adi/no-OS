@@ -1,0 +1,12 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/power/ltm3360b/ltm3360b.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/power/ltm3360b/ltm3360b.h">
+<area shape="rect" id="Node000001" title="Header file of the LTM3360B driver." alt="" coords="205,5,387,60"/>
+<area shape="rect" id="Node000002" href="$ltm3360b_8c.html" title="Source code of the LTM3360B driver." alt="" coords="5,115,187,170"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="236,69,146,118,144,113,234,64"/>
+<area shape="rect" id="Node000003" href="$ltm3360b_2src_2common_2common__data_8c.html" title="Defines common data to be used by LTM3360B example." alt="" coords="189,225,403,280"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="270,73,253,109,247,143,253,177,264,202,277,224,273,227,259,204,248,178,242,143,248,107,265,70"/>
+<area shape="rect" id="Node000004" href="$ltm3360b_2src_2common_2common__data_8h.html" title="Defines common data to be used by LTM3360B examples." alt="" coords="262,115,477,170"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="324,70,354,114,349,117,319,73"/>
+<area shape="rect" id="Node000005" href="$ltm3360b_2src_2examples_2basic_2basic__example_8c.html" title="Basic example for LTM3360B project." alt="" coords="501,108,712,177"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="385,62,511,105,509,110,384,67"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="346,183,316,227,312,224,341,180"/>
+</map>

@@ -1,0 +1,10 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/gmsl/common/gmsl_cam_ser.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/gmsl/common/gmsl_cam_ser.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,197,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="83,181,154,207"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="74,62,61,78,51,96,47,114,50,132,66,154,87,172,83,176,62,158,46,134,42,114,46,94,57,75,70,58"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="60,108,143,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="104,60,104,94,99,94,99,60"/>
+<area shape="rect" id="Node000004" href="$no__os__i2c_8h.html" title="Header file of I2C Interface." alt="" coords="167,108,265,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="138,58,191,97,188,102,135,62"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="202,136,147,175,144,171,199,131"/>
+</map>

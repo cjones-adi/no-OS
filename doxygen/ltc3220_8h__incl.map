@@ -1,0 +1,17 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/led/ltc3220/ltc3220.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/led/ltc3220/ltc3220.h">
+<area shape="rect" id="Node000001" title="Header file of LTC3220 Driver." alt="" coords="99,5,264,60"/>
+<area shape="rect" id="Node000002" href="$no__os__i2c_8h.html" title="Header file of I2C Interface." alt="" coords="5,108,104,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="144,62,85,102,82,98,141,58"/>
+<area shape="rect" id="Node000004" href="$no__os__gpio_8h.html" title="Header file of GPIO Interface." alt="" coords="128,108,235,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="184,60,184,94,179,94,179,60"/>
+<area shape="rect" id="Node000005" href="$no__os__util_8h.html" title="Header file of utility functions." alt="" coords="259,108,359,133"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="222,58,282,98,279,103,219,62"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="146,181,217,207"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="76,131,150,172,147,177,74,136"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="184,134,184,168,179,168,179,134"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="290,136,216,177,213,172,287,131"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="257,181,327,207"/>
+<area shape="poly" id="edge7_Node000005_Node000006" title=" " alt="" coords="309,134,301,169,295,168,304,133"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="352,181,435,207"/>
+<area shape="poly" id="edge8_Node000005_Node000007" title=" " alt="" coords="325,131,371,170,367,174,321,135"/>
+</map>

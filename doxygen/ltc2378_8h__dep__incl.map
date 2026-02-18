@@ -1,0 +1,19 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/adc/ltc2378/ltc2378.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/adc/ltc2378/ltc2378.h">
+<area shape="rect" id="Node000001" title="Header file of the LTC2378 Driver." alt="" coords="300,5,465,60"/>
+<area shape="rect" id="Node000002" href="$iio__ltc2378_8c.html" title="Implementation of iio_ltc2378.c." alt="" coords="5,225,171,280"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="287,51,181,75,137,91,110,110,94,136,87,167,85,198,86,225,81,225,79,198,81,166,89,134,106,106,135,87,180,70,286,46"/>
+<area shape="rect" id="Node000003" href="$iio__ltc2378_8h.html" title="Header file of the LTC2378 IIO Driver." alt="" coords="120,115,285,170"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="328,69,248,117,246,113,326,65"/>
+<area shape="rect" id="Node000004" href="$ltc2378_2src_2examples_2iio_2iio__example_8c.html" title=" " alt="" coords="199,225,427,280"/>
+<area shape="poly" id="edge9_Node000001_Node000004" title=" " alt="" coords="365,73,351,109,332,171,321,226,315,224,327,170,345,107,360,71"/>
+<area shape="rect" id="Node000005" href="$ltc2378_8c.html" title="Source file of LTC2378 driver." alt="" coords="360,115,525,170"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="406,71,430,114,426,116,402,74"/>
+<area shape="rect" id="Node000006" href="$ltc2378_2src_2common_2common__data_8h.html" title=" " alt="" coords="550,115,765,170"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="463,63,592,113,590,118,461,68"/>
+<area shape="rect" id="Node000008" href="$ltc2378_2src_2examples_2basic_2basic__example_8c.html" title=" " alt="" coords="789,108,985,177"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="480,46,621,72,778,105,789,108,788,113,777,111,620,77,479,52"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="166,182,118,227,114,223,162,178"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="242,178,288,223,284,227,238,182"/>
+<area shape="rect" id="Node000007" href="$ltc2378_2src_2common_2common__data_8c.html" title=" " alt="" coords="550,225,765,280"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="660,184,660,225,655,225,655,184"/>
+</map>

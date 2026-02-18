@@ -1,0 +1,8 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/xilinx/xilinx_irq.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/xilinx/xilinx_irq.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,203,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="69,181,139,207"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="98,61,90,95,89,133,98,168,93,169,84,134,85,95,92,59"/>
+<area shape="rect" id="Node000003" href="$no__os__irq_8h.html" title="Header file of IRQ interface." alt="" coords="99,108,195,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="119,59,137,94,132,97,115,61"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="142,135,120,171,116,168,137,132"/>
+</map>

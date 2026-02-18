@@ -1,0 +1,15 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/meter/ade7754/ade7754.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/meter/ade7754/ade7754.h">
+<area shape="rect" id="Node000001" title="Header file of ADE7754 Driver." alt="" coords="383,5,563,60"/>
+<area shape="rect" id="Node000002" href="$ade7754_8c.html" title="Implementation of ADE7754 Driver." alt="" coords="5,115,185,170"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="370,63,197,111,174,118,172,113,196,105,369,58"/>
+<area shape="rect" id="Node000003" href="$eval-ade7754_2src_2common_2common__data_8h.html" title="Defines common data to be used by ADE7754 example project." alt="" coords="209,115,485,170"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="433,72,380,117,376,113,430,67"/>
+<area shape="rect" id="Node000005" href="$eval-ade7754_2src_2main_8c.html" title="Main function of ADE7754 example." alt="" coords="510,115,686,170"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="516,67,569,113,566,117,512,72"/>
+<area shape="rect" id="Node000006" href="$eval-ade7754_2src_2platform_2maxim_2platform_8h.html" title="Defines platform data to be used by ADE7754 example project." alt="" coords="710,108,926,177"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="570,62,711,105,710,110,569,67"/>
+<area shape="rect" id="Node000004" href="$eval-ade7754_2src_2common_2common__data_8c.html" title="Defines common data to be used by ADE7754 example project." alt="" coords="210,233,485,287"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="350,184,350,232,345,232,345,184"/>
+<area shape="rect" id="Node000007" href="$eval-ade7754_2src_2platform_2maxim_2platform_8c.html" title="Defines platform data to be used by ADE7754 example project." alt="" coords="710,225,926,295"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="821,191,821,225,815,225,815,191"/>
+</map>

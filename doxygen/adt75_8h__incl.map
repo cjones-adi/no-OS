@@ -1,0 +1,8 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/temperature/adt75/adt75.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/temperature/adt75/adt75.h">
+<area shape="rect" id="Node000001" title="Header file of ADT75 Driver." alt="" coords="5,5,228,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="81,181,152,207"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="110,61,103,95,102,133,110,168,105,169,97,134,97,95,105,59"/>
+<area shape="rect" id="Node000003" href="$no__os__i2c_8h.html" title="Header file of I2C Interface." alt="" coords="111,108,210,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="132,59,151,94,146,97,128,61"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="156,135,133,171,129,168,151,132"/>
+</map>

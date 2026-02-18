@@ -1,0 +1,11 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/net/mdio_bitbang.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/net/mdio_bitbang.h">
+<area shape="rect" id="Node000001" title="Header file for MDIO implementation using gpio bit banging." alt="" coords="289,5,455,60"/>
+<area shape="rect" id="Node000002" href="$adin1300_8c.html" title=" " alt="" coords="5,108,171,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="286,67,163,110,161,105,284,62"/>
+<area shape="rect" id="Node000003" href="$max24287_8c.html" title=" " alt="" coords="195,108,360,163"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="340,72,304,110,300,106,336,68"/>
+<area shape="rect" id="Node000004" href="$mdio__bitbang_8c.html" title="Source file for MDIO implementation using gpio bit banging." alt="" coords="384,108,549,163"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="408,68,444,106,440,110,404,72"/>
+<area shape="rect" id="Node000005" href="$net_8c.html" title=" " alt="" coords="574,108,778,163"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="465,62,598,105,596,110,463,67"/>
+</map>

@@ -1,0 +1,17 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/adc/ad7606/ad7606.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/adc/ad7606/ad7606.h">
+<area shape="rect" id="Node000001" title="Header file for the ad7606 Driver." alt="" coords="305,5,471,60"/>
+<area shape="rect" id="Node000002" href="$ad7606_8c.html" title="Implementation of ad7606 Driver." alt="" coords="5,108,171,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="298,67,167,110,165,105,296,62"/>
+<area shape="rect" id="Node000003" href="$iio__ad7606_8c.html" title="Implementation of AD7606 IIO interface." alt="" coords="140,211,305,265"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="294,63,261,83,236,110,224,134,219,160,220,210,215,211,214,160,219,132,231,106,258,79,291,59"/>
+<area shape="rect" id="Node000004" href="$iio__ad7606_8h.html" title="Header file for AD7606 IIO interface." alt="" coords="245,108,411,163"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="368,73,346,109,341,107,363,70"/>
+<area shape="rect" id="Node000005" href="$ad7606x-fmc_2src_2iio__example_8c.html" title="Implementation of an example with the IIO interface." alt="" coords="338,211,542,265"/>
+<area shape="poly" id="edge8_Node000001_Node000005" title=" " alt="" coords="411,71,425,107,437,162,441,210,436,211,431,163,420,109,406,73"/>
+<area shape="rect" id="Node000006" href="$ad7606x-fmc_2src_2basic__example_8c.html" title="Implementation of a basic example." alt="" coords="486,108,690,163"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="453,64,537,106,535,110,451,68"/>
+<area shape="rect" id="Node000007" href="$ad7606x-fmc_2src_2common__data_8c.html" title="Definitions of initialization parameters common for all project variants." alt="" coords="714,108,918,163"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="485,54,715,108,713,113,484,59"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="292,174,252,213,248,209,289,170"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="369,170,413,209,409,213,366,174"/>
+</map>
