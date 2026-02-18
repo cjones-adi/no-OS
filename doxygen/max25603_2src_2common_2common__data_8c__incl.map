@@ -1,0 +1,32 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/projects/max25603/src/common/common_data.c" name="/home/runner/work/no&#45;OS/no&#45;OS/projects/max25603/src/common/common_data.c">
+<area shape="rect" id="Node000001" title="Common data used by the MAX25603 project." alt="" coords="173,5,391,60"/>
+<area shape="rect" id="Node000002" href="$max25603_2src_2common_2common__data_8h.html" title="Common data used by the MAX25603 project." alt="" coords="219,108,345,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="285,60,285,94,279,94,279,60"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="132,181,283,207"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="272,135,231,174,228,170,268,131"/>
+<area shape="rect" id="Node000004" href="$max25603_8h.html" title="Header file of MAX25603 Driver." alt="" coords="307,181,409,207"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="296,131,337,170,334,174,292,135"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="101,328,183,353"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="307,207,34,257,29,266,29,274,41,292,64,308,93,321,91,326,62,312,37,296,24,276,24,264,31,252,306,202"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="256,328,327,353"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="380,205,400,219,419,238,430,259,430,270,426,281,408,301,387,316,341,334,339,329,385,311,405,297,421,279,425,269,425,260,415,241,397,223,377,209"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="487,255,557,280"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="385,204,484,247,482,252,383,209"/>
+<area shape="rect" id="Node000008" href="$no__os__gpio_8h.html" title="Header file of GPIO Interface." alt="" coords="305,255,411,280"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="361,207,361,241,355,241,355,207"/>
+<area shape="rect" id="Node000009" href="$no__os__pwm_8h.html" title="Header file of PWM Interface." alt="" coords="169,255,280,280"/>
+<area shape="poly" id="edge9_Node000004_Node000009" title=" " alt="" coords="338,209,260,250,257,246,335,204"/>
+<area shape="rect" id="Node000010" href="$no__os__util_8h.html" title="Header file of utility functions." alt="" coords="45,255,145,280"/>
+<area shape="poly" id="edge12_Node000004_Node000010" title=" " alt="" coords="316,209,152,254,150,248,315,204"/>
+<area shape="rect" id="Node000012" href="$no__os__error_8h.html" title="Error codes definition." alt="" coords="582,255,691,280"/>
+<area shape="poly" id="edge16_Node000004_Node000012" title=" " alt="" coords="403,204,579,249,578,254,402,209"/>
+<area shape="poly" id="edge8_Node000008_Node000006" title=" " alt="" coords="349,282,313,320,310,316,345,279"/>
+<area shape="poly" id="edge11_Node000009_Node000005" title=" " alt="" coords="213,282,168,321,164,317,210,278"/>
+<area shape="poly" id="edge10_Node000009_Node000006" title=" " alt="" coords="238,279,273,316,269,320,234,282"/>
+<area shape="poly" id="edge15_Node000010_Node000005" title=" " alt="" coords="105,279,129,315,125,318,101,282"/>
+<area shape="poly" id="edge13_Node000010_Node000006" title=" " alt="" coords="128,278,247,321,246,326,126,283"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="5,328,76,353"/>
+<area shape="poly" id="edge14_Node000010_Node000011" title=" " alt="" coords="88,282,60,319,56,316,84,279"/>
+<area shape="rect" id="Node000013" href="$errno_8h.html" title="Error macro definition for ARM Compiler." alt="" coords="603,328,671,353"/>
+<area shape="poly" id="edge17_Node000012_Node000013" title=" " alt="" coords="639,280,639,314,634,314,634,280"/>
+</map>

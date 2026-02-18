@@ -1,0 +1,9 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/include/no_os_crc24.h" name="/home/runner/work/no&#45;OS/no&#45;OS/include/no_os_crc24.h">
+<area shape="rect" id="Node000001" title="Header file of CRC&#45;24 computation." alt="" coords="100,5,265,60"/>
+<area shape="rect" id="Node000002" href="$no__os__crc_8h.html" title="Generic header file for all CRC computation algorithms." alt="" coords="100,108,265,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="185,74,185,108,180,108,180,74"/>
+<area shape="rect" id="Node000003" href="$ad7606_8c.html" title="Implementation of ad7606 Driver." alt="" coords="5,211,171,265"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="151,174,115,212,111,209,147,171"/>
+<area shape="rect" id="Node000004" href="$adas1000_8c.html" title="Implementation of ADAS1000 Driver." alt="" coords="195,211,362,265"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="219,171,256,209,252,212,215,174"/>
+</map>

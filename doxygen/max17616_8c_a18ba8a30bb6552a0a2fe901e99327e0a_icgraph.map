@@ -1,0 +1,30 @@
+<map id="max17616_write_byte" name="max17616_write_byte">
+<area shape="rect" id="Node000001" title="Perform a raw PMBus write byte operation." alt="" coords="843,173,1009,198"/>
+<area shape="rect" id="Node000002" href="$max17616_8c.html#a47c511a54707ea182fe988fb8a553a0b" title="Set current limit mode." alt="" coords="609,5,780,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="905,164,858,111,827,84,793,60,770,48,772,43,796,55,830,79,861,108,909,160"/>
+<area shape="rect" id="Node000004" href="$max17616_8c.html#a92969e6bba1d8809aee9e0e9aca20910" title="Set current start ratio." alt="" coords="615,69,774,109"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="888,168,794,124,761,112,763,107,796,119,890,164"/>
+<area shape="rect" id="Node000005" href="$max17616_8c.html#a18737cf8508ea070813f342b62026c07" title="Set device operation state." alt="" coords="601,261,788,301"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="890,207,796,252,763,264,761,259,794,247,888,202"/>
+<area shape="rect" id="Node000011" href="$max17616_8c.html#ab5cc7ed6103c332e9c7ec9f3753cffc4" title="Set the short&#45;term overcurrent limit ratio." alt="" coords="595,133,795,173"/>
+<area shape="poly" id="edge11_Node000001_Node000011" title=" " alt="" coords="828,175,794,170,795,165,829,169"/>
+<area shape="rect" id="Node000012" href="$max17616_8c.html#a916d343f838280604198ae5669c2dba1" title="Set short&#45;term overcurrent duration." alt="" coords="595,197,795,237"/>
+<area shape="poly" id="edge13_Node000001_Node000012" title=" " alt="" coords="829,201,795,206,794,201,828,196"/>
+<area shape="rect" id="Node000013" href="$max17616_8c.html#a3532d1c8e3cb52901af2f816038c7a8e" title="Set VOUT UV fault limit configuration using enums." alt="" coords="606,325,783,365"/>
+<area shape="poly" id="edge15_Node000001_Node000013" title=" " alt="" coords="909,211,861,263,830,291,796,316,772,328,770,323,793,311,827,287,858,259,905,207"/>
+<area shape="rect" id="Node000003" href="$iio__max17616_8c.html#ae528f14d22238257654456118c44fe34" title="Write attribute function for MAX17616 output channels." alt="" coords="363,109,547,134"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="616,52,596,60,482,111,480,106,594,55,614,47"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="602,104,547,112,547,106,601,99"/>
+<area shape="rect" id="Node000006" href="$iio__max17616_8c.html#a00b4001a23e1e8cb9658b07097c2b694" title="Write global attribute function." alt="" coords="377,233,532,273"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="587,272,532,265,533,260,588,266"/>
+<area shape="rect" id="Node000007" href="$max17616_8c.html#aac638b2e6fc52133d47fd48c45f09a99" title="Initialize the device structure." alt="" coords="395,298,514,323"/>
+<area shape="poly" id="edge7_Node000005_Node000007" title=" " alt="" coords="588,297,514,306,514,301,587,292"/>
+<area shape="rect" id="Node000008" href="$max17616_2src_2examples_2basic_2basic__example_8c.html#a423407bf3827741dfe2f6e0def8ba0c3" title="Basic example main executiont." alt="" coords="184,273,303,298"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="381,305,303,295,303,290,382,299"/>
+<area shape="rect" id="Node000009" href="$iio__max17616_8c.html#a47cdfba4d1631ec72a43507e9cf8bcea" title="Initializes the MAX17616 IIO descriptor." alt="" coords="172,322,315,347"/>
+<area shape="poly" id="edge9_Node000007_Node000009" title=" " alt="" coords="382,322,315,329,314,324,381,316"/>
+<area shape="rect" id="Node000010" href="$max17616_2src_2examples_2iio__example_2iio__example_8c.html#ac25cbf8ae523e89cb0617e68c98bc697" title="Basic example main executiont." alt="" coords="5,322,124,347"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="159,337,125,337,125,332,159,332"/>
+<area shape="poly" id="edge12_Node000011_Node000003" title=" " alt="" coords="581,141,546,136,547,131,581,136"/>
+<area shape="poly" id="edge14_Node000012_Node000003" title=" " alt="" coords="614,195,594,188,480,136,482,132,596,183,616,190"/>
+</map>

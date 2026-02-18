@@ -1,0 +1,8 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/frequency/adf4350/adf4350.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/frequency/adf4350/adf4350.h">
+<area shape="rect" id="Node000001" title="Header file of ADF4350 Driver." alt="" coords="5,5,212,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="73,181,144,207"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="102,61,95,95,94,133,102,168,97,169,89,134,89,95,97,59"/>
+<area shape="rect" id="Node000003" href="$no__os__spi_8h.html" title="Header file of SPI Interface." alt="" coords="103,108,202,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="124,59,143,94,138,97,120,61"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="148,135,125,171,121,168,143,132"/>
+</map>

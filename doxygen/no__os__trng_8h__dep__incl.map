@@ -1,0 +1,35 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/include/no_os_trng.h" name="/home/runner/work/no&#45;OS/no&#45;OS/include/no_os_trng.h">
+<area shape="rect" id="Node000001" title="Header file of true random number generator." alt="" coords="968,5,1133,60"/>
+<area shape="rect" id="Node000002" href="$no__os__trng_8c.html" title="Implementation of the TRNG Interface." alt="" coords="5,108,171,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="954,39,804,46,612,58,398,79,183,111,171,113,170,108,182,105,397,74,611,53,804,40,954,34"/>
+<area shape="rect" id="Node000003" href="$aducm3029__trng_8h.html" title="ADuCM302x specific header for TRNG driver." alt="" coords="195,108,421,163"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="955,46,718,71,434,111,422,113,421,107,433,105,717,66,954,40"/>
+<area shape="rect" id="Node000005" href="$generic__trng_8c.html" title="Generic implementation of true random number generator." alt="" coords="445,108,643,163"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="955,53,655,111,643,113,642,108,654,105,954,48"/>
+<area shape="rect" id="Node000006" href="$max32650_2maxim__trng_8h.html" title="MAX32650 specific header for TRNG driver." alt="" coords="667,108,907,163"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="970,67,856,110,855,105,968,62"/>
+<area shape="rect" id="Node000008" href="$max32655_2maxim__trng_8h.html" title="MAX32655 specific header for TRNG driver." alt="" coords="931,108,1171,163"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="1053,74,1053,108,1048,108,1048,74"/>
+<area shape="rect" id="Node000010" href="$max32665_2maxim__trng_8h.html" title="MAX32665 specific header for TRNG driver." alt="" coords="1195,108,1435,163"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="1133,62,1247,105,1245,110,1131,67"/>
+<area shape="rect" id="Node000012" href="$max32670_2maxim__trng_8h.html" title="MAX32670 specific header for TRNG driver." alt="" coords="1459,108,1699,163"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="1147,49,1447,105,1459,108,1458,113,1446,111,1146,54"/>
+<area shape="rect" id="Node000014" href="$max32672_2maxim__trng_8h.html" title="MAX32672 specific header for TRNG driver." alt="" coords="1723,108,1963,163"/>
+<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="1148,40,1403,65,1711,105,1723,107,1722,113,1710,111,1402,71,1147,45"/>
+<area shape="rect" id="Node000016" href="$max78000_2maxim__trng_8h.html" title="MAX78000 specific header for TRNG driver." alt="" coords="1987,108,2227,163"/>
+<area shape="poly" id="edge15_Node000001_Node000016" title=" " alt="" coords="1148,35,1512,58,1743,78,1975,105,1987,107,1986,112,1974,111,1742,83,1512,63,1147,41"/>
+<area shape="rect" id="Node000004" href="$aducm3029__trng_8c.html" title="Implementation of true random number generator." alt="" coords="195,211,421,265"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="311,176,311,211,305,211,305,176"/>
+<area shape="rect" id="Node000007" href="$max32650_2maxim__trng_8c.html" title="MAX32650 implementation of true random number generator." alt="" coords="667,211,906,265"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="789,176,789,211,784,211,784,176"/>
+<area shape="rect" id="Node000009" href="$max32655_2maxim__trng_8c.html" title="MAX32655 implementation of true random number generator." alt="" coords="931,211,1170,265"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="1053,176,1053,211,1048,211,1048,176"/>
+<area shape="rect" id="Node000011" href="$max32665_2maxim__trng_8c.html" title="MAX32665 implementation of true random number generator." alt="" coords="1195,211,1434,265"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="1317,176,1317,211,1312,211,1312,176"/>
+<area shape="rect" id="Node000013" href="$max32670_2maxim__trng_8c.html" title="MAX32670 implementation of true random number generator." alt="" coords="1459,211,1698,265"/>
+<area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="1581,176,1581,211,1576,211,1576,176"/>
+<area shape="rect" id="Node000015" href="$max32672_2maxim__trng_8c.html" title="MAX32672 implementation of true random number generator." alt="" coords="1723,211,1962,265"/>
+<area shape="poly" id="edge14_Node000014_Node000015" title=" " alt="" coords="1845,176,1845,211,1840,211,1840,176"/>
+<area shape="rect" id="Node000017" href="$max78000_2maxim__trng_8c.html" title="MAX78000 implementation of true random number generator." alt="" coords="1987,211,2226,265"/>
+<area shape="poly" id="edge16_Node000016_Node000017" title=" " alt="" coords="2109,176,2109,211,2104,211,2104,176"/>
+</map>

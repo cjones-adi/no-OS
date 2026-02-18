@@ -1,0 +1,21 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/frequency/ad9523/ad9523.c" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/frequency/ad9523/ad9523.c">
+<area shape="rect" id="Node000001" title="Implementation of AD9523 Driver." alt="" coords="75,5,281,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,181,76,207"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="122,62,91,83,66,110,52,139,45,168,40,167,47,137,61,106,88,79,119,58"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="101,181,167,207"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="194,59,205,95,205,115,200,134,185,157,166,175,162,171,181,154,196,132,200,115,199,96,189,61"/>
+<area shape="rect" id="Node000004" href="$ad9523_8h.html" title="Header file of AD9523 Driver." alt="" coords="262,108,345,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="218,58,277,98,274,102,215,62"/>
+<area shape="rect" id="Node000008" href="$no__os__alloc_8h.html" title=" " alt="" coords="76,108,187,133"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="166,61,147,97,142,95,161,59"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="268,255,339,280"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="284,136,257,155,236,182,234,200,241,216,255,232,272,245,268,249,251,235,237,219,229,200,232,180,254,151,280,131"/>
+<area shape="rect" id="Node000006" href="$no__os__delay_8h.html" title="Header file of Delay functions." alt="" coords="247,181,360,207"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="306,134,306,168,301,168,301,134"/>
+<area shape="rect" id="Node000007" href="$no__os__spi_8h.html" title="Header file of SPI Interface." alt="" coords="385,181,483,207"/>
+<area shape="poly" id="edge7_Node000004_Node000007" title=" " alt="" coords="326,131,402,172,400,177,323,136"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="306,207,306,241,301,241,301,207"/>
+<area shape="poly" id="edge8_Node000007_Node000005" title=" " alt="" coords="414,209,338,250,335,246,412,204"/>
+<area shape="poly" id="edge11_Node000008_Node000002" title=" " alt="" coords="118,135,68,175,65,170,115,131"/>
+<area shape="poly" id="edge10_Node000008_Node000003" title=" " alt="" coords="134,134,136,168,130,168,129,134"/>
+</map>

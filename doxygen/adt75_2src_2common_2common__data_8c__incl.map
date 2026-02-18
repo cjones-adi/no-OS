@@ -1,0 +1,14 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/projects/adt75/src/common/common_data.c" name="/home/runner/work/no&#45;OS/no&#45;OS/projects/adt75/src/common/common_data.c">
+<area shape="rect" id="Node000001" title="Defines common data to be used by ad74413r examples." alt="" coords="40,5,255,60"/>
+<area shape="rect" id="Node000002" href="$adt75_2src_2common_2common__data_8h.html" title="Defines common data to be used by ad74413r examples." alt="" coords="84,108,211,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="150,60,150,94,145,94,145,60"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,181,156,207"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="138,135,103,173,99,169,134,132"/>
+<area shape="rect" id="Node000004" href="$adt75_8h.html" title="Header file of ADT75 Driver." alt="" coords="180,181,251,207"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="160,132,197,169,193,173,157,136"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="179,328,249,353"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="213,208,199,255,200,286,207,314,202,316,195,286,194,254,208,206"/>
+<area shape="rect" id="Node000006" href="$no__os__i2c_8h.html" title="Header file of I2C Interface." alt="" coords="209,255,307,280"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="225,206,246,242,242,244,220,208"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="253,282,231,318,226,315,248,279"/>
+</map>

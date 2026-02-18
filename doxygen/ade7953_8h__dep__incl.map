@@ -1,0 +1,15 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/meter/ade7953/ade7953.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/meter/ade7953/ade7953.h">
+<area shape="rect" id="Node000001" title="Header file of ADE7953 Driver." alt="" coords="383,5,563,60"/>
+<area shape="rect" id="Node000002" href="$ade7953_8c.html" title="Implementation of ADE7953 Driver." alt="" coords="5,108,185,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="370,64,186,113,185,107,368,59"/>
+<area shape="rect" id="Node000003" href="$eval-ade7953_2src_2common_2common__data_8h.html" title="Defines common data to be used by ADE7953 example project." alt="" coords="209,108,485,163"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="431,71,382,110,378,106,427,67"/>
+<area shape="rect" id="Node000005" href="$eval-ade7953_2src_2main_8c.html" title="Main function of ADE7953 example." alt="" coords="510,108,686,163"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="518,67,567,106,564,110,515,71"/>
+<area shape="rect" id="Node000006" href="$eval-ade7953_2src_2platform_2platform_8h.html" title="Defines platform data to be used by ADE7953 example project." alt="" coords="711,108,949,163"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="577,60,737,105,736,110,575,66"/>
+<area shape="rect" id="Node000004" href="$eval-ade7953_2src_2common_2common__data_8c.html" title="Defines common data to be used by ADE7953 example project." alt="" coords="210,211,485,265"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="350,176,350,211,345,211,345,176"/>
+<area shape="rect" id="Node000007" href="$eval-ade7953_2src_2platform_2platform_8c.html" title="Defines platform data to be used by ADE7953 example project." alt="" coords="711,211,949,265"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="833,176,833,211,827,211,827,176"/>
+</map>

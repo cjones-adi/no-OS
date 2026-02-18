@@ -1,0 +1,12 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/stm32/stm32_timer.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/stm32/stm32_timer.h">
+<area shape="rect" id="Node000001" title="Header file for the stm32 timer driver." alt="" coords="5,5,203,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="22,181,93,207"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="72,62,52,84,37,109,34,124,35,139,46,168,41,170,30,140,29,123,32,107,48,80,68,58"/>
+<area shape="rect" id="Node000003" href="$no__os__timer_8h.html" title="Timer control module header." alt="" coords="47,108,161,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="107,60,107,94,101,94,101,60"/>
+<area shape="rect" id="Node000004" href="$stm32__hal_8h.html" title=" " alt="" coords="185,108,287,133"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="146,58,208,98,205,103,143,62"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="99,135,75,171,70,168,94,132"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="203,181,269,207"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="239,134,239,168,233,168,233,134"/>
+</map>

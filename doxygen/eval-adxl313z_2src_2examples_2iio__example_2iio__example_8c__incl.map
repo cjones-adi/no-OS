@@ -1,0 +1,32 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/projects/eval&#45;adxl313z/src/examples/iio_example/iio_example.c" name="/home/runner/work/no&#45;OS/no&#45;OS/projects/eval&#45;adxl313z/src/examples/iio_example/iio_example.c">
+<area shape="rect" id="Node000001" title="Implementation of IIO example for eval&#45;adxl313z project." alt="" coords="123,5,324,75"/>
+<area shape="rect" id="Node000002" href="$errno_8h.html" title="Error macro definition for ARM Compiler." alt="" coords="5,123,73,148"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="158,77,75,119,73,114,156,72"/>
+<area shape="rect" id="Node000003" href="$eval-adxl313z_2src_2examples_2iio__example_2iio__example_8h.html" title="IIO example header for eval&#45;adxl313z project." alt="" coords="98,123,213,148"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="201,76,174,113,170,110,197,73"/>
+<area shape="rect" id="Node000004" href="$iio__adxl313_8h.html" title="Header file of IIO ADXL355 Driver." alt="" coords="237,123,346,148"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="250,73,277,110,273,113,246,76"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="371,123,497,148"/>
+<area shape="poly" id="edge17_Node000001_Node000013" title=" " alt="" coords="300,72,397,115,394,120,298,77"/>
+<area shape="rect" id="Node000005" href="$iio_8h.html" title="Header file of iio." alt="" coords="266,196,317,221"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="294,148,294,182,289,182,289,148"/>
+<area shape="rect" id="Node000006" href="$iio__types_8h.html" title="Header file for iio_types." alt="" coords="333,269,426,295"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="307,219,356,258,353,263,304,223"/>
+<area shape="rect" id="Node000010" href="$no__os__uart_8h.html" title="Header file of UART interface." alt="" coords="177,269,283,295"/>
+<area shape="poly" id="edge10_Node000005_Node000010" title=" " alt="" coords="283,223,251,261,247,257,279,220"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="34,416,117,441"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="333,293,195,318,134,332,102,345,92,357,86,372,79,403,74,401,81,370,88,354,99,341,133,327,194,313,332,288"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="309,416,380,441"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="426,292,461,304,492,321,503,331,510,343,511,356,506,369,483,393,454,409,424,420,394,426,393,421,422,415,452,404,479,389,501,367,506,355,505,344,499,335,489,325,459,309,424,297"/>
+<area shape="rect" id="Node000009" href="$no__os__circular__buffer_8h.html" title="Circular buffer library header." alt="" coords="321,343,491,368"/>
+<area shape="poly" id="edge8_Node000006_Node000009" title=" " alt="" coords="386,294,399,329,394,331,381,296"/>
+<area shape="poly" id="edge9_Node000009_Node000008" title=" " alt="" coords="398,370,366,407,362,404,394,367"/>
+<area shape="poly" id="edge12_Node000010_Node000007" title=" " alt="" coords="178,288,146,294,113,304,83,321,59,344,53,358,53,373,63,403,58,405,48,374,48,357,54,341,80,316,111,299,145,289,177,283"/>
+<area shape="poly" id="edge11_Node000010_Node000008" title=" " alt="" coords="241,293,329,404,325,407,237,297"/>
+<area shape="rect" id="Node000011" href="$no__os__lf256fifo_8h.html" title="SPSC lock&#45;free fifo of fixed size (256), specialized for UART." alt="" coords="113,343,246,368"/>
+<area shape="poly" id="edge13_Node000010_Node000011" title=" " alt="" coords="224,297,198,333,193,330,219,293"/>
+<area shape="poly" id="edge16_Node000011_Node000007" title=" " alt="" coords="164,370,105,410,102,406,161,366"/>
+<area shape="poly" id="edge15_Node000011_Node000008" title=" " alt="" coords="207,366,306,408,304,413,205,370"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="144,416,215,441"/>
+<area shape="poly" id="edge14_Node000011_Node000012" title=" " alt="" coords="182,368,182,402,177,402,177,368"/>
+</map>

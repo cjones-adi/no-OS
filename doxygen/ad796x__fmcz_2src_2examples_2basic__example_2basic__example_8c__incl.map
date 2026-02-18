@@ -1,0 +1,38 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/projects/ad796x_fmcz/src/examples/basic_example/basic_example.c" name="/home/runner/work/no&#45;OS/no&#45;OS/projects/ad796x_fmcz/src/examples/basic_example/basic_example.c">
+<area shape="rect" id="Node000001" title="Implementation of BASIC example." alt="" coords="206,5,405,75"/>
+<area shape="rect" id="Node000002" href="$ad796x__fmcz_2src_2examples_2basic__example_2basic__example_8h.html" title="BASIC example header." alt="" coords="22,123,154,148"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="228,77,128,120,126,115,226,72"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="178,123,305,148"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="284,76,259,113,255,110,280,73"/>
+<area shape="rect" id="Node000004" href="$ad796x_8h.html" title="Header file of AD796X Driver." alt="" coords="329,123,412,148"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="331,73,357,110,352,113,327,76"/>
+<area shape="rect" id="Node000014" href="$no__os__print__log_8h.html" title="Print messages helpers." alt="" coords="519,123,655,148"/>
+<area shape="poly" id="edge20_Node000001_Node000014" title=" " alt="" coords="406,72,540,116,539,121,404,77"/>
+<area shape="rect" id="Node000005" href="$no__os__gpio_8h.html" title="Header file of GPIO Interface." alt="" coords="5,269,112,295"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="339,151,220,198,91,265,89,260,218,194,337,146"/>
+<area shape="rect" id="Node000007" href="$no__os__pwm_8h.html" title="Header file of PWM Interface." alt="" coords="517,269,627,295"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="412,146,461,165,510,194,540,225,561,256,557,259,535,228,506,198,459,170,410,151"/>
+<area shape="rect" id="Node000009" href="$axi__dmac_8h.html" title="Driver for the Analog Devices AXI&#45;DMAC core." alt="" coords="255,196,353,221"/>
+<area shape="poly" id="edge9_Node000004_Node000009" title=" " alt="" coords="362,150,326,188,322,184,358,147"/>
+<area shape="rect" id="Node000012" href="$clk__axi__clkgen_8h.html" title="Driver for the Analog Devices AXI CLKGEN." alt="" coords="136,269,267,295"/>
+<area shape="poly" id="edge15_Node000004_Node000012" title=" " alt="" coords="331,151,287,169,246,198,225,227,211,257,206,255,220,224,242,194,284,165,328,146"/>
+<area shape="rect" id="Node000013" href="$axi__adc__core_8h.html" title="Driver for the Analog Devices AXI&#45;ADC&#45;CORE module." alt="" coords="377,196,495,221"/>
+<area shape="poly" id="edge17_Node000004_Node000013" title=" " alt="" coords="383,147,418,184,414,188,379,150"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="291,343,362,368"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="102,292,278,338,277,344,101,297"/>
+<area shape="poly" id="edge7_Node000007_Node000006" title=" " alt="" coords="533,297,376,343,374,338,532,292"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="516,343,599,368"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="572,296,565,330,560,329,567,294"/>
+<area shape="poly" id="edge10_Node000009_Node000006" title=" " alt="" coords="308,221,325,329,320,329,303,222"/>
+<area shape="rect" id="Node000010" href="$no__os__util_8h.html" title="Header file of utility functions." alt="" coords="393,269,493,295"/>
+<area shape="poly" id="edge11_Node000009_Node000010" title=" " alt="" coords="327,219,409,261,407,265,325,224"/>
+<area shape="poly" id="edge12_Node000010_Node000006" title=" " alt="" coords="425,297,359,338,356,333,423,292"/>
+<area shape="poly" id="edge14_Node000010_Node000008" title=" " alt="" coords="462,292,528,333,526,338,460,297"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="407,343,478,368"/>
+<area shape="poly" id="edge13_Node000010_Node000011" title=" " alt="" coords="445,295,445,329,440,329,440,295"/>
+<area shape="poly" id="edge16_Node000012_Node000006" title=" " alt="" coords="223,292,296,333,293,338,220,297"/>
+<area shape="poly" id="edge18_Node000013_Node000006" title=" " alt="" coords="426,224,383,271,342,332,338,329,379,268,422,220"/>
+<area shape="poly" id="edge19_Node000013_Node000010" title=" " alt="" coords="440,221,443,256,438,256,434,222"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="571,196,637,221"/>
+<area shape="poly" id="edge21_Node000014_Node000015" title=" " alt="" coords="592,148,601,182,595,184,587,149"/>
+</map>

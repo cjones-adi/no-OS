@@ -1,0 +1,24 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/maxim/max32690/maxim_uart.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/maxim/max32690/maxim_uart.h">
+<area shape="rect" id="Node000001" title="Header file of UART driver." alt="" coords="151,5,391,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="6,108,66,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="200,63,80,106,78,101,198,58"/>
+<area shape="rect" id="Node000003" href="$no__os__irq_8h.html" title="Header file of IRQ interface." alt="" coords="304,181,400,207"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="301,59,321,81,337,107,348,138,353,167,348,168,343,139,332,109,316,84,297,62"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="219,108,322,133"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="273,60,273,94,268,94,268,60"/>
+<area shape="rect" id="Node000006" href="$no__os__uart_8h.html" title="Header file of UART interface." alt="" coords="90,108,195,133"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="233,62,173,103,170,98,230,58"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="398,108,461,133"/>
+<area shape="poly" id="edge12_Node000001_Node000010" title=" " alt="" coords="320,58,397,99,395,104,318,62"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="218,255,289,280"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="338,209,282,249,279,244,335,205"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="169,131,201,151,230,180,245,210,253,241,248,242,240,212,226,183,197,155,166,136"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="5,255,88,280"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="124,136,97,156,73,183,59,212,52,241,47,240,54,210,68,180,94,152,121,131"/>
+<area shape="rect" id="Node000008" href="$no__os__lf256fifo_8h.html" title="SPSC lock&#45;free fifo of fixed size (256), specialized for UART." alt="" coords="83,181,216,207"/>
+<area shape="poly" id="edge8_Node000006_Node000008" title=" " alt="" coords="146,133,150,168,144,168,141,134"/>
+<area shape="poly" id="edge10_Node000008_Node000004" title=" " alt="" coords="168,204,226,244,223,249,165,209"/>
+<area shape="poly" id="edge11_Node000008_Node000007" title=" " alt="" coords="134,209,76,249,73,244,131,204"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="114,255,185,280"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="152,207,152,241,147,241,147,207"/>
+</map>

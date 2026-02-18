@@ -1,0 +1,16 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/gmsl/deserializer/camera/max96792/max96792.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/gmsl/deserializer/camera/max96792/max96792.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="320,5,548,75"/>
+<area shape="rect" id="Node000002" href="$max96792_8c.html" title=" " alt="" coords="257,240,485,309"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="403,87,386,124,374,184,372,240,367,239,369,184,381,122,398,85"/>
+<area shape="rect" id="Node000003" href="$max96792__csi_8h.html" title=" " alt="" coords="92,123,320,192"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="356,83,274,125,271,120,354,79"/>
+<area shape="rect" id="Node000005" href="$max96792__diag_8c.html" title=" " alt="" coords="535,240,763,309"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="562,65,604,88,623,103,639,121,653,150,660,181,661,213,658,240,653,240,655,212,654,182,648,151,634,124,619,107,601,92,560,70"/>
+<area shape="rect" id="Node000006" href="$max96792__diag_8h.html" title=" " alt="" coords="396,123,624,192"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="466,85,490,121,486,124,462,88"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="267,198,324,237,321,242,264,202"/>
+<area shape="rect" id="Node000004" href="$max96792__csi_8c.html" title=" " alt="" coords="5,240,233,309"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="174,205,147,241,143,238,170,202"/>
+<area shape="poly" id="edge7_Node000006_Node000002" title=" " alt="" coords="461,203,414,242,410,238,457,199"/>
+<area shape="poly" id="edge8_Node000006_Node000005" title=" " alt="" coords="563,199,610,238,606,242,559,203"/>
+</map>

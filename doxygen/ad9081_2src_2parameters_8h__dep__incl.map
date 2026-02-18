@@ -1,0 +1,9 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/projects/ad9081/src/parameters.h" name="/home/runner/work/no&#45;OS/no&#45;OS/projects/ad9081/src/parameters.h">
+<area shape="rect" id="Node000001" title="Application parameters." alt="" coords="225,5,421,60"/>
+<area shape="rect" id="Node000002" href="$ad9081_2src_2app_8c.html" title="AD9081 application example." alt="" coords="5,108,201,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="255,68,162,110,160,106,252,63"/>
+<area shape="rect" id="Node000003" href="$app__clock_8c.html" title="Application clocks initialization." alt="" coords="225,108,421,163"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="326,74,326,108,321,108,321,74"/>
+<area shape="rect" id="Node000004" href="$ad9081_2src_2app__jesd_8c.html" title="Application JESD setup." alt="" coords="445,108,641,163"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="394,63,487,106,485,110,392,68"/>
+</map>

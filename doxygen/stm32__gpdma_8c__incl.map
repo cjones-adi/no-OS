@@ -1,0 +1,39 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/stm32/stm32_gpdma.c" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/stm32/stm32_gpdma.c">
+<area shape="rect" id="Node000001" title="Implementation of STM32 GPDMA functionality." alt="" coords="369,5,566,60"/>
+<area shape="rect" id="Node000002" href="$stm32__dma_8h.html" title="Platform independent function definitions and data types for the DMA API." alt="" coords="348,108,459,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="450,62,422,99,418,95,446,58"/>
+<area shape="rect" id="Node000013" href="$no__os__error_8h.html" title="Error codes definition." alt="" coords="622,108,731,133"/>
+<area shape="poly" id="edge14_Node000001_Node000013" title=" " alt="" coords="532,58,637,100,635,105,530,63"/>
+<area shape="rect" id="Node000015" href="$no__os__alloc_8h.html" title=" " alt="" coords="79,181,189,207"/>
+<area shape="poly" id="edge16_Node000001_Node000015" title=" " alt="" coords="414,62,171,178,169,173,412,58"/>
+<area shape="rect" id="Node000016" href="$stm32__irq_8h.html" title="Header file for stm32 irq specifics." alt="" coords="483,108,582,133"/>
+<area shape="poly" id="edge19_Node000001_Node000016" title=" " alt="" coords="489,58,518,95,513,99,485,62"/>
+<area shape="rect" id="Node000003" href="$no__os__dma_8h.html" title="Platform independent function definitions and data types for the DMA API." alt="" coords="321,181,429,207"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="401,135,387,170,382,168,396,133"/>
+<area shape="rect" id="Node000011" href="$stm32__hal_8h.html" title=" " alt="" coords="473,181,576,207"/>
+<area shape="poly" id="edge12_Node000002_Node000011" title=" " alt="" coords="424,131,495,172,492,177,421,136"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="101,255,167,280"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="337,209,182,255,180,250,336,204"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="5,255,76,280"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="321,209,90,257,89,252,320,204"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="439,328,509,353"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="397,205,424,225,450,253,464,284,473,313,467,315,459,285,445,256,420,229,394,209"/>
+<area shape="rect" id="Node000007" href="$no__os__list_8h.html" title="List library header." alt="" coords="191,255,290,280"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="355,209,276,250,274,246,352,204"/>
+<area shape="rect" id="Node000009" href="$no__os__irq_8h.html" title="Header file of IRQ interface." alt="" coords="602,255,698,280"/>
+<area shape="poly" id="edge9_Node000003_Node000009" title=" " alt="" coords="420,204,593,249,592,254,419,209"/>
+<area shape="rect" id="Node000010" href="$no__os__mutex_8h.html" title=" " alt="" coords="315,255,436,280"/>
+<area shape="poly" id="edge11_Node000003_Node000010" title=" " alt="" coords="378,207,378,241,373,241,373,207"/>
+<area shape="poly" id="edge7_Node000007_Node000006" title=" " alt="" coords="279,277,426,322,425,327,277,283"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="199,328,282,353"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="243,280,243,314,238,314,238,280"/>
+<area shape="poly" id="edge10_Node000009_Node000006" title=" " alt="" coords="623,282,517,325,515,320,621,278"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="511,255,578,280"/>
+<area shape="poly" id="edge13_Node000011_Node000012" title=" " alt="" coords="531,206,540,241,535,242,525,208"/>
+<area shape="rect" id="Node000014" href="$errno_8h.html" title="Error macro definition for ARM Compiler." alt="" coords="652,181,720,207"/>
+<area shape="poly" id="edge15_Node000013_Node000014" title=" " alt="" coords="681,133,685,167,680,168,676,134"/>
+<area shape="poly" id="edge17_Node000015_Node000004" title=" " alt="" coords="137,207,137,241,131,241,131,207"/>
+<area shape="poly" id="edge18_Node000015_Node000005" title=" " alt="" coords="121,209,68,248,65,244,117,205"/>
+<area shape="poly" id="edge20_Node000016_Node000009" title=" " alt="" coords="546,132,591,180,637,241,632,244,587,183,542,135"/>
+<area shape="poly" id="edge21_Node000016_Node000011" title=" " alt="" coords="534,134,530,168,525,168,529,133"/>
+</map>

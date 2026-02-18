@@ -1,0 +1,12 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/stm32/stm32_i2c.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/stm32/stm32_i2c.h">
+<area shape="rect" id="Node000001" title="Header file for the stm32 i2c driver." alt="" coords="5,5,203,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="26,181,97,207"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="77,62,59,84,45,109,42,124,43,139,52,168,46,169,38,140,37,123,40,107,54,81,73,58"/>
+<area shape="rect" id="Node000003" href="$no__os__i2c_8h.html" title="Header file of I2C Interface." alt="" coords="55,108,153,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="107,60,107,94,101,94,101,60"/>
+<area shape="rect" id="Node000004" href="$stm32__hal_8h.html" title=" " alt="" coords="178,108,281,133"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="144,58,203,98,200,102,141,62"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="99,135,77,171,73,168,95,132"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="196,181,263,207"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="232,134,232,168,227,168,227,134"/>
+</map>

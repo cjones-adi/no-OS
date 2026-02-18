@@ -1,0 +1,5 @@
+<map id="max17616_set_overcurrent_limit" name="max17616_set_overcurrent_limit">
+<area shape="rect" id="Node000001" title="Set the short&#45;term overcurrent limit ratio." alt="" coords="237,5,437,45"/>
+<area shape="rect" id="Node000002" href="$iio__max17616_8c.html#ae528f14d22238257654456118c44fe34" title="Write attribute function for MAX17616 output channels." alt="" coords="5,13,189,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="224,28,189,28,189,23,224,23"/>
+</map>

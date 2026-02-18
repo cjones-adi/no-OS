@@ -1,0 +1,34 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/projects/adp5055/src/common/common_data.c" name="/home/runner/work/no&#45;OS/no&#45;OS/projects/adp5055/src/common/common_data.c">
+<area shape="rect" id="Node000001" title="Defines common data to be used by adp5055 examples." alt="" coords="50,5,265,60"/>
+<area shape="rect" id="Node000002" href="$adp5055_2src_2common_2common__data_8h.html" title="Defines common data to be used by adp5055 examples." alt="" coords="94,108,221,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="160,60,160,94,155,94,155,60"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="11,181,120,207"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="144,135,93,175,89,171,141,131"/>
+<area shape="rect" id="Node000004" href="$no__os__i2c_8h.html" title="Header file of I2C Interface." alt="" coords="5,255,104,280"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="159,134,152,169,134,208,113,232,89,250,86,245,109,228,130,205,147,167,154,133"/>
+<area shape="rect" id="Node000006" href="$adp5055_8h.html" title="Header file for the ADP5055 Driver." alt="" coords="297,181,388,207"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="188,131,301,174,299,179,186,136"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="237,328,307,353"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="90,277,225,321,223,326,89,283"/>
+<area shape="poly" id="edge11_Node000006_Node000004" title=" " alt="" coords="298,209,115,254,114,249,296,204"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="334,208,316,230,300,256,288,286,280,315,274,314,282,284,295,253,312,227,330,205"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="673,328,756,353"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="388,192,486,192,605,200,663,207,715,218,757,233,785,253,792,272,784,291,768,308,749,323,745,318,764,304,779,288,786,272,781,256,754,238,713,223,662,212,604,205,486,198,388,197"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="309,255,376,280"/>
+<area shape="poly" id="edge8_Node000006_Node000008" title=" " alt="" coords="345,207,345,241,340,241,340,207"/>
+<area shape="rect" id="Node000009" href="$no__os__gpio_8h.html" title="Header file of GPIO Interface." alt="" coords="128,255,235,280"/>
+<area shape="poly" id="edge9_Node000006_Node000009" title=" " alt="" coords="318,209,221,251,219,247,316,204"/>
+<area shape="rect" id="Node000010" href="$no__os__pwm_8h.html" title="Header file of PWM Interface." alt="" coords="659,255,770,280"/>
+<area shape="poly" id="edge12_Node000006_Node000010" title=" " alt="" coords="389,201,646,250,645,255,388,207"/>
+<area shape="rect" id="Node000011" href="$no__os__util_8h.html" title="Header file of utility functions." alt="" coords="535,255,635,280"/>
+<area shape="poly" id="edge15_Node000006_Node000011" title=" " alt="" coords="382,204,534,248,532,253,381,209"/>
+<area shape="rect" id="Node000013" href="$no__os__units_8h.html" title="Header file of Units." alt="" coords="401,255,511,280"/>
+<area shape="poly" id="edge19_Node000006_Node000013" title=" " alt="" coords="362,204,428,245,425,250,359,209"/>
+<area shape="poly" id="edge10_Node000009_Node000005" title=" " alt="" coords="198,278,248,317,245,321,194,282"/>
+<area shape="poly" id="edge13_Node000010_Node000005" title=" " alt="" coords="659,281,648,283,322,334,321,329,648,277,659,276"/>
+<area shape="poly" id="edge14_Node000010_Node000007" title=" " alt="" coords="717,280,717,314,712,314,712,280"/>
+<area shape="poly" id="edge16_Node000011_Node000005" title=" " alt="" coords="536,283,321,331,320,326,534,277"/>
+<area shape="poly" id="edge18_Node000011_Node000007" title=" " alt="" coords="607,278,682,319,680,323,605,282"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="550,328,621,353"/>
+<area shape="poly" id="edge17_Node000011_Node000012" title=" " alt="" coords="588,280,588,314,583,314,583,280"/>
+</map>

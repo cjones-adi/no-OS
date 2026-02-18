@@ -1,0 +1,29 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/chibios/chibios_uart.c" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/chibios/chibios_uart.c">
+<area shape="rect" id="Node000001" title="Source file of UART driver for chibios." alt="" coords="104,5,301,60"/>
+<area shape="rect" id="Node000002" href="$no__os__error_8h.html" title="Error codes definition." alt="" coords="5,108,115,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="160,62,92,103,89,99,158,58"/>
+<area shape="rect" id="Node000004" href="$no__os__uart_8h.html" title="Header file of UART interface." alt="" coords="109,181,214,207"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="198,61,185,109,170,169,165,167,180,107,193,60"/>
+<area shape="rect" id="Node000009" href="$no__os__alloc_8h.html" title=" " alt="" coords="331,108,442,133"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="260,58,351,100,349,105,258,62"/>
+<area shape="rect" id="Node000011" href="$chibios__uart_8h.html" title="Header file of UART driver for chibiOS." alt="" coords="194,108,307,133"/>
+<area shape="poly" id="edge13_Node000001_Node000011" title=" " alt="" coords="220,59,240,95,235,97,215,61"/>
+<area shape="rect" id="Node000003" href="$errno_8h.html" title="Error macro definition for ARM Compiler." alt="" coords="17,181,85,207"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="61,134,57,168,51,167,56,133"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="219,328,290,353"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="215,203,258,221,278,235,294,253,300,270,297,288,278,319,274,316,292,286,294,271,290,256,275,239,256,225,213,207"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="111,328,193,353"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="157,208,146,230,137,255,137,286,144,315,139,316,132,287,132,254,141,228,152,206"/>
+<area shape="rect" id="Node000007" href="$no__os__lf256fifo_8h.html" title="SPSC lock&#45;free fifo of fixed size (256), specialized for UART." alt="" coords="147,255,280,280"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="172,205,199,242,195,245,168,209"/>
+<area shape="poly" id="edge8_Node000007_Node000005" title=" " alt="" coords="222,279,243,315,239,317,218,282"/>
+<area shape="poly" id="edge9_Node000007_Node000006" title=" " alt="" coords="205,282,173,319,169,316,201,279"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="345,328,415,353"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="241,278,341,320,339,325,239,282"/>
+<area shape="poly" id="edge12_Node000009_Node000008" title=" " alt="" coords="392,133,399,181,397,254,388,315,383,314,392,254,393,181,386,134"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="317,181,384,207"/>
+<area shape="poly" id="edge11_Node000009_Node000010" title=" " alt="" coords="383,135,365,170,360,168,378,132"/>
+<area shape="poly" id="edge14_Node000011_Node000004" title=" " alt="" coords="238,135,188,175,185,170,235,131"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="238,181,293,207"/>
+<area shape="poly" id="edge15_Node000011_Node000012" title=" " alt="" coords="256,133,263,167,258,168,250,134"/>
+</map>

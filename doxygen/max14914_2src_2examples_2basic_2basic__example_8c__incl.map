@@ -1,0 +1,29 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/projects/max14914/src/examples/basic/basic_example.c" name="/home/runner/work/no&#45;OS/no&#45;OS/projects/max14914/src/examples/basic/basic_example.c">
+<area shape="rect" id="Node000001" title="Source file for basic example." alt="" coords="255,5,472,75"/>
+<area shape="rect" id="Node000002" href="$max14914_2src_2examples_2basic_2basic__example_8h.html" title=" " alt="" coords="5,123,137,148"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="259,77,121,121,120,116,257,72"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="161,123,288,148"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="315,77,255,117,252,112,312,73"/>
+<area shape="rect" id="Node000004" href="$max14914_8h.html" title="Header file of MAX14914 Driver." alt="" coords="312,123,415,148"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="366,75,366,109,361,109,361,75"/>
+<area shape="rect" id="Node000010" href="$no__os__delay_8h.html" title="Header file of Delay functions." alt="" coords="487,196,600,221"/>
+<area shape="poly" id="edge12_Node000001_Node000010" title=" " alt="" coords="402,73,523,185,519,189,398,77"/>
+<area shape="rect" id="Node000011" href="$no__os__print__log_8h.html" title="Print messages helpers." alt="" coords="586,123,722,148"/>
+<area shape="poly" id="edge14_Node000001_Node000011" title=" " alt="" coords="469,72,606,116,604,121,467,77"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="337,269,408,295"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="360,149,348,182,344,201,346,221,361,256,356,258,341,222,339,201,342,180,355,147"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="101,269,183,295"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="312,149,229,170,192,184,169,198,160,211,153,226,146,256,141,255,148,224,155,208,166,194,190,179,227,165,311,144"/>
+<area shape="rect" id="Node000007" href="$no__os__gpio_8h.html" title="Header file of GPIO Interface." alt="" coords="355,196,462,221"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="373,147,396,183,392,186,369,150"/>
+<area shape="rect" id="Node000008" href="$no__os__util_8h.html" title="Header file of utility functions." alt="" coords="180,196,280,221"/>
+<area shape="poly" id="edge8_Node000004_Node000008" title=" " alt="" coords="343,150,265,192,263,187,341,146"/>
+<area shape="poly" id="edge7_Node000007_Node000005" title=" " alt="" coords="405,223,387,258,382,256,400,220"/>
+<area shape="poly" id="edge9_Node000008_Node000005" title=" " alt="" coords="254,219,338,261,336,265,252,224"/>
+<area shape="poly" id="edge11_Node000008_Node000006" title=" " alt="" coords="218,223,169,263,165,258,214,219"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="208,269,279,295"/>
+<area shape="poly" id="edge10_Node000008_Node000009" title=" " alt="" coords="235,221,241,255,236,256,230,222"/>
+<area shape="poly" id="edge13_Node000010_Node000005" title=" " alt="" coords="517,224,414,266,412,262,515,219"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="625,196,691,221"/>
+<area shape="poly" id="edge15_Node000011_Node000012" title=" " alt="" coords="657,148,659,182,654,183,652,148"/>
+</map>

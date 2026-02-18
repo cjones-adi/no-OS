@@ -1,0 +1,11 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/projects/adrv902x/src/common/clkgen_routines.h" name="/home/runner/work/no&#45;OS/no&#45;OS/projects/adrv902x/src/common/clkgen_routines.h">
+<area shape="rect" id="Node000001" title="Defines clkgen init and settings to be used by adrv902x examples." alt="" coords="367,5,593,60"/>
+<area shape="rect" id="Node000002" href="$clkgen__routines_8c.html" title="Implements clkgen init and settings to be used by adrv902x examples." alt="" coords="5,115,229,170"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="380,66,206,118,205,113,378,61"/>
+<area shape="rect" id="Node000003" href="$adrv902x_2src_2examples_2basic__example_2basic__example_8c.html" title="Basic example for the adrv902x project." alt="" coords="254,108,469,177"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="442,72,400,110,397,106,439,68"/>
+<area shape="rect" id="Node000004" href="$dma__example_8c.html" title="DMA example for the adrv902x project." alt="" coords="493,108,704,177"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="521,68,563,106,560,110,518,72"/>
+<area shape="rect" id="Node000005" href="$adrv902x_2src_2examples_2iio__example_2iio__example_8c.html" title="IIO example for the adrv902x project." alt="" coords="729,108,938,177"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="580,61,729,107,728,112,578,67"/>
+</map>

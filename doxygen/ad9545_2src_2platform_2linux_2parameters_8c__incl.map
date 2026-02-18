@@ -1,0 +1,14 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/projects/ad9545/src/platform/linux/parameters.c" name="/home/runner/work/no&#45;OS/no&#45;OS/projects/ad9545/src/platform/linux/parameters.c">
+<area shape="rect" id="Node000001" title="Definitions specific to Linux platform used by ad9545 project." alt="" coords="51,5,282,60"/>
+<area shape="rect" id="Node000002" href="$ad9545_2src_2platform_2linux_2parameters_8h.html" title="Definitions specific to Maxim platform used by ad9545 project." alt="" coords="112,108,221,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="169,60,169,94,164,94,164,60"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,181,88,207"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="149,136,80,176,77,172,146,131"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="190,255,261,280"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="163,134,151,168,150,187,154,206,171,228,192,245,189,249,167,232,150,208,145,188,146,167,158,133"/>
+<area shape="rect" id="Node000005" href="$linux__spi_8h.html" title=" " alt="" coords="163,181,255,207"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="176,132,198,168,193,171,171,135"/>
+<area shape="rect" id="Node000006" href="$linux__i2c_8h.html" title=" " alt="" coords="279,181,371,207"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="193,131,288,173,286,178,191,136"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="311,209,254,249,251,244,308,205"/>
+</map>

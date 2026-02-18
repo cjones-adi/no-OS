@@ -1,0 +1,34 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/projects/ad&#45;acevsecrdset&#45;sl/src/common/common_data.h" name="/home/runner/work/no&#45;OS/no&#45;OS/projects/ad&#45;acevsecrdset&#45;sl/src/common/common_data.h">
+<area shape="rect" id="Node000001" title="Defines common data to be used by the STOUT project." alt="" coords="226,5,439,75"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="154,123,263,148"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="289,77,237,116,234,112,286,73"/>
+<area shape="rect" id="Node000003" href="$ade9113_8h.html" title="Header file of ADE9113 Driver." alt="" coords="287,123,378,148"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="335,75,335,109,330,109,330,75"/>
+<area shape="rect" id="Node000012" href="$adt75_8h.html" title="Header file of ADT75 Driver." alt="" coords="715,123,785,148"/>
+<area shape="poly" id="edge16_Node000001_Node000012" title=" " alt="" coords="440,62,702,121,700,126,439,68"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="73,269,155,295"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="288,148,203,169,165,183,141,198,132,211,125,226,118,256,113,255,120,224,127,208,138,194,163,178,201,164,287,143"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="468,269,539,295"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="328,149,313,184,311,203,318,220,346,246,381,263,419,273,455,278,454,283,418,278,379,268,343,250,313,223,306,203,308,182,323,147"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="5,196,76,221"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="288,150,90,198,89,193,286,145"/>
+<area shape="rect" id="Node000007" href="$no__os__util_8h.html" title="Header file of utility functions." alt="" coords="152,196,252,221"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="313,150,236,192,234,187,310,146"/>
+<area shape="rect" id="Node000009" href="$no__os__spi_8h.html" title="Header file of SPI Interface." alt="" coords="327,196,426,221"/>
+<area shape="poly" id="edge10_Node000003_Node000009" title=" " alt="" coords="342,147,365,183,360,186,338,150"/>
+<area shape="rect" id="Node000010" href="$no__os__gpio_8h.html" title="Header file of GPIO Interface." alt="" coords="450,196,557,221"/>
+<area shape="poly" id="edge12_Node000003_Node000010" title=" " alt="" coords="361,146,464,188,462,193,359,150"/>
+<area shape="rect" id="Node000011" href="$no__os__irq_8h.html" title="Header file of IRQ interface." alt="" coords="581,196,677,221"/>
+<area shape="poly" id="edge14_Node000003_Node000011" title=" " alt="" coords="379,145,569,190,567,195,378,150"/>
+<area shape="poly" id="edge9_Node000007_Node000004" title=" " alt="" coords="190,223,141,263,137,258,186,219"/>
+<area shape="poly" id="edge7_Node000007_Node000005" title=" " alt="" coords="251,219,455,267,454,272,250,224"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="180,269,251,295"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="207,221,213,255,208,256,202,222"/>
+<area shape="poly" id="edge11_Node000009_Node000005" title=" " alt="" coords="398,219,472,260,469,265,396,224"/>
+<area shape="poly" id="edge13_Node000010_Node000005" title=" " alt="" coords="506,222,506,256,501,256,501,222"/>
+<area shape="poly" id="edge15_Node000011_Node000005" title=" " alt="" coords="610,224,537,265,534,260,607,219"/>
+<area shape="poly" id="edge17_Node000012_Node000005" title=" " alt="" coords="771,146,791,161,809,180,820,201,819,212,813,223,796,237,769,249,700,266,622,276,552,281,552,276,621,271,699,260,767,244,793,233,809,220,814,211,814,202,805,183,787,165,767,150"/>
+<area shape="rect" id="Node000013" href="$no__os__i2c_8h.html" title="Header file of I2C Interface." alt="" coords="701,196,799,221"/>
+<area shape="poly" id="edge18_Node000012_Node000013" title=" " alt="" coords="753,148,753,182,747,182,747,148"/>
+<area shape="poly" id="edge19_Node000013_Node000005" title=" " alt="" coords="711,224,553,269,551,264,710,219"/>
+</map>

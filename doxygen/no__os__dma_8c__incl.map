@@ -1,0 +1,35 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/api/no_os_dma.c" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/api/no_os_dma.c">
+<area shape="rect" id="Node000001" title="Platform independent implementation for the DMA API." alt="" coords="319,5,485,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,108,92,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="320,57,106,108,105,103,319,51"/>
+<area shape="rect" id="Node000003" href="$no__os__dma_8h.html" title="Platform independent function definitions and data types for the DMA API." alt="" coords="303,108,411,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="391,61,371,97,367,95,386,59"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="95,181,165,207"/>
+<area shape="poly" id="edge12_Node000001_Node000005" title=" " alt="" coords="320,42,278,50,234,63,193,82,157,110,148,123,141,138,134,168,129,167,136,136,143,120,153,106,190,78,232,58,276,44,319,36"/>
+<area shape="rect" id="Node000007" href="$no__os__list_8h.html" title="List library header." alt="" coords="451,181,550,207"/>
+<area shape="poly" id="edge20_Node000001_Node000007" title=" " alt="" coords="421,59,489,168,484,171,416,62"/>
+<area shape="rect" id="Node000009" href="$no__os__irq_8h.html" title="Header file of IRQ interface." alt="" coords="331,181,427,207"/>
+<area shape="poly" id="edge16_Node000001_Node000009" title=" " alt="" coords="417,59,427,95,428,115,425,134,415,155,402,173,398,169,410,152,419,133,423,114,421,96,412,61"/>
+<area shape="rect" id="Node000010" href="$no__os__mutex_8h.html" title=" " alt="" coords="575,181,696,207"/>
+<area shape="poly" id="edge15_Node000001_Node000010" title=" " alt="" coords="442,58,609,171,606,176,439,62"/>
+<area shape="rect" id="Node000011" href="$no__os__error_8h.html" title="Error codes definition." alt="" coords="686,108,795,133"/>
+<area shape="poly" id="edge13_Node000001_Node000011" title=" " alt="" coords="485,52,683,102,682,107,484,57"/>
+<area shape="rect" id="Node000013" href="$no__os__alloc_8h.html" title=" " alt="" coords="168,108,279,133"/>
+<area shape="poly" id="edge17_Node000001_Node000013" title=" " alt="" coords="349,62,261,104,258,100,346,58"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="190,181,257,207"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="336,136,258,177,256,172,334,131"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="321,136,179,180,178,175,319,131"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="344,255,415,280"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="348,135,325,167,319,187,322,206,335,227,353,244,349,248,331,230,317,208,314,186,320,165,343,132"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="381,131,466,173,464,177,379,136"/>
+<area shape="poly" id="edge9_Node000003_Node000009" title=" " alt="" coords="363,133,374,167,369,169,358,134"/>
+<area shape="poly" id="edge11_Node000003_Node000010" title=" " alt="" coords="402,131,578,175,576,180,401,136"/>
+<area shape="poly" id="edge7_Node000007_Node000006" title=" " alt="" coords="483,209,412,250,409,245,480,204"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="459,255,542,280"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="503,207,503,241,498,241,498,207"/>
+<area shape="poly" id="edge10_Node000009_Node000006" title=" " alt="" coords="382,207,382,241,377,241,377,207"/>
+<area shape="rect" id="Node000012" href="$errno_8h.html" title="Error macro definition for ARM Compiler." alt="" coords="720,181,788,207"/>
+<area shape="poly" id="edge14_Node000011_Node000012" title=" " alt="" coords="745,133,752,167,747,168,740,134"/>
+<area shape="poly" id="edge18_Node000013_Node000004" title=" " alt="" coords="226,134,226,168,221,168,221,134"/>
+<area shape="poly" id="edge19_Node000013_Node000005" title=" " alt="" coords="210,135,158,175,154,171,207,131"/>
+</map>

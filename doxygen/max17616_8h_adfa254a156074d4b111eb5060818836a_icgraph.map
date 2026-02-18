@@ -1,0 +1,57 @@
+<map id="max17616_read_byte" name="max17616_read_byte">
+<area shape="rect" id="Node000001" title="Perform a raw PMBus read byte operation." alt="" coords="788,441,951,467"/>
+<area shape="rect" id="Node000002" href="$max17616_8c.html#acb8b668c31852dabf24cf62f07f58b3c" title="Get current limit mode." alt="" coords="549,49,721,89"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="862,428,850,367,828,286,812,242,791,199,767,158,738,121,718,104,695,91,698,87,721,100,742,117,771,155,796,197,817,240,833,284,856,366,867,427"/>
+<area shape="rect" id="Node000005" href="$max17616_8c.html#a16dc1be92e53aba04a32d85efa55a489" title="Get current start ratio." alt="" coords="301,170,461,210"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="856,429,838,392,813,348,780,305,738,268,706,249,671,233,597,211,525,198,461,193,461,188,525,193,598,206,673,228,708,244,742,264,784,301,817,345,843,390,860,427"/>
+<area shape="rect" id="Node000006" href="$max17616_8c.html#a867c766541a9d963598202b986803c84" title="Get device operation state." alt="" coords="287,717,475,757"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="865,481,851,528,827,587,791,646,768,673,742,695,711,713,677,727,608,744,538,751,475,750,475,745,538,746,607,739,676,722,708,708,738,690,764,669,787,643,822,585,846,527,860,480"/>
+<area shape="rect" id="Node000008" href="$max17616_8c.html#af587f8f0bad08d7c21873f3e5cbd67d9" title="Get the short&#45;term overcurrent limit ratio." alt="" coords="280,234,481,274"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="851,431,806,371,775,340,739,315,676,288,608,270,542,260,481,256,482,250,543,255,610,265,677,283,741,310,778,336,810,368,856,428"/>
+<area shape="rect" id="Node000009" href="$max17616_8c.html#a6134ce51723ef2c58e45885f962b8dd7" title="Get short&#45;term overcurrent duration." alt="" coords="280,298,481,338"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="846,433,800,391,770,370,739,354,675,334,607,322,541,316,482,315,482,310,542,311,608,316,676,328,741,349,773,365,803,386,849,429"/>
+<area shape="rect" id="Node000010" href="$max17616_8c.html#ae8652ec4077c1278cc6a67f96758b3ea" title="Get VOUT UV fault limit configuration using enums." alt="" coords="291,106,470,146"/>
+<area shape="poly" id="edge12_Node000001_Node000010" title=" " alt="" coords="859,429,845,382,820,324,785,266,763,239,738,216,708,195,675,178,605,153,534,138,470,131,470,125,535,133,606,148,677,173,711,191,742,212,767,235,790,262,825,322,850,380,864,427"/>
+<area shape="rect" id="Node000011" href="$max17616_8c.html#a92fffc8181184e9c091c2018c150dd14" title="Read device capability register." alt="" coords="281,781,480,807"/>
+<area shape="poly" id="edge14_Node000001_Node000011" title=" " alt="" coords="868,481,858,538,836,613,819,652,799,689,773,723,742,752,722,763,696,771,630,784,554,792,480,795,480,790,554,786,629,779,695,766,720,758,738,748,769,720,794,686,815,649,831,611,852,537,863,480"/>
+<area shape="rect" id="Node000012" href="$max17616_8c.html#ac0e1959b0c1e644e6c807143c529bf45" title="Read STATUS_BYTE register." alt="" coords="529,807,740,832"/>
+<area shape="poly" id="edge16_Node000001_Node000012" title=" " alt="" coords="868,481,859,543,837,626,821,670,800,713,774,754,742,789,710,809,707,804,738,785,769,750,795,711,816,668,832,624,853,542,863,480"/>
+<area shape="rect" id="Node000013" href="$max17616_8c.html#ae7efecd2935616b4dd6fccbe39af2900" title="Read STATUS_CML register." alt="" coords="532,412,737,437"/>
+<area shape="poly" id="edge17_Node000001_Node000013" title=" " alt="" coords="774,445,736,440,737,435,775,439"/>
+<area shape="rect" id="Node000015" href="$max17616_8c.html#adcdd19ae1f1d4d8296db8f0ad8ba1b0d" title="Read STATUS_INPUT register." alt="" coords="547,462,722,502"/>
+<area shape="poly" id="edge22_Node000001_Node000015" title=" " alt="" coords="774,468,723,474,722,469,774,463"/>
+<area shape="rect" id="Node000016" href="$max17616_8c.html#a6546c7df3528169eb7a4235d36f8d1bc" title="Read STATUS_IOUT register." alt="" coords="531,527,738,552"/>
+<area shape="poly" id="edge25_Node000001_Node000016" title=" " alt="" coords="834,475,790,496,741,517,698,529,696,524,739,511,788,492,831,471"/>
+<area shape="rect" id="Node000017" href="$max17616_8c.html#aff914e0cc4f5439257f6a0b4899beb0e" title="Read STATUS_MFR_SPECIFIC register." alt="" coords="547,577,722,617"/>
+<area shape="poly" id="edge28_Node000001_Node000017" title=" " alt="" coords="849,479,802,523,773,547,741,567,715,579,713,574,739,562,770,542,799,519,845,475"/>
+<area shape="rect" id="Node000018" href="$max17616_8c.html#a371044932c56ce6e6a217968bee95ce2" title="Read STATUS_TEMPERATURE register." alt="" coords="547,641,722,681"/>
+<area shape="poly" id="edge31_Node000001_Node000018" title=" " alt="" coords="859,480,840,514,814,555,781,596,742,631,720,643,718,638,738,626,777,592,810,552,836,511,854,478"/>
+<area shape="rect" id="Node000019" href="$max17616_8c.html#a455dd44f60524e8bfc8542d1ff5dd8bc" title="Read STATUS_VOUT register." alt="" coords="529,363,740,388"/>
+<area shape="poly" id="edge34_Node000001_Node000019" title=" " alt="" coords="828,438,739,403,695,391,696,386,741,398,830,433"/>
+<area shape="rect" id="Node000003" href="$max17616_2src_2examples_2basic_2basic__example_8c.html#a423407bf3827741dfe2f6e0def8ba0c3" title="Basic example main executiont." alt="" coords="321,5,440,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="535,52,440,32,441,27,536,46"/>
+<area shape="rect" id="Node000004" href="$iio__max17616_8c.html#a06842d04ba8765565503d1949435b14f" title="Read attribute function for MAX17616 PMBus IIO driver." alt="" coords="29,388,209,413"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="535,54,474,50,408,54,342,68,311,80,282,96,244,127,212,165,186,207,166,251,138,332,125,388,120,387,133,331,161,249,182,205,208,162,240,123,278,92,308,75,340,63,407,49,474,45,535,49"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="292,218,282,224,231,265,187,312,130,389,126,386,183,308,227,261,278,220,289,214"/>
+<area shape="rect" id="Node000007" href="$iio__max17616_8c.html#a0a0fb393a4d6b635c08d32c00982af2c" title="Read global attribute function." alt="" coords="5,724,232,749"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="273,739,232,739,232,734,273,734"/>
+<area shape="poly" id="edge9_Node000008_Node000004" title=" " alt="" coords="296,282,281,288,238,313,197,341,136,390,133,386,194,337,235,309,279,284,294,277"/>
+<area shape="poly" id="edge11_Node000009_Node000004" title=" " alt="" coords="304,345,161,390,159,385,303,340"/>
+<area shape="poly" id="edge13_Node000010_Node000004" title=" " alt="" coords="289,155,282,160,251,187,224,217,178,284,146,345,127,389,122,387,141,343,174,281,220,214,248,183,278,156,286,151"/>
+<area shape="poly" id="edge15_Node000011_Node000007" title=" " alt="" coords="308,781,177,752,178,747,309,776"/>
+<area shape="poly" id="edge18_Node000013_Node000004" title=" " alt="" coords="518,422,209,407,209,402,519,417"/>
+<area shape="rect" id="Node000014" href="$max17616_8c.html#ab54e40344182c79e5f9cb25d1e8c3fdf" title="Read MAX17616 device status." alt="" coords="293,565,468,591"/>
+<area shape="poly" id="edge19_Node000013_Node000014" title=" " alt="" coords="549,444,531,452,488,479,449,511,395,567,391,563,446,507,485,475,528,448,547,439"/>
+<area shape="poly" id="edge20_Node000014_Node000004" title=" " alt="" coords="312,563,279,548,231,516,188,478,129,415,133,412,192,474,234,511,281,544,314,558"/>
+<area shape="poly" id="edge21_Node000014_Node000007" title=" " alt="" coords="348,600,142,726,139,722,346,596"/>
+<area shape="poly" id="edge23_Node000015_Node000004" title=" " alt="" coords="533,469,200,416,201,411,534,464"/>
+<area shape="poly" id="edge24_Node000015_Node000014" title=" " alt="" coords="555,509,530,518,411,568,409,563,528,513,553,504"/>
+<area shape="poly" id="edge26_Node000016_Node000004" title=" " alt="" coords="549,527,421,500,279,463,209,439,149,416,151,411,211,434,281,458,422,495,550,521"/>
+<area shape="poly" id="edge27_Node000016_Node000014" title=" " alt="" coords="538,557,465,568,464,563,537,551"/>
+<area shape="poly" id="edge29_Node000017_Node000004" title=" " alt="" coords="546,622,485,631,416,635,346,628,311,619,279,606,248,587,220,563,175,509,142,454,123,415,128,412,147,452,179,506,224,560,251,583,281,601,313,614,347,622,416,629,484,626,546,617"/>
+<area shape="poly" id="edge30_Node000017_Node000014" title=" " alt="" coords="534,592,468,587,468,582,534,587"/>
+<area shape="poly" id="edge32_Node000018_Node000004" title=" " alt="" coords="534,679,473,682,407,678,341,665,309,654,279,639,246,616,217,587,192,555,171,522,139,459,122,414,127,412,144,457,175,519,196,552,221,584,249,612,281,634,311,649,342,660,408,673,473,676,533,674"/>
+<area shape="poly" id="edge33_Node000018_Node000014" title=" " alt="" coords="553,639,528,631,417,593,419,588,530,626,555,634"/>
+<area shape="poly" id="edge35_Node000019_Node000004" title=" " alt="" coords="515,384,209,399,209,394,515,378"/>
+<area shape="poly" id="edge36_Node000019_Node000014" title=" " alt="" coords="545,395,531,403,482,442,442,488,411,533,391,566,387,564,407,530,438,485,479,438,528,398,543,391"/>
+</map>

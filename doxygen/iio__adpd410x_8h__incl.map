@@ -1,0 +1,12 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/photo&#45;electronic/adpd410x/iio_adpd410x.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/photo&#45;electronic/adpd410x/iio_adpd410x.h">
+<area shape="rect" id="Node000001" title="Header file of adpd410x iio." alt="" coords="36,5,215,75"/>
+<area shape="rect" id="Node000002" href="$iio__types_8h.html" title="Header file for iio_types." alt="" coords="79,123,172,148"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="128,75,128,109,123,109,123,75"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,196,88,221"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="114,150,71,189,68,185,111,146"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="151,269,222,295"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="130,148,139,181,153,220,173,257,169,259,148,222,134,183,125,149"/>
+<area shape="rect" id="Node000005" href="$no__os__circular__buffer_8h.html" title="Circular buffer library header." alt="" coords="163,196,333,221"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="146,146,218,187,215,191,144,150"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="240,223,208,261,204,257,236,220"/>
+</map>

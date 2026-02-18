@@ -1,0 +1,18 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/maxim/max32690/maxim_usb_uart.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/maxim/max32690/maxim_usb_uart.h">
+<area shape="rect" id="Node000001" title="Header file of USB CDC ACM driver for maxim platform." alt="" coords="109,5,379,60"/>
+<area shape="rect" id="Node000002" href="$no__os__irq_8h.html" title="Header file of IRQ interface." alt="" coords="291,181,387,207"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="262,59,327,168,322,171,257,62"/>
+<area shape="rect" id="Node000004" href="$no__os__uart_8h.html" title="Header file of UART interface." alt="" coords="146,108,251,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="233,61,213,97,209,95,228,59"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="218,255,289,280"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="327,209,279,248,276,244,323,205"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="208,132,230,180,250,240,245,242,226,182,203,135"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="5,255,88,280"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="152,136,110,154,90,167,73,183,58,211,51,241,46,240,53,209,69,180,86,163,107,149,150,131"/>
+<area shape="rect" id="Node000006" href="$no__os__lf256fifo_8h.html" title="SPSC lock&#45;free fifo of fixed size (256), specialized for UART." alt="" coords="83,181,216,207"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="193,135,167,172,163,169,188,132"/>
+<area shape="poly" id="edge8_Node000006_Node000003" title=" " alt="" coords="168,204,226,244,223,249,165,209"/>
+<area shape="poly" id="edge9_Node000006_Node000005" title=" " alt="" coords="134,209,76,249,73,244,131,204"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="114,255,185,280"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="152,207,152,241,147,241,147,207"/>
+</map>
