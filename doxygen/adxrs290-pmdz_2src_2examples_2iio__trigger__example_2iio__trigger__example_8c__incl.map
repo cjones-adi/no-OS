@@ -1,0 +1,50 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/projects/adxrs290&#45;pmdz/src/examples/iio_trigger_example/iio_trigger_example.c" name="/home/runner/work/no&#45;OS/no&#45;OS/projects/adxrs290&#45;pmdz/src/examples/iio_trigger_example/iio_trigger_example.c">
+<area shape="rect" id="Node000001" title="Implementation of IIO trigger example for eval&#45;adxrs290&#45;pmdz project." alt="" coords="302,5,533,75"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="129,123,239,148"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="334,77,226,120,224,115,332,72"/>
+<area shape="rect" id="Node000003" href="$iio__adxrs290_8h.html" title="Implementation of ADXRS290 iio." alt="" coords="263,123,380,148"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="385,77,345,115,341,111,381,73"/>
+<area shape="rect" id="Node000008" href="$iio__trigger_8h.html" title="Header file for iio_trigger." alt="" coords="336,196,435,221"/>
+<area shape="poly" id="edge21_Node000001_Node000008" title=" " alt="" coords="413,75,393,183,388,182,408,74"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="506,123,633,148"/>
+<area shape="poly" id="edge22_Node000001_Node000014" title=" " alt="" coords="474,73,540,113,537,118,471,77"/>
+<area shape="rect" id="Node000015" href="$iio__app_8h.html" title="Header file of iio_app." alt="" coords="475,196,557,221"/>
+<area shape="poly" id="edge23_Node000001_Node000015" title=" " alt="" coords="440,74,505,183,500,186,435,76"/>
+<area shape="rect" id="Node000004" href="$iio__types_8h.html" title="Header file for iio_types." alt="" coords="225,343,319,368"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="321,149,280,330,275,328,316,148"/>
+<area shape="poly" id="edge8_Node000003_Node000008" title=" " alt="" coords="334,147,368,184,364,188,330,150"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="5,489,88,515"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="225,364,112,383,61,398,42,407,30,418,24,431,24,446,34,476,29,478,19,446,19,430,26,414,39,403,59,393,111,377,225,359"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="403,489,474,515"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="272,369,270,403,274,423,282,440,305,461,332,477,362,487,391,493,389,499,360,492,330,482,301,465,278,443,269,424,265,404,267,368"/>
+<area shape="rect" id="Node000007" href="$no__os__circular__buffer_8h.html" title="Circular buffer library header." alt="" coords="292,416,463,441"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="290,366,350,406,348,411,287,370"/>
+<area shape="poly" id="edge7_Node000007_Node000006" title=" " alt="" coords="389,440,422,477,418,481,385,443"/>
+<area shape="poly" id="edge18_Node000008_Node000004" title=" " alt="" coords="378,223,291,334,287,330,374,220"/>
+<area shape="rect" id="Node000009" href="$iio_8h.html" title="Header file of iio." alt="" coords="360,269,411,295"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="388,222,388,256,383,256,383,222"/>
+<area shape="rect" id="Node000013" href="$no__os__irq_8h.html" title="Header file of IRQ interface." alt="" coords="485,269,581,295"/>
+<area shape="poly" id="edge19_Node000008_Node000013" title=" " alt="" coords="410,219,498,261,496,266,408,224"/>
+<area shape="poly" id="edge10_Node000009_Node000004" title=" " alt="" coords="369,297,303,338,300,333,366,292"/>
+<area shape="rect" id="Node000010" href="$no__os__uart_8h.html" title="Header file of UART interface." alt="" coords="343,343,449,368"/>
+<area shape="poly" id="edge11_Node000009_Node000010" title=" " alt="" coords="390,295,395,329,390,330,384,295"/>
+<area shape="poly" id="edge13_Node000010_Node000005" title=" " alt="" coords="343,369,73,418,64,430,57,445,50,476,45,475,52,443,59,427,71,414,343,363"/>
+<area shape="poly" id="edge12_Node000010_Node000006" title=" " alt="" coords="423,366,453,385,466,399,477,415,481,432,478,449,461,480,457,477,473,448,476,432,472,417,462,402,449,390,420,370"/>
+<area shape="rect" id="Node000011" href="$no__os__lf256fifo_8h.html" title="SPSC lock&#45;free fifo of fixed size (256), specialized for UART." alt="" coords="84,416,217,441"/>
+<area shape="poly" id="edge14_Node000010_Node000011" title=" " alt="" coords="357,371,204,415,203,410,356,365"/>
+<area shape="poly" id="edge17_Node000011_Node000005" title=" " alt="" coords="135,444,77,483,74,479,132,439"/>
+<area shape="poly" id="edge16_Node000011_Node000006" title=" " alt="" coords="198,439,391,486,389,491,196,444"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="115,489,186,515"/>
+<area shape="poly" id="edge15_Node000011_Node000012" title=" " alt="" coords="153,442,153,476,148,476,148,442"/>
+<area shape="poly" id="edge20_Node000013_Node000006" title=" " alt="" coords="535,295,526,360,514,402,497,443,482,464,465,482,461,478,478,460,492,440,509,400,520,359,530,294"/>
+<area shape="poly" id="edge24_Node000015_Node000009" title=" " alt="" coords="496,224,420,265,417,260,494,219"/>
+<area shape="poly" id="edge26_Node000015_Node000010" title=" " alt="" coords="508,223,416,334,412,330,504,220"/>
+<area shape="poly" id="edge25_Node000015_Node000013" title=" " alt="" coords="521,221,530,256,525,257,516,222"/>
+<area shape="rect" id="Node000016" href="$no__os__error_8h.html" title="Error codes definition." alt="" coords="656,269,765,295"/>
+<area shape="poly" id="edge27_Node000015_Node000016" title=" " alt="" coords="548,219,667,262,665,267,546,224"/>
+<area shape="rect" id="Node000018" href="$no__os__delay_8h.html" title="Header file of Delay functions." alt="" coords="589,416,702,441"/>
+<area shape="poly" id="edge29_Node000015_Node000018" title=" " alt="" coords="539,219,568,239,595,268,615,302,629,338,644,402,639,403,624,340,610,304,591,271,565,244,536,224"/>
+<area shape="rect" id="Node000017" href="$errno_8h.html" title="Error macro definition for ARM Compiler." alt="" coords="677,343,745,368"/>
+<area shape="poly" id="edge28_Node000016_Node000017" title=" " alt="" coords="713,295,713,329,708,329,708,295"/>
+<area shape="poly" id="edge30_Node000018_Node000006" title=" " alt="" coords="613,444,486,487,484,482,611,439"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/projects/adt7420&#45;pmdz/src/platform/linux/main.c" name="/home/runner/work/no&#45;OS/no&#45;OS/projects/adt7420&#45;pmdz/src/platform/linux/main.c">
+<area shape="rect" id="Node000001" title="Main file for Linux platform of adt7420&#45;pmdz project." alt="" coords="15,5,246,60"/>
+<area shape="rect" id="Node000002" href="$adt7420-pmdz_2src_2platform_2linux_2parameters_8h.html" title="Definitions specific to Linux platform used by adt7420&#45;pmdz project." alt="" coords="5,108,115,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="111,62,80,99,76,96,107,58"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="139,108,266,133"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="155,58,186,96,182,99,151,62"/>
+<area shape="rect" id="Node000003" href="$linux__i2c_8h.html" title=" " alt="" coords="14,181,106,207"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="63,134,63,168,57,168,57,134"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="25,255,95,280"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="63,207,63,241,57,241,57,207"/>
+</map>

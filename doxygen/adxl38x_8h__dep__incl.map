@@ -1,0 +1,15 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/accel/adxl38x/adxl38x.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/accel/adxl38x/adxl38x.h">
+<area shape="rect" id="Node000001" title="Header file of ADXL38X Driver." alt="" coords="517,5,692,60"/>
+<area shape="rect" id="Node000002" href="$adxl38x_8c.html" title="Implementation of ADXL38X Driver." alt="" coords="5,115,180,170"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="504,51,356,75,193,111,168,118,166,113,192,105,355,70,503,45"/>
+<area shape="rect" id="Node000003" href="$eval-adxl38x_2src_2common_2common__data_8h.html" title="Defines common data to be used by eval&#45;adxl38x examples." alt="" coords="205,115,477,170"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="529,68,406,118,404,113,527,63"/>
+<area shape="rect" id="Node000005" href="$basic__example__main_8c.html" title="Main program for basic example eval&#45;adxl38x project." alt="" coords="501,108,709,177"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="607,74,607,108,602,108,602,74"/>
+<area shape="rect" id="Node000006" href="$fifo__example__main_8c.html" title="Main program for FIFO example eval&#45;adxl38x project." alt="" coords="733,108,959,177"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="677,63,772,105,770,110,675,68"/>
+<area shape="rect" id="Node000007" href="$selftest__example__main_8c.html" title="Main program for self test example eval&#45;adxl38x project." alt="" coords="983,108,1237,177"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="706,51,972,105,984,108,983,113,971,111,705,56"/>
+<area shape="rect" id="Node000004" href="$eval-adxl38x_2src_2common_2common__data_8c.html" title="Defines common data to be used by eval&#45;adxl38x examples." alt="" coords="205,225,476,280"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="343,184,343,225,338,225,338,184"/>
+</map>

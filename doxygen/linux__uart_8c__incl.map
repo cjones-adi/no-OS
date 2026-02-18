@@ -1,0 +1,36 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/linux/linux_uart.c" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/linux/linux_uart.c">
+<area shape="rect" id="Node000001" title="Implementation of Linux platform UART Driver." alt="" coords="327,5,524,60"/>
+<area shape="rect" id="Node000002" href="$no__os__error_8h.html" title="Error codes definition." alt="" coords="5,108,115,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="327,60,123,107,121,102,326,54"/>
+<area shape="rect" id="Node000004" href="$no__os__alloc_8h.html" title=" " alt="" coords="190,108,301,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="371,62,283,105,280,100,369,58"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="152,181,219,207"/>
+<area shape="poly" id="edge15_Node000001_Node000005" title=" " alt="" coords="327,54,237,78,201,93,179,110,173,123,172,138,178,168,172,169,166,138,168,121,175,106,198,88,235,73,326,49"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="303,328,374,353"/>
+<area shape="poly" id="edge16_Node000001_Node000006" title=" " alt="" coords="399,62,381,84,366,109,349,164,341,221,339,274,340,314,334,314,333,274,336,221,344,163,362,107,377,81,395,58"/>
+<area shape="rect" id="Node000007" href="$linux__uart_8h.html" title=" " alt="" coords="376,108,475,133"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="428,60,428,94,423,94,423,60"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="499,108,562,133"/>
+<area shape="poly" id="edge14_Node000001_Node000012" title=" " alt="" coords="459,58,507,97,504,101,456,62"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="586,108,670,133"/>
+<area shape="poly" id="edge17_Node000001_Node000013" title=" " alt="" coords="488,58,589,100,587,105,486,63"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="695,108,769,133"/>
+<area shape="poly" id="edge18_Node000001_Node000014" title=" " alt="" coords="520,57,682,103,681,108,518,63"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="793,108,881,133"/>
+<area shape="poly" id="edge19_Node000001_Node000015" title=" " alt="" coords="525,52,780,105,779,110,523,57"/>
+<area shape="rect" id="Node000003" href="$errno_8h.html" title="Error macro definition for ARM Compiler." alt="" coords="26,181,94,207"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="63,134,63,168,57,168,57,134"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="237,135,206,173,202,169,233,132"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="253,133,331,314,326,316,248,135"/>
+<area shape="rect" id="Node000008" href="$no__os__uart_8h.html" title="Header file of UART interface." alt="" coords="409,181,514,207"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="434,132,452,168,447,170,429,135"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="547,328,618,353"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="503,204,541,223,559,236,574,253,586,284,588,314,583,314,581,285,570,256,556,240,539,227,501,209"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="425,328,508,353"/>
+<area shape="poly" id="edge9_Node000008_Node000010" title=" " alt="" coords="450,209,423,240,416,260,417,279,429,299,444,317,440,320,424,303,412,281,410,259,418,238,445,205"/>
+<area shape="rect" id="Node000011" href="$no__os__lf256fifo_8h.html" title="SPSC lock&#45;free fifo of fixed size (256), specialized for UART." alt="" coords="427,255,560,280"/>
+<area shape="poly" id="edge10_Node000008_Node000011" title=" " alt="" coords="469,206,485,241,480,243,464,208"/>
+<area shape="poly" id="edge11_Node000011_Node000006" title=" " alt="" coords="470,282,377,325,375,320,467,278"/>
+<area shape="poly" id="edge12_Node000011_Node000009" title=" " alt="" coords="509,278,559,317,556,321,506,282"/>
+<area shape="poly" id="edge13_Node000011_Node000010" title=" " alt="" coords="491,281,478,316,473,314,486,279"/>
+</map>

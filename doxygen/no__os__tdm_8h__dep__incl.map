@@ -1,0 +1,10 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/include/no_os_tdm.h" name="/home/runner/work/no&#45;OS/no&#45;OS/include/no_os_tdm.h">
+<area shape="rect" id="Node000001" title="Header file of TDM Interface." alt="" coords="125,5,291,60"/>
+<area shape="rect" id="Node000002" href="$no__os__tdm_8c.html" title="Implementation of the TDM interface." alt="" coords="5,108,171,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="168,71,121,110,118,106,164,67"/>
+<area shape="rect" id="Node000003" href="$stm32__tdm_8c.html" title="Implementation of TDM driver using STM32&#39;s SAI peripheral." alt="" coords="177,211,375,265"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="215,73,223,117,236,162,261,209,256,212,231,164,218,118,210,74"/>
+<area shape="rect" id="Node000004" href="$stm32__tdm_8h.html" title="Header file for the stm32 tdm driver." alt="" coords="245,108,443,163"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="256,66,310,106,307,110,253,70"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="321,176,296,212,292,209,316,173"/>
+</map>

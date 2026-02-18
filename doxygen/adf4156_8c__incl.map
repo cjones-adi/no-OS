@@ -1,0 +1,24 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/frequency/adf4156/adf4156.c" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/frequency/adf4156/adf4156.c">
+<area shape="rect" id="Node000001" title="Implementation of ADF4156 Driver for Microblaze processor." alt="" coords="81,5,287,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,181,72,207"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="83,62,50,82,25,109,20,123,19,138,28,168,23,170,14,139,14,122,20,107,47,78,81,58"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="117,181,187,207"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="181,61,160,168,154,167,176,60"/>
+<area shape="rect" id="Node000004" href="$adf4156_8h.html" title="Header file of ADF4156 Driver for Microblaze processor." alt="" coords="222,181,309,207"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="200,59,256,168,251,170,195,61"/>
+<area shape="rect" id="Node000008" href="$adf4156__cfg_8h.html" title="Header file of ADF4156 Driver Configuration." alt="" coords="272,108,387,133"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="230,58,299,99,297,103,227,62"/>
+<area shape="rect" id="Node000009" href="$no__os__alloc_8h.html" title=" " alt="" coords="35,108,146,133"/>
+<area shape="poly" id="edge11_Node000001_Node000009" title=" " alt="" coords="157,62,115,100,112,96,154,58"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="230,328,301,353"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="247,209,222,229,202,256,200,273,207,290,220,305,236,318,233,322,216,309,203,292,195,274,198,254,218,225,243,205"/>
+<area shape="rect" id="Node000006" href="$no__os__gpio_8h.html" title="Header file of GPIO Interface." alt="" coords="212,255,319,280"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="268,207,268,241,263,241,263,207"/>
+<area shape="rect" id="Node000007" href="$no__os__spi_8h.html" title="Header file of SPI Interface." alt="" coords="343,255,441,280"/>
+<area shape="poly" id="edge7_Node000004_Node000007" title=" " alt="" coords="287,204,361,245,358,250,284,209"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="268,280,268,314,263,314,263,280"/>
+<area shape="poly" id="edge8_Node000007_Node000005" title=" " alt="" coords="373,282,299,323,297,319,370,278"/>
+<area shape="poly" id="edge10_Node000008_Node000004" title=" " alt="" coords="321,135,287,173,283,169,317,132"/>
+<area shape="poly" id="edge12_Node000009_Node000002" title=" " alt="" coords="84,135,57,172,53,169,80,132"/>
+<area shape="poly" id="edge13_Node000009_Node000003" title=" " alt="" coords="103,132,135,169,131,173,99,135"/>
+</map>

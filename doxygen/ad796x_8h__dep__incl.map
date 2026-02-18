@@ -1,0 +1,14 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/adc/ad796x/ad796x.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/adc/ad796x/ad796x.h">
+<area shape="rect" id="Node000001" title="Header file of AD796X Driver." alt="" coords="291,5,456,60"/>
+<area shape="rect" id="Node000002" href="$ad796x_8c.html" title="Implementation of AD796X Driver." alt="" coords="5,115,171,170"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="292,67,158,118,156,113,290,62"/>
+<area shape="rect" id="Node000003" href="$ad796x__fmcz_2src_2common_2common__data_8c.html" title="Defines common data to be used by iio examples." alt="" coords="164,225,417,280"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="281,69,256,87,237,109,229,127,228,141,237,176,250,202,266,223,262,227,245,204,232,178,222,142,224,125,232,107,252,83,277,64"/>
+<area shape="rect" id="Node000004" href="$ad796x__fmcz_2src_2common_2common__data_8h.html" title="Defines common data to be used by iio examples." alt="" coords="246,115,501,170"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="376,74,376,115,371,115,371,74"/>
+<area shape="rect" id="Node000005" href="$ad796x__fmcz_2src_2examples_2basic__example_2basic__example_8c.html" title="Implementation of BASIC example." alt="" coords="525,108,723,177"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="448,63,547,105,545,110,446,68"/>
+<area shape="rect" id="Node000006" href="$ad796x__fmcz_2src_2examples_2iio__example_2iio__example_8c.html" title="Implementation of IIO example for iio project." alt="" coords="747,108,983,177"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="470,50,737,105,748,108,747,113,735,111,469,55"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="347,183,313,227,309,223,343,180"/>
+</map>

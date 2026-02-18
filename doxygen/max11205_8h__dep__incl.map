@@ -1,0 +1,13 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/adc/max11205/max11205.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/adc/max11205/max11205.h">
+<area shape="rect" id="Node000001" title="Implementation of max11205.h." alt="" coords="351,5,531,60"/>
+<area shape="rect" id="Node000002" href="$iio__max11205_8c.html" title="Implementation of iio max11205 driver." alt="" coords="5,115,208,170"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="348,67,189,118,187,113,346,62"/>
+<area shape="rect" id="Node000003" href="$max11205_8c.html" title="Implementation of max11205.c." alt="" coords="232,115,411,170"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="403,71,352,117,349,113,400,67"/>
+<area shape="rect" id="Node000004" href="$max11205pmb1_2src_2common_2common__data_8h.html" title="Defines common data to be used by max11205pmb1 examples." alt="" coords="435,115,690,170"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="483,67,535,113,531,117,480,71"/>
+<area shape="rect" id="Node000006" href="$max11205pmb1_2src_2examples_2basic__example_2basic__example_8c.html" title="Implementation of basic example for max11205pmb1 project." alt="" coords="714,108,969,177"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="545,59,718,105,716,111,544,64"/>
+<area shape="rect" id="Node000005" href="$max11205pmb1_2src_2common_2common__data_8c.html" title="Defines common data to be used by max11205pmb1 examples." alt="" coords="435,225,690,280"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="565,184,565,225,560,225,560,184"/>
+</map>

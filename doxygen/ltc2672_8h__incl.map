@@ -1,0 +1,16 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/dac/ltc2672/ltc2672.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/dac/ltc2672/ltc2672.h">
+<area shape="rect" id="Node000001" title="Header file of ltc2672 Driver." alt="" coords="96,5,261,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="47,181,118,207"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="97,53,50,74,29,90,13,109,9,126,16,143,31,158,50,172,47,176,28,162,12,146,3,127,8,107,26,86,47,70,95,48"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="23,108,105,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="145,62,92,102,89,97,142,58"/>
+<area shape="rect" id="Node000004" href="$no__os__spi_8h.html" title="Header file of SPI Interface." alt="" coords="129,108,228,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="181,60,181,94,176,94,176,60"/>
+<area shape="rect" id="Node000005" href="$no__os__error_8h.html" title="Error codes definition." alt="" coords="252,108,361,133"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="219,58,280,98,277,103,216,62"/>
+<area shape="rect" id="Node000007" href="$no__os__units_8h.html" title="Header file of Units." alt="" coords="386,108,497,133"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="260,58,394,101,392,106,258,63"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="165,136,111,175,108,171,162,131"/>
+<area shape="rect" id="Node000006" href="$errno_8h.html" title="Error macro definition for ARM Compiler." alt="" coords="273,181,341,207"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="309,134,309,168,304,168,304,134"/>
+</map>

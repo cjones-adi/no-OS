@@ -1,0 +1,19 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/projects/eval&#45;adxl367z/src/common/common_data.c" name="/home/runner/work/no&#45;OS/no&#45;OS/projects/eval&#45;adxl367z/src/common/common_data.c">
+<area shape="rect" id="Node000001" title="Defines common data to be used by eval&#45;adxl367z examples." alt="" coords="12,5,291,60"/>
+<area shape="rect" id="Node000002" href="$eval-adxl367z_2src_2common_2common__data_8h.html" title="Defines common data to be used by eval&#45;adxl367z examples." alt="" coords="88,108,215,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="154,60,154,94,149,94,149,60"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,181,156,207"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="142,136,104,174,100,170,138,132"/>
+<area shape="rect" id="Node000004" href="$adxl367_8h.html" title="Header file of ADXL367 Driver." alt="" coords="180,181,267,207"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="165,132,204,170,200,174,161,136"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="245,328,316,353"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="186,209,154,222,126,238,111,258,110,267,115,278,139,302,169,318,201,328,232,334,231,339,200,334,166,323,135,306,110,282,105,268,106,256,123,234,152,217,184,204"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="125,255,207,280"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="216,209,186,246,182,242,212,205"/>
+<area shape="rect" id="Node000007" href="$no__os__spi_8h.html" title="Header file of SPI Interface." alt="" coords="231,255,330,280"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="235,205,265,242,261,246,231,209"/>
+<area shape="rect" id="Node000008" href="$no__os__i2c_8h.html" title="Header file of I2C Interface." alt="" coords="354,255,453,280"/>
+<area shape="poly" id="edge8_Node000004_Node000008" title=" " alt="" coords="253,204,362,247,360,252,251,209"/>
+<area shape="poly" id="edge7_Node000007_Node000005" title=" " alt="" coords="283,280,283,314,278,314,278,280"/>
+<area shape="poly" id="edge9_Node000008_Node000005" title=" " alt="" coords="385,282,314,323,311,319,382,278"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/gyro/adxrs290/adxrs290.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/gyro/adxrs290/adxrs290.h">
+<area shape="rect" id="Node000001" title="Implementation of ADXRS290 Driver." alt="" coords="207,5,377,60"/>
+<area shape="rect" id="Node000002" href="$adxrs290_8c.html" title="Implementation of ADXRS290 Driver." alt="" coords="5,108,176,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="229,68,144,110,142,106,226,64"/>
+<area shape="rect" id="Node000003" href="$iio__adxrs290_8c.html" title="Implementation of ADXRS290 iio." alt="" coords="200,108,384,163"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="295,74,295,108,289,108,289,74"/>
+<area shape="rect" id="Node000004" href="$adxrs290-pmdz_2src_2common_2common__data_8h.html" title="Defines common data to be used by eval&#45;adxrs290&#45;pmdz examples." alt="" coords="408,108,664,163"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="369,63,473,105,471,110,367,68"/>
+<area shape="rect" id="Node000005" href="$adxrs290-pmdz_2src_2common_2common__data_8c.html" title="Defines common data to be used by eval&#45;adxrs290&#45;pmdz examples." alt="" coords="409,211,663,265"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="539,176,539,211,533,211,533,176"/>
+</map>

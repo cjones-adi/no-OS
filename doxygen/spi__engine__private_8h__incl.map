@@ -1,0 +1,16 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/axi_core/spi_engine/spi_engine_private.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/axi_core/spi_engine/spi_engine_private.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="30,5,235,75"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="36,196,106,221"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="58,77,32,98,12,124,9,140,15,157,27,172,43,186,40,190,24,176,10,159,3,141,7,122,28,94,55,73"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="242,196,324,221"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="203,73,233,94,258,121,274,151,282,182,277,183,269,153,254,124,229,98,200,77"/>
+<area shape="rect" id="Node000004" href="$no__os__spi_8h.html" title="Header file of SPI Interface." alt="" coords="22,123,120,148"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="112,76,88,113,84,110,108,73"/>
+<area shape="rect" id="Node000005" href="$no__os__util_8h.html" title="Header file of utility functions." alt="" coords="145,123,245,148"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="157,73,182,110,177,113,153,76"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="74,148,74,182,68,182,68,148"/>
+<area shape="poly" id="edge6_Node000005_Node000002" title=" " alt="" coords="176,150,104,191,102,187,174,146"/>
+<area shape="poly" id="edge8_Node000005_Node000003" title=" " alt="" coords="211,146,259,185,256,189,207,150"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="146,196,217,221"/>
+<area shape="poly" id="edge7_Node000005_Node000006" title=" " alt="" coords="195,149,189,183,184,182,190,148"/>
+</map>

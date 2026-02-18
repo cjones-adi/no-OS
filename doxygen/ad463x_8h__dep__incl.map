@@ -1,0 +1,9 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/adc/ad463x/ad463x.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/adc/ad463x/ad463x.h">
+<area shape="rect" id="Node000001" title="Header file of AD463x Driver." alt="" coords="123,5,288,60"/>
+<area shape="rect" id="Node000002" href="$ad463x_8c.html" title="Implementation of AD463x Driver." alt="" coords="5,108,171,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="166,71,120,110,117,106,162,67"/>
+<area shape="rect" id="Node000003" href="$ad463x__fmcz_2src_2common_2common__data_8h.html" title="Defines common data to be used by ad463x&#45;fmcz examples." alt="" coords="195,108,450,163"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="248,67,294,106,290,110,245,71"/>
+<area shape="rect" id="Node000004" href="$ad463x__fmcz_2src_2common_2common__data_8c.html" title="Defines common data to be used by ad463x_fmcz examples." alt="" coords="196,211,449,265"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="325,176,325,211,320,211,320,176"/>
+</map>

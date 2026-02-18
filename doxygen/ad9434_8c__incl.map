@@ -1,0 +1,25 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/adc/ad9434/ad9434.c" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/adc/ad9434/ad9434.c">
+<area shape="rect" id="Node000001" title="Implementation of AD9434 Driver." alt="" coords="142,5,307,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,181,76,207"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="143,58,101,79,65,110,51,138,44,168,39,167,46,136,61,106,98,75,141,54"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="102,181,169,207"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="224,61,216,97,200,135,184,156,165,174,161,170,180,153,196,132,211,95,219,59"/>
+<area shape="rect" id="Node000004" href="$ad9434_8h.html" title="Header file of AD9434 Driver." alt="" coords="262,108,345,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="251,58,285,96,281,99,247,62"/>
+<area shape="rect" id="Node000008" href="$no__os__alloc_8h.html" title=" " alt="" coords="76,108,187,133"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="198,62,156,100,152,96,194,58"/>
+<area shape="rect" id="Node000009" href="$no__os__error_8h.html" title="Error codes definition." alt="" coords="426,108,535,133"/>
+<area shape="poly" id="edge12_Node000001_Node000009" title=" " alt="" coords="304,58,435,101,433,106,302,63"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="267,255,337,280"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="283,136,256,155,235,182,233,200,240,216,253,232,270,245,267,249,250,235,235,219,227,200,230,180,253,151,280,131"/>
+<area shape="rect" id="Node000006" href="$no__os__delay_8h.html" title="Header file of Delay functions." alt="" coords="245,181,359,207"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="306,134,305,168,300,168,300,134"/>
+<area shape="rect" id="Node000007" href="$no__os__spi_8h.html" title="Header file of SPI Interface." alt="" coords="383,181,482,207"/>
+<area shape="poly" id="edge7_Node000004_Node000007" title=" " alt="" coords="325,131,400,172,398,177,323,136"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="305,207,305,241,299,241,299,207"/>
+<area shape="poly" id="edge8_Node000007_Node000005" title=" " alt="" coords="413,209,336,250,334,246,410,204"/>
+<area shape="poly" id="edge11_Node000008_Node000002" title=" " alt="" coords="118,135,68,175,65,170,115,131"/>
+<area shape="poly" id="edge10_Node000008_Node000003" title=" " alt="" coords="135,134,137,168,131,168,129,134"/>
+<area shape="rect" id="Node000010" href="$errno_8h.html" title="Error macro definition for ARM Compiler." alt="" coords="507,181,575,207"/>
+<area shape="poly" id="edge13_Node000009_Node000010" title=" " alt="" coords="493,132,524,169,520,173,489,135"/>
+</map>

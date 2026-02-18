@@ -1,0 +1,40 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/adc/ad469x/ad469x.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/adc/ad469x/ad469x.h">
+<area shape="rect" id="Node000001" title="Header file for ad469x Driver." alt="" coords="335,5,500,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="76,328,159,353"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="335,53,252,79,207,97,161,119,117,146,76,177,41,214,12,256,8,266,9,275,20,293,42,308,68,321,65,325,39,313,16,297,4,277,3,265,7,253,37,211,73,173,114,142,159,115,205,92,251,74,334,48"/>
+<area shape="rect" id="Node000003" href="$spi__engine_8h.html" title=" " alt="" coords="366,108,470,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="420,60,420,94,415,94,415,60"/>
+<area shape="rect" id="Node000011" href="$clk__axi__clkgen_8h.html" title="Driver for the Analog Devices AXI CLKGEN." alt="" coords="506,108,636,133"/>
+<area shape="poly" id="edge19_Node000001_Node000011" title=" " alt="" coords="466,58,540,99,537,104,463,62"/>
+<area shape="rect" id="Node000012" href="$no__os__pwm_8h.html" title="Header file of PWM Interface." alt="" coords="22,255,133,280"/>
+<area shape="poly" id="edge21_Node000001_Node000012" title=" " alt="" coords="369,63,277,116,174,183,101,247,97,243,171,179,274,111,367,58"/>
+<area shape="rect" id="Node000013" href="$no__os__gpio_8h.html" title="Header file of GPIO Interface." alt="" coords="666,108,772,133"/>
+<area shape="poly" id="edge24_Node000001_Node000013" title=" " alt="" coords="501,55,667,102,665,107,500,60"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="485,328,556,353"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="471,130,546,150,578,164,598,180,607,198,609,218,605,237,597,256,572,292,546,321,542,317,568,289,592,254,600,236,604,217,602,200,594,183,576,169,544,155,469,135"/>
+<area shape="rect" id="Node000005" href="$xilinx__spi_8h.html" title=" " alt="" coords="488,181,584,207"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="438,131,506,172,504,176,435,136"/>
+<area shape="rect" id="Node000007" href="$spi__engine__private_8h.html" title=" " alt="" coords="184,181,342,207"/>
+<area shape="poly" id="edge8_Node000003_Node000007" title=" " alt="" coords="394,136,302,178,300,173,392,131"/>
+<area shape="rect" id="Node000010" href="$axi__dmac_8h.html" title="Driver for the Analog Devices AXI&#45;DMAC core." alt="" coords="366,181,464,207"/>
+<area shape="poly" id="edge16_Node000003_Node000010" title=" " alt="" coords="420,134,419,168,413,168,415,134"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="541,207,544,240,542,280,532,316,527,314,536,280,538,240,535,207"/>
+<area shape="rect" id="Node000006" href="$no__os__spi_8h.html" title="Header file of SPI Interface." alt="" coords="384,255,483,280"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="521,209,463,249,460,244,518,204"/>
+<area shape="poly" id="edge7_Node000006_Node000004" title=" " alt="" coords="449,278,497,317,494,321,446,282"/>
+<area shape="poly" id="edge10_Node000007_Node000002" title=" " alt="" coords="251,209,198,257,139,319,135,315,195,253,248,205"/>
+<area shape="poly" id="edge9_Node000007_Node000004" title=" " alt="" coords="277,205,319,240,374,278,424,302,473,321,471,326,422,307,371,282,316,244,274,209"/>
+<area shape="poly" id="edge11_Node000007_Node000006" title=" " alt="" coords="291,204,394,247,392,252,289,209"/>
+<area shape="rect" id="Node000008" href="$no__os__util_8h.html" title="Header file of utility functions." alt="" coords="209,255,309,280"/>
+<area shape="poly" id="edge12_Node000007_Node000008" title=" " alt="" coords="265,207,263,241,258,241,260,207"/>
+<area shape="poly" id="edge15_Node000008_Node000002" title=" " alt="" coords="238,282,154,324,152,319,235,278"/>
+<area shape="poly" id="edge13_Node000008_Node000004" title=" " alt="" coords="302,277,472,324,471,329,300,283"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="224,328,294,353"/>
+<area shape="poly" id="edge14_Node000008_Node000009" title=" " alt="" coords="262,280,262,314,256,314,256,280"/>
+<area shape="poly" id="edge17_Node000010_Node000004" title=" " alt="" coords="439,204,469,225,497,253,512,284,520,314,515,315,507,286,493,256,466,229,436,209"/>
+<area shape="poly" id="edge18_Node000010_Node000008" title=" " alt="" coords="391,209,298,251,296,246,389,204"/>
+<area shape="poly" id="edge20_Node000011_Node000004" title=" " alt="" coords="594,131,621,151,643,180,654,208,659,232,655,255,643,281,628,299,610,313,570,331,568,326,607,308,625,295,638,279,650,254,653,232,649,209,638,183,617,155,591,136"/>
+<area shape="poly" id="edge23_Node000012_Node000002" title=" " alt="" coords="87,279,107,315,102,317,82,282"/>
+<area shape="poly" id="edge22_Node000012_Node000004" title=" " alt="" coords="134,275,471,329,471,334,133,280"/>
+<area shape="poly" id="edge25_Node000013_Node000004" title=" " alt="" coords="721,134,717,163,709,202,693,244,668,282,646,300,621,315,570,333,569,328,619,310,643,296,664,278,688,242,704,201,712,162,716,133"/>
+</map>

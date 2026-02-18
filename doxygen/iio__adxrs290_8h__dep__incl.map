@@ -1,0 +1,9 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/gyro/adxrs290/iio_adxrs290.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/gyro/adxrs290/iio_adxrs290.h">
+<area shape="rect" id="Node000001" title="Implementation of ADXRS290 iio." alt="" coords="300,5,485,60"/>
+<area shape="rect" id="Node000002" href="$adxrs290-pmdz_2src_2examples_2iio__example_2iio__example_8c.html" title="Implementation of IIO example for eval&#45;adxrs290&#45;pmdz project." alt="" coords="5,115,244,185"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="320,68,204,118,202,113,318,63"/>
+<area shape="rect" id="Node000003" href="$adxrs290-pmdz_2src_2examples_2iio__timer__trigger__example_2iio__timer__trigger__example_8c.html" title="Implementation of IIO trigger example for iio_demo project." alt="" coords="269,108,517,192"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="395,73,395,108,390,108,390,73"/>
+<area shape="rect" id="Node000004" href="$adxrs290-pmdz_2src_2examples_2iio__trigger__example_2iio__trigger__example_8c.html" title="Implementation of IIO trigger example for eval&#45;adxrs290&#45;pmdz project." alt="" coords="541,115,772,185"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="466,63,581,113,578,118,464,68"/>
+</map>

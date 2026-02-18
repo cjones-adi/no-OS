@@ -1,0 +1,16 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/adc/adc_demo/adc_demo.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/adc/adc_demo/adc_demo.h">
+<area shape="rect" id="Node000001" title="Header file of ADC Demo Driver." alt="" coords="5,5,181,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="94,255,165,280"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="68,62,50,84,37,109,27,136,22,159,24,180,34,205,55,230,83,247,80,251,52,234,30,208,19,182,17,158,22,135,32,107,46,81,64,59"/>
+<area shape="rect" id="Node000003" href="$iio__types_8h.html" title="Header file for iio_types." alt="" coords="47,108,140,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="96,60,96,94,91,94,91,60"/>
+<area shape="rect" id="Node000006" href="$no__os__irq_8h.html" title="Header file of IRQ interface." alt="" coords="241,108,337,133"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="154,58,252,100,250,105,152,63"/>
+<area shape="poly" id="edge4_Node000003_Node000002" title=" " alt="" coords="79,135,62,150,48,167,39,186,42,206,62,229,88,246,85,251,59,233,38,208,34,186,43,165,59,146,75,131"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="52,181,135,207"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="96,134,96,168,91,168,91,134"/>
+<area shape="rect" id="Node000005" href="$no__os__circular__buffer_8h.html" title="Circular buffer library header." alt="" coords="159,181,329,207"/>
+<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="119,131,208,173,206,178,116,136"/>
+<area shape="poly" id="edge6_Node000005_Node000002" title=" " alt="" coords="227,209,161,250,158,245,224,204"/>
+<area shape="poly" id="edge8_Node000006_Node000002" title=" " alt="" coords="307,131,325,147,341,166,349,187,349,198,343,208,317,227,274,242,178,262,177,257,273,237,314,222,339,205,343,196,344,188,336,168,321,150,304,135"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/adc/ad713x/ad713x.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/adc/ad713x/ad713x.h">
+<area shape="rect" id="Node000001" title="Header file for the ad713x Driver." alt="" coords="211,5,376,60"/>
+<area shape="rect" id="Node000002" href="$ad713x_8c.html" title="Implementation of ad713x Driver." alt="" coords="5,108,171,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="229,68,143,110,140,106,227,63"/>
+<area shape="rect" id="Node000003" href="$ad713x__fmc_8c.html" title="Implementation of Main Function." alt="" coords="195,108,391,163"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="296,74,296,108,291,108,291,74"/>
+<area shape="rect" id="Node000004" href="$cn0561_8c.html" title="Implementation of Main Function." alt="" coords="416,108,611,163"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="364,63,457,106,455,110,362,68"/>
+</map>

@@ -1,0 +1,15 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/aducm3029/aducm3029_uart_stdio.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/aducm3029/aducm3029_uart_stdio.h">
+<area shape="rect" id="Node000001" title="Header file for UART driver stdout/stdin redirection." alt="" coords="32,5,247,75"/>
+<area shape="rect" id="Node000002" href="$no__os__uart_8h.html" title="Header file of UART interface." alt="" coords="87,123,192,148"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="142,75,142,109,137,109,137,75"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,269,76,295"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="118,150,89,170,63,197,50,227,45,257,39,256,45,225,58,195,85,166,115,146"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="201,269,283,295"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="163,146,193,166,220,194,235,225,242,255,237,257,230,227,216,198,189,170,160,150"/>
+<area shape="rect" id="Node000005" href="$no__os__lf256fifo_8h.html" title="SPSC lock&#45;free fifo of fixed size (256), specialized for UART." alt="" coords="73,196,206,221"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="142,148,142,182,137,182,137,148"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="125,224,69,263,66,259,122,219"/>
+<area shape="poly" id="edge7_Node000005_Node000004" title=" " alt="" coords="157,219,215,259,212,263,154,224"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="104,269,175,295"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="142,222,142,256,137,256,137,222"/>
+</map>

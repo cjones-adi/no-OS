@@ -1,0 +1,31 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/gyro/adxrs290/iio_adxrs290.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/gyro/adxrs290/iio_adxrs290.h">
+<area shape="rect" id="Node000001" title="Implementation of ADXRS290 iio." alt="" coords="16,5,201,60"/>
+<area shape="rect" id="Node000002" href="$iio__types_8h.html" title="Header file for iio_types." alt="" coords="190,255,283,280"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="98,61,87,93,79,131,80,170,85,188,93,205,110,223,130,237,177,255,175,260,128,242,106,227,89,208,80,190,74,171,74,130,82,92,93,60"/>
+<area shape="rect" id="Node000006" href="$iio__trigger_8h.html" title="Header file for iio_trigger." alt="" coords="144,108,243,133"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="136,58,174,96,170,100,132,62"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="454,401,536,427"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="284,275,396,301,445,314,471,326,482,340,489,356,496,387,491,388,484,357,478,343,468,330,443,319,395,306,283,281"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="201,401,272,427"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="239,280,239,388,234,388,234,280"/>
+<area shape="rect" id="Node000005" href="$no__os__circular__buffer_8h.html" title="Circular buffer library header." alt="" coords="28,328,199,353"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="218,282,147,323,144,319,215,278"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="135,351,206,392,203,397,132,356"/>
+<area shape="poly" id="edge16_Node000006_Node000002" title=" " alt="" coords="200,133,232,241,226,242,195,135"/>
+<area shape="rect" id="Node000007" href="$iio_8h.html" title="Header file of iio." alt="" coords="274,181,324,207"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="212,131,272,171,269,176,209,136"/>
+<area shape="rect" id="Node000011" href="$no__os__irq_8h.html" title="Header file of IRQ interface." alt="" coords="103,181,199,207"/>
+<area shape="poly" id="edge17_Node000006_Node000011" title=" " alt="" coords="189,135,167,171,163,168,184,132"/>
+<area shape="poly" id="edge8_Node000007_Node000002" title=" " alt="" coords="291,209,258,246,254,242,287,205"/>
+<area shape="rect" id="Node000008" href="$no__os__uart_8h.html" title="Header file of UART interface." alt="" coords="322,255,428,280"/>
+<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="313,205,354,243,351,247,309,209"/>
+<area shape="poly" id="edge11_Node000008_Node000003" title=" " alt="" coords="429,274,476,292,498,307,516,327,522,342,522,359,511,390,506,389,517,358,517,343,511,329,495,311,474,297,427,279"/>
+<area shape="poly" id="edge10_Node000008_Node000004" title=" " alt="" coords="364,282,314,330,257,392,253,389,310,326,360,278"/>
+<area shape="rect" id="Node000009" href="$no__os__lf256fifo_8h.html" title="SPSC lock&#45;free fifo of fixed size (256), specialized for UART." alt="" coords="324,328,458,353"/>
+<area shape="poly" id="edge12_Node000008_Node000009" title=" " alt="" coords="380,280,388,314,383,315,375,281"/>
+<area shape="poly" id="edge15_Node000009_Node000003" title=" " alt="" coords="409,351,468,391,465,395,406,356"/>
+<area shape="poly" id="edge14_Node000009_Node000004" title=" " alt="" coords="367,356,275,398,273,393,365,351"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="356,401,426,427"/>
+<area shape="poly" id="edge13_Node000009_Node000010" title=" " alt="" coords="394,354,394,388,388,388,388,354"/>
+<area shape="poly" id="edge18_Node000011_Node000004" title=" " alt="" coords="129,209,85,235,39,270,22,290,11,311,9,331,18,352,29,361,45,369,88,384,188,404,187,409,87,389,42,374,26,365,14,355,4,332,6,309,17,287,35,266,82,230,126,204"/>
+</map>

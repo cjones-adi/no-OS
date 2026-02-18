@@ -1,0 +1,17 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/aducm3029/aducm3029_timer.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/aducm3029/aducm3029_timer.h">
+<area shape="rect" id="Node000001" title="Header file of TIMER driver for ADuCM302x." alt="" coords="27,5,262,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="44,181,115,207"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="67,62,36,82,12,109,9,126,16,143,30,158,48,172,45,176,27,162,11,145,3,127,8,107,33,78,64,58"/>
+<area shape="rect" id="Node000003" href="$no__os__util_8h.html" title="Header file of utility functions." alt="" coords="160,108,260,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="167,58,195,95,191,99,163,62"/>
+<area shape="rect" id="Node000006" href="$no__os__timer_8h.html" title="Timer control module header." alt="" coords="23,108,136,133"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="127,62,99,99,94,95,123,58"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="284,108,443,133"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="212,58,322,100,321,105,211,63"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="190,136,114,177,111,172,188,131"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="156,181,227,207"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="210,134,200,169,195,168,204,133"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="251,181,334,207"/>
+<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="225,131,270,170,267,174,222,135"/>
+<area shape="poly" id="edge7_Node000006_Node000002" title=" " alt="" coords="82,134,82,168,77,168,77,134"/>
+</map>

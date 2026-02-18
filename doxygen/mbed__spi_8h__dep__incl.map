@@ -1,0 +1,43 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/mbed/mbed_spi.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/mbed/mbed_spi.h">
+<area shape="rect" id="Node000001" title="Header containing extra types required for SPI interface." alt="" coords="1413,5,1610,60"/>
+<area shape="rect" id="Node000002" href="$ad5460_2src_2platform_2mbed_2parameters_8h.html" title="Definitions specific to Mbed platform used by ad5460 project." alt="" coords="225,108,462,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1399,46,462,126,462,121,1398,41"/>
+<area shape="rect" id="Node000005" href="$ad74416h_2src_2platform_2mbed_2parameters_8h.html" title="Definitions specific to Mbed platform used by ad74416h project." alt="" coords="721,108,958,163"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="1400,53,959,119,958,114,1399,48"/>
+<area shape="rect" id="Node000008" href="$adf4030_2src_2platform_2mbed_2parameters_8h.html" title="Definitions specific to Mbed platform used by ADF4030 project." alt="" coords="1082,108,1319,163"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="1418,67,1282,110,1281,105,1417,62"/>
+<area shape="rect" id="Node000010" href="$adf4368_2src_2platform_2mbed_2parameters_8h.html" title="Definitions specific to Mbed platform used by ADF4368 project." alt="" coords="1393,108,1630,163"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="1514,74,1514,108,1509,108,1509,74"/>
+<area shape="rect" id="Node000013" href="$adf4377__sdz_2src_2platform_2mbed_2parameters_8h.html" title="Definitions specific to Mbed platform used by adf4377 project." alt="" coords="1705,108,1971,163"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="1610,62,1754,105,1752,110,1609,67"/>
+<area shape="rect" id="Node000016" href="$adf4382_2src_2platform_2mbed_2parameters_8h.html" title="Definitions specific to Mbed platform used by ADF4382 project." alt="" coords="2245,108,2482,163"/>
+<area shape="poly" id="edge15_Node000001_Node000016" title=" " alt="" coords="1624,45,2245,117,2244,123,1623,50"/>
+<area shape="rect" id="Node000019" href="$adf5611_2src_2platform_2mbed_2parameters_8h.html" title="Definitions specific to Mbed platform used by ADF5611 project." alt="" coords="2730,108,2967,163"/>
+<area shape="poly" id="edge18_Node000001_Node000019" title=" " alt="" coords="1624,40,2730,122,2729,128,1623,45"/>
+<area shape="rect" id="Node000003" href="$ad5460_2src_2platform_2mbed_2main_8c.html" title="Main file for Mbed platform of ad5460 project." alt="" coords="5,211,201,265"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="270,170,167,213,165,208,268,165"/>
+<area shape="rect" id="Node000004" href="$ad5460_2src_2platform_2mbed_2parameters_8c.html" title="Definition of Mbed platform data used by ad5460 project." alt="" coords="225,211,461,265"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="346,176,346,211,341,211,341,176"/>
+<area shape="rect" id="Node000006" href="$ad74416h_2src_2platform_2mbed_2main_8c.html" title="Main file for Mbed platform of ad74416h project." alt="" coords="485,211,697,265"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="763,170,657,213,655,208,761,165"/>
+<area shape="rect" id="Node000007" href="$ad74416h_2src_2platform_2mbed_2parameters_8c.html" title="Definition of Mbed platform data used by ad74416h project." alt="" coords="721,211,957,265"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="842,176,842,211,837,211,837,176"/>
+<area shape="rect" id="Node000009" href="$adf4030_2src_2platform_2mbed_2parameters_8c.html" title="Definition of Mbed platform data used by ADF4030 project." alt="" coords="981,211,1217,265"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="1166,175,1128,212,1124,209,1162,171"/>
+<area shape="rect" id="Node000011" href="$adf4368_2src_2platform_2mbed_2main_8c.html" title="Main file for Mbed platform of ADF4368 project." alt="" coords="1241,211,1443,265"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="1457,172,1388,213,1385,208,1454,168"/>
+<area shape="rect" id="Node000012" href="$adf4368_2src_2platform_2mbed_2parameters_8c.html" title="Definition of Mbed platform data used by ADF4368 project." alt="" coords="1467,211,1703,265"/>
+<area shape="poly" id="edge11_Node000010_Node000012" title=" " alt="" coords="1541,172,1568,209,1563,212,1536,175"/>
+<area shape="rect" id="Node000014" href="$adf4377__sdz_2src_2platform_2mbed_2main_8c.html" title="Main file for Mbed platform of adf4377 project." alt="" coords="1727,211,1949,265"/>
+<area shape="poly" id="edge13_Node000013_Node000014" title=" " alt="" coords="1841,176,1841,211,1835,211,1835,176"/>
+<area shape="rect" id="Node000015" href="$adf4377__sdz_2src_2platform_2mbed_2parameters_8c.html" title="Definition of Mbed platform data used by adf4377 project." alt="" coords="1973,211,2239,265"/>
+<area shape="poly" id="edge14_Node000013_Node000015" title=" " alt="" coords="1921,165,2037,208,2035,213,1920,170"/>
+<area shape="rect" id="Node000017" href="$adf4382_2src_2platform_2mbed_2main_8c.html" title="Main file for Mbed platform of ADF4382 project." alt="" coords="2263,211,2464,265"/>
+<area shape="poly" id="edge16_Node000016_Node000017" title=" " alt="" coords="2366,176,2366,211,2361,211,2361,176"/>
+<area shape="rect" id="Node000018" href="$adf4382_2src_2platform_2mbed_2parameters_8c.html" title="Definition of Mbed platform data used by ADF4382 project." alt="" coords="2488,211,2724,265"/>
+<area shape="poly" id="edge17_Node000016_Node000018" title=" " alt="" coords="2440,165,2544,208,2542,213,2438,170"/>
+<area shape="rect" id="Node000020" href="$adf5611_2src_2platform_2mbed_2main_8c.html" title="Main file for Mbed platform of ADF5611 project." alt="" coords="2748,211,2949,265"/>
+<area shape="poly" id="edge19_Node000019_Node000020" title=" " alt="" coords="2851,176,2851,211,2846,211,2846,176"/>
+<area shape="rect" id="Node000021" href="$adf5611_2src_2platform_2mbed_2parameters_8c.html" title="Definition of Mbed platform data used by ADF5611 project." alt="" coords="2973,211,3209,265"/>
+<area shape="poly" id="edge20_Node000019_Node000021" title=" " alt="" coords="2925,165,3029,208,3027,213,2923,170"/>
+</map>

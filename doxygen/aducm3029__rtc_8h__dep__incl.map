@@ -1,0 +1,7 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/aducm3029/aducm3029_rtc.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/aducm3029/aducm3029_rtc.h">
+<area shape="rect" id="Node000001" title="Header file of RTC driver for ADuCM302x." alt="" coords="125,5,343,60"/>
+<area shape="rect" id="Node000002" href="$aducm3029__irq_8c.html" title="Implementation of External IRQ driver for ADuCM302x." alt="" coords="5,108,223,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="194,71,147,110,144,106,190,67"/>
+<area shape="rect" id="Node000003" href="$aducm3029__rtc_8c.html" title="Implementation of RTC driver for ADuCM302x." alt="" coords="247,108,464,163"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="278,67,325,106,322,110,275,71"/>
+</map>

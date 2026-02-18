@@ -1,0 +1,10 @@
+<map id="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/stm32/stm32_i2c.h" name="/home/runner/work/no&#45;OS/no&#45;OS/drivers/platform/stm32/stm32_i2c.h">
+<area shape="rect" id="Node000001" title="Header file for the stm32 i2c driver." alt="" coords="141,5,339,60"/>
+<area shape="rect" id="Node000002" href="$stm32__i2c_8c.html" title="Implementation of stm32 i2c driver." alt="" coords="5,108,203,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="195,70,141,110,138,106,192,66"/>
+<area shape="rect" id="Node000003" href="$ltm3360b_2src_2platform_2stm32_2parameters_8c.html" title="Definition of STM32 platform data used by LTM3360B project." alt="" coords="199,211,439,265"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="247,73,255,117,269,162,283,187,298,209,294,212,278,189,264,164,249,118,241,74"/>
+<area shape="rect" id="Node000004" href="$ltm3360b_2src_2platform_2stm32_2parameters_8h.html" title="Definition of STM32 platform data used by LTM3360B project." alt="" coords="278,108,519,163"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="294,65,358,106,356,110,291,69"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="371,175,342,212,337,209,367,172"/>
+</map>
