@@ -261,7 +261,6 @@ struct max17616_dev {
 struct max17616_init_param {
 	struct no_os_i2c_init_param *i2c_init;
 	enum max17616_chip_id chip_id;
-	struct max17616_chip_info chip_info;
 };
 
 enum max17616_status_byte {
