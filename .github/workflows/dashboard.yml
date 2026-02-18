@@ -1,7 +1,7 @@
 name: Generate Project Metrics Dashboard
 
 on:
-  schedule:
+  # schedule:
     # Run daily at 6 AM UTC
     # - cron: '0 6 * * *'
   workflow_run:
