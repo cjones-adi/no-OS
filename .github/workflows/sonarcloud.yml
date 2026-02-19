@@ -185,7 +185,7 @@ jobs:
           -Dsonar.exclusions="**/build/**,**/libraries/azure/**,**/libraries/mbed/**,**/libraries/mbedtls/**,**/tests/**/build/**" \
           -Dsonar.test.exclusions="**/build/**" \
           -Dsonar.scm.provider=git \
-	  -Dsonar.token="${SONAR_TOKEN}"
+          -Dsonar.token="${SONAR_TOKEN}"
 
     - name: Create SonarCloud Job Summary
       if: always()
