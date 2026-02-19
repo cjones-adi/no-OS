@@ -21,7 +21,7 @@ jobs:
   sonarcloud:
     name: SonarCloud Analysis
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -73,23 +73,23 @@ jobs:
 
     - name: Generate test coverage reports
       run: |
-        echo "=== Generating test coverage for SonarCloud ===" 
-        
+        echo "=== Generating test coverage for SonarCloud ==="
+
         # Find test directories
         test_dirs=$(find tests -name "project.yml" -type f -exec dirname {} \;)
-        
+
         # Create combined coverage directory
         mkdir -p coverage
-        
+
         # Run tests and collect coverage for each test suite
         for test_dir in $test_dirs; do
           echo "Running coverage for: $test_dir"
           cd "$test_dir"
-          
+
           # Run tests with coverage
           if ceedling gcov:all > test_output.txt 2>&1; then
             echo "✅ Tests completed for $test_dir"
-            
+
             # Copy coverage files to combined directory
             if [ -d "build/artifacts/gcov" ]; then
               cp -r build/artifacts/gcov/* ../../../coverage/ 2>/dev/null || true
@@ -97,10 +97,10 @@ jobs:
           else
             echo "⚠️ Tests failed or incomplete for $test_dir"
           fi
-          
+
           cd - > /dev/null
         done
-        
+
         # Generate combined coverage report in XML format for SonarCloud
         if [ -d "coverage" ] && [ "$(ls -A coverage)" ]; then
           echo "Generating combined coverage report..."
@@ -119,26 +119,26 @@ jobs:
           echo "❌ ARM toolchain not found"
           exit 1
         fi
-        
+
         echo "✅ ARM toolchain found: $(which arm-none-eabi-gcc)"
         echo "Version: $(arm-none-eabi-gcc --version | head -1)"
-        
+
         # Generate compile_commands.json using bear
         cd drivers
-        
+
         # Clean previous builds to ensure fresh compilation
         make clean || true
-        
+
         # Generate compilation database with bear
         if bear -- make -j$(nproc); then
           echo "✅ Compilation successful"
         else
           echo "⚠️ Compilation had warnings/errors but may have produced compile_commands.json"
         fi
-        
+
         # Move compile_commands.json to root directory
         if [ -f "compile_commands.json" ]; then
-          mv compile_commands.json ../ 
+          mv compile_commands.json ../
           cd ..
           echo "✅ compile_commands.json generated successfully"
           echo "📊 Files captured: $(grep -c '"file":' compile_commands.json)"
@@ -147,7 +147,7 @@ jobs:
         else
           cd ..
           echo "⚠️ compile_commands.json not generated"
-          
+
           # Create a minimal compile_commands.json as fallback
           echo "Creating minimal compile_commands.json as fallback..."
           echo '[{"directory":"/github/workspace/drivers","command":"arm-none-eabi-gcc -c -Wall -Wformat=0 -DIIO_SUPPORT -I../include/ -I../projects/drivers/util/ example.c","file":"example.c"}]' > compile_commands.json
@@ -167,8 +167,9 @@ jobs:
           echo "⚠️ No compile_commands.json found, using basic analysis"
           COMPILE_COMMANDS_PARAM=""
         fi
-        
+
         sonar-scanner \
+          -X \
           -Dsonar.projectKey=cjones-adi_no-OS \
           -Dsonar.organization=cjones-adi \
           -Dsonar.host.url=https://sonarcloud.io \
@@ -192,7 +193,7 @@ jobs:
         PROJECT_KEY="cjones-adi_no-OS"
         ORG_KEY="cjones-adi"
         SONARCLOUD_URL="https://sonarcloud.io/project/overview?id=${PROJECT_KEY}"
-        
+
         # Check if compile_commands.json was generated
         if [ -f "compile_commands.json" ]; then
           COMPILE_DB_STATUS="✅ Generated ($(grep -c '"file":' compile_commands.json) files)"
@@ -201,10 +202,10 @@ jobs:
           COMPILE_DB_STATUS="❌ Not available"
           ANALYSIS_MODE="Basic analysis mode"
         fi
-        
+
         cat >> $GITHUB_STEP_SUMMARY << EOF
         ## [📊 SonarCloud Analysis Results](${SONARCLOUD_URL})
-        
+
         ### 🎯 Analysis Complete
         | Metric | Details |
         |--------|---------|
@@ -214,30 +215,30 @@ jobs:
         | 📈 Branch | \`${{ github.ref_name }}\` |
         | 🔧 Analysis Mode | ${ANALYSIS_MODE} |
         | 📁 Compile Database | ${COMPILE_DB_STATUS} |
-        
+
         ### 🔍 What's Analyzed
         - **Source Code**: drivers, include, iio, jesd204, libraries, network
         - **Tests**: tests directory (excluded from main analysis)
         - **Coverage**: Combined test coverage from Ceedling/gcov
         - **Languages**: C/C++ with cfamily analyzer
         - **Toolchain**: ARM GCC $(arm-none-eabi-gcc --version 2>/dev/null | head -1 | sed 's/.*) //' || echo "Not available")
-        
+
         ### 📊 Key Metrics Available
         - 🐛 **Bugs**: Reliability issues
-        - 🔒 **Security Vulnerabilities**: Security hotspots and vulnerabilities  
+        - 🔒 **Security Vulnerabilities**: Security hotspots and vulnerabilities
         - 📏 **Code Smells**: Maintainability issues
         - 📊 **Coverage**: Test coverage percentage
         - 🔄 **Duplications**: Code duplication analysis
         - 📈 **Technical Debt**: Estimated time to fix issues
-        
+
         > 💡 **Tip**: Click the dashboard link above to explore detailed metrics, quality gates, and historical trends
-        
+
         ### 🚀 Next Steps
         1. Review the SonarCloud dashboard for detailed analysis
         2. Set up quality gates based on your project standards
         3. Configure branch analysis for pull requests
         4. Integrate SonarCloud badges in your README
-        
+
         ### 🔧 Analysis Details
         - **ARM Toolchain**: $(which arm-none-eabi-gcc 2>/dev/null || echo "Not found in CI")
         - **Bear Version**: $(bear --version 2>/dev/null || echo "Not available")
