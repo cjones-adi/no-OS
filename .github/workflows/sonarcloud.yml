@@ -159,6 +159,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       run: |
+        echo "Token length check: ${#SONAR_TOKEN}"  # should be > 0 (won't print the token)
+
         # Check if compile_commands.json exists
         if [ -f "compile_commands.json" ]; then
           echo "✅ Using compile_commands.json for enhanced C/C++ analysis"
