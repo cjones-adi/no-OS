@@ -1,0 +1,753 @@
+{
+  "analysis_scope": {
+    "period": "Last 6 months (since 2025-08-25)",
+    "total_prs": 144,
+    "total_comments": 507,
+    "prs_analyzed": [
+      2908,
+      2907,
+      2906,
+      2904,
+      2903,
+      2902,
+      2901,
+      2900,
+      2899,
+      2897,
+      2896,
+      2895,
+      2892,
+      2890,
+      2889,
+      2888,
+      2887,
+      2886,
+      2885,
+      2884,
+      2883,
+      2882,
+      2881,
+      2879,
+      2877,
+      2876,
+      2874,
+      2873,
+      2871,
+      2870,
+      2869,
+      2868,
+      2867,
+      2866,
+      2865,
+      2864,
+      2863,
+      2862,
+      2861,
+      2860,
+      2858,
+      2857,
+      2855,
+      2854,
+      2853,
+      2852,
+      2851,
+      2850,
+      2849,
+      2848,
+      2847,
+      2845,
+      2844,
+      2843,
+      2841,
+      2840,
+      2839,
+      2838,
+      2836,
+      2835,
+      2834,
+      2833,
+      2832,
+      2831,
+      2830,
+      2829,
+      2820,
+      2818,
+      2817,
+      2816,
+      2814,
+      2813,
+      2812,
+      2811,
+      2810,
+      2808,
+      2805,
+      2804,
+      2803,
+      2802,
+      2801,
+      2800,
+      2798,
+      2797,
+      2796,
+      2795,
+      2793,
+      2791,
+      2788,
+      2787,
+      2786,
+      2785,
+      2784,
+      2780,
+      2779,
+      2778,
+      2777,
+      2773,
+      2771,
+      2767,
+      2766,
+      2765,
+      2763,
+      2759,
+      2758,
+      2757,
+      2752,
+      2751,
+      2750,
+      2738,
+      2737,
+      2736,
+      2735,
+      2734,
+      2733,
+      2729,
+      2728,
+      2727,
+      2726,
+      2725,
+      2724,
+      2723,
+      2722,
+      2721,
+      2720,
+      2719,
+      2717,
+      2715,
+      2714,
+      2713,
+      2712,
+      2711,
+      2710,
+      2707,
+      2705,
+      2704,
+      2703,
+      2702,
+      2701,
+      2698,
+      2697,
+      2687,
+      2675,
+      2672
+    ]
+  },
+  "category_counts": {
+    "Uncategorized": 190,
+    "Header Guards/Includes": 24,
+    "Code Organization": 21,
+    "Documentation": 62,
+    "Error Handling": 107,
+    "Constants/Magic Numbers": 12,
+    "Type Safety": 31,
+    "Testing": 22,
+    "Typos/Grammar": 14,
+    "Platform Compatibility": 3,
+    "Code Style": 12,
+    "Naming Convention": 9
+  },
+  "category_examples": {
+    "Uncategorized": [
+      {
+        "body": "OK to merge.",
+        "path": "N/A",
+        "pr": 2907
+      },
+      {
+        "body": "indeed, thanks!",
+        "path": "drivers/adc/ad717x/ad4113_regs.h",
+        "pr": 2906
+      },
+      {
+        "body": "Could be instead AD4113_4_5_ID_REG_VALUE",
+        "path": "drivers/adc/ad717x/ad717x.h",
+        "pr": 2906
+      },
+      {
+        "body": "ad411x_regs.h makes the same mistake then",
+        "path": "drivers/adc/ad717x/ad4113_regs.h",
+        "pr": 2906
+      },
+      {
+        "body": "true, will update that macro, thanks!",
+        "path": "drivers/adc/ad717x/ad717x.h",
+        "pr": 2906
+      },
+      {
+        "body": "mix of tabs and spaces.",
+        "path": "drivers/switch/adgs6414d/adgs6414d.h",
+        "pr": 2904
+      },
+      {
+        "body": "you need to update dev->switch_state too.",
+        "path": "drivers/switch/adgs6414d/adgs6414d.c",
+        "pr": 2904
+      },
+      {
+        "body": "unrelated change.",
+        "path": "drivers/switch/adgs6414d/adgs6414d.c",
+        "pr": 2904
+      },
+      {
+        "body": "this is never used.",
+        "path": "drivers/switch/adgs6414d/adgs6414d.h",
+        "pr": 2904
+      },
+      {
+        "body": "don't we need no_os_delay.c too?",
+        "path": "projects/eval-adgs6414d/src.mk",
+        "pr": 2904
+      }
+    ],
+    "Header Guards/Includes": [
+      {
+        "body": "v2:\n- fix header guard",
+        "path": "N/A",
+        "pr": 2906
+      },
+      {
+        "body": "v3:\n- add commit for fixing ad411x header guard\n- update ID reg value define.",
+        "path": "N/A",
+        "pr": 2906
+      },
+      {
+        "body": "not declared in the header file.",
+        "path": "drivers/switch/adgs6414d/adgs6414d.c",
+        "pr": 2904
+      },
+      {
+        "body": "not declared in the header file. are they static?",
+        "path": "drivers/switch/adgs6414d/adgs6414d.c",
+        "pr": 2904
+      },
+      {
+        "body": "same, no declaration in the header file.",
+        "path": "drivers/switch/adgs6414d/adgs6414d.c",
+        "pr": 2904
+      },
+      {
+        "body": "i think this is already implemented in `util` folder + `include` folder.",
+        "path": "drivers/switch/adgs6414d/adgs6414d.c",
+        "pr": 2904
+      },
+      {
+        "body": "double-underscore guards with a trailing comment:\n```\n  #ifndef __COMMON_DATA_H__\n  #define __COMMON_DATA_H__\n  ...\n  #endif /* __COMMON_DATA_H__ */\n```",
+        "path": "projects/eval-adg1736/src/common/common_data.h",
+        "pr": 2901
+      },
+      {
+        "body": "source file not header.",
+        "path": "projects/eval-adg1712/src/examples/basic/basic_example.c",
+        "pr": 2897
+      },
+      {
+        "body": "nit: include no_os_uart.h",
+        "path": "projects/eval-adg1712/src/common/common_data.h",
+        "pr": 2897
+      },
+      {
+        "body": "nit: go for plain ` code-block::`  since no bash syntax is guarded.",
+        "path": "doc/sphinx/source/build_guides/build_xilinx_vitis2025.rst",
+        "pr": 2881
+      }
+    ],
+    "Code Organization": [
+      {
+        "body": "yes, but that's unrelated to this commit's purpose. will do a separate one for this",
+        "path": "drivers/adc/ad717x/ad4113_regs.h",
+        "pr": 2906
+      },
+      {
+        "body": "these modifications are not related to what commits states. you should do a separate commit for replacing both `get` functions (not only one) with hardware reads instead of cached values. ",
+        "path": "drivers/switch/adgs6414d/adgs6414d.c",
+        "pr": 2904
+      },
+      {
+        "body": "hmm i think we should use 2 separate hardware pins for in1 and in2",
+        "path": "projects/eval-adg1736/src/platform/maxim/parameters.h",
+        "pr": 2901
+      },
+      {
+        "body": "nitpicks: trailing comma for all structures or for none of them.",
+        "path": "projects/eval-adg1712/src/common/common_data.c",
+        "pr": 2897
+      },
+      {
+        "body": "Remove import requests from here too",
+        "path": "tools/scripts/build_projects.py",
+        "pr": 2890
+      },
+      {
+        "body": "v2: skip imu category when parsing folder structure.",
+        "path": "N/A",
+        "pr": 2887
+      },
+      {
+        "body": "Using a static global variable makes this driver non-reentrant.\nIf two threads call ad5706r_spi_reg_read_multiple concurrently with different devices, they will corrupt each other's settings. Perhaps declare this struct and have it in the dev structure, so each instance has its own spi settings. ",
+        "path": "drivers/dac/ad5706r/ad5706r.c",
+        "pr": 2869
+      },
+      {
+        "body": "remove the extra blank line",
+        "path": "drivers/dac/ad5706r/ad5706r.c",
+        "pr": 2869
+      },
+      {
+        "body": "Unrelated change, please remove",
+        "path": "tools/scripts/maxim.mk",
+        "pr": 2860
+      },
+      {
+        "body": "Removed it. Was used during debug",
+        "path": "projects/eval-pqmon/src/common/flash_storage.c",
+        "pr": 2849
+      }
+    ],
+    "Documentation": [
+      {
+        "body": "some comments on my side.",
+        "path": "N/A",
+        "pr": 2904
+      },
+      {
+        "body": "minor comments regarding the commits. 2 of them are lacking a body and 56911a8bc67121b9a777178ca18f1dfef433a2c8 body is not following 50/72 rule as per https://analogdevicesinc.github.io/no-OS/contributing.html",
+        "path": "N/A",
+        "pr": 2904
+      },
+      {
+        "body": "there's a mismatch between the actual implementation and what README states fror the option menu.",
+        "path": "projects/eval-adgs6414d/src/examples/basic/basic_example.c",
+        "pr": 2904
+      },
+      {
+        "body": "this link does not work. What is the plan for documentation?",
+        "path": "drivers/switch/adg1712/README.rst",
+        "pr": 2903
+      },
+      {
+        "body": "some comments on my side.",
+        "path": "N/A",
+        "pr": 2901
+      },
+      {
+        "body": "some comments from my side.",
+        "path": "N/A",
+        "pr": 2901
+      },
+      {
+        "body": "one comment on my side, otherwise lgtm.",
+        "path": "N/A",
+        "pr": 2901
+      },
+      {
+        "body": "one comment, otherwise everything is good.",
+        "path": "N/A",
+        "pr": 2901
+      },
+      {
+        "body": "maybe move this to the documentation file?",
+        "path": "projects/eval-adg1736/src/examples/basic/basic_example.c",
+        "pr": 2901
+      },
+      {
+        "body": "the readme states that the example can be used for SW2 too.",
+        "path": "projects/eval-adg1736/src/examples/basic/basic_example.c",
+        "pr": 2901
+      }
+    ],
+    "Error Handling": [
+      {
+        "body": "inconsisntent alignment, check raw file. \n\n<img width=\"338\" height=\"101\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/bb9ff81a-5040-49a4-9e1f-6ff61d7a8f09\" />",
+        "path": "drivers/switch/adgs6414d/adgs6414d.h",
+        "pr": 2904
+      },
+      {
+        "body": "if the hardware write fails in `adgs6414d_update_err_config` then the value cached is wrong.",
+        "path": "drivers/switch/adgs6414d/adgs6414d.c",
+        "pr": 2904
+      },
+      {
+        "body": "no error handling for most of the below functions",
+        "path": "projects/eval-adgs6414d/src/examples/basic/basic_example.c",
+        "pr": 2904
+      },
+      {
+        "body": "you need to have error paths in the while loop such that the cleanup procedure is reached.",
+        "path": "projects/eval-adg1736/src/examples/basic/basic_example.c",
+        "pr": 2901
+      },
+      {
+        "body": "missing checks.",
+        "path": "projects/eval-adg1736/src/examples/basic/basic_example.c",
+        "pr": 2901
+      },
+      {
+        "body": "uart_desc is leaked",
+        "path": "projects/eval-adg1712/src/examples/basic/basic_example.c",
+        "pr": 2897
+      },
+      {
+        "body": " return (builds_dir, [])",
+        "path": "tools/scripts/build_projects.py",
+        "pr": 2890
+      },
+      {
+        "body": "an error check would be nice: \n```\n  if not environment_path_files:\n      print(\"Error: ENVIRONMENT_PATH_FILES environment variable not set\")\n      exit(1)\n```",
+        "path": "tools/scripts/build_projects.py",
+        "pr": 2890
+      },
+      {
+        "body": "```\nwget -P ./tools/scripts/ \\\n          https://raw.githubusercontent.com/...cloudsmith_helper.py && \\\n        python3 ./tools/scripts/build_projects.py .\n``` \nchain it like this if we don't want to run build_projects.py if wget fails.",
+        "path": "build_projects.yml",
+        "pr": 2890
+      },
+      {
+        "body": "> the functions are not void.\n\nTrue but the point of this patch is to avoid leaks. On no-OS there are multiple patterns for remove functions:\n- the one with buggy leaks that returns early.\n- the no error handling.\n- the ret aggregation.\n\nI'd go then for 3rd.",
+        "path": "N/A",
+        "pr": 2885
+      }
+    ],
+    "Constants/Magic Numbers": [
+      {
+        "body": "replace the magic numbers with suggestive macros (that you might already have defined).",
+        "path": "projects/eval-adgs6414d/src/examples/basic/basic_example.c",
+        "pr": 2904
+      },
+      {
+        "body": "can we get somehow these paths dynamically instead of hardcoded values? or at least define some variables with `?=` to have some defaults?",
+        "path": "tools/scripts/platform/xilinx/xsdb-nowrap",
+        "pr": 2881
+      },
+      {
+        "body": "magic numbers. consider using named constants or adding a comment explaining the logic.",
+        "path": "drivers/dac/ad5706r/ad5706r.c",
+        "pr": 2869
+      },
+      {
+        "body": "i think this will be an undefined behavior if xrmsos_int > measured_sq",
+        "path": "projects/eval-pqmon/src/common/afe_calibration.c",
+        "pr": 2849
+      },
+      {
+        "body": "magic numbers. use suggestive marcros.",
+        "path": "drivers/temperature/lm75/lm75.c",
+        "pr": 2848
+      },
+      {
+        "body": "what is 16? please check the entire code and avoid using magic numbers.",
+        "path": "drivers/adc-dac/ad5592r/iio_ad559xr.c",
+        "pr": 2848
+      },
+      {
+        "body": "magic number. deserves a define.",
+        "path": "projects/apardpfwd/src/examples/apard_communication_example/apard_communication_example.c",
+        "pr": 2832
+      },
+      {
+        "body": "magic number again.",
+        "path": "projects/apardpfwd/src/examples/apard_communication_example/apard_communication_example.c",
+        "pr": 2832
+      },
+      {
+        "body": "magic number. please add suggestive macro.",
+        "path": "drivers/potentiometer/ad514x/ad5142.c",
+        "pr": 2796
+      },
+      {
+        "body": "Avoid magic numbers. Replace them with `enum` values for `case` labels.",
+        "path": "drivers/power/max17616/iio_max17616.c",
+        "pr": 2734
+      }
+    ],
+    "Type Safety": [
+      {
+        "body": "will work at some point :) can drop this for now.",
+        "path": "drivers/switch/adg1712/README.rst",
+        "pr": 2903
+      },
+      {
+        "body": "do you intend to add iio_support? otherwise remove.",
+        "path": "projects/eval-adg1712/src/common/common_data.h",
+        "pr": 2897
+      },
+      {
+        "body": "is this print needed? or only for debug purposes?",
+        "path": "tools/scripts/download_files.py",
+        "pr": 2890
+      },
+      {
+        "body": "> I think you need to update also this.\n\nNope. \nThe output always fits in uint8_t:\nt <= 64: temp is max 64\nt <= 316: temp is max 127\nt < 1328: temp is max 191 (0xBF)",
+        "path": "N/A",
+        "pr": 2886
+      },
+      {
+        "body": "This is intentional - it's a wrapper script that replaces the original xsdb binary, so it should not have an extension. ",
+        "path": "tools/scripts/platform/xilinx/xsdb-nowrap",
+        "pr": 2881
+      },
+      {
+        "body": "I think casting &prod_id[1] to uint16_t* causes buffer overflow (writes 2 bytes starting at index 1 of a 2-byte array). Perhaps you should use separate uint16_t variables instead and combine them explicitly.",
+        "path": "drivers/dac/ad5706r/ad5706r.c",
+        "pr": 2869
+      },
+      {
+        "body": "Updated buffer sizes to account for maximum data len of 255.\r\n`uint8_t out_buff[512];\r\n\tuint8_t crc_cal[256];`",
+        "path": "drivers/dac/ad5706r/ad5706r.c",
+        "pr": 2869
+      },
+      {
+        "body": "https://github.com/analogdevicesinc/no-OS/blob/03b51fc3bb7dffda5a71a8ffdc8e7d59cf4374fa/drivers/platform/stm32/stm32_spi.h#L78\r\n\r\nShouldn't this be a pointer?",
+        "path": "drivers/platform/stm32/stm32_spi.c",
+        "pr": 2861
+      },
+      {
+        "body": "`(uint8_t *)&(SPIx->DR)`",
+        "path": "drivers/platform/stm32/stm32_spi.c",
+        "pr": 2861
+      },
+      {
+        "body": "`data` is still `uint8_t` so I don't think this will work.\r\n\r\nconsider doing ` data = no_os_bin2bcd(ts.year - (century ? 2100 : 2000));`",
+        "path": "drivers/rtc/max31343/max31343.c",
+        "pr": 2855
+      }
+    ],
+    "Testing": [
+      {
+        "body": "also https://github.com/analogdevicesinc/no-OS/pull/2903 was merged, perform a rebase with latest main branch and add the `chip_id` to the project.",
+        "path": "N/A",
+        "pr": 2897
+      },
+      {
+        "body": "dropped the test commit. rfr",
+        "path": "N/A",
+        "pr": 2879
+      },
+      {
+        "body": "v2:\r\n- rebase to latest main branch.",
+        "path": "N/A",
+        "pr": 2852
+      },
+      {
+        "body": "Last commit is wrong, Please amend the latest changes to your existing commits based on where they fit. Also, a changelog after each new version of patches helps the review proccess (reviewers know where to look instead of scanning again all the files).",
+        "path": "N/A",
+        "pr": 2832
+      },
+      {
+        "body": "added https://github.com/analogdevicesinc/no-OS/pull/2816/commits/1d9fc93422259dd7c730075bb856ece4845da6f2 for testing new ci changes.",
+        "path": "N/A",
+        "pr": 2816
+      },
+      {
+        "body": "Is this CI testing each individual commit or just HEAD of the PR?",
+        "path": "projects/adrv904x/README.rst",
+        "pr": 2802
+      },
+      {
+        "body": "added test commit for only driver/project changes (no file additions)",
+        "path": "N/A",
+        "pr": 2793
+      },
+      {
+        "body": "PR is ready for review. The changes were tested with:\r\n- new driver/project addition\r\n- driver/project changes\r\n\r\nIn each case the results were the ones expected.",
+        "path": "N/A",
+        "pr": 2793
+      },
+      {
+        "body": "Thanks. Fixed in latest commit.",
+        "path": "drivers/power/max17616/max17616.c",
+        "pr": 2734
+      },
+      {
+        "body": "Thanks. Fixed in latest commit.",
+        "path": "drivers/power/max17616/max17616.c",
+        "pr": 2734
+      }
+    ],
+    "Typos/Grammar": [
+      {
+        "body": "Some inline comments.\n\nalso typo in the commit message:  \"needs to downloaded\" should be \"needs to be downloaded\".",
+        "path": "N/A",
+        "pr": 2890
+      },
+      {
+        "body": "`celcius` -> `celsius` typo throughout the entire code.",
+        "path": "N/A",
+        "pr": 2848
+      },
+      {
+        "body": "typo: `premissions` -> `permissions`",
+        "path": "drivers/temperature/lm75/lm75.c",
+        "pr": 2848
+      },
+      {
+        "body": "typo: `written`",
+        "path": "drivers/temperature/lm75/lm75.c",
+        "pr": 2848
+      },
+      {
+        "body": "adding timeout should be considered.",
+        "path": "doc/sphinx/ext/ext_no_os.py",
+        "pr": 2840
+      },
+      {
+        "body": "is this really a reset gpio? should be more specific if so.",
+        "path": "projects/apardpfwd/src/examples/apard_communication_example/apard_communication_example.c",
+        "pr": 2832
+      },
+      {
+        "body": "variable declaration part should be separated by the rest of the code by an empty line.",
+        "path": "drivers/led/ltc3220/ltc3220.c",
+        "pr": 2795
+      },
+      {
+        "body": "this file should be move in `projects/max22007` to avoid build issue.",
+        "path": "projects/max22007/sdp-k1.ioc",
+        "pr": 2787
+      },
+      {
+        "body": "these should be initialized at declaration. reduces code duplication.",
+        "path": "drivers/dac/ad5710r/ad5710r.c",
+        "pr": 2784
+      },
+      {
+        "body": "this looks like draft code, should be removed",
+        "path": "drivers/eeprom/m24512/m24512.c",
+        "pr": 2763
+      }
+    ],
+    "Platform Compatibility": [
+      {
+        "body": "Converted to draft. Conclusion is that this part of the code will be synced with the linux driver which does not use `have_tdd_tables` at all. Therefore this change will be redundant.",
+        "path": "N/A",
+        "pr": 2866
+      },
+      {
+        "body": "v2:\n - align driver with the linux version.",
+        "path": "N/A",
+        "pr": 2866
+      },
+      {
+        "body": "v2: added `platform` to excluded_categories (@raezt )",
+        "path": "N/A",
+        "pr": 2836
+      }
+    ],
+    "Code Style": [
+      {
+        "body": "odd spacing after cast. same below",
+        "path": "drivers/platform/stm32/stm32_spi.c",
+        "pr": 2861
+      },
+      {
+        "body": "Generates an AStyle Error. \r\nhttps://dev.azure.com/AnalogDevices/no-OS/_build/results?buildId=55917&view=logs&jobId=872e579c-e443-50c6-9684-4599bc2f53a9&j=872e579c-e443-50c6-9684-4599bc2f53a9&t=d04274ca-0aa4-59e1-c721-2ab1f0d823b2",
+        "path": "drivers/platform/stm32/stm32_spi.c",
+        "pr": 2861
+      },
+      {
+        "body": "Requires some indentation",
+        "path": "network/tcp_socket.c",
+        "pr": 2860
+      },
+      {
+        "body": "changes look good, but please format properly the title of 93f97d57c28bf8b7c962eed04ff95de1038b361d",
+        "path": "N/A",
+        "pr": 2844
+      },
+      {
+        "body": "use consistent formatting. `--repo=\"${CLOUDSMITH_REPO}\"`. also the indentation is odd here.",
+        "path": "ci/release/upload_to_cloudsmith.sh",
+        "pr": 2838
+      },
+      {
+        "body": "v3: - fix astyle",
+        "path": "N/A",
+        "pr": 2835
+      },
+      {
+        "body": "the middle commit is not properly formatted. please make sure you follow the guidelines (https://analogdevicesinc.github.io/no-OS/contributing.html) especially the **50/72 rule**",
+        "path": "N/A",
+        "pr": 2813
+      },
+      {
+        "body": "ditto. no brackets.",
+        "path": "drivers/potentiometer/ad514x/ad5142.c",
+        "pr": 2796
+      },
+      {
+        "body": "ditto. drop brackets.",
+        "path": "drivers/potentiometer/ad514x/ad5143.c",
+        "pr": 2796
+      },
+      {
+        "body": "no brackets for single expressions.",
+        "path": "drivers/led/ltc3220/ltc3220.c",
+        "pr": 2795
+      }
+    ],
+    "Naming Convention": [
+      {
+        "body": "please rework this file, function names are wrong, they should not use LTC (caps) prefix",
+        "path": "drivers/led/ltc3208/README.rst",
+        "pr": 2814
+      },
+      {
+        "body": "i really dont like `dummy` as example name, make it `basic` or `bringup` or whatever doesn't have that many meanings including negative ones",
+        "path": "projects/ltc3208/Makefile",
+        "pr": 2814
+      },
+      {
+        "body": "you should set the default example something like `EXAMPLE ?= bringup` where say `src/examples/bringup` is the name of the folder that holds the example code",
+        "path": "projects/ltc3208/Makefile",
+        "pr": 2814
+      },
+      {
+        "body": "nit: prefix should be adrv904x to match the rest of the source file.",
+        "path": "drivers/rf-transceiver/koror/adrv904x_conv.c",
+        "pr": 2802
+      },
+      {
+        "body": "I just missed this: rename `makefile` to `Makefile` for consistency. Everything else, LGTM.",
+        "path": "N/A",
+        "pr": 2795
+      },
+      {
+        "body": "this should be `builds.json`. Remove the underscore `_` from the filename. Otherwise it won't be parsed by the CI. Unless you have the same issue as here: https://github.com/analogdevicesinc/no-OS/commit/df789f67eab6ff4be614dc8a5f6ae31a2d1aaf9d",
+        "path": "projects/max22007/builds.json",
+        "pr": 2787
+      },
+      {
+        "body": "Renamed the file",
+        "path": "projects/max22007/builds.json",
+        "pr": 2787
+      },
+      {
+        "body": "Comments seem redundant since the function names are self-explanatory.",
+        "path": "drivers/power/max17616/max17616.c",
+        "pr": 2734
+      },
+      {
+        "body": "missing AD4080 prefix. also avoid float values.",
+        "path": "drivers/adc/ad4080/ad4080.h",
+        "pr": 2697
+      }
+    ]
+  }
+}
