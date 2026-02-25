@@ -1,0 +1,293 @@
+#!/bin/bash
+# no-OS pre-commit hook
+# Runs code quality checks before allowing commits
+
+set -e
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+REPO_ROOT=$(git rev-parse --show-toplevel)
+cd "$REPO_ROOT"
+
+# Load configuration
+CONFIG_FILE="$REPO_ROOT/.pre-commit-config"
+if [ -f "$CONFIG_FILE" ]; then
+    source "$CONFIG_FILE"
+fi
+
+# Default configuration
+ENABLE_ASTYLE=${ENABLE_ASTYLE:-true}
+ENABLE_CPPCHECK=${ENABLE_CPPCHECK:-true}
+ENABLE_BUILD_CHECK=${ENABLE_BUILD_CHECK:-false}  # Disabled by default (can be slow)
+ENABLE_DOC_CHECK=${ENABLE_DOC_CHECK:-true}
+ENABLE_REVIEW_CHECK=${ENABLE_REVIEW_CHECK:-true}
+ENABLE_BRANCH_CHECK=${ENABLE_BRANCH_CHECK:-true}
+
+# Helper functions
+echo_info() {
+    echo -e "${BLUE}ℹ️  $1${NC}"
+}
+
+echo_success() {
+    echo -e "${GREEN}✅ $1${NC}"
+}
+
+echo_warning() {
+    echo -e "${YELLOW}⚠️  $1${NC}"
+}
+
+echo_error() {
+    echo -e "${RED}❌ $1${NC}"
+}
+
+# Get list of staged files
+get_staged_files() {
+    git diff --cached --name-only --diff-filter=d
+}
+
+get_staged_c_files() {
+    get_staged_files | grep -E '\.(c|h)$' || true
+}
+
+get_staged_projects() {
+    get_staged_files | grep '^projects/' | cut -d'/' -f2 | sort -u || true
+}
+
+# Check if AStyle is available
+check_astyle() {
+    if [ "$ENABLE_ASTYLE" != "true" ]; then
+        return 0
+    fi
+
+    echo_info "Checking code style (AStyle)..."
+
+    # Build AStyle if not available
+    if [ ! -f "build/astyle/build/gcc/bin/astyle" ]; then
+        echo_warning "AStyle not found, building..."
+        ./ci/astyle.sh HEAD~1 > /dev/null 2>&1 || {
+            echo_error "Failed to build AStyle"
+            return 1
+        }
+    fi
+
+    local c_files=$(get_staged_c_files)
+    if [ -z "$c_files" ]; then
+        echo_success "No C/C++ files to check"
+        return 0
+    fi
+
+    # Check each staged C/C++ file
+    local style_issues=false
+    for file in $c_files; do
+        if [ -f "$file" ]; then
+            # Create a temporary copy to test formatting
+            cp "$file" "$file.tmp"
+            ./build/astyle/build/gcc/bin/astyle --options=ci/astyle_config "$file.tmp" > /dev/null 2>&1
+
+            if ! cmp -s "$file" "$file.tmp"; then
+                echo_error "Code style issues in: $file"
+                style_issues=true
+            fi
+            rm -f "$file.tmp"
+        fi
+    done
+
+    if [ "$style_issues" = "true" ]; then
+        echo_error "Code style check failed!"
+        echo_info "Run: git diff --cached --name-only | grep -E '\.(c|h)$' | xargs -I {} ./build/astyle/build/gcc/bin/astyle --options=ci/astyle_config {}"
+        echo_info "Then stage the corrected files: git add <files>"
+        return 1
+    fi
+
+    echo_success "Code style check passed"
+    return 0
+}
+
+# Check with Cppcheck
+check_cppcheck() {
+    if [ "$ENABLE_CPPCHECK" != "true" ]; then
+        return 0
+    fi
+
+    echo_info "Running static analysis (Cppcheck)..."
+
+    # Check if cppcheck is installed
+    if ! command -v cppcheck > /dev/null 2>&1; then
+        echo_warning "Cppcheck not found, skipping static analysis"
+        return 0
+    fi
+
+    local c_files=$(get_staged_c_files)
+    if [ -z "$c_files" ]; then
+        echo_success "No C/C++ files to analyze"
+        return 0
+    fi
+
+    # Run cppcheck on staged files only
+    local cppcheck_opts="--quiet --force --error-exitcode=1 --enable=warning,style,performance"
+
+    if [ -f ".cppcheckignore" ]; then
+        cppcheck_opts="$cppcheck_opts --suppressions-list=.cppcheckignore"
+    fi
+
+    if [ -f "./ci/config.cppcheck" ]; then
+        cppcheck_opts="$cppcheck_opts --library=./ci/config.cppcheck"
+    fi
+
+    if echo "$c_files" | xargs cppcheck $cppcheck_opts 2>/dev/null; then
+        echo_success "Static analysis passed"
+        return 0
+    else
+        echo_error "Static analysis found issues"
+        return 1
+    fi
+}
+
+# Check documentation
+check_documentation() {
+    if [ "$ENABLE_DOC_CHECK" != "true" ]; then
+        return 0
+    fi
+
+    echo_info "Checking documentation..."
+
+    local doc_issues=false
+    local c_files=$(get_staged_c_files)
+
+    for file in $c_files; do
+        if [[ "$file" == *.h ]] && [ -f "$file" ]; then
+            # Check for proper header guard
+            local guard_name=$(basename "$file" | tr '[:lower:]' '[:upper:]' | sed 's/\./_/g')
+            local expected_guard="__${guard_name}__"
+
+            if ! grep -q "#ifndef $expected_guard" "$file" || ! grep -q "#define $expected_guard" "$file"; then
+                echo_warning "Header guard format issue in $file (expected: $expected_guard)"
+            fi
+
+            # Check for basic Doxygen documentation on public functions
+            if grep -q "^int.*(" "$file" && ! grep -q "@brief\|@param\|@return" "$file"; then
+                echo_warning "Missing Doxygen documentation in $file"
+            fi
+        fi
+    done
+
+    echo_success "Documentation check completed"
+    return 0
+}
+
+# Run build validation
+check_build() {
+    if [ "$ENABLE_BUILD_CHECK" != "true" ]; then
+        return 0
+    fi
+
+    echo_info "Running build validation..."
+
+    local projects=$(get_staged_projects)
+    if [ -z "$projects" ]; then
+        echo_success "No project changes to build"
+        return 0
+    fi
+
+    # Test build for each affected project
+    for project in $projects; do
+        if [ -f "projects/$project/Makefile" ]; then
+            echo_info "Building project: $project"
+            if ! python3 tools/scripts/build_projects.py . -project="$project" > /dev/null 2>&1; then
+                echo_error "Build failed for project: $project"
+                return 1
+            fi
+        fi
+    done
+
+    echo_success "Build validation passed"
+    return 0
+}
+
+# Run automated review checks
+check_review_patterns() {
+    if [ "$ENABLE_REVIEW_CHECK" != "true" ]; then
+        return 0
+    fi
+
+    echo_info "Running automated review checks..."
+
+    if [ -f "tools/pre-commit/review-checker.py" ]; then
+        local c_files=$(get_staged_c_files)
+        if [ -n "$c_files" ]; then
+            if echo "$c_files" | xargs python3 tools/pre-commit/review-checker.py; then
+                echo_success "Review checks passed"
+            else
+                echo_warning "Review checker found potential issues"
+                echo_info "These are suggestions - review and fix if needed"
+                # Don't fail the commit for review suggestions
+            fi
+        fi
+    else
+        echo_warning "Review checker not found, skipping"
+    fi
+
+    return 0
+}
+
+# Check branch naming convention
+check_branch_name() {
+    if [ "$ENABLE_BRANCH_CHECK" != "true" ]; then
+        return 0
+    fi
+
+    echo_info "Checking branch naming convention..."
+
+    if [ -f "tools/pre-commit/check-branch-name.sh" ]; then
+        if bash tools/pre-commit/check-branch-name.sh; then
+            return 0
+        else
+            return 1
+        fi
+    else
+        echo_warning "Branch name checker not found, skipping"
+        return 0
+    fi
+}
+
+# Main execution
+main() {
+    echo_info "🔍 Running no-OS pre-commit checks..."
+    echo ""
+
+    local exit_code=0
+
+    # Only run checks if there are staged files
+    local staged_files=$(get_staged_files)
+    if [ -z "$staged_files" ]; then
+        echo_warning "No staged files found"
+        exit 0
+    fi
+
+    # Run all checks
+    check_branch_name || exit_code=1
+    check_astyle || exit_code=1
+    check_cppcheck || exit_code=1
+    check_documentation || exit_code=1
+    check_review_patterns || true  # Don't fail on review suggestions
+    check_build || exit_code=1
+
+    echo ""
+    if [ $exit_code -eq 0 ]; then
+        echo_success "🎉 All pre-commit checks passed!"
+        echo_info "Commit can proceed"
+    else
+        echo_error "💥 Pre-commit checks failed!"
+        echo_info "Fix the issues above and try again"
+        echo_info "Use 'git commit --no-verify' to bypass checks if needed"
+    fi
+
+    exit $exit_code
+}
+
+main "$@"
