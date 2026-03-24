@@ -1,0 +1,48 @@
+# no-OS Pre-commit Configuration
+# Copy this file to .pre-commit-config in the repository root and customize as needed
+
+# Enable/disable specific checks
+ENABLE_ASTYLE=true           # Code style checking (AStyle)
+ENABLE_CPPCHECK=true         # Static analysis (Cppcheck)
+ENABLE_BUILD_CHECK=false     # Build validation (slow, disabled by default)
+ENABLE_DOC_CHECK=true        # Documentation checks
+ENABLE_REVIEW_CHECK=true     # Automated review pattern checks
+ENABLE_BRANCH_CHECK=true     # Branch naming convention validation
+
+# AStyle configuration
+ASTYLE_CONFIG="ci/astyle_config"
+
+# Cppcheck configuration
+CPPCHECK_ENABLE="warning,style,performance"
+CPPCHECK_SUPPRESSIONS=".cppcheckignore"
+CPPCHECK_LIBRARY="./ci/config.cppcheck"
+
+# Build check configuration
+BUILD_TIMEOUT=300           # Build timeout in seconds
+BUILD_PLATFORMS="maxim"     # Platforms to test (comma-separated)
+
+# Documentation check configuration
+DOC_REQUIRE_DOXYGEN=true    # Require Doxygen documentation for public functions
+DOC_CHECK_HEADER_GUARDS=true # Check header guard format
+
+# Review checker configuration
+REVIEW_CHECK_LEVEL=1        # 1=warnings, 2=errors (fail commit)
+
+# Files/directories to ignore (space-separated patterns)
+IGNORE_PATTERNS="libraries/ build/ .git/"
+
+# Project-specific settings for your development
+# Uncomment and modify as needed:
+
+# For Power Management / PMBus development:
+# PMBUS_DEVICES="adm1266 adm1275 ltc2978"
+# POWER_MGMT_CHECKS=true
+
+# For MAX32655 development:
+# MAXIM_PLATFORM_ONLY=true
+# ENABLE_BUILD_CHECK=true
+# BUILD_PLATFORMS="maxim"
+
+# For IIO development:
+# IIO_DOCUMENTATION_REQUIRED=true
+# LINUX_COMPATIBILITY_CHECK=true

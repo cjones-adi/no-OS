@@ -19,6 +19,13 @@ projects/*/build_*
 dfp_drivers
 aducm_project
 aducm_build
+
+# Generated compilation database
+compile_commands.json
+
+# SonarCloud cache and coverage
+.sonar/
+coverage/
 .vscode
 .Xil
 .github/CODEOWNERS
