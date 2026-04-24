@@ -15,6 +15,11 @@ Top issues this prevents (updated priorities):
 7. Constants/Magic Numbers (12 occurrences, 2.4% of issues)
 8. Naming Conventions (9 occurrences, 1.8% of issues)
 
+Enhanced features:
+- Unused Headers Detection: Identifies potentially unused #include statements
+- Unused Variables Detection: Finds declared but unused local variables
+- Bit Operations: Suggests NO_OS_BIT/NO_OS_GENMASK usage for better code style
+
 Automation Coverage: 62.5% of review issues prevented before PR submission.
 """
 
@@ -81,6 +86,8 @@ class ReviewChecker:
         file_issues.extend(self._check_type_safety(file_path, lines))
         file_issues.extend(self._check_naming_conventions(file_path, lines))
         file_issues.extend(self._check_bit_operations(file_path, lines))
+        file_issues.extend(self._check_unused_headers(file_path, lines, content))
+        file_issues.extend(self._check_unused_variables(file_path, lines))
 
         return file_issues
 
@@ -417,6 +424,179 @@ class ReviewChecker:
                                 ))
                     except ValueError:
                         pass
+
+        return issues
+
+    def _check_unused_headers(self, file_path: str, lines: List[str], content: str) -> List[Issue]:
+        """Check for potentially unused header includes."""
+        issues = []
+
+        # Extract all #include statements
+        include_lines = []
+        for i, line in enumerate(lines, 1):
+            include_match = re.match(r'#include\s+[<"]([^>"]+)[>"]', line.strip())
+            if include_match:
+                header_name = include_match.group(1)
+                include_lines.append((i, header_name, line.strip()))
+
+        # Known headers that are often needed but may not have obvious usage
+        system_headers = {
+            'stdint.h', 'stdbool.h', 'stddef.h', 'stdlib.h', 'string.h',
+            'stdio.h', 'errno.h', 'assert.h'
+        }
+
+        # Headers that provide only macros or typedefs (harder to detect usage)
+        macro_headers = {
+            'no_os_error.h', 'no_os_util.h', 'no_os_units.h'
+        }
+
+        for line_num, header_name, include_line in include_lines:
+            # Skip system headers and macro-only headers for now
+            if any(sys_header in header_name for sys_header in system_headers):
+                continue
+            if any(macro_header in header_name for macro_header in macro_headers):
+                continue
+
+            # Skip the device's own header in source files
+            if file_path.endswith('.c'):
+                base_name = os.path.basename(file_path).replace('.c', '.h')
+                if header_name.endswith(base_name):
+                    continue
+
+            # Check if header appears to be used in the file
+            header_base = os.path.basename(header_name).replace('.h', '')
+
+            # Look for common usage patterns
+            usage_patterns = [
+                # Function calls with header prefix
+                rf'\b{re.escape(header_base)}_\w+\(',
+                # Structure types with header prefix
+                rf'\b{re.escape(header_base)}_\w+\s+\w+',
+                rf'\bstruct\s+{re.escape(header_base)}_\w+',
+                # Constants/macros with header prefix (uppercase)
+                rf'\b{re.escape(header_base.upper())}_\w+',
+                # no-OS specific patterns
+                rf'no_os_{re.escape(header_base.replace("no_os_", ""))}_\w+',
+            ]
+
+            # Special patterns for common no-OS headers
+            special_patterns = {
+                'no_os_spi.h': [r'\bno_os_spi_\w+', r'\bstruct\s+no_os_spi_\w+', r'\bNO_OS_SPI_\w+'],
+                'no_os_i2c.h': [r'\bno_os_i2c_\w+', r'\bstruct\s+no_os_i2c_\w+', r'\bNO_OS_I2C_\w+'],
+                'no_os_gpio.h': [r'\bno_os_gpio_\w+', r'\bstruct\s+no_os_gpio_\w+', r'\bNO_OS_GPIO_\w+'],
+                'no_os_uart.h': [r'\bno_os_uart_\w+', r'\bstruct\s+no_os_uart_\w+', r'\bNO_OS_UART_\w+'],
+                'no_os_delay.h': [r'\bno_os_[mu]?delay', r'\bNO_OS_.*DELAY'],
+                'no_os_alloc.h': [r'\bno_os_calloc', r'\bno_os_malloc', r'\bno_os_free'],
+                'no_os_print_log.h': [r'\bpr_(info|err|warn|debug)', r'\bno_os_printf'],
+                'iio.h': [r'\biio_\w+', r'\bstruct\s+iio_\w+'],
+                'iio_app.h': [r'\biio_app_\w+', r'\bstruct\s+iio_app_\w+'],
+            }
+
+            # Use special patterns if available, otherwise use general patterns
+            if header_name in special_patterns:
+                patterns = special_patterns[header_name]
+            else:
+                patterns = usage_patterns
+
+            # Check if any pattern is found in the content
+            is_used = any(re.search(pattern, content, re.MULTILINE) for pattern in patterns)
+
+            if not is_used:
+                # Additional check: look for any identifier that might come from this header
+                # This is a more lenient check for headers we might have missed
+                header_words = header_base.replace('_', '').lower()
+                if len(header_words) > 3:  # Only for reasonably long header names
+                    if header_words in content.lower():
+                        is_used = True
+
+                if not is_used:
+                    issues.append(Issue(
+                        file_path, line_num, IssueLevel.INFO, "Unused Headers",
+                        f"Header '{header_name}' may be unused",
+                        "Remove unused includes to reduce compilation time and dependencies"
+                    ))
+
+        return issues
+
+    def _check_unused_variables(self, file_path: str, lines: List[str]) -> List[Issue]:
+        """Check for potentially unused variables."""
+        issues = []
+
+        # Only check source files for unused variables
+        if not file_path.endswith('.c'):
+            return issues
+
+        # Track variable declarations and usage
+        declared_vars = {}  # line_num: (var_name, var_type)
+        used_vars = set()
+
+        for i, line in enumerate(lines, 1):
+            # Skip comments, strings, and preprocessor directives
+            if re.match(r'^\s*(//|/\*|\*|#)', line):
+                continue
+
+            # Look for variable declarations
+            # Pattern for local variable declarations
+            var_decl_patterns = [
+                r'^\s*(uint\d+_t|int\d+_t|bool|float|double|char)\s+(\w+)\s*[=;]',
+                r'^\s*(struct\s+\w+)\s+(\w+)\s*[=;]',
+                r'^\s*(enum\s+\w+)\s+(\w+)\s*[=;]',
+            ]
+
+            for pattern in var_decl_patterns:
+                match = re.search(pattern, line)
+                if match:
+                    var_type = match.group(1)
+                    var_name = match.group(2)
+
+                    # Skip common variable names that are often intentionally unused
+                    if var_name in ['ret', 'status', 'result', 'i', 'j', 'k', 'argc', 'argv']:
+                        continue
+
+                    # Skip function parameters (simple heuristic)
+                    if ')' in line and '(' in line:
+                        continue
+
+                    # Skip variables in function signatures
+                    if any(keyword in line for keyword in ['static', 'extern', 'typedef']):
+                        continue
+
+                    declared_vars[i] = (var_name, var_type)
+
+            # Track variable usage
+            for line_num, (var_name, var_type) in declared_vars.items():
+                if line_num != i:  # Don't count declaration line
+                    # Look for variable usage patterns
+                    usage_patterns = [
+                        rf'\b{re.escape(var_name)}\b(?!\s*[=])',  # Used but not assigned
+                        rf'\b{re.escape(var_name)}\s*[.>]',       # Member access
+                        rf'[(&]\s*{re.escape(var_name)}\b',       # Address taken or function call
+                        rf'\b{re.escape(var_name)}\s*\[',         # Array access
+                    ]
+
+                    if any(re.search(pattern, line) for pattern in usage_patterns):
+                        used_vars.add(var_name)
+
+        # Report unused variables
+        for line_num, (var_name, var_type) in declared_vars.items():
+            if var_name not in used_vars:
+                # Additional check: make sure it's not used in a later assignment or initialization
+                var_line = lines[line_num - 1]
+
+                # Skip if variable is initialized (might be intentionally unused)
+                if '=' in var_line and var_name in var_line:
+                    continue
+
+                # Skip if it's a macro or used in sizeof
+                remaining_content = '\n'.join(lines[line_num:])
+                if re.search(rf'\bsizeof\s*\(\s*{re.escape(var_name)}\s*\)', remaining_content):
+                    continue
+
+                issues.append(Issue(
+                    file_path, line_num, IssueLevel.INFO, "Unused Variables",
+                    f"Variable '{var_name}' may be unused",
+                    "Remove unused variables or add '(void)var_name;' if intentionally unused"
+                ))
 
         return issues
 

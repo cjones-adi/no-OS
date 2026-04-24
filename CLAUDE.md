@@ -6,18 +6,25 @@ This file provides comprehensive guidance to Claude Code (claude.ai/code) for wo
 
 This is Analog Devices' no-OS repository containing hardware drivers and reference projects for embedded systems without an operating system. It supports microcontrollers, FPGAs, and other embedded platforms that interface with ADI hardware peripherals.
 
-## Driver Development Workflow
+## Enhanced Driver Development Workflow
 
-The typical development process follows these steps:
+The enhanced development process includes automated quality assurance:
 
 1. **Device Assignment** - Receive datasheet and device specifications
 2. **Research & Planning** - Study similar drivers and device requirements
-3. **Implementation** - Create driver files following no-OS patterns
-4. **Local Testing** - Run CI tools locally before PR submission
-5. **PR Creation** - Submit with proper commit messages and documentation
-6. **Review & Iteration** - Address feedback and common issues
-7. **Hardware Testing** - Validate on target hardware
-8. **Merge** - Maintainer approval and integration
+3. **Implementation** - Create driver files with IIO support following no-OS patterns
+4. **Automated Quality** - Run review pattern detection and style cleanup
+5. **Local Testing** - Run CI tools locally before PR submission
+6. **PR Creation** - Submit with proper commit messages and complete build system
+7. **Review & Iteration** - Address feedback with 62.5% issue prevention
+8. **Hardware Testing** - Validate on target hardware
+9. **Merge** - Maintainer approval and integration
+
+**🎯 Claude Code Enhanced Features:**
+- **Datasheet Analysis**: Automatic PMBus command extraction and interface detection
+- **IIO Integration**: Complete Linux subsystem support for all power monitoring devices
+- **Build System**: Full CI-ready project structure (Makefile, builds.json, src.mk)
+- **Quality Automation**: 62.5% review issue prevention using 6-month pattern analysis
 
 ---
 
@@ -25,14 +32,29 @@ The typical development process follows these steps:
 
 ### File Structure and Naming
 
-Every driver should follow this structure:
+Every driver should follow this enhanced structure:
 
 ```
 drivers/<category>/<device_name>/
 ├── <device_name>.h        # Public API declarations
 ├── <device_name>.c        # Implementation
+├── iio_<device_name>.h    # IIO subsystem interface (REQUIRED for monitoring devices)
+├── iio_<device_name>.c    # IIO implementation
 ├── <device_name>_regs.h   # Register definitions (if complex)
-└── README.rst            # Documentation (optional)
+└── README.rst            # Comprehensive documentation
+
+projects/<device_name>-eval/
+├── Makefile              # Platform build selection
+├── builds.json           # CI build matrix
+├── src.mk               # Source dependencies and platform support
+├── README.rst            # Complete project documentation
+└── src/
+    ├── common/
+    │   ├── common_data.h
+    │   └── common_data.c
+    ├── examples/
+    │   └── basic/
+    └── platform/<target>/
 ```
 
 **Naming Convention:**
@@ -338,6 +360,9 @@ cppcheck -j$(nproc) --quiet --force --error-exitcode=1 \
          --enable=warning,style,performance \
          --suppressions-list=.cppcheckignore \
          --library=./ci/config.cppcheck .
+
+# Enhanced review pattern detection
+python3 tools/pre-commit/review-checker.py drivers/power/your_device/your_device.c
 ```
 
 ### 3. Local SonarCloud Analysis
