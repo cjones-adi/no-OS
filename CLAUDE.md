@@ -62,7 +62,18 @@ projects/<device_name>-eval/
 - Categories: `adc`, `dac`, `switch`, `sensor`, `power`, `frequency`, etc.
 - Include family variants: `ad717x` for AD7175, AD7176, AD7177, etc.
 
+**🚨 Linux Driver Naming Principle:**
+> **Critical**: Linux drivers must not rely on generic or wildcard‑style names to represent multiple devices. The kernel driver model requires explicit device matching via ID tables or device tree compatibles, and device naming stability is intentionally delegated to user space.
+
+**Implementation Guidelines:**
+- ❌ **Avoid**: Generic names like `device_nameX`, `sensor_driver`, `power_controller`
+- ✅ **Use**: Specific device names like `ltm4700`, `adm1275`, `ad7980`
+- ✅ **Family Support**: Use explicit device identification in code (e.g., chip_id detection)
+- ✅ **Branch Names**: `dev/ltm4700`, `dev/adm1275` (not `dev/ltm470x` or `dev/power_device`)
+
 ### Header File Template (`device_name.h`)
+
+> **📝 Template Note**: Replace all `device_name` placeholders with your specific device name (e.g., `ltm4700.h`, `adm1275.c`). Follow Linux kernel principle: use explicit device names, never generic placeholders in actual code.
 
 ```c
 /***************************************************************************//**
@@ -400,8 +411,8 @@ For the ultimate development experience, consider using **Claude Code** as your 
 
 ### **Intelligent Driver Development**
 - **Datasheet Analysis**: Upload device datasheets for automated interface detection and command extraction
-- **Multi-Variant Handling**: Automatically distinguish between I2C/PMBus variants in device families (e.g., LTC428x series)
-- **Smart Template Generation**: Generate device-specific templates based on actual datasheet capabilities
+- **Linux-Compliant Multi-Device Support**: Use explicit device identification (chip_id detection) for family drivers while maintaining specific device names (e.g., `ltm4700` supporting LTM4777 via ID detection)
+- **Smart Template Generation**: Generate device-specific templates with explicit names based on actual datasheet capabilities
 
 **Example Session:**
 ```
@@ -699,7 +710,9 @@ This setup allows you to:
 ### Branching Strategy
 
 **Branch Naming Convention:**
-All development branches must follow the pattern: `dev/<device_name>`
+All development branches must follow the pattern: `dev/<specific_device_name>`
+
+**🚨 Linux Kernel Principle**: Use explicit device names, never generic wildcards
 
 ```bash
 # Sync with upstream before starting new work
@@ -730,16 +743,22 @@ gh pr create --repo analogdevicesinc/no-OS \
 ```
 
 **Branching Rules:**
-- **Device drivers**: `dev/<device_name>` (e.g., `dev/adm1275`, `dev/ltc2978`)
-- **Multi-device families**: `dev/<family_name>` (e.g., `dev/ad717x`, `dev/adm127x`)
+- **Device drivers**: `dev/<specific_device_name>` (e.g., `dev/adm1275`, `dev/ltc2978`)
+- **Family drivers**: `dev/<primary_device_name>` (e.g., `dev/ltm4700` for LTM470x family)
 - **Platform support**: `dev/<device_name>-<platform>` (e.g., `dev/adm1275-maxim`)
 - **Bug fixes**: `dev/<device_name>-fix-<issue>` (e.g., `dev/adm1275-fix-telemetry`)
 
-**Avoid these patterns:**
+**❌ Linux Principle Violations - Avoid these patterns:**
+- ❌ `dev/ad717x` or `dev/adm127x` (generic family names)
+- ❌ `dev/power-device` or `dev/adc-driver` (wildcard-style names)
 - ❌ `feature/add-device` (too generic)
 - ❌ `my-device-branch` (not following convention)
 - ❌ `dev-branch` (not specific)
 - ❌ `adm1275` (missing dev/ prefix)
+
+**✅ Correct Linux-compliant patterns:**
+- ✅ `dev/ltm4700` (even if supporting LTM4777 too - use primary device name)
+- ✅ `dev/ad7175` (even if supporting AD7176/AD7177 - specific device identification)
 
 ### Common Git Operations
 
