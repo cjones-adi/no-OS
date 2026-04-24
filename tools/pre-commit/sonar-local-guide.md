@@ -8,8 +8,8 @@ Complete guide for running SonarCloud analysis locally on your development branc
 # 1. Run the setup script
 ./tools/pre-commit/setup-local-sonar.sh
 
-# 2. Set your token
-export SONAR_TOKEN="92225eb7678387de74ed8914019e259f64b6f47d"
+# 2. Set your token (get from SonarCloud.io > My Account > Security)
+export SONAR_TOKEN="your_sonarcloud_token_here"
 
 # 3. Quick check of your changes
 ./tools/pre-commit/quick-sonar-check.sh
@@ -49,7 +49,7 @@ The setup script installs:
 
 ```bash
 # Analyze only changed files vs upstream/main
-export SONAR_TOKEN="92225eb7678387de74ed8914019e259f64b6f47d"
+export SONAR_TOKEN="your_sonarcloud_token_here"
 ./tools/pre-commit/run-local-sonar.sh --changed-only --preview --export my-analysis.json
 
 # For Claude review
@@ -140,7 +140,7 @@ python3 tools/pre-commit/sonar-report-analyzer.py sonar-raw.json --format json >
 
 ### Step 1: Run Analysis
 ```bash
-export SONAR_TOKEN="92225eb7678387de74ed8914019e259f64b6f47d"
+export SONAR_TOKEN="your_sonarcloud_token_here"
 ./tools/pre-commit/run-local-sonar.sh --changed-only --preview --export my-changes.json
 ```
 
