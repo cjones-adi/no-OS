@@ -1,4 +1,4 @@
-Based on our experience with the LTM470x driver and the comprehensive no-OS development framework we've built, here's the complete development workflow:
+Based on our experience with the LTM4700 family driver (supporting LTM4700/LTM4777 via chip ID detection) and the comprehensive no-OS development framework we've built, here's the complete development workflow:
 
 ## **no-OS Driver Development Workflow**
 
@@ -19,11 +19,18 @@ Based on our experience with the LTM470x driver and the comprehensive no-OS deve
 
 #### **a) Core Driver Structure**
 ```bash
-  drivers/<category>/<device_name>/
-  ├── <device_name>.h        # Public API declarations
-  ├── <device_name>.c        # Implementation
-  ├── <device_name>_regs.h   # Register definitions (if complex)
+  drivers/<category>/<specific_device_name>/
+  ├── <specific_device_name>.h        # Public API declarations
+  ├── <specific_device_name>.c        # Implementation
+  ├── <specific_device_name>_regs.h   # Register definitions (if complex)
   └── README.rst            # Documentation
+
+# Example: LTM4700 family driver (supports LTM4700/LTM4777 via chip_id)
+  drivers/power/ltm4700/
+  ├── ltm4700.h             # Primary device name
+  ├── ltm4700.c             # Detects LTM4700 vs LTM4777 via chip_id
+  ├── iio_ltm4700.h         # IIO subsystem interface
+  └── iio_ltm4700.c         # Linux subsystem support
 ```
 
 #### **b) Implementation Pattern**
@@ -70,14 +77,25 @@ git push origin main
 
 #### **b) Branch Convention** (Enforced)
 ```bash
-git checkout -b dev/<device_name>  # dev/ltm470x, dev/adm1275
+# Linux Kernel Principle: Use explicit device names, never wildcards
+git checkout -b dev/<specific_device_name>  # dev/ltm4700, dev/adm1275
+
+# ❌ PROHIBITED: Generic or wildcard names
+# git checkout -b dev/ltm470x     # Generic family name
+# git checkout -b dev/power-device # Category-based name
+
+# ✅ CORRECT: Explicit device identification
+git checkout -b dev/ltm4700       # Primary device (supports LTM4777 via chip_id)
+git checkout -b dev/adm1275       # Specific PMBus device
 ```
 
 #### **c) Commit Standards**
 ```bash
 # Format: <scope>: <component>: <description>
-drivers: power: ltm470x: add initial driver implementation
-projects: ltm470x-eval: add evaluation project
+# Use specific device names, not generic family names
+drivers: power: ltm4700: add initial driver implementation
+drivers: power: ltm4700: add LTM4777 variant support via chip_id detection
+projects: ltm4700-eval: add evaluation project
 # All commits must be signed: git commit -s
 ```
 
@@ -150,7 +168,7 @@ python3 tools/scripts/build_projects.py . -project=<device>-eval
 #### **b) PR Creation**
 ```bash
 # Push to your fork
-git push origin dev/<device_name>
+git push origin dev/ltm4700
 
 # Create PR from fork to upstream
 gh pr create --repo analogdevicesinc/no-OS \

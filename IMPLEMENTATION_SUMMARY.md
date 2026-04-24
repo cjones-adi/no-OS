@@ -1,8 +1,10 @@
-# LTM470x Family Driver - Enhanced Claude Code Workflow Demonstration
+# LTM4700 Family Driver - Enhanced Claude Code Workflow Demonstration
 
 ## Overview
 
-Successfully created a comprehensive family driver for the LTM470x series power management devices (LTM4700 and LTM4777) demonstrating the **enhanced Claude Code workflow** with automated quality assurance, complete IIO integration, and production-ready build systems.
+Successfully created a comprehensive family driver for the LTM4700 power management devices (supporting both LTM4700 and LTM4777 via explicit chip ID detection) demonstrating the **enhanced Claude Code workflow** with automated quality assurance, complete IIO integration, and production-ready build systems.
+
+**🚨 Linux Kernel Compliance:** This implementation follows the Linux kernel principle of using explicit device names rather than generic wildcards. The driver uses "ltm4700" as the primary device name and detects LTM4777 variants via chip_id register.
 
 ## Driver Architecture
 
@@ -49,17 +51,17 @@ Successfully created a comprehensive family driver for the LTM470x series power 
 
 ### Core Driver Files
 ```
-drivers/power/ltm470x/
-├── ltm470x.h               # Public API with 85+ PMBus commands
-├── ltm470x.c               # Complete implementation (1095 lines)
-├── iio_ltm470x.h           # IIO subsystem interface
-├── iio_ltm470x.c           # Complete IIO integration
+drivers/power/ltm4700/
+├── ltm4700.h               # Public API with 85+ PMBus commands
+├── ltm4700.c               # Complete implementation (1095 lines)
+├── iio_ltm4700.h           # IIO subsystem interface
+├── iio_ltm4700.c           # Complete IIO integration
 └── README.rst              # Comprehensive documentation
 ```
 
 ### Complete Project Structure
 ```
-projects/ltm470x-eval/
+projects/ltm4700-eval/
 ├── Makefile               # Platform build selection (CI-ready)
 ├── builds.json            # Multi-platform CI build matrix
 ├── src.mk                 # Source dependencies and platform support
@@ -112,7 +114,7 @@ The `basic_example.c` demonstrates:
 
 ### 1. Device Initialization & Detection
 ```c
-ret = ltm470x_init(&ltm_dev, &ltm470x_ip);
+ret = ltm4700_init(&ltm_dev, &ltm4700_ip);
 // Automatic device detection via PMBus commands
 // Falls back to manual chip_id if detection fails
 ```
@@ -121,32 +123,32 @@ ret = ltm470x_init(&ltm_dev, &ltm470x_ip);
 ```c
 // Monitors both channels with per-channel telemetry
 for (uint8_t channel = 0; channel < dev->num_channels; channel++) {
-    ltm470x_set_page(dev, channel);
-    ltm470x_read_vout(dev, &vout_mv);
-    ltm470x_read_iout(dev, &iout_ma);
+    ltm4700_set_page(dev, channel);
+    ltm4700_read_vout(dev, &vout_mv);
+    ltm4700_read_iout(dev, &iout_ma);
     // Efficiency calculation included
 }
 ```
 
 ### 3. Status & Fault Management
 ```c
-ltm470x_read_status_all(dev, &status);
+ltm4700_read_status_all(dev, &status);
 // Checks for temperature, overcurrent, overvoltage faults
 // Provides clear fault descriptions and warnings
 ```
 
 ### 4. Peak Value Tracking
 ```c
-ltm470x_read_vout_peak(dev, &vout_peak);
-ltm470x_read_iout_peak(dev, &iout_peak);
-ltm470x_clear_peaks(dev);  // Reset for fresh monitoring
+ltm4700_read_vout_peak(dev, &vout_peak);
+ltm4700_read_iout_peak(dev, &iout_peak);
+ltm4700_clear_peaks(dev);  // Reset for fresh monitoring
 ```
 
 ### 5. Device Control
 ```c
-ltm470x_set_vout_command(dev, 1200);  // Set 1.2V output
-ltm470x_set_frequency_switch(dev, 500000);  // Set 500 kHz
-ltm470x_set_operation(dev, LTM470X_STATE_ON_NO_MARGINS);
+ltm4700_set_vout_command(dev, 1200);  // Set 1.2V output
+ltm4700_set_frequency_switch(dev, 500000);  // Set 500 kHz
+ltm4700_set_operation(dev, LTM4700_STATE_ON_NO_MARGINS);
 ```
 
 ## Platform Integration
@@ -196,7 +198,8 @@ ltm470x_set_operation(dev, LTM470X_STATE_ON_NO_MARGINS);
 ### Code Quality
 - **Error Handling**: All functions include comprehensive error checking
 - **Documentation**: Full Doxygen documentation for every public function
-- **Naming Conventions**: Consistent ltm470x_ prefix throughout
+- **Linux Kernel Compliance**: Specific device naming (ltm4700) with chip_id detection for variants
+- **Naming Conventions**: Consistent ltm4700_ prefix throughout
 - **Type Safety**: Proper use of no-OS types and structures
 
 ### Review-Ready
@@ -207,7 +210,7 @@ ltm470x_set_operation(dev, LTM470X_STATE_ON_NO_MARGINS);
 
 ## Summary
 
-The LTM470x family driver represents a complete, production-ready implementation that:
+The LTM4700 family driver represents a complete, production-ready implementation following Linux kernel naming principles that:
 
 ✅ **Supports Multiple Variants** - LTM4700 and LTM4777 with automatic detection
 ✅ **Complete PMBus Interface** - 85+ commands from datasheet analysis

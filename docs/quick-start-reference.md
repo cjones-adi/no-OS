@@ -36,7 +36,7 @@ echo 'export SONAR_TOKEN="your_sonarcloud_token_here"' >> ~/.bashrc
 ### Start New Device Development
 ```bash
 # Sync with upstream and create branch
-./tools/pre-commit/new-dev-branch.sh <device_name>
+./tools/pre-commit/new-dev-branch.sh <specific_device_name>
 
 # Generate device template with project
 python3 tools/pre-commit/create-device-template.py <device> <type> --with-project
@@ -128,8 +128,32 @@ git checkout main
 git fetch upstream && git rebase upstream/main
 git push origin main
 
-# Branch naming convention: dev/<device_name>
+# Branch naming convention: dev/<specific_device_name> (Linux kernel principle)
+# ❌ AVOID: dev/ad717x, dev/ltm470x (generic/wildcard names)
+# ✅ USE: dev/ad7175, dev/ltm4700 (specific device names)
 git checkout -b dev/adm1275
+```
+
+### 🚨 Linux Driver Naming Principle
+```bash
+# Linux drivers must use explicit device names, never wildcards
+# Device naming stability delegated to user space
+
+# ❌ PROHIBITED patterns:
+dev/ad717x          # Generic family name
+dev/ltm470x         # Wildcard-style name
+dev/power-device    # Category-based name
+
+# ✅ CORRECT patterns:
+dev/ltm4700         # Primary device (supports LTM4777 via chip_id)
+dev/ad7175          # Specific device (supports AD7176/7177 via chip_id)
+dev/adm1275         # Explicit device identification
+
+# Family drivers use primary device name with chip_id detection
+struct ltm4700_dev {
+    uint8_t chip_id;    // 0x01=LTM4700, 0x02=LTM4777
+    enum variant;       // Detected during init
+};
 ```
 
 ### Commit Standards
@@ -148,7 +172,7 @@ git commit -s -m "docs: power: adm1275: add driver documentation"
 ```bash
 # Before creating PR
 git fetch upstream && git rebase upstream/main
-git push origin dev/<device_name>
+git push origin dev/adm1275
 
 # Create PR with GitHub CLI
 gh pr create --repo analogdevicesinc/no-OS \
@@ -175,9 +199,9 @@ gh pr create --repo analogdevicesinc/no-OS \
 - `tools/pre-commit/pre-commit-config.example` - Template settings
 
 ### Example Implementations
-- `drivers/power/ltm470x/` - Complete family driver example
-- `projects/ltm470x-eval/` - CI-ready project with IIO
-- `tests/drivers/power/ltm470x/` - Unit testing framework example
+- `drivers/power/ltm4700/` - Complete family driver example (Linux-compliant naming)
+- `projects/ltm4700-eval/` - CI-ready project with IIO
+- `tests/drivers/power/ltm4700/` - Unit testing framework example
 
 ## 🎯 Platform-Specific Commands
 
@@ -216,7 +240,7 @@ make
 # ✅ Code style (AStyle 3.1, Linux kernel style)
 # ✅ Static analysis (Cppcheck)
 # ✅ Documentation validation
-# ✅ Branch naming (dev/<device>)
+# ✅ Branch naming (dev/<specific_device_name> - no wildcards)
 # ✅ Review pattern detection (62.5% coverage)
 ```
 

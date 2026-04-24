@@ -100,14 +100,14 @@ echo 'export SONAR_TOKEN="your_sonarcloud_token_here"' >> ~/.bashrc
 - `pre-commit` - Main hook (AStyle, Cppcheck, review patterns, branch validation)
 - `commit-msg` - Commit message format validation
 - `review-checker.py` - Pattern detection with unused headers/variables
-- `check-branch-name.sh` - Enforces `dev/<device>` convention
+- `check-branch-name.sh` - Enforces `dev/<specific_device_name>` convention (Linux kernel principle)
 - `validate-setup.sh` - Environment verification
 
 **What it does:**
 - ✅ **Code style**: Linux kernel style with 8-space tabs
 - ✅ **Static analysis**: Cppcheck with no-OS configuration
 - ✅ **Documentation**: Doxygen format validation
-- ✅ **Branch naming**: Enforces `dev/<device>` convention
+- ✅ **Branch naming**: Enforces `dev/<specific_device_name>` convention (no wildcards)
 - ✅ **Review patterns**: Detects 62.5% of common issues
 - ✅ **Build validation**: Ensures projects compile
 
@@ -234,7 +234,7 @@ python3 tools/pre-commit/create-device-template.py ltc2978 power --with-project
 **Features:**
 - **Complete test infrastructure**: Mocking, coverage, reporting
 - **Test support patterns**: PMBus testing, LINEAR format validation
-- **Integration examples**: LTM470x family demonstration
+- **Integration examples**: LTM4700 family demonstration (Linux-compliant naming)
 - **Coverage reporting**: GCov integration with analysis
 
 **Usage:**
@@ -285,7 +285,7 @@ git commit -s -m "test: add test device template"
 
 # 4. Clean up
 git checkout main
-git branch -D dev/test-device
+git branch -D dev/ltm4700
 ```
 
 ## 🚀 Next Steps
