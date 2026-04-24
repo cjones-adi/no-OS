@@ -44,6 +44,7 @@ Claude MUST follow this exact commit sequence for ALL driver implementations:
 - **Complete Implementation**: Include ALL components (driver, IIO, project, tests, docs)
 - **Exact Commit Pattern**: Follow 6-commit sequence precisely
 - **No "-eval" Suffix**: Projects are named `projects/<device>` NOT `projects/<device>-eval`
+- **No AI Attribution**: NEVER include AI attribution in code files, commits, or headers (no Co-Authored-By Claude, no "Generated with" mentions, etc.)
 
 ---
 
@@ -92,7 +93,7 @@ projects/<device_name>/
 
 ### Header File Template (`device_name.h`)
 
-> **📝 Template Note**: Replace all `device_name` placeholders with your specific device name (e.g., `ltm4700.h`, `adm1275.c`). Follow Linux kernel principle: use explicit device names, never generic placeholders in actual code.
+> **📝 Template Note**: Replace all `device_name` placeholders with your specific device name (e.g., `ltm4700.h`, `adm1275.c`). Follow Linux kernel principle: use explicit device names, never generic placeholders in actual code. **@author field should only contain human developer information** - never include AI attribution.
 
 ```c
 /***************************************************************************//**
@@ -187,6 +188,8 @@ int32_t device_name_write_register(struct device_name_dev *dev,
 ```
 
 ### Implementation File Template (`device_name.c`)
+
+> **📝 Note**: @author field should only contain human developer information - never include AI attribution.
 
 ```c
 /***************************************************************************//**
@@ -506,6 +509,7 @@ After plan approval, Claude executes WITHOUT asking intermediate questions:
 - **🚨 Complete implementation** - All 6 components (driver, IIO, project, tests, docs)
 - **🚨 No "-eval" suffix** - Projects are `projects/<device>` NOT `projects/<device>-eval`
 - **🚨 Autonomous execution** - After plan approval, execute without further questions
+- **🚨 NO AI attribution** - Never add AI attribution to code files, commits, or headers
 
 ---
 
@@ -983,6 +987,8 @@ git commit -s -m "commit message"
 ```
 
 This adds: `Signed-off-by: Your Name <your.email@analog.com>`
+
+**🚨 IMPORTANT**: Never include AI attribution in commits (no Co-Authored-By Claude, no "Generated with" mentions). Only use standard developer attribution.
 
 ---
 
