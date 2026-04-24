@@ -8,23 +8,42 @@ This is Analog Devices' no-OS repository containing hardware drivers and referen
 
 ## Enhanced Driver Development Workflow
 
-The enhanced development process includes automated quality assurance:
+**🎯 MANDATORY: For ALL driver development requests, Claude MUST follow this exact workflow:**
 
-1. **Device Assignment** - Receive datasheet and device specifications
-2. **Research & Planning** - Study similar drivers and device requirements
-3. **Implementation** - Create driver files with IIO support following no-OS patterns
-4. **Automated Quality** - Run review pattern detection and style cleanup
-5. **Local Testing** - Run CI tools locally before PR submission
-6. **PR Creation** - Submit with proper commit messages and complete build system
-7. **Review & Iteration** - Address feedback with 62.5% issue prevention
-8. **Hardware Testing** - Validate on target hardware
-9. **Merge** - Maintainer approval and integration
+### **Phase 1: Planning & Approval (REQUIRED)**
+1. **Planning Mode**: Enter planning mode with `EnterPlanMode` to analyze requirements
+2. **Datasheet Analysis**: Extract device specifications, interface type, and command sets
+3. **Plan Presentation**: Present comprehensive implementation plan to user
+4. **User Approval**: Wait for explicit user approval before proceeding with implementation
+5. **Plan Finalization**: Use `ExitPlanMode` when plan is approved
 
-**🎯 Claude Code Enhanced Features:**
-- **Datasheet Analysis**: Automatic PMBus command extraction and interface detection
-- **IIO Integration**: Complete Linux subsystem support for all power monitoring devices
-- **Build System**: Full CI-ready project structure (Makefile, builds.json, src.mk)
-- **Quality Automation**: 62.5% review issue prevention using 6-month pattern analysis
+### **Phase 2: Implementation (6-Commit Pattern)**
+Claude MUST follow this exact commit sequence for ALL driver implementations:
+
+1. **Core Driver**: `drivers: <category>: <device>: Add driver support for <device>`
+2. **IIO Support**: `drivers: <category>: <device>: Add IIO support for <device>`
+3. **Driver Docs**: `drivers: <category>: <device>: Add README documentation for <device>`
+4. **Project Files**: `projects: <device>: Add project for <device>`
+5. **Project Docs**: `projects: <device>: Add README documentation for project`
+6. **Unit Tests**: `tests: drivers: <category>: <device>: Add unit tests for <device>`
+
+### **Phase 3: Quality Assurance (Automated)**
+7. **Automated Quality** - Pattern detection and style cleanup
+8. **Local Testing** - Unit tests with 80%+ coverage via Ceedling
+9. **Build Validation** - Multi-platform build testing
+
+### **Phase 4: Submission**
+10. **PR Creation** - Submit with proper commit messages and complete build system
+11. **Review & Iteration** - Address feedback with 62.5% issue prevention
+12. **Hardware Testing** - Validate on target hardware
+13. **Merge** - Maintainer approval and integration
+
+**🚨 CRITICAL REQUIREMENTS:**
+- **Planning First**: ALWAYS use EnterPlanMode for driver development
+- **Autonomous Execution**: DO NOT ask about basic commands (`cd`, `ls`, etc.) - execute directly
+- **Complete Implementation**: Include ALL components (driver, IIO, project, tests, docs)
+- **Exact Commit Pattern**: Follow 6-commit sequence precisely
+- **No "-eval" Suffix**: Projects are named `projects/<device>` NOT `projects/<device>-eval`
 
 ---
 
@@ -43,7 +62,7 @@ drivers/<category>/<device_name>/
 ├── <device_name>_regs.h   # Register definitions (if complex)
 └── README.rst            # Comprehensive documentation
 
-projects/<device_name>-eval/
+projects/<device_name>/
 ├── Makefile              # Platform build selection
 ├── builds.json           # CI build matrix
 ├── src.mk               # Source dependencies and platform support
@@ -407,53 +426,86 @@ python3 tools/scripts/build_projects.py . -project=your_project_name -platform=s
 
 ## 🤖 Enhanced Development with Claude Code
 
-For the ultimate development experience, consider using **Claude Code** as your AI development partner. Instead of manually following this guide, Claude can:
+**🚨 MANDATORY WORKFLOW: Claude MUST follow this exact process for ALL driver development:**
 
-### **Intelligent Driver Development**
-- **Datasheet Analysis**: Upload device datasheets for automated interface detection and command extraction
-- **Linux-Compliant Multi-Device Support**: Use explicit device identification (chip_id detection) for family drivers while maintaining specific device names (e.g., `ltm4700` supporting LTM4777 via ID detection)
-- **Smart Template Generation**: Generate device-specific templates with explicit names based on actual datasheet capabilities
+### **Phase 1: Planning & Analysis (REQUIRED)**
+Claude must ALWAYS start with planning mode and get user approval before implementation:
 
-**Example Session:**
+**Example Session (REQUIRED FLOW):**
 ```
-Developer: "I need to develop a driver for the ADM1275 PMBus power monitoring IC"
+Developer: "Create a no-OS driver for LTM4700"
 
-Claude: "Perfect! ADM1275 is a PMBus power monitoring IC. Let me guide you through
-the complete no-OS driver development workflow.
+Claude: "I'll help you create a comprehensive no-OS driver for the LTM4700. Based on the
+datasheet analysis, this appears to be a PMBus regulator. Let me enter planning mode to
+create a complete implementation strategy."
 
-First, I'll create your development branch following no-OS conventions..."
-# → Runs: ./tools/pre-commit/new-dev-branch.sh adm1275
+[Claude uses EnterPlanMode tool]
 
-Claude: "✅ Branch 'dev/adm1275' created and checked out
-Device family: ADM127x PMBus power monitoring
+Claude: "
+IMPLEMENTATION PLAN: LTM4700 PMBus Dual-Channel Regulator Driver
 
-Now let me present the available PMBus commands for selection:
+ANALYSIS:
+- Device: LTM4700 dual 50A or single 100A μModule regulator
+- Interface: PMBus 1.3 compliant I2C (default address 0x5A)
+- Variant Support: LTM4777 through device ID detection
+- Channels: Dual-channel power monitoring and control
 
-📊 **ADM1275 PMBus Commands Available:**
-- READ_VIN, READ_VOUT, READ_IIN, READ_IOUT (Essential monitoring)
-- READ_PIN, READ_POUT (Power calculations)
-- Status and thermal management commands
+IMPLEMENTATION STRATEGY:
+1. Core Driver (drivers/power/ltm4700/)
+   - Complete PMBus command set implementation
+   - Dual-channel support with PAGE commands
+   - LINEAR11/LINEAR16 data format conversion
+   - Device identification (LTM4700 vs LTM4777)
 
-Which command categories should I include in your driver?
-□ Essential monitoring (VIN, VOUT, IIN, IOUT)
-□ Full power monitoring (add PIN, POUT)
-□ Complete implementation (all commands)
+2. IIO Integration (REQUIRED for monitoring devices)
+   - 12 IIO channels: VIN, IIN, PIN, VOUT0/1, IOUT0/1, POUT0/1, TEMP1/2/3
+   - Write support for VOUT control
+   - Linux Industrial I/O subsystem compliance
 
-[User selects option]
+3. Project Structure (projects/ltm4700/)
+   - Multi-platform build system (MAX32655, STM32, Linux, etc.)
+   - Basic telemetry monitoring example
+   - IIO integration example
 
-Claude: "Generating optimized PMBus template with selected commands..."
+4. Unit Testing (tests/drivers/power/ltm4700/)
+   - Comprehensive Ceedling test suite
+   - 80%+ code coverage target
+   - PMBus format testing and mock validation
+
+COMMIT SEQUENCE (6 commits):
+1. drivers: power: ltm4700: Add driver support for ltm4700
+2. drivers: power: ltm4700: Add IIO support for ltm4700
+3. drivers: power: ltm4700: Add README documentation for ltm4700
+4. projects: ltm4700: Add project for ltm4700
+5. projects: ltm4700: Add README documentation for project
+6. tests: drivers: power: ltm4700: Add unit tests for ltm4700
+
+Does this implementation plan look correct? Should I proceed with this approach?"
+
+[User reviews and approves plan]
+
+Developer: "Yes, this looks perfect. Please proceed with the implementation."
+
+Claude: "Excellent! I'll now implement the complete LTM4700 driver following the approved plan.
+Starting with branch creation and core driver implementation..."
+
+[Claude executes the 6-commit implementation autonomously]
 ```
 
-### **Automated Quality Assurance**
-- **Real-time Pattern Detection**: Uses our 6-month analysis of 507 review comments
-- **Pre-commit Integration**: Automatically runs all quality checks
-- **Issue Prevention**: Catches 62.5% of review issues before submission
+### **Phase 2: Autonomous Implementation**
+After plan approval, Claude executes WITHOUT asking intermediate questions:
+- ✅ **Create development branch** (`dev/ltm4700`)
+- ✅ **Execute all 6 commits** following exact pattern
+- ✅ **Run quality checks** automatically
+- ✅ **Execute unit tests** for validation
+- ✅ **Report completion** with summary
 
-**📋 Complete Guide:** See [Claude Code Integration Guide](docs/claude-code-integration-guide.md) for the full AI-assisted workflow.
-
-> **💡 Quick Start with Claude Code:** Simply start a Claude Code session and type:
-> `"I need to develop a driver for the [DEVICE] [TYPE]"`
-> Claude will automatically create your branch and guide you through PMBus command selection.
+### **Critical Requirements for Claude:**
+- **🚨 ALWAYS use EnterPlanMode first** - No implementation without planning
+- **🚨 NO intermediate questions** - Don't ask about `cd`, `ls`, file paths, etc.
+- **🚨 Complete implementation** - All 6 components (driver, IIO, project, tests, docs)
+- **🚨 No "-eval" suffix** - Projects are `projects/<device>` NOT `projects/<device>-eval`
+- **🚨 Autonomous execution** - After plan approval, execute without further questions
 
 ---
 
@@ -882,22 +934,45 @@ Follow this pattern consistently:
 
 **Examples:**
 ```
-drivers: adc: ad7980: add initial driver implementation
-drivers: adc: ad7980: fix initialization sequence
-projects: ad7980-eval: add evaluation board support
-docs: adc: ad7980: add driver documentation
-ci: build: add ad7980-eval to build matrix
+drivers: power: ltm4700: Add driver support for ltm4700
+drivers: power: ltm4700: Add IIO support for ltm4700
+drivers: power: ltm4700: Add README documentation for ltm4700
+projects: ltm4700: Add project for ltm4700
+projects: ltm4700: Add README documentation for project
+tests: drivers: power: ltm4700: Add unit tests for ltm4700
 ```
 
-### Commit Organization
+### Commit Organization (MANDATORY 6-Commit Pattern)
 
-Organize changes across multiple logical commits:
+**🚨 CRITICAL: ALL driver implementations MUST follow this exact 6-commit sequence:**
 
-1. **Core driver** - `drivers: <category>: <device>: add initial driver`
-2. **Register definitions** - `drivers: <category>: <device>: add register definitions`
-3. **Project/Example** - `projects: <device>-eval: add evaluation project`
-4. **Documentation** - `docs: <category>: <device>: add driver documentation`
-5. **Build integration** - `ci: build: add <device> projects to build matrix`
+1. **Core Driver** - `drivers: <category>: <device>: Add driver support for <device>`
+   - Header file (`<device>.h`) with complete API
+   - Source file (`<device>.c`) with core implementation
+   - Basic communication and device identification
+
+2. **IIO Support** - `drivers: <category>: <device>: Add IIO support for <device>`
+   - IIO header file (`iio_<device>.h`)
+   - IIO source file (`iio_<device>.c`)
+   - Complete Linux Industrial I/O integration
+
+3. **Driver Documentation** - `drivers: <category>: <device>: Add README documentation for <device>`
+   - Comprehensive `README.rst` with API reference
+   - Usage examples and hardware setup instructions
+
+4. **Project Implementation** - `projects: <device>: Add project for <device>`
+   - Complete project structure (`Makefile`, `builds.json`, `src.mk`)
+   - Source files (`src/main.c`, `src/common/`, `src/examples/`)
+   - Multi-platform support configuration
+
+5. **Project Documentation** - `projects: <device>: Add README documentation for project`
+   - Project `README.rst` with build and usage instructions
+   - Platform-specific setup guides
+
+6. **Unit Tests** - `tests: drivers: <category>: <device>: Add unit tests for <device>`
+   - Complete Ceedling test suite (`project.yml`)
+   - Core driver tests (`test_<device>.c`) with 80%+ coverage
+   - IIO tests (`test_iio_<device>.c`) and support files
 
 ### Required Sign-offs
 
