@@ -211,7 +211,7 @@ grep -r "No such file" build/ 2>/dev/null || echo "No missing file errors"
 
 ## **Documentation References**
 
-- **Complete lessons learned**: `memory/framework-validation-lessons.md`
+- **Complete lessons learned**: `docs/framework-validation-lessons.md`
 - **Platform standards**: `docs/architecture-standards.md`
 - **Testing patterns**: `docs/testing-guide.md`
 
