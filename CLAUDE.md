@@ -268,6 +268,8 @@ For detailed implementation guidance, see these comprehensive guides:
 
 ### Core Development Guides
 - **[Framework Integration Guide](docs/framework-integration-guide.md)**: Complete framework verification process
+- **[Framework Validation Lessons](docs/framework-validation-lessons.md)**: Critical failure patterns and solutions (IMPORTANT)
+- **[Framework Troubleshooting](docs/framework-validation-troubleshooting.md)**: Quick fixes for common validation failures
 - **[Driver Templates](docs/driver-templates.md)**: Standard templates and patterns
 - **[Quality Assurance Guide](docs/quality-assurance-guide.md)**: QA patterns and error prevention
 - **[Git Workflow Guide](docs/git-workflow-guide.md)**: Complete git workflow and commit patterns
