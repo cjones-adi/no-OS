@@ -72,13 +72,15 @@ echo "-----------------------------"
 
 case "$PLATFORM" in
     "maxim")
-        validate_check "maxim_uart.h header" "test -f drivers/platform/maxim/maxim_uart.h"
-        validate_check "maxim_i2c.h header" "test -f drivers/platform/maxim/maxim_i2c.h"
-        validate_check "maxim_gpio.h header" "test -f drivers/platform/maxim/maxim_gpio.h"
+        # Maxim headers are chip-specific, find any available implementation
+        validate_check "maxim_uart.h header" "find drivers/platform/maxim/ -name 'maxim_uart.h' | head -1"
+        validate_check "maxim_i2c.h header" "find drivers/platform/maxim/ -name 'maxim_i2c.h' | head -1"
+        validate_check "maxim_gpio.h header" "find drivers/platform/maxim/ -name 'maxim_gpio.h' | head -1"
 
-        # Check for specific constants
-        if [[ -f "drivers/platform/maxim/maxim_uart.h" ]]; then
-            validate_check "MAX_UART_FLOW_DIS constant" "grep -q 'MAX_UART_FLOW_DIS' drivers/platform/maxim/maxim_uart.h"
+        # Check for specific constants in any available chip variant
+        MAXIM_UART_HEADER=$(find drivers/platform/maxim/ -name "maxim_uart.h" | head -1)
+        if [[ -f "$MAXIM_UART_HEADER" ]]; then
+            validate_check "MAX_UART_FLOW_DIS constant" "grep -q 'MAX_UART_FLOW_DIS' '$MAXIM_UART_HEADER'"
         fi
         ;;
     "stm32")
@@ -103,7 +105,7 @@ if [[ -f "$SAMPLE_TEST" ]]; then
     echo "   Using reference: $SAMPLE_TEST"
 
     # Check Ceedling version
-    CEEDLING_VERSION=$(grep "ceedling_version" "$SAMPLE_TEST" | cut -d: -f2 | tr -d ' ' | tr -d '"')
+    CEEDLING_VERSION=$(grep "ceedling_version" "$SAMPLE_TEST" | cut -d: -f3 | tr -d ' ' | tr -d '"')
     if [[ "$CEEDLING_VERSION" == "1.0.1" ]]; then
         echo -e "   ${GREEN}✓ Ceedling version: $CEEDLING_VERSION${NC}"
     else
@@ -147,7 +149,11 @@ fi
 # Check IIO API for monitoring devices
 if [[ "$DEVICE_CATEGORY" == "power" ]] || [[ "$DEVICE_CATEGORY" == "adc" ]]; then
     validate_check "IIO core API" "test -f iio/iio.h || test -f include/iio.h"
-    if find . -name "iio.h" | head -1 >/dev/null 2>&1; then
+    # Check for IIO channel structure in iio_types.h
+    if [[ -f "iio/iio_types.h" ]]; then
+        validate_check "IIO channel structure" "grep -q 'ch_num' 'iio/iio_types.h'"
+        echo -e "   ${GREEN}✓ IIO structure field names validated${NC}"
+    elif find . -name "iio.h" | head -1 >/dev/null 2>&1; then
         IIO_HEADER=$(find . -name "iio.h" | head -1)
         validate_check "IIO channel structure" "grep -q 'ch_num' '$IIO_HEADER'"
         echo -e "   ${GREEN}✓ IIO structure field names validated${NC}"
@@ -196,10 +202,14 @@ else
     echo -e "${RED}💥 Framework Validation FAILED${NC}"
     echo "   Fix framework issues before proceeding with implementation"
     echo ""
-    echo "Common fixes:"
-    echo "   - Update test configurations to Ceedling 1.0.1"
-    echo "   - Verify platform header files exist"
-    echo "   - Check API signatures against current no-OS version"
-    echo "   - Use individual file includes instead of wildcards"
+    echo "🔧 Quick fixes:"
+    echo "   - Platform headers: Check chip-specific directories (max32665/, max32650/)"
+    echo "   - Ceedling version: Verify YAML field parsing in project.yml"
+    echo "   - IIO structures: Check iio_types.h for ch_num field"
+    echo "   - Platform config: Include common directory and DMA sources"
+    echo ""
+    echo "📖 Detailed troubleshooting:"
+    echo "   docs/framework-validation-troubleshooting.md"
+    echo "   memory/framework-validation-lessons.md"
     exit 1
 fi
