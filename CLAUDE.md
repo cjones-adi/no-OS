@@ -49,6 +49,24 @@ Claude MUST follow this exact commit sequence for ALL driver implementations:
 12. **Hardware Testing** - Validate on target hardware
 13. **Merge** - Maintainer approval and integration
 
+**🔒 MANDATORY PRE-ACTION COMPLIANCE CHECK:**
+**BEFORE ANY driver development work (including file creation, commits, or planning), Claude MUST:**
+
+1. **Read and acknowledge ALL 🚨 CRITICAL REQUIREMENTS below**
+2. **Create explicit compliance checklist for current task**
+3. **Verify each critical requirement will be followed**
+4. **Only proceed after confirming 100% compliance**
+
+**Example Pre-Action Check:**
+```
+✅ Framework validation completed
+✅ Planning mode will be used
+✅ 6-commit pattern planned
+✅ NO AI attribution in any files (author field = "Analog Devices")
+✅ Complete implementation scope confirmed
+✅ Proper project naming (no "-eval" suffix)
+```
+
 **🚨 CRITICAL REQUIREMENTS:**
 - **Framework Verification First**: ALWAYS run framework validation before ANY implementation
 - **Planning First**: ALWAYS use EnterPlanMode for driver development
