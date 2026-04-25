@@ -1,0 +1,8 @@
+# Track all skill usage logs by default
+# This allows verification that skills are being used
+
+# Exclude nothing by default - we want to see all usage
+# If logs get too numerous, archive old ones to archive/ subdirectory
+
+# Archive directory (for old logs)
+archive/

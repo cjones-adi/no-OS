@@ -1,0 +1,13 @@
+# Requirements for hardware specification parsing tools
+
+# PDF parsing (optional - only needed for PDF datasheets)
+PyPDF2>=3.0.0
+pdfplumber>=0.10.0
+tabula-py>=2.8.0
+pandas>=2.0.0
+
+# YAML parsing (optional - only needed for YAML files)
+pyyaml>=6.0.0
+
+# General dependencies
+openpyxl>=3.1.0

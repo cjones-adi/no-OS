@@ -1,0 +1,46 @@
+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+%YAML 1.2
+---
+$id: http://devicetree.org/schemas/dma/adi,axi-dmac.yaml#
+$schema: http://devicetree.org/meta-schemas/core.yaml#
+
+title: Analog Devices AXI-DMAC DMA Controller
+
+maintainers:
+  - Your Name <your.email@example.com>
+
+properties:
+  compatible:
+    const: adi,axi-dmac-1.00.a
+
+  reg:
+    maxItems: 1
+
+  interrupts:
+    maxItems: 1
+
+  clocks:
+    maxItems: 1
+
+  clock-names:
+    const: s_axi_aclk
+
+required:
+  - compatible
+  - reg
+  - interrupts
+  - clocks
+
+additionalProperties: false
+
+examples:
+  - |
+    #include <dt-bindings/interrupt-controller/irq.h>
+
+    axi_dmac@44a30000 {
+        compatible = "adi,axi-dmac-1.00.a";
+        reg = <0x44a30000 0x1000>;
+        interrupts = <0 57 IRQ_TYPE_LEVEL_HIGH>;
+        clocks = <&clkc 15>;
+        clock-names = "s_axi_aclk";
+    };
