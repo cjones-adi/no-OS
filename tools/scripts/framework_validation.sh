@@ -210,6 +210,6 @@ else
     echo ""
     echo "📖 Detailed troubleshooting:"
     echo "   docs/framework-validation-troubleshooting.md"
-    echo "   memory/framework-validation-lessons.md"
+    echo "   docs/framework-validation-lessons.md"
     exit 1
 fi
