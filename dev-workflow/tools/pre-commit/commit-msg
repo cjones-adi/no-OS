@@ -1,0 +1,91 @@
+#!/bin/bash
+# no-OS commit message validation hook
+# Ensures commit messages follow the project standards
+
+set -e
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m'
+
+echo_error() {
+    echo -e "${RED}❌ $1${NC}"
+}
+
+echo_success() {
+    echo -e "${GREEN}✅ $1${NC}"
+}
+
+echo_warning() {
+    echo -e "${YELLOW}⚠️  $1${NC}"
+}
+
+# Get the commit message
+commit_msg_file="$1"
+commit_msg=$(cat "$commit_msg_file")
+
+# Skip checks for merge commits, revert commits, etc.
+if echo "$commit_msg" | grep -qE "^(Merge|Revert|fixup!|squash!)" ; then
+    echo_success "Special commit type, skipping validation"
+    exit 0
+fi
+
+# Check if commit is signed off
+if ! echo "$commit_msg" | grep -q "Signed-off-by:" ; then
+    echo_error "Commit must be signed off"
+    echo_warning "Add -s flag: git commit -s"
+    exit 1
+fi
+
+# Validate commit message format
+# Expected: "scope: component: brief description"
+first_line=$(echo "$commit_msg" | head -n1)
+
+# Common scopes for no-OS
+valid_scopes="drivers|projects|tools|ci|docs|include|util|libraries|tests"
+
+# Check first line format
+if ! echo "$first_line" | grep -qE "^($valid_scopes): [a-zA-Z0-9_-]+: .+"; then
+    echo_error "Invalid commit message format"
+    echo ""
+    echo "Expected format:"
+    echo "  <scope>: <component>: <brief description>"
+    echo ""
+    echo "Valid scopes: drivers, projects, tools, ci, docs, include, util, libraries, tests"
+    echo ""
+    echo "Examples:"
+    echo "  drivers: adc: ad7980: add initial driver implementation"
+    echo "  projects: ad7980-eval: add evaluation board support"
+    echo "  docs: adc: ad7980: add driver documentation"
+    echo ""
+    echo "Your message:"
+    echo "  $first_line"
+    echo ""
+    exit 1
+fi
+
+# Check first line length (recommended max 72 characters)
+if [ ${#first_line} -gt 72 ]; then
+    echo_warning "First line is ${#first_line} characters (recommended: ≤72)"
+    echo "Consider shortening: $first_line"
+fi
+
+# Check for trailing whitespace
+if echo "$commit_msg" | grep -q " $"; then
+    echo_error "Commit message contains trailing whitespace"
+    exit 1
+fi
+
+# Check for proper capitalization (first word after scope should not be capitalized unless it's a proper noun)
+component=$(echo "$first_line" | cut -d: -f2 | sed 's/^ *//')
+description=$(echo "$first_line" | cut -d: -f3- | sed 's/^ *//')
+
+if echo "$description" | grep -qE "^[A-Z]" && ! echo "$description" | grep -qE "^[A-Z]{2,}|^[A-Z][A-Z0-9_-]+"; then
+    echo_warning "Description should start with lowercase unless it's an acronym"
+    echo "Got: $description"
+fi
+
+echo_success "Commit message format is valid"
+exit 0

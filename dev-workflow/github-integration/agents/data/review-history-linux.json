@@ -1,0 +1,286 @@
+{
+  "last_updated": "2026-03-03",
+  "data_range": {
+    "start_date": "2025-09-03",
+    "end_date": "2026-03-03",
+    "months": 6,
+    "note": "Initial structure - populate with real PR review data from Linux kernel repository"
+  },
+  "common_issues": [
+    {
+      "category": "memory_management",
+      "issue": "Missing devm_* resource management",
+      "description": "Using manual allocation/deallocation instead of device-managed resources",
+      "severity": "major",
+      "frequency": 45,
+      "example": "Use devm_kzalloc(), devm_ioremap_resource(), devm_request_irq() instead of manual cleanup",
+      "files_affected": ["probe functions", "initialization code"]
+    },
+    {
+      "category": "locking",
+      "issue": "Sleeping in atomic context",
+      "description": "Calling functions that may sleep while holding spinlocks or in interrupt context",
+      "severity": "critical",
+      "frequency": 38,
+      "example": "Don't call mutex_lock(), msleep(), or I2C/SPI functions inside spin_lock() or interrupt handlers",
+      "files_affected": ["interrupt handlers", "spinlock-protected sections"]
+    },
+    {
+      "category": "error_handling",
+      "issue": "Incorrect errno values",
+      "description": "Returning positive errors or using wrong errno codes",
+      "severity": "major",
+      "frequency": 35,
+      "example": "Return negative errno: -EINVAL, -ENOMEM, -EIO, not positive values",
+      "files_affected": ["all functions returning int"]
+    },
+    {
+      "category": "coding_style",
+      "issue": "checkpatch.pl violations",
+      "description": "Code doesn't pass checkpatch.pl --strict checks",
+      "severity": "minor",
+      "frequency": 32,
+      "example": "Fix alignment, spacing, line length, comment style per kernel coding standards",
+      "files_affected": ["all source files"]
+    },
+    {
+      "category": "memory_management",
+      "issue": "Memory leak on error paths",
+      "description": "Allocated resources not freed when function exits via error path",
+      "severity": "critical",
+      "frequency": 28,
+      "example": "Use goto error handling pattern and free resources in reverse order",
+      "files_affected": ["probe functions", "init functions"]
+    },
+    {
+      "category": "locking",
+      "issue": "Missing or incorrect lock annotations",
+      "description": "Functions don't document locking requirements or use wrong lock type",
+      "severity": "major",
+      "frequency": 25,
+      "example": "Document which lock must be held with __must_hold(), use spin_lock_irqsave() in IRQ paths",
+      "files_affected": ["shared data access functions"]
+    },
+    {
+      "category": "device_tree",
+      "issue": "Missing or incorrect DT binding validation",
+      "description": "Device tree bindings not validated with dt_binding_check or have schema errors",
+      "severity": "major",
+      "frequency": 24,
+      "example": "Run 'make dt_binding_check' and fix YAML schema errors",
+      "files_affected": ["Documentation/devicetree/bindings/"]
+    },
+    {
+      "category": "api_usage",
+      "issue": "Incorrect of_node_put() usage",
+      "description": "Device tree node references not released or released incorrectly",
+      "severity": "major",
+      "frequency": 22,
+      "example": "Call of_node_put() for each of_node_get(), of_find_*, of_parse_phandle()",
+      "files_affected": ["device tree parsing code"]
+    },
+    {
+      "category": "power_management",
+      "issue": "Missing PM callback error handling",
+      "description": "Suspend/resume callbacks don't handle errors properly",
+      "severity": "major",
+      "frequency": 20,
+      "example": "Check return values from clk_prepare_enable(), regulator_enable() in resume",
+      "files_affected": ["PM ops callbacks"]
+    },
+    {
+      "category": "concurrency",
+      "issue": "Race condition in probe/remove",
+      "description": "Device registered before fully initialized or removed after cleanup started",
+      "severity": "critical",
+      "frequency": 18,
+      "example": "Register device as last step in probe, unregister as first step in remove",
+      "files_affected": ["probe functions", "remove functions"]
+    },
+    {
+      "category": "api_usage",
+      "issue": "Incorrect GFP flags for context",
+      "description": "Using GFP_KERNEL in atomic context or GFP_ATOMIC unnecessarily",
+      "severity": "major",
+      "frequency": 17,
+      "example": "Use GFP_ATOMIC only in interrupt handlers or under spinlocks, GFP_KERNEL elsewhere",
+      "files_affected": ["memory allocation calls"]
+    },
+    {
+      "category": "security",
+      "issue": "Missing input validation from userspace",
+      "description": "User input from ioctl, sysfs not validated for bounds/sanity",
+      "severity": "critical",
+      "frequency": 16,
+      "example": "Validate array indices, check for integer overflow, sanitize string inputs",
+      "files_affected": ["ioctl handlers", "sysfs store functions"]
+    },
+    {
+      "category": "documentation",
+      "issue": "Missing or malformed kernel-doc",
+      "description": "Exported functions lack proper kernel-doc format documentation",
+      "severity": "minor",
+      "frequency": 15,
+      "example": "Add /** kernel-doc */ with @param and Return: for all EXPORT_SYMBOL functions",
+      "files_affected": ["exported function declarations"]
+    },
+    {
+      "category": "api_usage",
+      "issue": "Using deprecated APIs",
+      "description": "Using old/deprecated kernel APIs instead of current ones",
+      "severity": "major",
+      "frequency": 14,
+      "example": "Use devm_platform_ioremap_resource() not platform_get_resource() + devm_ioremap()",
+      "files_affected": ["platform driver probe"]
+    },
+    {
+      "category": "error_handling",
+      "issue": "Not propagating -EPROBE_DEFER correctly",
+      "description": "Deferred probing return value not handled properly",
+      "severity": "major",
+      "frequency": 13,
+      "example": "Return -EPROBE_DEFER when resources not ready, don't convert to other errno",
+      "files_affected": ["probe functions"]
+    },
+    {
+      "category": "locking",
+      "issue": "Lock ordering violations",
+      "description": "Multiple locks acquired in inconsistent order, risking ABBA deadlock",
+      "severity": "critical",
+      "frequency": 12,
+      "example": "Always acquire locks in same order, document lock hierarchy",
+      "files_affected": ["multi-lock critical sections"]
+    },
+    {
+      "category": "device_tree",
+      "issue": "Hardcoded values instead of DT properties",
+      "description": "Configuration values hardcoded that should be in device tree",
+      "severity": "minor",
+      "frequency": 11,
+      "example": "Move board-specific values (GPIO numbers, addresses, etc.) to DT properties",
+      "files_affected": ["initialization code"]
+    },
+    {
+      "category": "api_usage",
+      "issue": "Incorrect use of PTR_ERR/IS_ERR",
+      "description": "Checking for NULL when function returns ERR_PTR or vice versa",
+      "severity": "major",
+      "frequency": 10,
+      "example": "Use IS_ERR() + PTR_ERR() for functions returning error pointers, NULL check for others",
+      "files_affected": ["error handling code"]
+    },
+    {
+      "category": "subsystem_api",
+      "issue": "Incorrect IIO channel spec",
+      "description": "IIO channel specs missing required fields or using wrong types",
+      "severity": "major",
+      "frequency": 9,
+      "example": "Set scan_type.realbits, .storagebits, .shift correctly for IIO channels",
+      "files_affected": ["IIO drivers"]
+    },
+    {
+      "category": "coding_style",
+      "issue": "Unnecessary type casts",
+      "description": "Type casts that are redundant or hide real type issues",
+      "severity": "minor",
+      "frequency": 8,
+      "example": "Remove unnecessary void* casts, fix actual type mismatches",
+      "files_affected": ["callback functions", "container_of usage"]
+    },
+    {
+      "category": "build_system",
+      "issue": "Missing or incorrect Kconfig dependencies",
+      "description": "Kconfig doesn't declare all required dependencies",
+      "severity": "major",
+      "frequency": 7,
+      "example": "Add 'depends on SPI', 'select REGMAP_SPI' for all required subsystems",
+      "files_affected": ["Kconfig entries"]
+    },
+    {
+      "category": "api_usage",
+      "issue": "Direct register access without regmap",
+      "description": "Using custom register I/O when regmap would be more appropriate",
+      "severity": "minor",
+      "frequency": 6,
+      "example": "Consider using regmap API for register access (caching, debugging, etc.)",
+      "files_affected": ["register I/O functions"]
+    },
+    {
+      "category": "error_handling",
+      "issue": "Silent failure of error conditions",
+      "description": "Errors not logged, making debugging difficult",
+      "severity": "minor",
+      "frequency": 5,
+      "example": "Use dev_err(), dev_warn() to log error conditions with context",
+      "files_affected": ["error handling paths"]
+    },
+    {
+      "category": "security",
+      "issue": "Format string vulnerabilities",
+      "description": "User-controlled strings used directly in printf-style functions",
+      "severity": "critical",
+      "frequency": 4,
+      "example": "Use dev_err(dev, '%s', user_str) not dev_err(dev, user_str)",
+      "files_affected": ["logging code with user input"]
+    },
+    {
+      "category": "optimization",
+      "issue": "Inefficient loops or memory access patterns",
+      "description": "Code could be optimized for better performance",
+      "severity": "minor",
+      "frequency": 3,
+      "example": "Consider bulk operations, DMA, or caching for performance-critical paths",
+      "files_affected": ["data processing loops"]
+    }
+  ],
+  "subsystem_specific": {
+    "iio": {
+      "common_issues": [
+        "Missing IIO_CHAN_INFO_SCALE or IIO_CHAN_INFO_OFFSET",
+        "Incorrect channel type or modifier",
+        "Not using iio_priv() to get private data",
+        "Forgetting to call iio_device_claim/release_direct_mode"
+      ]
+    },
+    "platform": {
+      "common_issues": [
+        "Not handling -EPROBE_DEFER for dependent resources",
+        "Using platform_get_resource + devm_ioremap instead of devm_platform_ioremap_resource",
+        "Missing platform_set_drvdata in probe"
+      ]
+    },
+    "spi": {
+      "common_issues": [
+        "Not setting spi_device mode/bits_per_word in probe",
+        "Incorrect SPI transfer setup (missing length, data pointer, etc.)",
+        "Not checking spi_setup() return value"
+      ]
+    },
+    "i2c": {
+      "common_issues": [
+        "Using i2c_transfer instead of i2c_smbus_* helpers when appropriate",
+        "Not handling NAK/timeout properly",
+        "Missing i2c_check_functionality() check"
+      ]
+    }
+  },
+  "review_checklist": {
+    "automated_checks": [
+      "Run scripts/checkpatch.pl --strict",
+      "Run sparse (make C=2)",
+      "Run coccinelle checks (make coccicheck)",
+      "Build with W=1 for extra warnings",
+      "Run dt_binding_check for DT bindings"
+    ],
+    "manual_checks": [
+      "Memory leaks on error paths",
+      "Locking correctness and consistency",
+      "Error handling and propagation",
+      "Device tree binding completeness",
+      "Power management completeness",
+      "Subsystem API usage correctness",
+      "Security implications of user input",
+      "Documentation completeness"
+    ]
+  }
+}
