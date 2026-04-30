@@ -32,7 +32,7 @@ usage() {
     echo ""
     echo "This script will copy:"
     echo "  • CLAUDE.md (enhanced documentation)"
-    echo "  • tools/pre-commit/ (all development tools)"
+    echo "  • .claude/tools/pre-commit/ (all development tools)"
     echo "  • Local SonarCloud scanner setup"
     echo "  • .pre-commit-config (if exists)"
     echo "  • review_patterns.json (if exists)"
@@ -49,8 +49,8 @@ validate_source() {
         exit 1
     fi
 
-    if [ ! -d "tools/pre-commit" ]; then
-        echo "❌ tools/pre-commit directory not found"
+    if [ ! -d ".claude/tools/pre-commit" ]; then
+        echo "❌ .claude/tools/pre-commit directory not found"
         exit 1
     fi
 
@@ -103,14 +103,14 @@ transfer_files() {
     echo_success "CLAUDE.md transferred"
 
     # Transfer tools directory
-    echo_info "Transferring tools/pre-commit/..."
+    echo_info "Transferring .claude/tools/pre-commit/..."
     mkdir -p "$target_path/tools"
-    if [ -d "$target_path/tools/pre-commit" ]; then
-        echo_info "Backing up existing tools/pre-commit"
-        mv "$target_path/tools/pre-commit" "$target_path/tools/pre-commit.backup.$(date +%Y%m%d_%H%M%S)"
+    if [ -d "$target_path/.claude/tools/pre-commit" ]; then
+        echo_info "Backing up existing .claude/tools/pre-commit"
+        mv "$target_path/.claude/tools/pre-commit" "$target_path/.claude/tools/pre-commit.backup.$(date +%Y%m%d_%H%M%S)"
     fi
-    cp -r tools/pre-commit "$target_path/tools/"
-    echo_success "tools/pre-commit/ transferred"
+    cp -r .claude/tools/pre-commit "$target_path/tools/"
+    echo_success ".claude/tools/pre-commit/ transferred"
 
     # Transfer optional files
     optional_files=(".pre-commit-config" "review_patterns.json" "extract_review_patterns.py")
@@ -124,10 +124,10 @@ transfer_files() {
 
     # Make scripts executable
     echo_info "Setting executable permissions..."
-    find "$target_path/tools/pre-commit" -name "*.sh" -exec chmod +x {} \;
-    find "$target_path/tools/pre-commit" -name "*.py" -exec chmod +x {} \;
-    chmod +x "$target_path/tools/pre-commit/pre-commit"
-    chmod +x "$target_path/tools/pre-commit/commit-msg"
+    find "$target_path/.claude/tools/pre-commit" -name "*.sh" -exec chmod +x {} \;
+    find "$target_path/.claude/tools/pre-commit" -name "*.py" -exec chmod +x {} \;
+    chmod +x "$target_path/.claude/tools/pre-commit/pre-commit"
+    chmod +x "$target_path/.claude/tools/pre-commit/commit-msg"
     echo_success "Permissions set"
 }
 
@@ -165,19 +165,19 @@ generate_migration_report() {
     echo ""
     echo_success "✅ Files transferred:"
     echo "   • CLAUDE.md (enhanced development guide)"
-    echo "   • tools/pre-commit/ (all development tools)"
+    echo "   • .claude/tools/pre-commit/ (all development tools)"
     echo "   • Optional configuration files"
     echo ""
     echo_info "🔧 Next steps in target repository:"
     echo "   1. cd $target_path"
-    echo "   2. ./tools/pre-commit/validate-setup.sh"
-    echo "   3. ./tools/pre-commit/install-hooks.sh"
+    echo "   2. ./.claude/tools/pre-commit/validate-setup.sh"
+    echo "   3. ./.claude/tools/pre-commit/install-hooks.sh"
     echo "   4. Review and customize .pre-commit-config if needed"
     echo ""
     echo_warning "⚠️  Remember to:"
     echo "   • Update git server URLs in CLAUDE.md if using internal git"
-    echo "   • Customize tools/pre-commit/pre-commit-config.example for your environment"
-    echo "   • Test the tools with ./tools/pre-commit/new-dev-branch.sh test-device"
+    echo "   • Customize .claude/tools/pre-commit/pre-commit-config.example for your environment"
+    echo "   • Test the tools with ./.claude/tools/pre-commit/new-dev-branch.sh test-device"
     echo ""
 }
 
