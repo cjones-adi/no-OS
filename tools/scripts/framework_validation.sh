@@ -1,1 +1,0 @@
-../../.claude/tools/scripts/framework_validation.sh

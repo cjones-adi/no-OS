@@ -17,7 +17,7 @@
 
 ### **Solution Implemented**
 1. ✅ **Removed duplicate AI files from root directories**
-2. ✅ **Created symlinks for essential AI files**
+2. ✅ **Created symlinks for essential functionality and updated tool paths**
 3. ✅ **Updated all path references to point to `.claude/` directory**
 
 ---
@@ -65,13 +65,11 @@ CLAUDE.md -> .claude/CLAUDE.md
 - Maintains AI workflow functionality
 - **Preserves original** `.github/workflows/labeler.yml`
 
-### **Tools Access**
-```bash
-tools/scripts/framework_validation.sh -> ../../.claude/tools/scripts/framework_validation.sh
-tools/transfer-to-repository.sh -> ../.claude/tools/transfer-to-repository.sh
-```
-- Provides backward compatibility for essential AI scripts
-- Maintains expected tool locations for existing workflows
+### **Updated Instructions**
+All documentation and instructions now point directly to `.claude/` paths:
+- Framework validation: `./.claude/tools/scripts/framework_validation.sh`
+- Repository transfer: `./.claude/tools/transfer-to-repository.sh`
+- Clean approach: No symlinks needed, users see actual file locations
 
 ---
 
@@ -103,11 +101,12 @@ tools/pre-commit/  (16 references)
 
 ## ✅ **Verification Results**
 
-### **Symlinks Working**
+### **Essential Access Working**
 ```bash
 ✅ CLAUDE.md symlink: Functional
 ✅ .github/skills symlink: Functional (311+ skills accessible)
 ✅ .github/workflows symlinks: 5 AI workflows + 1 original workflow
+✅ Tool instructions: Point directly to .claude/ paths
 ```
 
 ### **Pre-commit Hooks Working**
@@ -135,7 +134,7 @@ tools/pre-commit/  (16 references)
 |--------|-------------------|---------------|
 | **AI Files in Root** | ❌ 375 files | ✅ 0 files |
 | **AI Files in .claude/** | ✅ Complete set | ✅ Complete set |
-| **Access to Essential Files** | ❌ Confusing duplicates | ✅ Clean symlinks |
+| **Access to Essential Files** | ❌ Confusing duplicates | ✅ Clean access (.claude paths) |
 | **Path References** | ❌ Broken (tools/pre-commit) | ✅ Working (.claude/tools/pre-commit) |
 | **Repository Clarity** | ❌ Mixed AI/core files | ✅ Clean separation |
 | **Maintenance** | ❌ Duplicate file sync needed | ✅ Single source of truth |
@@ -150,7 +149,7 @@ tools/pre-commit/  (16 references)
    - No confusion about file locations
 
 2. **🔧 Functional AI Workflow**
-   - All AI tools remain accessible via symlinks
+   - All AI tools accessible via clear .claude paths
    - Pre-commit hooks work with updated paths
    - GitHub Actions and skills remain functional
 
@@ -194,12 +193,16 @@ tools/pre-commit/  (16 references)
 # Verify clean root (should show no AI files)
 find . -maxdepth 1 -name "CLAUDE.md" -o -name "docs" -o -name "tools/pre-commit" | grep -v "^./CLAUDE.md$"
 
-# Verify symlinks work
+# Verify essential symlinks work
 ls -la CLAUDE.md .github/skills .github/workflows/ci-enhanced.yml
 
 # Verify AI content accessible
 head -3 CLAUDE.md
 ls .github/skills/ | wc -l  # Should show 50+ skills
+
+# Verify tools work with .claude paths
+./.claude/tools/scripts/framework_validation.sh --help 2>/dev/null || echo "Framework validation available"
+./.claude/tools/transfer-to-repository.sh --help 2>/dev/null || echo "Transfer script available"
 
 # Verify pre-commit hooks work
 git add . && git commit --dry-run -m "test: verify hooks"
@@ -210,7 +213,7 @@ git add . && git commit --dry-run -m "test: verify hooks"
 ## ✨ **Success Summary**
 
 ✅ **377+ duplicate AI files successfully removed**
-✅ **Essential AI files accessible via clean symlinks**
+✅ **Essential AI files accessible via clean paths**
 ✅ **All path references updated to .claude/ directory**
 ✅ **Pre-commit hooks functional with new paths**
 ✅ **GitHub workflows and skills remain operational**

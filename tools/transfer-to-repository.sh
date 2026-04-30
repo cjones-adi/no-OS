@@ -1,1 +1,0 @@
-../.claude/tools/transfer-to-repository.sh
