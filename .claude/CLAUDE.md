@@ -24,6 +24,8 @@ This is Analog Devices' no-OS repository containing hardware drivers and referen
 - **Platform-Specific Skills**:
   - `/no-os-maxim-platform` - MAX32xxx platform validation
   - `/no-os-stm32-platform` - STM32 HAL integration validation
+- **GitHub Integration Agents**: `.claude/github-integration/agents/`
+  - `driver-orchestrator.agent.md` - Workflow coordination and validation
 
 **🚨 CRITICAL: Never proceed to planning without framework verification**
 
@@ -47,6 +49,10 @@ This is Analog Devices' no-OS repository containing hardware drivers and referen
   - **IMU/Sensors**: `/no-os-imu` - Motion sensing, FIFO, calibration patterns
   - **Temperature**: `/no-os-temperature` - RTD, thermocouple, digital sensors
   - **Frequency**: `/no-os-frequency` - PLLs, VCOs, clock distribution, JESD204B
+- **GitHub Integration Agents**: `.claude/github-integration/agents/`
+  - `driver-planner-no-os.agent.md` - Specialized no-OS planning agent
+  - `driver-planner-linux.agent.md` - Linux kernel planning agent
+  - `driver-planner-zephyr.agent.md` - Zephyr RTOS planning agent
 
 ### **Phase 2: Implementation (6-Commit Pattern)**
 Claude MUST follow this exact commit sequence for ALL driver implementations:
@@ -86,6 +92,14 @@ Claude MUST follow this exact commit sequence for ALL driver implementations:
 - **Testing Framework**: `/no-os-unit-testing` - Ceedling/Unity/CMock, mocking strategies, coverage
 - **Quality Tools**: `.claude/tools/pre-commit/` - AStyle, Cppcheck, pattern detection
 - **Coverage Analysis**: Built-in gcov support and automated coverage reporting
+- **GitHub Integration Agents**: `.claude/github-integration/agents/`
+  - `driver-coder-no-os.agent.md` - Specialized no-OS implementation agent
+  - `driver-coder-linux.agent.md` - Linux kernel implementation agent
+  - `driver-coder-zephyr.agent.md` - Zephyr RTOS implementation agent
+  - `driver-documenter-no-os.agent.md` - no-OS documentation agent
+  - `driver-documenter-linux.agent.md` - Linux documentation agent
+  - `driver-documenter-zephyr.agent.md` - Zephyr documentation agent
+  - `driver-unit-tester-no-os.agent.md` - no-OS unit testing agent
 
 ### **Phase 3: Quality Assurance (Automated)**
 7. **Automated Quality** - Pattern detection and style cleanup
@@ -110,17 +124,32 @@ Claude MUST follow this exact commit sequence for ALL driver implementations:
 - **Multi-platform Builds**: Python build scripts for xilinx, stm32, maxim, mbed, pico, aducm3029, lattice
 - **Build System Skills**: `/no-os-make-and-linker` - src.mk validation, dependency checking
 - **Platform Verification**: Platform-specific skills for build environment validation
+- **GitHub Actions Workflows**: `.claude/github-integration/workflows/`
+  - `ci-enhanced.yml` - Enhanced CI with metrics and multi-platform builds
+  - `sonarcloud.yml` - Automated SonarCloud static analysis
 
 **Automated Pattern Analysis:**
 - **Review Pattern Automation**: 144 PRs analyzed, 507 comments categorized, 62.5% prevention rate
 - **Real-time Quality**: `.claude/tools/pre-commit/auto-update-patterns.py` - Continuous improvement
 - **Quality Metrics**: Complete 6-month statistical analysis for systematic improvement
+- **GitHub Integration Agents**: `.claude/github-integration/agents/`
+  - `driver-code-reviewer-no-os.agent.md` - no-OS code review agent
+  - `driver-code-reviewer-linux.agent.md` - Linux kernel code review agent
+  - `driver-code-reviewer-zephyr.agent.md` - Zephyr RTOS code review agent
+- **GitHub Actions Workflows**: `.claude/github-integration/workflows/`
+  - `update-review-patterns.yml` - Automated weekly pattern analysis updates
+  - `security-analysis.yml` - Automated security vulnerability scanning
+  - `dashboard.yml` - Development metrics and dashboard automation
 
 ### **Phase 4: Submission**
 10. **PR Creation** - Submit with proper commit messages and complete build system
 11. **Review & Iteration** - Address feedback with 62.5% issue prevention
 12. **Hardware Testing** - Validate on target hardware
 13. **Merge** - Maintainer approval and integration
+
+**🔄 Automated Submission Support:**
+- **GitHub Actions Workflows**: `.claude/github-integration/workflows/`
+  - `labeler.yml` - Automated PR labeling based on file paths and content
 
 **🔒 MANDATORY PRE-ACTION COMPLIANCE CHECK:**
 **BEFORE ANY driver development work (including file creation, commits, or planning), Claude MUST:**
@@ -135,7 +164,7 @@ Claude MUST follow this exact commit sequence for ALL driver implementations:
 ✅ Framework validation completed
 ✅ Planning mode will be used
 ✅ 6-commit pattern planned
-✅ NO AI attribution in any files (author field = "Analog Devices")
+✅ NO AI attribution in any files (author field = configured git user)
 ✅ Complete implementation scope confirmed
 ✅ Proper project naming (no "-eval" suffix)
 ```
@@ -147,7 +176,9 @@ Claude MUST follow this exact commit sequence for ALL driver implementations:
 - **Complete Implementation**: Include ALL components (driver, IIO, project, tests, docs)
 - **Exact Commit Pattern**: Follow 6-commit sequence precisely
 - **No "-eval" Suffix**: Projects are named `projects/<device>` NOT `projects/<device>-eval`
-- **No AI Attribution**: NEVER include AI attribution in code files, commits, or headers (no Co-Authored-By Claude, no "Generated with" mentions, etc.)
+- **No AI Attribution**: NEVER include AI attribution in code files, commits, or headers (no Co-Authored-By Claude, no "Generated with" mentions, etc.) - Use configured git user information
+- **Git Configuration**: Use configured git user.name and user.email from `git config --global` for all commits and author attribution
+- **Resolve Commit Issues**: NEVER use --no-verify flags - Instead resolve pre-commit hook findings and quality issues properly
 
 ---
 
@@ -205,7 +236,7 @@ system patterns to prevent integration failures.
 
 Let me use the framework validation tools and platform-specific skills to ensure proper integration."
 
-[Claude performs framework verification using .claude/tools/scripts/framework_validation.sh and /no-os-maxim-platform skill]
+[Claude performs framework verification using .claude/tools/scripts/framework_validation.sh and /no-os-maxim-platform skill, optionally delegating to driver-orchestrator.agent.md for workflow coordination]
 
 Claude: "Framework verification complete:
 ✅ Build system patterns validated (individual file includes, no wildcards)
@@ -265,7 +296,7 @@ Developer: "Yes, this looks perfect. Please proceed with the implementation."
 Claude: "Excellent! I'll now implement the complete LTM4700 driver following the approved plan.
 Starting with branch creation and core driver implementation..."
 
-[Claude executes the 6-commit implementation autonomously]
+[Claude executes the 6-commit implementation autonomously, optionally using driver-coder-no-os.agent.md, driver-documenter-no-os.agent.md, and driver-unit-tester-no-os.agent.md for specialized workflow phases]
 ```
 
 ### **Phase 2: Autonomous Implementation**
@@ -284,11 +315,14 @@ After plan approval, Claude executes WITHOUT asking intermediate questions:
   - Device-specific skills (`/no-os-power`, `/no-os-adc`, `/no-os-dac`, etc.) for implementation
   - `/no-os-unit-testing` for comprehensive test coverage
   - Platform skills (`/no-os-maxim-platform`, `/no-os-stm32-platform`) for integration
+  - GitHub integration agents (`.claude/github-integration/agents/`) for autonomous workflow execution
 - **🚨 NO intermediate questions** - Don't ask about `cd`, `ls`, file paths, etc.
 - **🚨 Complete implementation** - All 6 components (driver, IIO, project, tests, docs)
 - **🚨 No "-eval" suffix** - Projects are `projects/<device>` NOT `projects/<device>-eval`
 - **🚨 Autonomous execution** - After plan approval, execute without further questions
-- **🚨 NO AI attribution** - Never add AI attribution to code files, commits, or headers
+- **🚨 NO AI attribution** - Never add AI attribution to code files, commits, or headers - Use configured git user information
+- **🚨 Git configuration compliance** - Use configured git user.name and user.email from `git config --global`
+- **🚨 Quality enforcement** - NEVER use --no-verify flags, instead resolve pre-commit hook findings and quality issues properly
 
 ---
 
@@ -318,6 +352,46 @@ python3 tools/scripts/build_projects.py . -platform=<platform> -project=<project
 # Example usage
 ./.claude/tools/scripts/framework_validation.sh ltm4700 power maxim
 ```
+
+---
+
+## Git Configuration and Commit Standards
+
+### **Git User Configuration**
+All commits MUST use the configured git user information:
+- **Name**: Use value from `git config --global user.name`
+- **Email**: Use value from `git config --global user.email`
+
+### **Commit Message Standards**
+Follow the established format for all commits:
+```
+<scope>: <component>: <description>
+
+Signed-off-by: <Name> <email@domain.com>
+```
+
+Example:
+```
+drivers: power: ltm4700: Add driver support for ltm4700
+
+Add comprehensive PMBus driver for LTM4700 dual-channel regulator.
+Includes support for device identification, dual-channel monitoring,
+and complete LINEAR format conversion.
+
+Signed-off-by: <Name> <email@domain.com>
+```
+
+### **Quality Enforcement Policy**
+**🚨 CRITICAL: NEVER use bypass flags like --no-verify**
+
+Instead of bypassing quality checks:
+1. **Resolve AStyle issues**: Fix formatting and style violations
+2. **Address Cppcheck warnings**: Fix static analysis findings
+3. **Satisfy pre-commit hooks**: Resolve pattern detection issues
+4. **Fix build errors**: Ensure clean compilation across platforms
+5. **Complete unit tests**: Achieve 80%+ code coverage
+
+**Philosophy**: Quality issues indicate real problems that need fixing, not obstacles to bypass.
 
 ---
 
@@ -356,7 +430,7 @@ Before creating a PR, verify:
 - [ ] Header file fully documented
 - [ ] Project README written
 - [ ] Commit messages follow format
-- [ ] All commits signed off (`-s`)
+- [ ] All commits signed off (`-s`) using configured git user information from `git config --global`
 
 ---
 
@@ -460,6 +534,68 @@ For detailed implementation guidance, see these comprehensive guides:
 .claude/tools/transfer-to-repository.sh                # Repository migration
 ```
 
+### GitHub Actions Workflows (.claude/github-integration/workflows/)
+
+**🏗️ CI/CD Automation:**
+```bash
+ci-enhanced.yml                                        # Enhanced CI with metrics and multi-platform builds
+sonarcloud.yml                                         # Automated SonarCloud static analysis and security scanning
+```
+
+**📊 Quality & Analytics:**
+```bash
+update-review-patterns.yml                             # Weekly automated review pattern analysis updates
+security-analysis.yml                                  # Comprehensive security vulnerability scanning
+dashboard.yml                                          # Development metrics and dashboard automation
+```
+
+**🔄 Repository Management:**
+```bash
+labeler.yml                                           # Automated PR labeling based on file paths and content changes
+```
+
+### GitHub Integration Agents (.claude/github-integration/agents/)
+
+**🎯 Workflow Coordination:**
+```bash
+driver-orchestrator.agent.md                           # Complete workflow orchestration
+```
+
+**📋 Planning Agents:**
+```bash
+driver-planner-no-os.agent.md                         # no-OS driver planning
+driver-planner-linux.agent.md                         # Linux kernel driver planning
+driver-planner-zephyr.agent.md                        # Zephyr RTOS driver planning
+```
+
+**⚙️ Implementation Agents:**
+```bash
+driver-coder-no-os.agent.md                           # no-OS driver implementation
+driver-coder-linux.agent.md                           # Linux kernel driver implementation
+driver-coder-zephyr.agent.md                          # Zephyr RTOS driver implementation
+```
+
+**📖 Documentation Agents:**
+```bash
+driver-documenter-no-os.agent.md                      # no-OS driver documentation
+driver-documenter-linux.agent.md                      # Linux kernel driver documentation
+driver-documenter-zephyr.agent.md                     # Zephyr RTOS driver documentation
+```
+
+**🧪 Testing & Review Agents:**
+```bash
+driver-unit-tester-no-os.agent.md                     # no-OS unit testing
+driver-code-reviewer-no-os.agent.md                   # no-OS code review
+driver-code-reviewer-linux.agent.md                   # Linux kernel code review
+driver-code-reviewer-zephyr.agent.md                  # Zephyr RTOS code review
+```
+
+**🛠️ Skill Development:**
+```bash
+skill-creator-no-os.agent.md                          # no-OS skill creation
+skill-creator-zephyr.agent.md                         # Zephyr skill creation
+```
+
 ### Usage Guidelines
 
 **🎯 Direct Skill Invocation:**
@@ -472,10 +608,25 @@ For detailed implementation guidance, see these comprehensive guides:
 - Quality tools provide 62.5% automated issue prevention
 - Build tools support all major embedded platforms
 
+**🤖 GitHub Integration Agents:**
+- Use specialized agents for complex multi-phase driver development
+- Agents provide autonomous execution for specific workflow phases
+- Platform-specific agents (no-OS, Linux, Zephyr) ensure proper implementation patterns
+- Orchestrator agent coordinates complete end-to-end workflows
+
+**🔄 GitHub Actions Workflows:**
+- Automated CI/CD pipelines for continuous integration and deployment
+- Enhanced multi-platform build validation with metrics collection
+- Automated code quality analysis (SonarCloud, security scanning)
+- Weekly review pattern updates for continuous process improvement
+- Automated PR management and labeling for efficient workflow
+
 **📚 Comprehensive Coverage:**
 - 40+ specialized skills covering all aspects of embedded development
+- 16 GitHub integration agents for autonomous workflow execution
+- 6 GitHub Actions workflows for automated CI/CD and quality assurance
 - Cross-platform support (no-OS, Linux, Zephyr)
-- Complete development lifecycle (analysis → implementation → testing → quality)
+- Complete development lifecycle (analysis → implementation → testing → quality → deployment)
 
 This skill library provides comprehensive guidance for all aspects of driver development, from initial datasheet analysis through final quality assurance and testing.
 
