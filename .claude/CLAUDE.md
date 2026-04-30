@@ -17,6 +17,14 @@ This is Analog Devices' no-OS repository containing hardware drivers and referen
 4. **Test Framework Setup**: Verify current Ceedling configuration format and capabilities
 5. **Reference Driver Analysis**: Examine existing similar drivers for current patterns
 
+**🔧 Available Framework Validation Tools:**
+- **Primary Validation**: `.claude/tools/scripts/framework_validation.sh <device> <category> <platform>`
+- **Build System Skills**: Use `/no-os-make-and-linker` skill for build system guidance
+- **Testing Framework**: Use `/no-os-unit-testing` skill for Ceedling/Unity/CMock validation
+- **Platform-Specific Skills**:
+  - `/no-os-maxim-platform` - MAX32xxx platform validation
+  - `/no-os-stm32-platform` - STM32 HAL integration validation
+
 **🚨 CRITICAL: Never proceed to planning without framework verification**
 
 ### **Phase 1: Planning & Approval (REQUIRED)**
@@ -28,6 +36,18 @@ This is Analog Devices' no-OS repository containing hardware drivers and referen
 6. **User Approval**: Wait for explicit user approval before proceeding with implementation
 7. **Plan Finalization**: Use `ExitPlanMode` when plan is approved
 
+**📋 Available Planning & Analysis Skills:**
+- **Datasheet Analysis**: Use `/datasheet-parsing` skill to extract ALL device information (features, specs, timing, registers, tables)
+- **Platform Integration**: Use `/no-os-project-structure` skill for project organization and multi-platform builds
+- **Testing Strategy**: Use `/testing-strategies` skill for comprehensive test planning (unit/integration/HIL)
+- **Driver Architecture**: Choose appropriate driver skills based on device category:
+  - **ADC Devices**: `/no-os-adc` - SAR, Sigma-Delta, channel configuration, calibration
+  - **DAC Devices**: `/no-os-dac` - Voltage/current output, LDAC, synchronization
+  - **Power Devices**: `/no-os-power` - PMICs, regulators, chargers, PMBus protocol
+  - **IMU/Sensors**: `/no-os-imu` - Motion sensing, FIFO, calibration patterns
+  - **Temperature**: `/no-os-temperature` - RTD, thermocouple, digital sensors
+  - **Frequency**: `/no-os-frequency` - PLLs, VCOs, clock distribution, JESD204B
+
 ### **Phase 2: Implementation (6-Commit Pattern)**
 Claude MUST follow this exact commit sequence for ALL driver implementations:
 
@@ -38,10 +58,63 @@ Claude MUST follow this exact commit sequence for ALL driver implementations:
 5. **Project Docs**: `projects: <device>: Add README documentation for project`
 6. **Unit Tests**: `tests: drivers: <category>: <device>: Add unit tests for <device>`
 
+**🛠️ Implementation Support Skills & Tools:**
+
+**Core Driver Implementation (Commit 1):**
+- **Communication Interface**: `/no-os-i2c`, `/no-os-spi`, `/no-os-uart` - Platform abstraction patterns
+- **Platform APIs**: `/no-os-gpio`, `/no-os-irq`, `/no-os-timer` - Hardware control and timing
+- **Device Category Skills**:
+  - **ADC**: `/no-os-adc` - Channel setup, reference/gain, conversion modes, data processing
+  - **DAC**: `/no-os-dac` - Output ranges, LDAC synchronization, calibration patterns
+  - **Power**: `/no-os-power` - PMBus commands, LINEAR formats, sequencing, fault handling
+  - **IMU**: `/no-os-imu` - Motion detection, FIFO management, burst reads, calibration
+  - **Temperature**: `/no-os-temperature` - Multi-sensor support, threshold configuration
+  - **Frequency**: `/no-os-frequency` - PLL configuration, lock detection, phase control
+
+**IIO Integration (Commit 2):**
+- **IIO Framework**: `/no-os-iio` - Channel definitions, buffered acquisition, trigger handling
+- **Linux IIO**: `/linux-iio` - Kernel subsystem integration, advanced features, debugging
+
+**Platform Projects (Commit 4):**
+- **Build System**: `/no-os-make-and-linker` - src.mk configuration, platform builds, dependencies
+- **Project Structure**: `/no-os-project-structure` - Multi-platform organization, examples integration
+- **Platform Configuration**:
+  - `/no-os-maxim-platform` - MAX32xxx setup, VDDIO configuration, DMA patterns
+  - `/no-os-stm32-platform` - HAL integration, RCC clocks, GPIO alternate functions
+
+**Unit Testing (Commit 6):**
+- **Testing Framework**: `/no-os-unit-testing` - Ceedling/Unity/CMock, mocking strategies, coverage
+- **Quality Tools**: `.claude/tools/pre-commit/` - AStyle, Cppcheck, pattern detection
+- **Coverage Analysis**: Built-in gcov support and automated coverage reporting
+
 ### **Phase 3: Quality Assurance (Automated)**
 7. **Automated Quality** - Pattern detection and style cleanup
 8. **Local Testing** - Unit tests with 80%+ coverage via Ceedling
 9. **Build Validation** - Multi-platform build testing
+
+**🔍 Available Quality Assurance Tools:**
+
+**Code Quality & Style:**
+- **Pre-commit Hooks**: `.claude/tools/pre-commit/install-hooks.sh` - AStyle, Cppcheck, branch validation
+- **Pattern Detection**: `.claude/tools/pre-commit/review-checker.py` - 6-month analysis, 62.5% automation
+- **SonarCloud Integration**: `.claude/tools/pre-commit/setup-local-sonar.sh` - Local static analysis
+- **Linux Code Quality**: `/linux-checkpatch-sparse` - Kernel coding standards, sparse analysis
+
+**Testing & Coverage:**
+- **Unit Testing**: `/no-os-unit-testing` - Comprehensive Ceedling/Unity/CMock framework
+- **Coverage Targets**: 80%+ code coverage with gcov integration and automated reporting
+- **Testing Strategies**: `/testing-strategies` - Unit/integration/HIL across platforms
+- **Quality Validation**: `.claude/tools/pre-commit/validate-setup.sh` - Environment verification
+
+**Build System Validation:**
+- **Multi-platform Builds**: Python build scripts for xilinx, stm32, maxim, mbed, pico, aducm3029, lattice
+- **Build System Skills**: `/no-os-make-and-linker` - src.mk validation, dependency checking
+- **Platform Verification**: Platform-specific skills for build environment validation
+
+**Automated Pattern Analysis:**
+- **Review Pattern Automation**: 144 PRs analyzed, 507 comments categorized, 62.5% prevention rate
+- **Real-time Quality**: `.claude/tools/pre-commit/auto-update-patterns.py` - Continuous improvement
+- **Quality Metrics**: Complete 6-month statistical analysis for systematic improvement
 
 ### **Phase 4: Submission**
 10. **PR Creation** - Submit with proper commit messages and complete build system
@@ -128,9 +201,11 @@ Developer: "Create a no-OS driver for LTM4700"
 
 Claude: "I'll help you create a comprehensive no-OS driver for the LTM4700. Before starting
 implementation planning, I need to verify the current framework compatibility and build
-system patterns to prevent integration failures."
+system patterns to prevent integration failures.
 
-[Claude performs framework verification - checking build patterns, platform APIs, test framework versions]
+Let me use the framework validation tools and platform-specific skills to ensure proper integration."
+
+[Claude performs framework verification using .claude/tools/scripts/framework_validation.sh and /no-os-maxim-platform skill]
 
 Claude: "Framework verification complete:
 ✅ Build system patterns validated (individual file includes, no wildcards)
@@ -145,30 +220,30 @@ Now entering planning mode for comprehensive implementation strategy."
 Claude: "
 IMPLEMENTATION PLAN: LTM4700 PMBus Dual-Channel Regulator Driver
 
-ANALYSIS:
+ANALYSIS (using /datasheet-parsing and /no-os-power skills):
 - Device: LTM4700 dual 50A or single 100A μModule regulator
 - Interface: PMBus 1.3 compliant I2C (default address 0x5A)
 - Variant Support: LTM4777 through device ID detection
 - Channels: Dual-channel power monitoring and control
 
-IMPLEMENTATION STRATEGY:
-1. Core Driver (drivers/power/ltm4700/)
+IMPLEMENTATION STRATEGY (guided by specialized skills):
+1. Core Driver (drivers/power/ltm4700/) - Using /no-os-power skill
    - Complete PMBus command set implementation
    - Dual-channel support with PAGE commands
    - LINEAR11/LINEAR16 data format conversion
    - Device identification (LTM4700 vs LTM4777)
 
-2. IIO Integration (REQUIRED for monitoring devices)
+2. IIO Integration (REQUIRED for monitoring devices) - Using /no-os-iio skill
    - 12 IIO channels: VIN, IIN, PIN, VOUT0/1, IOUT0/1, POUT0/1, TEMP1/2/3
    - Write support for VOUT control
    - Linux Industrial I/O subsystem compliance
 
-3. Project Structure (projects/ltm4700/)
+3. Project Structure (projects/ltm4700/) - Using /no-os-project-structure skill
    - Multi-platform build system (MAX32655, STM32, Linux, etc.)
    - Basic telemetry monitoring example
    - IIO integration example
 
-4. Unit Testing (tests/drivers/power/ltm4700/)
+4. Unit Testing (tests/drivers/power/ltm4700/) - Using /no-os-unit-testing skill
    - Comprehensive Ceedling test suite
    - 80%+ code coverage target
    - PMBus format testing and mock validation
@@ -204,6 +279,11 @@ After plan approval, Claude executes WITHOUT asking intermediate questions:
 ### **Critical Requirements for Claude:**
 - **🚨 ALWAYS use framework validation first** - Run `./.claude/tools/scripts/framework_validation.sh` before planning
 - **🚨 ALWAYS use EnterPlanMode** - No implementation without planning
+- **🚨 USE SPECIALIZED SKILLS** - Leverage `.claude/skills/` for domain-specific guidance:
+  - `/datasheet-parsing` for comprehensive device analysis
+  - Device-specific skills (`/no-os-power`, `/no-os-adc`, `/no-os-dac`, etc.) for implementation
+  - `/no-os-unit-testing` for comprehensive test coverage
+  - Platform skills (`/no-os-maxim-platform`, `/no-os-stm32-platform`) for integration
 - **🚨 NO intermediate questions** - Don't ask about `cd`, `ls`, file paths, etc.
 - **🚨 Complete implementation** - All 6 components (driver, IIO, project, tests, docs)
 - **🚨 No "-eval" suffix** - Projects are `projects/<device>` NOT `projects/<device>-eval`
@@ -298,6 +378,106 @@ For detailed implementation guidance, see these comprehensive guides:
 
 ### Quality Analysis
 - **[6-Month Review Analysis](docs/no-os-review-pattern-analysis.md)**: Statistical quality analysis and improvement patterns
+
+## 🎯 Claude Skills & Automation (.claude/)
+
+### Comprehensive Skill Library (.claude/skills/)
+
+**🔧 Framework & Build System:**
+- **`/no-os-make-and-linker`** - Build system, Makefile configuration, src.mk patterns, linker scripts
+- **`/no-os-project-structure`** - Project organization, multi-platform builds, examples integration
+- **`/no-os-debugging`** - UART console, JTAG/SWD, error codes, initialization troubleshooting
+
+**📡 Communication Protocols:**
+- **`/no-os-i2c`** - I2C platform drivers, bus management, multi-device configurations
+- **`/no-os-spi`** - SPI platform drivers, modes, multi-slave, DMA integration
+- **`/no-os-uart`** - UART platform drivers, configuration, flow control
+
+**⚡ Hardware Control:**
+- **`/no-os-gpio`** - GPIO control, direction, pull-resistors, interrupt handling
+- **`/no-os-irq`** - Interrupt handling, callbacks, priority configuration
+- **`/no-os-timer`** - Hardware timers, delays, time measurement
+
+**📊 Device Categories:**
+- **`/no-os-adc`** - SAR/Sigma-Delta ADCs, channels, reference/gain, calibration, IIO integration
+- **`/no-os-dac`** - Voltage/current output, LDAC synchronization, slew rate, calibration
+- **`/no-os-power`** - PMICs, regulators, chargers, PMBus protocol, DVS, battery management
+- **`/no-os-imu`** - Motion sensing, FIFO, motion detection, calibration, burst reads
+- **`/no-os-temperature`** - RTD, thermocouple, digital sensors, thresholds, multi-sensor hubs
+- **`/no-os-frequency`** - PLLs, VCOs, clock distribution, JESD204B, phase control
+
+**💻 Platform-Specific:**
+- **`/no-os-maxim-platform`** - MAX32xxx initialization, VDDIO, DMA, pin multiplexing
+- **`/no-os-stm32-platform`** - HAL integration, RCC clocks, GPIO alternate functions
+
+**🧪 Testing & Quality:**
+- **`/no-os-unit-testing`** - Ceedling/Unity/CMock, mocking strategies, 80%+ coverage
+- **`/testing-strategies`** - Unit/integration/HIL testing across platforms
+- **`/no-os-iio`** - Industrial I/O framework, channels, buffered acquisition
+
+**📖 Analysis & Documentation:**
+- **`/datasheet-parsing`** - Complete datasheet extraction (features, specs, registers, timing)
+
+**🐧 Linux Kernel Development:**
+- **`/linux-iio`** - IIO subsystem, channels, buffered acquisition, advanced features
+- **`/linux-pmbus`** - PMBus drivers, multi-page devices, direct format coefficients
+- **`/linux-hwmon`** - Hardware monitoring, sensors, voltage/current/temperature
+- **`/linux-devicetree`** - Devicetree bindings, YAML schema, validation
+- **`/linux-gpio`**, **`/linux-i2c-controller`**, **`/linux-spi-controller`** - Kernel subsystems
+- **`/linux-debugging`** - ftrace, printk, KASAN, lockdep, Raspberry Pi testing
+- **`/linux-checkpatch-sparse`** - Code quality, kernel coding standards
+
+**⚙️ Zephyr RTOS Development:**
+- **Device Drivers**: `/zephyr-adc`, `/zephyr-dac`, `/zephyr-gpio`, `/zephyr-sensor`, `/zephyr-regulator`
+- **Communication**: `/zephyr-i2c`, `/zephyr-spi`, `/zephyr-uart`
+- **Power Management**: `/zephyr-charger`, `/zephyr-fuel-gauge`
+- **System**: `/zephyr-build-system`, `/zephyr-devicetree`, `/zephyr-unit-testing`
+- **Control**: `/zephyr-pwm`, `/zephyr-led`
+- **Advanced**: `/zephyr-mfd` - Multi-Function Device drivers
+
+### Automation Tools (.claude/tools/)
+
+**🔍 Quality Assurance:**
+```bash
+.claude/tools/pre-commit/install-hooks.sh              # Complete pre-commit setup
+.claude/tools/pre-commit/validate-setup.sh             # Environment verification
+.claude/tools/pre-commit/review-checker.py             # 6-month pattern analysis
+.claude/tools/pre-commit/setup-local-sonar.sh          # SonarCloud integration
+```
+
+**🏗️ Build & Development:**
+```bash
+.claude/tools/scripts/framework_validation.sh          # MANDATORY framework verification
+.claude/tools/scripts/build_projects.py                # Multi-platform builds
+.claude/tools/pre-commit/create-device-template.py     # Device template generation
+.claude/tools/pre-commit/new-dev-branch.sh            # Branch creation automation
+```
+
+**📈 Pattern Automation:**
+```bash
+.claude/tools/pre-commit/auto-update-patterns.py       # Continuous improvement
+.claude/tools/pre-commit/configure-pattern-automation.sh # Setup automation
+.claude/tools/transfer-to-repository.sh                # Repository migration
+```
+
+### Usage Guidelines
+
+**🎯 Direct Skill Invocation:**
+- Use `/skill-name` format to invoke skills directly
+- Skills provide comprehensive domain-specific guidance
+- All skills include troubleshooting and best practices
+
+**🔧 Tool Integration:**
+- Framework validation is **MANDATORY** before any implementation
+- Quality tools provide 62.5% automated issue prevention
+- Build tools support all major embedded platforms
+
+**📚 Comprehensive Coverage:**
+- 40+ specialized skills covering all aspects of embedded development
+- Cross-platform support (no-OS, Linux, Zephyr)
+- Complete development lifecycle (analysis → implementation → testing → quality)
+
+This skill library provides comprehensive guidance for all aspects of driver development, from initial datasheet analysis through final quality assurance and testing.
 
 ---
 
