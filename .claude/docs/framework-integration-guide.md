@@ -22,13 +22,13 @@ Before any driver development, run framework validation:
 
 ```bash
 # Basic validation
-./tools/scripts/framework_validation.sh ltm4700 power maxim
+./.claude/tools/scripts/framework_validation.sh ltm4700 power maxim
 
 # Comprehensive validation with output
-./tools/scripts/framework_validation.sh ltm4700 power maxim | tee validation.log
+./.claude/tools/scripts/framework_validation.sh ltm4700 power maxim | tee validation.log
 
 # Quick validation for any device
-./tools/scripts/framework_validation.sh <device> <category> <platform>
+./.claude/tools/scripts/framework_validation.sh <device> <category> <platform>
 ```
 
 **Required Success Criteria:**
@@ -219,7 +219,7 @@ When requesting driver development from Claude Code:
 
 ```bash
 # Pre-commit framework verification
-./tools/scripts/framework_validation.sh $DEVICE_NAME $CATEGORY $PLATFORM
+./.claude/tools/scripts/framework_validation.sh $DEVICE_NAME $CATEGORY $PLATFORM
 
 # Build validation after each commit
 python3 tools/scripts/build_projects.py . -project=$DEVICE_NAME

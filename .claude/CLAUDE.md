@@ -202,7 +202,7 @@ After plan approval, Claude executes WITHOUT asking intermediate questions:
 - ✅ **Report completion** with summary
 
 ### **Critical Requirements for Claude:**
-- **🚨 ALWAYS use framework validation first** - Run `./tools/scripts/framework_validation.sh` before planning
+- **🚨 ALWAYS use framework validation first** - Run `./.claude/tools/scripts/framework_validation.sh` before planning
 - **🚨 ALWAYS use EnterPlanMode** - No implementation without planning
 - **🚨 NO intermediate questions** - Don't ask about `cd`, `ls`, file paths, etc.
 - **🚨 Complete implementation** - All 6 components (driver, IIO, project, tests, docs)
@@ -233,10 +233,10 @@ python3 tools/scripts/build_projects.py . -platform=<platform> -project=<project
 
 ```bash
 # MANDATORY before ANY driver implementation
-./tools/scripts/framework_validation.sh <device> <category> <platform>
+./.claude/tools/scripts/framework_validation.sh <device> <category> <platform>
 
 # Example usage
-./tools/scripts/framework_validation.sh ltm4700 power maxim
+./.claude/tools/scripts/framework_validation.sh ltm4700 power maxim
 ```
 
 ---
@@ -246,7 +246,7 @@ python3 tools/scripts/build_projects.py . -platform=<platform> -project=<project
 Before creating a PR, verify:
 
 ### **🚨 Framework Verification (MANDATORY FIRST)**
-- [ ] Framework validation passes (`./tools/scripts/framework_validation.sh`)
+- [ ] Framework validation passes (`./.claude/tools/scripts/framework_validation.sh`)
 - [ ] Build system patterns verified (no wildcards, individual includes)
 - [ ] Platform APIs confirmed (headers exist, constants validated)
 - [ ] Test framework version verified (Ceedling 1.0.1, modern format)

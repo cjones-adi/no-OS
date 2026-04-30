@@ -384,7 +384,7 @@ python3 tools/pre-commit/review-checker.py <files>
 
 ```bash
 # Transfer complete environment to innersource repository
-./tools/transfer-to-repository.sh /path/to/innersource-no-OS
+./.claude/tools/transfer-to-repository.sh /path/to/innersource-no-OS
 ```
 
 ---
