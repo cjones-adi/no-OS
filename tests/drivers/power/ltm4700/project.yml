@@ -54,10 +54,10 @@
     - :ignore
     - :callback
   :includes:
-    - /home/cj/no-OS/include/no_os_i2c.h
-    - /home/cj/no-OS/include/no_os_alloc.h
-    - /home/cj/no-OS/include/no_os_gpio.h
-    - /home/cj/no-OS/include/no_os_crc8.h
+    - no_os_i2c.h
+    - no_os_alloc.h
+    - no_os_gpio.h
+    - no_os_crc8.h
   :treat_as:
     uint8:    HEX8
     uint16:   HEX16

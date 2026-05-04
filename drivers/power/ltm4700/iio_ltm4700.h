@@ -72,11 +72,20 @@ enum ltm4700_iio_attr_id {
 	LTM4700_IIO_DEVICE_ID,
 };
 
-/** Initializes the LTM4700 IIO driver */
+/**
+ * @brief Initialize the LTM4700 IIO driver
+ * @param iio_desc - Pointer to IIO descriptor pointer
+ * @param init_param - Initialization parameters
+ * @return 0 in case of success, negative error code otherwise
+ */
 int ltm4700_iio_init(struct ltm4700_iio_desc **iio_desc,
 		     struct ltm4700_iio_desc_init_param *init_param);
 
-/** Free resources allocated by the init function */
+/**
+ * @brief Free resources allocated by the init function
+ * @param desc - IIO descriptor to free
+ * @return 0 in case of success, negative error code otherwise
+ */
 int ltm4700_iio_remove(struct ltm4700_iio_desc *desc);
 
 #endif /* __IIO_LTM4700_H__ */

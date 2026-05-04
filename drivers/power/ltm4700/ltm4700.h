@@ -269,85 +269,215 @@ struct ltm4700_status {
 	uint8_t mfr_specific;
 };
 
-/* Initialize the device structure */
+/**
+ * @brief Initialize the LTM4700 device structure
+ * @param device - Pointer to the device structure pointer
+ * @param init_param - Initialization parameters
+ * @return 0 in case of success, negative error code otherwise
+ */
 int ltm4700_init(struct ltm4700_dev **device,
 		 struct ltm4700_init_param *init_param);
 
-/* Free or remove device instance */
+/**
+ * @brief Free or remove device instance
+ * @param dev - Device structure
+ * @return 0 in case of success, negative error code otherwise
+ */
 int ltm4700_remove(struct ltm4700_dev *dev);
 
-/* Set PMBus page and phase */
+/**
+ * @brief Set PMBus page and phase
+ * @param dev - Device structure
+ * @param page - Page number (0 or 1)
+ * @return 0 in case of success, negative error code otherwise
+ */
 int ltm4700_set_page(struct ltm4700_dev *dev, int page);
 
-/* Send a PMBus command to the device */
+/**
+ * @brief Send a PMBus command to the device
+ * @param dev - Device structure
+ * @param page - Page number
+ * @param cmd - Command byte
+ * @return 0 in case of success, negative error code otherwise
+ */
 int ltm4700_send_byte(struct ltm4700_dev *dev, int page, uint8_t cmd);
 
-/* Perform a PMBus read_byte operation */
+/**
+ * @brief Perform a PMBus read_byte operation
+ * @param dev - Device structure
+ * @param page - Page number
+ * @param cmd - Command byte
+ * @param data - Pointer to store read data
+ * @return 0 in case of success, negative error code otherwise
+ */
 int ltm4700_read_byte(struct ltm4700_dev *dev, int page,
 		      uint8_t cmd, uint8_t *data);
 
-/*  Perform a PMBus write_byte operation */
+/**
+ * @brief Perform a PMBus write_byte operation
+ * @param dev - Device structure
+ * @param page - Page number
+ * @param cmd - Command byte
+ * @param value - Value to write
+ * @return 0 in case of success, negative error code otherwise
+ */
 int ltm4700_write_byte(struct ltm4700_dev *dev, int page,
 		       uint8_t cmd, uint8_t value);
 
-/* Perform a PMBus read_word operation */
+/**
+ * @brief Perform a PMBus read_word operation
+ * @param dev - Device structure
+ * @param page - Page number
+ * @param cmd - Command byte
+ * @param word - Pointer to store read word
+ * @return 0 in case of success, negative error code otherwise
+ */
 int ltm4700_read_word(struct ltm4700_dev *dev, int page,
 		      uint8_t cmd, uint16_t *word);
 
-/* Perform a PMBus write_word operation */
+/**
+ * @brief Perform a PMBus write_word operation
+ * @param dev - Device structure
+ * @param page - Page number
+ * @param cmd - Command byte
+ * @param word - Word value to write
+ * @return 0 in case of success, negative error code otherwise
+ */
 int ltm4700_write_word(struct ltm4700_dev *dev, int page,
 		       uint8_t cmd, uint16_t word);
 
-/* Perform a PMBus read_word operation then perform conversion*/
+/**
+ * @brief Perform a PMBus read_word operation then perform conversion
+ * @param dev - Device structure
+ * @param page - Page number
+ * @param cmd - Command byte
+ * @param data - Pointer to store converted data
+ * @return 0 in case of success, negative error code otherwise
+ */
 int ltm4700_read_word_data(struct ltm4700_dev *dev, int page,
 			   uint8_t cmd, int *data);
 
-/* Perform conversion then perform a PMBus write_word operation */
+/**
+ * @brief Perform conversion then perform a PMBus write_word operation
+ * @param dev - Device structure
+ * @param page - Page number
+ * @param cmd - Command byte
+ * @param data - Data value to convert and write
+ * @return 0 in case of success, negative error code otherwise
+ */
 int ltm4700_write_word_data(struct ltm4700_dev *dev, int page,
 			    uint8_t cmd, int data);
 
-/* Read a block of bytes */
+/**
+ * @brief Read a block of bytes from device
+ * @param dev - Device structure
+ * @param page - Page number
+ * @param cmd - Command byte
+ * @param data - Buffer to store read data
+ * @param nbytes - Number of bytes to read
+ * @return 0 in case of success, negative error code otherwise
+ */
 int ltm4700_read_block_data(struct ltm4700_dev *dev, int page, uint8_t cmd,
 			    uint8_t *data, size_t nbytes);
 
-/* Read specific value type */
+/**
+ * @brief Read specific value type (voltage, current, power, temperature)
+ * @param dev - Device structure
+ * @param channel - Channel number (0 or 1)
+ * @param value_type - Type of value to read
+ * @param value - Pointer to store read value
+ * @return 0 in case of success, negative error code otherwise
+ */
 int ltm4700_read_value(struct ltm4700_dev *dev,
 		       uint8_t channel,
 		       enum ltm4700_value_type value_type,
 		       int *value);
 
-/* Read status */
+/**
+ * @brief Read status information from device
+ * @param dev - Device structure
+ * @param channel - Channel number (0 or 1)
+ * @param status_type - Type of status to read
+ * @param status - Pointer to store status information
+ * @return 0 in case of success, negative error code otherwise
+ */
 int ltm4700_read_status(struct ltm4700_dev *dev,
 			uint8_t channel,
 			enum ltm4700_status_type status_type,
 			struct ltm4700_status *status);
 
-/* Set VOUT parameters: VOUT_COMMAND and VOUT_MAX */
+/**
+ * @brief Set VOUT parameters: VOUT_COMMAND and VOUT_MAX
+ * @param dev - Device structure
+ * @param channel - Channel number (0 or 1)
+ * @param vout_command - Output voltage command in microvolts
+ * @param vout_max - Maximum output voltage in microvolts
+ * @return 0 in case of success, negative error code otherwise
+ */
 int ltm4700_vout_value(struct ltm4700_dev *dev, uint8_t channel,
 		       int vout_command, int vout_max);
 
-/* Set VOUT transition rate in microvolt per milliseconds */
+/**
+ * @brief Set VOUT transition rate in microvolt per milliseconds
+ * @param dev - Device structure
+ * @param channel - Channel number (0 or 1)
+ * @param tr - Transition rate in µV/ms
+ * @return 0 in case of success, negative error code otherwise
+ */
 int ltm4700_vout_tr(struct ltm4700_dev *dev, uint8_t channel, int tr);
 
-/* Set VOUT margins */
+/**
+ * @brief Set VOUT margins for overvoltage/undervoltage protection
+ * @param dev - Device structure
+ * @param channel - Channel number (0 or 1)
+ * @param margin_low - Low margin voltage in microvolts
+ * @param margin_high - High margin voltage in microvolts
+ * @return 0 in case of success, negative error code otherwise
+ */
 int ltm4700_vout_margin(struct ltm4700_dev *dev, uint8_t channel,
 			int margin_low, int margin_high);
 
-/* Set timing values in microseconds */
+/**
+ * @brief Set timing values in microseconds
+ * @param dev - Device structure
+ * @param channel - Channel number (0 or 1)
+ * @param timing_type - Type of timing parameter to set
+ * @param time - Time value in microseconds
+ * @return 0 in case of success, negative error code otherwise
+ */
 int ltm4700_set_timing(struct ltm4700_dev *dev, uint8_t channel,
 		       enum ltm4700_timing_type timing_type, int time);
 
-/* Set operation */
+/**
+ * @brief Set operation mode for specified channel
+ * @param dev - Device structure
+ * @param channel - Channel number (0 or 1)
+ * @param operation - Operation type to set
+ * @return 0 in case of success, negative error code otherwise
+ */
 int ltm4700_set_operation(struct ltm4700_dev *dev, uint8_t channel,
 			  enum ltm4700_operation_type operation);
 
-/* NVM/EEPROM user commands */
+/**
+ * @brief Execute NVM/EEPROM user commands
+ * @param dev - Device structure
+ * @param cmd - NVM command type to execute
+ * @return 0 in case of success, negative error code otherwise
+ */
 int ltm4700_nvm_cmd(struct ltm4700_dev *dev, enum ltm4700_nvm_cmd_type cmd);
 
-/* Software reset */
+/**
+ * @brief Perform software reset of the device
+ * @param dev - Device structure
+ * @return 0 in case of success, negative error code otherwise
+ */
 int ltm4700_software_reset(struct ltm4700_dev *dev);
 
-/* Clear peak values */
+/**
+ * @brief Clear all peak value tracking registers
+ * @param dev - Device structure
+ * @return 0 in case of success, negative error code otherwise
+ */
 int ltm4700_clear_peaks(struct ltm4700_dev *dev);
 
 #endif /* __LTM4700_H__ */
