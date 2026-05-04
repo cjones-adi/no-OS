@@ -406,6 +406,17 @@ Before creating a PR, verify:
 - [ ] Test framework version verified (Ceedling 1.0.1, modern format)
 - [ ] API signatures validated (no-OS, IIO, platform-specific)
 
+### **🚨 CRITICAL: Documentation Files (ALL 4 REQUIRED)**
+- [ ] Driver README: `drivers/<category>/<device>/README.rst`
+- [ ] Project README: `projects/<device>/README.rst`
+- [ ] Driver Sphinx: `doc/sphinx/source/drivers/<category>/<device>.rst`
+- [ ] **Project Sphinx**: `doc/sphinx/source/projects/<category>/<device>.rst` ⚠️ **COMMONLY MISSED**
+
+**Sphinx File Content Pattern:**
+```rst
+.. include:: ../../../../../projects/<device>/README.rst
+```
+
 ### Code Quality
 - [ ] AStyle formatting passes
 - [ ] Cppcheck analysis passes
