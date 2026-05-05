@@ -141,14 +141,14 @@ Configuration Options
 
 **Makefile Variables:**
 
-=================  =======  ==============================================
+=================  ========  ==============================================
 Variable           Default  Description
-=================  =======  ==============================================
+=================  ========  ==============================================
 BASIC_EXAMPLE      n        Enable basic telemetry monitoring example
 IIO_EXAMPLE        y        Enable IIO integration example
 PLATFORM           maxim    Target platform (maxim, stm32, etc.)
 TARGET             max32655 Specific target board configuration
-=================  =======  ==============================================
+=================  ========  ==============================================
 
 **Device Configuration:**
 

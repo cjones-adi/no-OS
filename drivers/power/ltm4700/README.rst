@@ -1,5 +1,5 @@
 LTM4700 no-OS Driver
-===================
+====================
 
 Supported Devices
 -----------------
@@ -58,9 +58,9 @@ Device Variants
 +----------+----------------+-------------------------------------------+
 | Device   | Special ID     | Description                               |
 +==========+================+===========================================+
-| LTM4700  | 0x4130         | Dual 50A or Single 100A µModule         |
+| LTM4700  | 0x4130         | Dual 50A or Single 100A µModule           |
 +----------+----------------+-------------------------------------------+
-| LTM4777  | 0x4131         | Variant with similar architecture        |
+| LTM4777  | 0x4131         | Variant with similar architecture         |
 +----------+----------------+-------------------------------------------+
 
 PMBus Commands
