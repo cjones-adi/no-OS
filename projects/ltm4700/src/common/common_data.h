@@ -33,9 +33,10 @@
 #ifndef __COMMON_DATA_H__
 #define __COMMON_DATA_H__
 
-#include "platform_includes.h"
+#include "no_os_uart.h"
 #include "no_os_i2c.h"
 #include "ltm4700.h"
+#include "parameters.h"
 
 #define LTM4700_ADDRESS                         0x5A
 

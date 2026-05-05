@@ -1,6 +1,11 @@
-NO_OS_INC_DIRS += \
-        $(PLATFORM_DRIVERS) \
-        $(PLATFORM_DRIVERS)/../common/
+INCS += \
+	$(PLATFORM_DRIVERS)/maxim_gpio.h	\
+	$(PLATFORM_DRIVERS)/maxim_gpio_irq.h	\
+	$(PLATFORM_DRIVERS)/maxim_irq.h		\
+	$(PLATFORM_DRIVERS)/../common/maxim_dma.h	\
+	$(PLATFORM_DRIVERS)/maxim_i2c.h		\
+	$(PLATFORM_DRIVERS)/maxim_uart.h	\
+	$(PLATFORM_DRIVERS)/maxim_uart_stdio.h
 
 
 SRCS += $(PLATFORM_DRIVERS)/maxim_delay.c \

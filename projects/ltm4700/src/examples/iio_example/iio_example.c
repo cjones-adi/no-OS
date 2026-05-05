@@ -36,7 +36,7 @@
 #include "no_os_print_log.h"
 #include "iio_app.h"
 
-int iio_example_main()
+int example_main()
 {
 	int ret;
 

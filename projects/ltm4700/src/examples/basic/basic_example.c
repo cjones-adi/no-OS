@@ -31,12 +31,12 @@
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *******************************************************************************/
 #include "common_data.h"
-#include "basic_example.h"
 #include "no_os_delay.h"
 #include "no_os_print_log.h"
 #include "ltm4700.h"
+#include <stdlib.h>
 
-int basic_example_main()
+int example_main()
 {
 	struct ltm4700_dev *dev;
 	int ret = 0, vals[4];
