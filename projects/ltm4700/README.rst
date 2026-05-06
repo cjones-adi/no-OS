@@ -1,263 +1,182 @@
-LTM4700 no-OS Project
-=====================
+Evaluating the LTM4700
+======================
+
+.. no-os-doxygen::
+
+.. contents::
+	:depth: 3
+
+Supported Evaluation Boards
+----------------------------
+
+* `DC2702B-A <https://www.analog.com/en/resources/evaluation-hardware-and-software/evaluation-boards-kits/dc2702b-a.html>`_
 
 Overview
 --------
 
-This project demonstrates the LTM4700 dual-channel µModule regulator driver for the no-OS framework. The LTM4700 is a high-performance, dual 50A or single 100A step-down regulator featuring digital power management through PMBus interface.
+The DC2702B-A is a dual-output, high efficiency, high density µModule® regulator
+demonstration circuit featuring the LTM4700EY. The board accepts a 4.5V to 16V
+input and each output can supply up to 50A maximum load current.
 
-The project supports both basic telemetry monitoring and advanced IIO (Industrial I/O) integration for real-time data acquisition and control.
+The DC2702B-A powers up to default settings and produces power based on
+configuration resistors without the need for any serial bus communication,
+allowing easy evaluation of the DC/DC converter. The board provides two default
+output voltages: VOUT0 = 1.0V and VOUT1 = 1.5V.
 
-Supported Hardware
-------------------
+Applications
+------------
 
-**Device Support:**
-* `LTM4700 <https://www.analog.com/LTM4700>`_ - Dual 50A or Single 100A µModule Regulator
-* `LTM4777 <https://www.analog.com/LTM4777>`_ - Compatible variant with similar architecture
+* Point-of-load power supplies requiring dual 50A or single 100A outputs
+* High current density digital power management
+* Systems requiring PMBus-based digital power system management
+* Telemetry monitoring of voltage, current, temperature, and fault status
 
-**Evaluation Platforms:**
-* Maxim MAX32655 Feather Board
-* STM32 platforms (with appropriate SDP-K1 setup)
-* Any platform supporting I2C/PMBus communication
+Hardware Specifications
+-----------------------
 
-Hardware Setup
---------------
+Power Supply Requirements
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**Connections for MAX32655:**
+The DC2702B-A requires an input supply of 4.5V to 16V connected to VIN and GND.
 
-===========  ================  ===========================================
-Function     MAX32655 Pin      Description
-===========  ================  ===========================================
-PMBus SDA    P0.6 (I2C0_SDA)   Data line for PMBus communication
-PMBus SCL    P0.7 (I2C0_SCL)   Clock line for PMBus communication
-UART TX      P0.1 (UART1_TX)   Console output for data logging
-UART RX      P0.0 (UART1_RX)   Console input (optional)
-VDD          3.3V              Power supply for MAX32655
-GND          GND               Ground connection
-===========  ================  ===========================================
+**Performance Summary** (TA = 25°C)
 
-**PMBus Configuration:**
-* Bus Speed: 400kHz (PMBus 1.3 compliant)
-* Device Address: 0x5A (7-bit, configurable via ADDR pin)
-* Pull-up Resistors: 1kΩ on SDA/SCL lines
++----------------------------------+-----+------+-----+-------+
+| Parameter                        | Min | Typ  | Max | Units |
++==================================+=====+======+=====+=======+
+| Input Voltage Range              | 4.5 |      | 16  | V     |
++----------------------------------+-----+------+-----+-------+
+| Output Voltage, VOUT0            | 0.5 | 1.0  | 1.8 | V     |
++----------------------------------+-----+------+-----+-------+
+| Maximum Output Current, IOUT0    |     | 50   |     | A     |
++----------------------------------+-----+------+-----+-------+
+| Output Voltage, VOUT1            | 0.5 | 1.5  | 1.8 | V     |
++----------------------------------+-----+------+-----+-------+
+| Maximum Output Current, IOUT1    |     | 50   |     | A     |
++----------------------------------+-----+------+-----+-------+
+| Default Switching Frequency      |     | 500  |     | kHz   |
++----------------------------------+-----+------+-----+-------+
 
-Build Instructions
-------------------
+**Default Jumper Settings**
 
-**Prerequisites:**
-* ARM GCC toolchain for embedded development
-* no-OS framework dependencies
-* Make build system
++------+----------+----------------------------------------------------------+
+| JP   | Position | Description                                              |
++======+==========+==========================================================+
+| JP1  | ON       | Default configuration                                    |
++------+----------+----------------------------------------------------------+
+| JP2  | ON       | Default configuration                                    |
++------+----------+----------------------------------------------------------+
+| JP3  | ON       | Enables internal bias circuit when VIN > 7V              |
++------+----------+----------------------------------------------------------+
 
-**Build Commands:**
+**Hardware Bringup**
 
-.. code-block:: bash
+For reference, consult the Quick Start Procedure section in the DC2702B-A demo
+manual:
+`DC2702B-A Demo Manual <https://www.analog.com/media/en/technical-documentation/user-guides/dc2702b-a.pdf>`_
 
-    # Build for MAX32655 platform
-    cd projects/ltm4700
-    make PLATFORM=maxim TARGET=max32655
+1. With the power off, connect the input power supply to VIN (4.5V to 16V) and
+   GND.
+2. Connect the 1.0V output load between VOUT0 and GND (initial load: no load).
+3. Connect the 1.5V output load between VOUT1 and GND (initial load: no load).
+4. Set JP1, JP2, and JP3 to ON.
+5. Turn on the input power supply and verify VOUT0 = 1.0V ±0.5% and
+   VOUT1 = 1.5V ±0.5%.
+6. Adjust loads within operating range and observe output voltage regulation,
+   ripple voltage, and other parameters.
 
-    # Build with basic example (telemetry monitoring)
-    make PLATFORM=maxim TARGET=max32655 BASIC_EXAMPLE=y
-
-    # Build with IIO example (Industrial I/O integration)
-    make PLATFORM=maxim TARGET=max32655 IIO_EXAMPLE=y
-
-**Build Targets:**
-
-=========  ===========  ============================================
-Platform   Target       Description
-=========  ===========  ============================================
-maxim      max32655     Maxim MAX32655 Feather Board
-stm32      stm32f469    STM32F469 Discovery Board
-=========  ===========  ============================================
-
-Project Examples
-----------------
-
-Two examples are provided to demonstrate different usage patterns:
-
-Basic Example
-~~~~~~~~~~~~~
-
-The basic example demonstrates fundamental LTM4700 operations:
-
-* Device initialization and variant detection
-* Dual-channel voltage and current monitoring
-* Real-time telemetry logging via UART console
-* Temperature monitoring (IC and external sensors)
-* Simple loop-based data acquisition
-
-**Features:**
-- Automatic device detection (LTM4700/LTM4777)
-- 500ms update interval for telemetry
-- Channel-specific monitoring (VOUT0, VOUT1, IOUT0, IOUT1)
-- Input power monitoring (VIN, IIN)
-- Temperature readings in Celsius
-
-**Sample Output:**
-
-.. code-block:: text
-
-    CH0: vin = 12000 mV | vout = 1200 mV | iout = 15000 mA | temp_ic = 45 C
-    CH1: vin = 12000 mV | vout = 3300 mV | iout = 8500 mA | temp_ic = 45 C
-
-IIO Example
-~~~~~~~~~~~
-
-The IIO example provides advanced integration capabilities:
-
-* Industrial I/O framework integration
-* Real-time data streaming via IIO channels
-* Remote configuration and control
-* Attribute-based device interaction
-* Integration with Linux IIO subsystem
-
-**IIO Channels:**
-- ``vin``: Input voltage monitoring
-- ``vout0``, ``vout1``: Output voltage monitoring/control
-- ``iin``: Input current monitoring
-- ``iout0``, ``iout1``: Output current monitoring
-- ``pin``: Input power monitoring
-- ``pout0``, ``pout1``: Output power monitoring
-- ``temp0``, ``temp1``: Temperature monitoring
-- Device identification and status attributes
-
-**Usage with IIO Tools:**
-
-.. code-block:: bash
-
-    # List available IIO devices
-    iio_info
-
-    # Read input voltage
-    iio_attr -c ltm4700 vin raw
-
-    # Set output voltage for channel 0 (in mV)
-    iio_attr -c ltm4700 vout0 command 1200
-
-Configuration Options
----------------------
-
-**Makefile Variables:**
-
-=================  ========  ==============================================
-Variable           Default   Description
-=================  ========  ==============================================
-BASIC_EXAMPLE      n         Enable basic telemetry monitoring example
-IIO_EXAMPLE        y         Enable IIO integration example
-PLATFORM           maxim     Target platform (maxim, stm32, etc.)
-TARGET             max32655  Specific target board configuration
-=================  ========  ==============================================
-
-**Device Configuration:**
-
-The LTM4700 supports extensive configuration options:
-
-* **Voltage Output**: 0.5V to 1.8V range with 1mV resolution
-* **Current Monitoring**: ±3% accuracy from 25°C to 125°C
-* **PMBus Commands**: Standard and manufacturer-specific commands
-* **Data Formats**: LINEAR11, LINEAR16 automatic conversion
-* **Multi-Channel**: Independent or synchronized operation
-
-Troubleshooting
----------------
-
-**Common Issues:**
-
-**Device Not Detected:**
-
-.. code-block:: text
-
-    Error: Device initialization failed (-5)
-
-* Verify I2C connections (SDA/SCL)
-* Check power supply to LTM4700
-* Confirm device address (default 0x5A)
-* Ensure pull-up resistors on I2C lines
-
-**Communication Errors:**
-
-.. code-block:: text
-
-    Error: PMBus read failed (-110)
-
-* Check I2C bus speed (400kHz max)
-* Verify ground connections
-* Test with basic I2C scan tools
-* Check for bus conflicts
-
-**Build Errors:**
-
-.. code-block:: text
-
-    Error: platform_includes.h not found
-
-* Ensure PLATFORM variable is set correctly
-* Verify no-OS framework installation
-* Check PATH environment variables
-* Clean and rebuild project
-
-**Voltage Reading Issues:**
-
-* Verify LINEAR format conversion
-* Check reference voltage configuration
-* Confirm channel selection (PAGE commands)
-* Test with known voltage sources
-
-Performance Characteristics
----------------------------
-
-**Data Acquisition Rates:**
-* Basic Example: 2Hz update rate (500ms interval)
-* IIO Example: Up to 100Hz (limited by PMBus speed)
-
-**Accuracy:**
-* Voltage: ±0.5% maximum error over temperature
-* Current: ±3% accuracy from 25°C to 125°C
-* Temperature: ±5°C accuracy for IC temperature
-
-**Resource Usage:**
-* Flash: ~15KB for basic functionality
-* RAM: ~2KB for driver data structures
-* Stack: ~1KB for operation functions
-
-Integration Notes
+No-OS Build Setup
 -----------------
 
-**no-OS Framework Integration:**
-* Uses standard no-OS I2C platform drivers
-* Compatible with all supported platforms
-* Integrated error handling and logging
-* Consistent API across platforms
+Please see: https://wiki.analog.com/resources/no-os/build
 
-**Linux IIO Integration:**
-* Seamless integration with Linux IIO subsystem
-* Support for buffered data acquisition
-* Real-time attribute updates
-* Compatible with standard IIO tools
+No-OS Supported Examples
+-------------------------
 
-**Multi-Platform Support:**
-* Abstracted platform layer for portability
-* Platform-specific optimizations
-* Consistent behavior across targets
-* Easy porting to new platforms
+The initialization data used in the examples is taken out from:
+`Project Common Data Path <https://github.com/analogdevicesinc/no-OS/tree/main/projects/ltm4700/src/common>`_
 
-Further Information
--------------------
+The macros used in Common Data are defined in platform specific files found in:
+`Project Platform Configuration Path <https://github.com/analogdevicesinc/no-OS/tree/main/projects/ltm4700/src/platform/maxim>`_
 
-**Related Documentation:**
-* `LTM4700 Product Page <https://www.analog.com/LTM4700>`_
-* `LTM4700 Datasheet <https://www.analog.com/media/en/technical-documentation/data-sheets/ltm4700.pdf>`_
-* `PMBus Specification <https://pmbus.org/specification/>`_
-* `no-OS Framework Documentation <https://analogdevicesinc.github.io/no-OS/>`_
+Basic example
+^^^^^^^^^^^^^
 
-**Driver Documentation:**
-* ``drivers/power/ltm4700/README.rst`` - Complete driver documentation
-* ``drivers/power/ltm4700/ltm4700.h`` - API reference
-* ``drivers/power/ltm4700/iio_ltm4700.h`` - IIO integration details
+This is a simple example that initializes the LTM4700, and performs telemetry
+readings of voltage, current, and temperature for both output channels. The
+readings are printed to the UART console at a 500ms interval.
 
-**Support:**
-* For hardware questions: Contact ADI Customer Support
-* For software issues: Submit issues to no-OS GitHub repository
-* For design consultation: Contact ADI Field Applications Engineers
+In order to build the basic example make sure you have the following
+configuration in the Makefile
+`Basic Example Makefile <https://github.com/analogdevicesinc/no-OS/tree/main/projects/ltm4700/Makefile>`_
+
+.. code-block:: bash
+
+	EXAMPLE ?= basic
+
+IIO example
+^^^^^^^^^^^
+
+This project is a IIOD demo for the MAX32655FTHR evaluation board. The project
+launches a IIOD server on the board so that the user may connect to it via an
+IIO client.
+
+If you are not familiar with ADI IIO Application, please take a look at:
+`IIO No-OS <https://wiki.analog.com/resources/tools-software/no-os-software/iio>`_
+
+If you are not familiar with ADI IIO-Oscilloscope Client, please take a look at:
+`IIO Oscilloscope <https://wiki.analog.com/resources/tools-software/linux-software/iio_oscilloscope>`_
+
+The No-OS IIO Application together with the No-OS IIO LTM4700 driver take care of
+all the back-end logic needed to setup the IIO server.
+
+This example initializes the IIO device and calls the IIO app as shown in:
+`IIO Example <https://github.com/analogdevicesinc/no-OS/tree/main/projects/ltm4700/src/examples/iio_example>`_
+
+In order to build the IIO project make sure you have the following configuration
+in the
+`IIO Example Makefile <https://github.com/analogdevicesinc/no-OS/tree/main/projects/ltm4700/Makefile>`_
+
+.. code-block:: bash
+
+	EXAMPLE ?= iio_example
+
+No-OS Supported Platforms
+--------------------------
+
+Maxim Platform
+^^^^^^^^^^^^^^
+
+**Used hardware**
+
+* `DC2702B-A <https://www.analog.com/en/resources/evaluation-hardware-and-software/evaluation-boards-kits/dc2702b-a.html>`_
+* `MAX32655FTHR <https://www.analog.com/en/resources/evaluation-hardware-and-software/evaluation-boards-kits/max32655fthr.htm>`_
+
+**Connections**:
+
++---------------------------+------------+-------------------------------+----------+-------------------------+
+| DC2702B-A Pin             |  Mnemonic  | Function                      | Mnemonic | MAX32655FTHR Pin        |
++===========================+============+===============================+==========+=========================+
+| J1-1 (SDA)                | SDA        | PMBus/I2C Serial Data         | I2C1_SDA | P0.6                    |
++---------------------------+------------+-------------------------------+----------+-------------------------+
+| J1-2 (SCL)                | SCL        | PMBus/I2C Serial Clock        | I2C1_SCL | P0.7                    |
++---------------------------+------------+-------------------------------+----------+-------------------------+
+| GND                       | GND        | Connect to Ground             |          | GND                     |
++---------------------------+------------+-------------------------------+----------+-------------------------+
+| VIN                       | VIN        | Input Power Supply 4.5V–16V   |          | Do Not Connect          |
++---------------------------+------------+-------------------------------+----------+-------------------------+
+| VOUT0                     | VOUT0      | Output Channel 0 (1.0V def.)  |          | Do Not Connect          |
++---------------------------+------------+-------------------------------+----------+-------------------------+
+| VOUT1                     | VOUT1      | Output Channel 1 (1.5V def.)  |          | Do Not Connect          |
++---------------------------+------------+-------------------------------+----------+-------------------------+
+
+**Build Command**
+
+.. code-block:: bash
+
+	# to delete current build
+	make TARGET=max32655 reset && make TARGET=max32655 clean
+	# to build the project
+	make TARGET=max32655
+	# to flash the code
+	make TARGET=max32655 run
