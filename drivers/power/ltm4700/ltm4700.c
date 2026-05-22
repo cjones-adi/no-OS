@@ -3,7 +3,7 @@
  *   @brief  Source code of the LTM4700 driver
  *   @author Carlos Jones Jr (carlosjr.jones@analog.com)
 ********************************************************************************
- * Copyright 2024(c) Analog Devices, Inc.
+ * Copyright 2026(c) Analog Devices, Inc.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -46,15 +46,6 @@
 #include "ltm4700.h"
 
 NO_OS_DECLARE_CRC8_TABLE(ltm4700_crc_table);
-
-const struct ltm4700_chip_info ltm4700_info[] = {
-	[ID_LTM4700] = {
-		.num_channels = 2,
-	},
-	[ID_LTM4777] = {
-		.num_channels = 2,
-	},
-};
 
 /**
  * @brief Check if PMBus command is paged
@@ -208,6 +199,56 @@ static uint16_t ltm4700_uval_to_lin11(int uval)
 }
 
 /**
+ * @brief Verify manufacturer ID
+ * @param dev - Device structure
+ * @return 0 on success, negative error code otherwise
+ */
+int ltm4700_verify_manufacturer_id(struct ltm4700_dev *dev)
+{
+	uint8_t mfr_id[LTM4700_MFR_ID_SIZE];
+	int ret;
+
+	if (!dev)
+		return -EINVAL;
+
+	ret = ltm4700_read_block_data(dev, 0, LTM4700_MFR_ID,
+				      mfr_id, LTM4700_MFR_ID_SIZE);
+	if (ret)
+		return ret;
+
+	if (strncmp((char *)mfr_id, LTM4700_MFR_ID_VALUE,
+		    LTM4700_MFR_ID_SIZE) != 0)
+		return -ENODEV;
+
+	return 0;
+}
+
+/**
+ * @brief Verify manufacturer model
+ * @param dev - Device structure
+ * @return 0 on success, negative error code otherwise
+ */
+int ltm4700_verify_manufacturer_model(struct ltm4700_dev *dev)
+{
+	uint8_t mfr_model[LTM4700_MFR_MODEL_SIZE];
+	int ret;
+
+	if (!dev)
+		return -EINVAL;
+
+	ret = ltm4700_read_block_data(dev, 0, LTM4700_MFR_MODEL,
+				      mfr_model, LTM4700_MFR_MODEL_SIZE);
+	if (ret)
+		return ret;
+
+	if (strncmp((char *)mfr_model, LTM4700_MFR_MODEL_VALUE,
+		    LTM4700_MFR_MODEL_SIZE) != 0)
+		return -ENODEV;
+
+	return 0;
+}
+
+/**
  * @brief Initialize the device structure
  *
  * @param device - The device structure
@@ -249,19 +290,22 @@ int ltm4700_init(struct ltm4700_dev **device,
 		goto error_i2c;
 
 	/* Determine device variant */
-	switch (special_id & LTM4700_ID_MSK) {
-	case LTM4700_SPECIAL_ID_VALUE:
-		dev->id = ID_LTM4700;
-		break;
-	case LTM4700_LTM4777_SPECIAL_ID_VALUE:
-		dev->id = ID_LTM4777;
-		break;
-	default:
+	if (LTM4700_SPECIAL_ID_VALUE != (special_id & LTM4700_ID_MSK)) {
 		ret = -ENODEV;
 		goto error_i2c;
 	}
 
-	dev->num_channels = ltm4700_info[dev->id].num_channels;
+	/* Verify manufacturer ID */
+	ret = ltm4700_verify_manufacturer_id(dev);
+	if (ret)
+		goto error_i2c;
+
+	/* Verify manufacturer model */
+	ret = ltm4700_verify_manufacturer_model(dev);
+	if (ret)
+		goto error_i2c;
+
+	dev->num_channels = 2;
 
 	/* Initialize GPIO pins if provided */
 	if (init_param->alert_param) {
@@ -447,7 +491,7 @@ int ltm4700_send_byte(struct ltm4700_dev *dev, int page, uint8_t cmd)
 			return ret;
 	}
 
-	return no_os_i2c_write(dev->i2c_desc, &cmd, 1, true);
+	return no_os_i2c_write(dev->i2c_desc, &cmd, 1, 1);
 }
 
 /**

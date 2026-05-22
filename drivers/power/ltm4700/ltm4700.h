@@ -3,7 +3,7 @@
  *   @brief  Header file of the LTM4700 driver
  *   @author Carlos Jones Jr (carlosjr.jones@analog.com)
 ********************************************************************************
- * Copyright 2024(c) Analog Devices, Inc.
+ * Copyright 2026(c) Analog Devices, Inc.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -35,6 +35,7 @@
 
 #include <stdint.h>
 #include <string.h>
+#include <stdbool.h>
 #include "no_os_util.h"
 #include "no_os_i2c.h"
 #include "no_os_gpio.h"
@@ -170,14 +171,12 @@
 #define LTM4700_STATUS_ALL_TYPE_MSK		0xFF
 
 /* LTM4700 ID values */
-#define LTM4700_ID_MSK				0xFFFF
+#define LTM4700_ID_MSK				0xFFF0
 #define LTM4700_SPECIAL_ID_VALUE		0x4130
-#define LTM4700_LTM4777_SPECIAL_ID_VALUE	0x4131
-
-enum ltm4700_chip_id {
-	ID_LTM4700,
-	ID_LTM4777,
-};
+#define LTM4700_MFR_ID_VALUE			"ADI"
+#define LTM4700_MFR_ID_SIZE			3
+#define LTM4700_MFR_MODEL_VALUE			"LTM4700"
+#define LTM4700_MFR_MODEL_SIZE			7
 
 enum ltm4700_operation_type {
 	LTM4700_OPERATION_OFF = 0x00,
@@ -235,7 +234,6 @@ struct ltm4700_dev {
 	struct no_os_gpio_desc **run_descs;
 	struct no_os_gpio_desc **fault_descs;
 
-	enum ltm4700_chip_id id;
 	int page;
 	int lin16_exp;
 	bool crc_en;
@@ -249,12 +247,8 @@ struct ltm4700_init_param {
 	struct no_os_gpio_init_param **run_params;
 	struct no_os_gpio_init_param **fault_params;
 
-	enum ltm4700_chip_id id;
 	bool external_clk_en;
 	bool crc_en;
-};
-
-struct ltm4700_chip_info {
 	uint8_t num_channels;
 };
 
@@ -479,5 +473,19 @@ int ltm4700_software_reset(struct ltm4700_dev *dev);
  * @return 0 in case of success, negative error code otherwise
  */
 int ltm4700_clear_peaks(struct ltm4700_dev *dev);
+
+/**
+ * @brief Verify manufacturer ID
+ * @param dev - Device structure
+ * @return 0 on success, negative error code otherwise
+ */
+int ltm4700_verify_manufacturer_id(struct ltm4700_dev *dev);
+
+/**
+ * @brief Verify manufacturer model
+ * @param dev - Device structure
+ * @return 0 on success, negative error code otherwise
+ */
+int ltm4700_verify_manufacturer_model(struct ltm4700_dev *dev);
 
 #endif /* __LTM4700_H__ */

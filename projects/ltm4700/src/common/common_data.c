@@ -3,7 +3,7 @@
  *   @brief  Defines common data to be used by ltm4700 examples.
  *   @author Carlos Jones Jr (carlosjr.jones@analog.com)
 ********************************************************************************
- * Copyright 2024(c) Analog Devices, Inc.
+ * Copyright 2026(c) Analog Devices, Inc.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -55,5 +55,4 @@ struct no_os_i2c_init_param ltm4700_i2c_ip = {
 struct ltm4700_init_param ltm4700_ip = {
 	.i2c_init = &ltm4700_i2c_ip,
 	.crc_en = false,
-	.id = ID_LTM4700,
 };

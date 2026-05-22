@@ -5,7 +5,6 @@ Supported Devices
 -----------------
 
 * `LTM4700 <https://www.analog.com/LTM4700>`_
-* `LTM4777 <https://www.analog.com/LTM4777>`_
 
 Overview
 --------
@@ -33,7 +32,7 @@ Key Features
 Supported Features
 ------------------
 
-* Device identification (LTM4700/LTM4777 variants)
+* Device identification
 * Dual-channel voltage and current monitoring
 * LINEAR11/LINEAR16 data format conversion
 * Comprehensive status monitoring
@@ -59,8 +58,6 @@ Device Variants
 | Device   | Special ID     | Description                               |
 +==========+================+===========================================+
 | LTM4700  | 0x4130         | Dual 50A or Single 100A µModule           |
-+----------+----------------+-------------------------------------------+
-| LTM4777  | 0x4131         | Variant with similar architecture         |
 +----------+----------------+-------------------------------------------+
 
 PMBus Commands

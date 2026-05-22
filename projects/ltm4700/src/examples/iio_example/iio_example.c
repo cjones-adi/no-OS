@@ -3,7 +3,7 @@
  *   @brief  IIO example source file for ltm4700 project.
  *   @author Carlos Jones Jr (carlosjr.jones@analog.com)
 ********************************************************************************
- * Copyright 2024(c) Analog Devices, Inc.
+ * Copyright 2026(c) Analog Devices, Inc.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -30,7 +30,6 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
  * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *******************************************************************************/
-#include "iio_example.h"
 #include "iio_ltm4700.h"
 #include "common_data.h"
 #include "no_os_print_log.h"

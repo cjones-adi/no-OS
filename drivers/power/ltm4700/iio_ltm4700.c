@@ -3,7 +3,7 @@
  *   @brief  Source file for the LTM4700 IIO Driver
  *   @author Carlos Jones Jr (carlosjr.jones@analog.com)
 ********************************************************************************
- * Copyright 2024(c) Analog Devices, Inc.
+ * Copyright 2026(c) Analog Devices, Inc.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -40,6 +40,7 @@
 
 #include "ltm4700.h"
 #include "iio_ltm4700.h"
+#include "iio_types.h"
 
 #define LTM4700_IIO_REG_CHAN(reg, chan)			(reg | (chan << 8))
 #define LTM4700_IIO_REG(x)				(x & 0xFF)
@@ -74,7 +75,10 @@ static struct iio_device ltm4700_iio_dev;
  * @return ret    - Result of the reading procedure.
  * 		    In case of success, the size of the read data is returned.
  */
-static int32_t ltm4700_iio_reg_read(void *dev, uint32_t reg, uint32_t *readval)
+#ifndef TEST
+static
+#endif
+int32_t ltm4700_iio_reg_read(void *dev, uint32_t reg, uint32_t *readval)
 {
 	struct ltm4700_iio_desc *iio_ltm4700 = dev;
 	struct ltm4700_dev *ltm4700 = iio_ltm4700->ltm4700_dev;
@@ -155,7 +159,10 @@ static int32_t ltm4700_iio_reg_read(void *dev, uint32_t reg, uint32_t *readval)
  * @param writeval - Value to write.
  * @return ret    - Result of the writing procedure.
  */
-static int32_t ltm4700_iio_reg_write(void *dev, uint32_t reg, uint32_t writeval)
+#ifndef TEST
+static
+#endif
+int32_t ltm4700_iio_reg_write(void *dev, uint32_t reg, uint32_t writeval)
 {
 	struct ltm4700_iio_desc *iio_ltm4700 = dev;
 	struct ltm4700_dev *ltm4700 = iio_ltm4700->ltm4700_dev;
@@ -207,9 +214,12 @@ static int32_t ltm4700_iio_reg_write(void *dev, uint32_t reg, uint32_t writeval)
  * @param priv   - IIO private data.
  * @return ret   - Result of the reading procedure.
  */
-static int ltm4700_iio_read_attr(void *device, char *buf, uint32_t len,
-				 const struct iio_ch_info *channel,
-				 intptr_t priv)
+#ifndef TEST
+static
+#endif
+int ltm4700_iio_read_attr(void *device, char *buf, uint32_t len,
+			  const struct iio_ch_info *channel,
+			  intptr_t priv)
 {
 	struct ltm4700_iio_desc *iio_desc = device;
 	struct ltm4700_dev *dev = iio_desc->ltm4700_dev;
@@ -327,8 +337,6 @@ static int ltm4700_iio_read_attr(void *device, char *buf, uint32_t len,
 		switch (special_id & LTM4700_ID_MSK) {
 		case LTM4700_SPECIAL_ID_VALUE:
 			return snprintf(buf, len, "LTM4700");
-		case LTM4700_LTM4777_SPECIAL_ID_VALUE:
-			return snprintf(buf, len, "LTM4777");
 		default:
 			return snprintf(buf, len, "Unknown (0x%04X)", special_id);
 		}
@@ -347,9 +355,12 @@ static int ltm4700_iio_read_attr(void *device, char *buf, uint32_t len,
  * @param priv   - IIO private data.
  * @return ret   - Result of the writing procedure.
  */
-static int ltm4700_iio_write_attr(void *device, char *buf, uint32_t len,
-				  const struct iio_ch_info *channel,
-				  intptr_t priv)
+#ifndef TEST
+static
+#endif
+int ltm4700_iio_write_attr(void *device, const char *buf, uint32_t len,
+			   const struct iio_ch_info *channel,
+			   intptr_t priv)
 {
 	struct ltm4700_iio_desc *iio_desc = device;
 	struct ltm4700_dev *dev = iio_desc->ltm4700_dev;
@@ -416,9 +427,12 @@ static int ltm4700_iio_write_attr(void *device, char *buf, uint32_t len,
  * @param priv	 - Private descriptor.
  * @return ret   - Result of the reading procedure.
  */
-static int ltm4700_iio_read_avail(void *device, char *buf, uint32_t len,
-				  const struct iio_ch_info *channel,
-				  intptr_t priv)
+#ifndef TEST
+static
+#endif
+int ltm4700_iio_read_avail(void *device, char *buf, uint32_t len,
+			   const struct iio_ch_info *channel,
+			   intptr_t priv)
 {
 	switch (priv) {
 	case LTM4700_IIO_OPERATION:

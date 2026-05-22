@@ -3,7 +3,7 @@
  *   @brief  Basic validation tests for LTM4700 driver
  *   @author Carlos Jones Jr (carlosjr.jones@analog.com)
  *******************************************************************************
- * Copyright 2024(c) Analog Devices, Inc.
+ * Copyright 2026(c) Analog Devices, Inc.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -66,33 +66,6 @@ static int fill_ltm4700_special_id(struct no_os_i2c_desc* desc,
 }
 
 /**
- * @brief Callback to fill buffer with LTM4777 special ID
- * Working around the masking issue: the switch compares (special_id & 0xFFF0)
- * against LTM4700_LTM4777_SPECIAL_ID_VALUE (0x4131)
- * Since (0x4131 & 0xFFF0) = 0x4130, we need to return exactly 0x4131
- * to match the constant directly in the switch statement
- */
-static int fill_ltm4777_special_id(struct no_os_i2c_desc* desc,
-				   unsigned char* data,
-				   unsigned char bytes_number, unsigned char stop_bit, int cmock_num_calls)
-{
-	(void)desc;
-	(void)stop_bit;
-	(void)cmock_num_calls;
-	if (bytes_number >= 2 && data) {
-		// Try different approach: return value that when masked still equals 0x4131
-		// This may not be mathematically possible, but let's try
-		data[0] = 0x3F;  // LSB - try 0x413F
-		data[1] = 0x41;  // MSB - 0x413F & 0xFFF0 = 0x4130, still not 0x4131
-
-		// Alternative: try returning exact 0x4131 and see what happens
-		data[0] = 0x31;  // LSB of 0x4131
-		data[1] = 0x41;  // MSB of 0x4131
-	}
-	return 0;
-}
-
-/**
  * @brief Callback to fill buffer with unknown device ID
  */
 static int fill_unknown_device_id(struct no_os_i2c_desc* desc,
@@ -106,6 +79,182 @@ static int fill_unknown_device_id(struct no_os_i2c_desc* desc,
 		data[0] = 0x99;  // LSB of 0x9999
 		data[1] = 0x99;  // MSB of 0x9999
 	}
+	return 0;
+}
+
+/**
+ * @brief Callback to fill buffer with correct MFR_ID "ADI"
+ */
+static int fill_mfr_id_correct(struct no_os_i2c_desc* desc,
+			       unsigned char* data,
+			       unsigned char bytes_number, unsigned char stop_bit, int cmock_num_calls)
+{
+	(void)desc;
+	(void)stop_bit;
+	(void)cmock_num_calls;
+	if (bytes_number >= 3 && data) {
+		data[0] = 'A';
+		data[1] = 'D';
+		data[2] = 'I';
+	}
+	return 0;
+}
+
+/**
+ * @brief Callback to fill buffer with incorrect MFR_ID
+ */
+static int fill_mfr_id_incorrect(struct no_os_i2c_desc* desc,
+				 unsigned char* data,
+				 unsigned char bytes_number, unsigned char stop_bit, int cmock_num_calls)
+{
+	(void)desc;
+	(void)stop_bit;
+	(void)cmock_num_calls;
+	if (bytes_number >= 3 && data) {
+		data[0] = 'X';
+		data[1] = 'Y';
+		data[2] = 'Z';
+	}
+	return 0;
+}
+
+/**
+ * @brief Callback to fill buffer with correct MFR_MODEL "LTM4700"
+ */
+static int fill_mfr_model_correct(struct no_os_i2c_desc* desc,
+				  unsigned char* data,
+				  unsigned char bytes_number, unsigned char stop_bit, int cmock_num_calls)
+{
+	(void)desc;
+	(void)stop_bit;
+	(void)cmock_num_calls;
+	if (bytes_number >= 7 && data) {
+		data[0] = 'L';
+		data[1] = 'T';
+		data[2] = 'M';
+		data[3] = '4';
+		data[4] = '7';
+		data[5] = '0';
+		data[6] = '0';
+	}
+	return 0;
+}
+
+/**
+ * @brief Callback to fill buffer with incorrect MFR_MODEL
+ */
+static int fill_mfr_model_incorrect(struct no_os_i2c_desc* desc,
+				    unsigned char* data,
+				    unsigned char bytes_number, unsigned char stop_bit, int cmock_num_calls)
+{
+	(void)desc;
+	(void)stop_bit;
+	(void)cmock_num_calls;
+	if (bytes_number >= 7 && data) {
+		data[0] = 'L';
+		data[1] = 'T';
+		data[2] = 'M';
+		data[3] = '9';
+		data[4] = '9';
+		data[5] = '9';
+		data[6] = '9';
+	}
+	return 0;
+}
+
+/**
+ * @brief Multi-stage callback for successful device identification
+ * Handles SPECIAL_ID, MFR_ID, and MFR_MODEL reads in sequence
+ */
+static int fill_complete_device_id_success(struct no_os_i2c_desc* desc,
+		unsigned char* data,
+		unsigned char bytes_number, unsigned char stop_bit, int cmock_num_calls)
+{
+	(void)desc;
+	(void)stop_bit;
+
+	// First call (cmock_num_calls == 0): SPECIAL_ID (2 bytes)
+	if (cmock_num_calls == 0 && bytes_number >= 2 && data) {
+		data[0] = 0x30;  // LSB of 0x4130
+		data[1] = 0x41;  // MSB of 0x4130
+	}
+	// Second call (cmock_num_calls == 1): MFR_ID (3 bytes)
+	else if (cmock_num_calls == 1 && bytes_number >= 3 && data) {
+		data[0] = 'A';
+		data[1] = 'D';
+		data[2] = 'I';
+	}
+	// Third call (cmock_num_calls == 2): MFR_MODEL (7 bytes)
+	else if (cmock_num_calls == 2 && bytes_number >= 7 && data) {
+		data[0] = 'L';
+		data[1] = 'T';
+		data[2] = 'M';
+		data[3] = '4';
+		data[4] = '7';
+		data[5] = '0';
+		data[6] = '0';
+	}
+
+	return 0;
+}
+
+/**
+ * @brief Multi-stage callback with incorrect MFR_ID
+ */
+static int fill_device_id_mfr_id_fail(struct no_os_i2c_desc* desc,
+				      unsigned char* data,
+				      unsigned char bytes_number, unsigned char stop_bit, int cmock_num_calls)
+{
+	(void)desc;
+	(void)stop_bit;
+
+	// First call: SPECIAL_ID (correct)
+	if (cmock_num_calls == 0 && bytes_number >= 2 && data) {
+		data[0] = 0x30;
+		data[1] = 0x41;
+	}
+	// Second call: MFR_ID (incorrect)
+	else if (cmock_num_calls == 1 && bytes_number >= 3 && data) {
+		data[0] = 'X';
+		data[1] = 'Y';
+		data[2] = 'Z';
+	}
+
+	return 0;
+}
+
+/**
+ * @brief Multi-stage callback with incorrect MFR_MODEL
+ */
+static int fill_device_id_mfr_model_fail(struct no_os_i2c_desc* desc,
+		unsigned char* data,
+		unsigned char bytes_number, unsigned char stop_bit, int cmock_num_calls)
+{
+	(void)desc;
+	(void)stop_bit;
+
+	// First call: SPECIAL_ID (correct)
+	if (cmock_num_calls == 0 && bytes_number >= 2 && data) {
+		data[0] = 0x30;
+		data[1] = 0x41;
+	}
+	// Second call: MFR_ID (correct)
+	else if (cmock_num_calls == 1 && bytes_number >= 3 && data) {
+		data[0] = 'A';
+		data[1] = 'D';
+		data[2] = 'I';
+	}
+	// Third call: MFR_MODEL (incorrect)
+	else if (cmock_num_calls == 2 && bytes_number >= 7 && data) {
+		data[0] = 'L';
+		data[1] = 'T';
+		data[2] = 'M';
+		data[3] = '9';
+		data[4] = '9';
+		data[5] = '9';
+		data[6] = '9';
+	}
+
 	return 0;
 }
 
@@ -204,16 +353,6 @@ void test_ltm4700_header_constants(void)
 }
 
 /**
- * @brief Test device enumeration constants
- */
-void test_ltm4700_device_ids(void)
-{
-	// Test device ID enumeration
-	TEST_ASSERT_EQUAL_INT(0, ID_LTM4700);
-	TEST_ASSERT_EQUAL_INT(1, ID_LTM4777);
-}
-
-/**
  * @brief Test channel constants
  */
 void test_ltm4700_channel_constants(void)
@@ -275,6 +414,132 @@ void test_ltm4700_macro_definitions(void)
 	TEST_ASSERT_NOT_EQUAL(LTM4700_OPERATION, LTM4700_READ_VIN);
 }
 
+/*******************************************************************************
+ *    MANUFACTURER ID/MODEL VERIFICATION TESTS
+ ******************************************************************************/
+
+/**
+ * @brief Test ltm4700_verify_manufacturer_id with NULL parameter
+ */
+void test_ltm4700_verify_manufacturer_id_null_param(void)
+{
+	int result = ltm4700_verify_manufacturer_id(NULL);
+	TEST_ASSERT_EQUAL(-EINVAL, result);
+}
+
+/**
+ * @brief Test ltm4700_verify_manufacturer_id with I2C read failure
+ */
+void test_ltm4700_verify_manufacturer_id_i2c_failure(void)
+{
+	struct ltm4700_dev dev = {0};
+	struct no_os_i2c_desc i2c_desc = {0};
+	dev.i2c_desc = &i2c_desc;
+
+	// Mock I2C write and read to fail
+	no_os_i2c_write_IgnoreAndReturn(-EIO);
+
+	int result = ltm4700_verify_manufacturer_id(&dev);
+	TEST_ASSERT_EQUAL(-EIO, result);
+}
+
+/**
+ * @brief Test ltm4700_verify_manufacturer_id with correct ID
+ */
+void test_ltm4700_verify_manufacturer_id_success(void)
+{
+	struct ltm4700_dev dev = {0};
+	struct no_os_i2c_desc i2c_desc = {0};
+	dev.i2c_desc = &i2c_desc;
+
+	// Mock I2C operations for successful read of "ADI"
+	no_os_i2c_write_IgnoreAndReturn(0);
+	no_os_i2c_read_Stub(fill_mfr_id_correct);
+
+	int result = ltm4700_verify_manufacturer_id(&dev);
+	TEST_ASSERT_EQUAL(0, result);
+}
+
+/**
+ * @brief Test ltm4700_verify_manufacturer_id with incorrect ID
+ */
+void test_ltm4700_verify_manufacturer_id_incorrect(void)
+{
+	struct ltm4700_dev dev = {0};
+	struct no_os_i2c_desc i2c_desc = {0};
+	dev.i2c_desc = &i2c_desc;
+
+	// Mock I2C operations to return incorrect MFR_ID
+	no_os_i2c_write_IgnoreAndReturn(0);
+	no_os_i2c_read_Stub(fill_mfr_id_incorrect);
+
+	int result = ltm4700_verify_manufacturer_id(&dev);
+	TEST_ASSERT_EQUAL(-ENODEV, result);
+}
+
+/**
+ * @brief Test ltm4700_verify_manufacturer_model with NULL parameter
+ */
+void test_ltm4700_verify_manufacturer_model_null_param(void)
+{
+	int result = ltm4700_verify_manufacturer_model(NULL);
+	TEST_ASSERT_EQUAL(-EINVAL, result);
+}
+
+/**
+ * @brief Test ltm4700_verify_manufacturer_model with I2C read failure
+ */
+void test_ltm4700_verify_manufacturer_model_i2c_failure(void)
+{
+	struct ltm4700_dev dev = {0};
+	struct no_os_i2c_desc i2c_desc = {0};
+	dev.i2c_desc = &i2c_desc;
+
+	// Mock I2C write and read to fail
+	no_os_i2c_write_IgnoreAndReturn(-EIO);
+
+	int result = ltm4700_verify_manufacturer_model(&dev);
+	TEST_ASSERT_EQUAL(-EIO, result);
+}
+
+/**
+ * @brief Test ltm4700_verify_manufacturer_model with correct model
+ */
+void test_ltm4700_verify_manufacturer_model_success(void)
+{
+	struct ltm4700_dev dev = {0};
+	struct no_os_i2c_desc i2c_desc = {0};
+	dev.i2c_desc = &i2c_desc;
+
+	// Mock I2C operations for successful read of "LTM4700"
+	no_os_i2c_write_IgnoreAndReturn(0);
+	no_os_i2c_read_Stub(fill_mfr_model_correct);
+
+	int result = ltm4700_verify_manufacturer_model(&dev);
+	TEST_ASSERT_EQUAL(0, result);
+}
+
+/**
+ * @brief Test ltm4700_verify_manufacturer_model with incorrect model
+ */
+void test_ltm4700_verify_manufacturer_model_incorrect(void)
+{
+	struct ltm4700_dev dev = {0};
+	struct no_os_i2c_desc i2c_desc = {0};
+	dev.i2c_desc = &i2c_desc;
+
+	// Mock I2C operations to return incorrect MFR_MODEL
+	no_os_i2c_write_IgnoreAndReturn(0);
+	no_os_i2c_read_Stub(fill_mfr_model_incorrect);
+
+	int result = ltm4700_verify_manufacturer_model(&dev);
+	TEST_ASSERT_EQUAL(-ENODEV, result);
+}
+
+/*******************************************************************************
+ *    INITIALIZATION TESTS
+ ******************************************************************************/
+
 /**
  * @brief Test device initialization parameter validation
  */
@@ -292,7 +557,6 @@ void test_ltm4700_init_with_mocks(void)
 	TEST_ASSERT_EQUAL(-EINVAL, result);
 
 	// Test NULL i2c_init validation - should return error
-	init_param.id = ID_LTM4700;
 	init_param.i2c_init = NULL;
 	result = ltm4700_init(&device, &init_param);
 	TEST_ASSERT_EQUAL(-EINVAL, result);
@@ -311,7 +575,6 @@ void test_ltm4700_init_allocation_failure(void)
 	i2c_init.device_id = 0;
 	i2c_init.slave_address = 0x5A;
 	init_param.i2c_init = &i2c_init;
-	init_param.id = ID_LTM4700;
 
 	// Mock no_os_calloc to return NULL (allocation failure)
 	no_os_calloc_ExpectAndReturn(1, sizeof(struct ltm4700_dev), NULL);
@@ -335,7 +598,6 @@ void test_ltm4700_init_i2c_failure(void)
 	i2c_init.device_id = 0;
 	i2c_init.slave_address = 0x5A;
 	init_param.i2c_init = &i2c_init;
-	init_param.id = ID_LTM4700;
 
 	// Mock successful memory allocation (line 227)
 	no_os_calloc_ExpectAndReturn(1, sizeof(struct ltm4700_dev), &mock_dev);
@@ -365,7 +627,6 @@ void test_ltm4700_init_crc_enabled(void)
 	i2c_init.device_id = 0;
 	i2c_init.slave_address = 0x5A;
 	init_param.i2c_init = &i2c_init;
-	init_param.id = ID_LTM4700;
 	init_param.crc_en = true;  // Enable CRC to trigger lines 237-240
 
 	// Mock successful memory allocation (line 227)
@@ -409,15 +670,14 @@ void test_ltm4700_init_ltm4700_detection(void)
 	alert_param.number = 10;  // Some GPIO pin number
 	init_param.i2c_init = &i2c_init;
 	init_param.alert_param = &alert_param;  // This triggers GPIO initialization
-	init_param.id = ID_LTM4700;
 
 	// Mock successful memory allocation and I2C init
 	no_os_calloc_ExpectAndReturn(1, sizeof(struct ltm4700_dev), &mock_dev);
 	no_os_i2c_init_IgnoreAndReturn(0);
 
-	// Mock device ID read to return LTM4700 special ID (lines 252-255)
-	no_os_i2c_write_IgnoreAndReturn(0);     // Command write succeeds
-	no_os_i2c_read_Stub(fill_ltm4700_special_id);  // Use callback to fill buffer
+	// Mock complete device identification sequence (SPECIAL_ID, MFR_ID, MFR_MODEL)
+	no_os_i2c_write_IgnoreAndReturn(0);     // Command writes succeed
+	no_os_i2c_read_Stub(fill_complete_device_id_success);
 
 	// Function will continue to GPIO init - make it fail after device detection
 	no_os_gpio_get_IgnoreAndReturn(-ENODEV);  // GPIO init failure
@@ -430,38 +690,65 @@ void test_ltm4700_init_ltm4700_detection(void)
 }
 
 /**
- * @brief Test LTM4777 device detection (lines 256-258)
+ * @brief Test init failure when MFR_ID verification fails
  */
-void test_ltm4700_init_ltm4777_detection(void)
+void test_ltm4700_init_mfr_id_verification_failure(void)
 {
 	struct ltm4700_dev *device = NULL;
 	struct ltm4700_init_param init_param = {0};
 	struct no_os_i2c_init_param i2c_init = {0};
-	struct no_os_gpio_init_param alert_param = {0};
 	struct ltm4700_dev mock_dev = {0};
 
-	// Setup valid parameters with GPIO alert to trigger GPIO path
+	// Setup valid parameters
 	i2c_init.device_id = 0;
 	i2c_init.slave_address = 0x5A;
-	alert_param.number = 10;  // Some GPIO pin number
 	init_param.i2c_init = &i2c_init;
-	init_param.alert_param = &alert_param;  // This triggers GPIO initialization
-	init_param.id = ID_LTM4700;
 
 	// Mock successful memory allocation and I2C init
 	no_os_calloc_ExpectAndReturn(1, sizeof(struct ltm4700_dev), &mock_dev);
 	no_os_i2c_init_IgnoreAndReturn(0);
 
-	// Mock device ID read to return LTM4777 special ID (lines 256-258)
-	no_os_i2c_write_IgnoreAndReturn(0);     // Command write succeeds
-	no_os_i2c_read_Stub(fill_ltm4777_special_id);  // Use callback to fill buffer
+	// Mock device identification with incorrect MFR_ID
+	no_os_i2c_write_IgnoreAndReturn(0);
+	no_os_i2c_read_Stub(fill_device_id_mfr_id_fail);
 
-	// Make it fail at a later point after device detection
-	no_os_gpio_get_IgnoreAndReturn(-ENODEV);  // GPIO init failure
-	no_os_i2c_remove_IgnoreAndReturn(0);      // Cleanup
+	// Cleanup mocks
+	no_os_i2c_remove_IgnoreAndReturn(0);
 	no_os_free_Ignore();
 
-	// Test should detect LTM4777 correctly but fail later at GPIO
+	// Test should fail at MFR_ID verification
+	int result = ltm4700_init(&device, &init_param);
+	TEST_ASSERT_EQUAL(-ENODEV, result);
+}
+
+/**
+ * @brief Test init failure when MFR_MODEL verification fails
+ */
+void test_ltm4700_init_mfr_model_verification_failure(void)
+{
+	struct ltm4700_dev *device = NULL;
+	struct ltm4700_init_param init_param = {0};
+	struct no_os_i2c_init_param i2c_init = {0};
+	struct ltm4700_dev mock_dev = {0};
+
+	// Setup valid parameters
+	i2c_init.device_id = 0;
+	i2c_init.slave_address = 0x5A;
+	init_param.i2c_init = &i2c_init;
+
+	// Mock successful memory allocation and I2C init
+	no_os_calloc_ExpectAndReturn(1, sizeof(struct ltm4700_dev), &mock_dev);
+	no_os_i2c_init_IgnoreAndReturn(0);
+
+	// Mock device identification with incorrect MFR_MODEL
+	no_os_i2c_write_IgnoreAndReturn(0);
+	no_os_i2c_read_Stub(fill_device_id_mfr_model_fail);
+
+	// Cleanup mocks
+	no_os_i2c_remove_IgnoreAndReturn(0);
+	no_os_free_Ignore();
+
+	// Test should fail at MFR_MODEL verification
 	int result = ltm4700_init(&device, &init_param);
 	TEST_ASSERT_EQUAL(-ENODEV, result);
 }
@@ -480,7 +767,6 @@ void test_ltm4700_init_unknown_device(void)
 	i2c_init.device_id = 0;
 	i2c_init.slave_address = 0x5A;
 	init_param.i2c_init = &i2c_init;
-	init_param.id = ID_LTM4700;
 
 	// Mock successful memory allocation and I2C init
 	no_os_calloc_ExpectAndReturn(1, sizeof(struct ltm4700_dev), &mock_dev);
@@ -497,26 +783,6 @@ void test_ltm4700_init_unknown_device(void)
 	// Test should detect unknown device and return ENODEV
 	int result = ltm4700_init(&device, &init_param);
 	TEST_ASSERT_EQUAL(-ENODEV, result);
-}
-
-/**
- * @brief Alternative callback that tries to work around masking logic
- */
-static int fill_ltm4777_direct(struct no_os_i2c_desc* desc, unsigned char* data,
-			       unsigned char bytes_number, unsigned char stop_bit, int cmock_num_calls)
-{
-	(void)desc;
-	(void)stop_bit;
-	(void)cmock_num_calls;
-	if (bytes_number >= 2 && data) {
-		// The issue is that (special_id & 0xFFF0) can never equal 0x4131
-		// since masking always clears the lower 4 bits
-		// But the switch case expects exactly 0x4131
-		// Let's try 0x4131 anyway and see if coverage tool detects something
-		data[0] = 0x31;  // LSB of 0x4131
-		data[1] = 0x41;  // MSB of 0x4131
-	}
-	return 0;
 }
 
 /**
@@ -545,13 +811,12 @@ void test_ltm4700_init_pgood_alloc_failure(void)
 	init_param.i2c_init = &i2c_init;
 	init_param.alert_param = &alert_param;
 	init_param.pgood_params = pgood_params;  // This triggers pgood path
-	init_param.id = ID_LTM4700;
 
 	// Mock successful setup until pgood allocation
 	no_os_calloc_ExpectAndReturn(1, sizeof(struct ltm4700_dev), &mock_dev);
 	no_os_i2c_init_IgnoreAndReturn(0);
 	no_os_i2c_write_IgnoreAndReturn(0);
-	no_os_i2c_read_Stub(fill_ltm4700_special_id);  // Device detection
+	no_os_i2c_read_Stub(fill_complete_device_id_success);  // Complete device ID
 	no_os_gpio_get_IgnoreAndReturn(0);  // Alert GPIO succeeds
 
 	// Mock pgood allocation failure (lines 274-278)
@@ -593,13 +858,12 @@ void test_ltm4700_init_pgood_gpio_failure(void)
 	init_param.i2c_init = &i2c_init;
 	init_param.alert_param = &alert_param;
 	init_param.pgood_params = pgood_params;
-	init_param.id = ID_LTM4700;
 
 	// Mock successful setup until GPIO get
 	no_os_calloc_ExpectAndReturn(1, sizeof(struct ltm4700_dev), &mock_dev);
 	no_os_i2c_init_IgnoreAndReturn(0);
 	no_os_i2c_write_IgnoreAndReturn(0);
-	no_os_i2c_read_Stub(fill_ltm4700_special_id);
+	no_os_i2c_read_Stub(fill_complete_device_id_success);
 	no_os_gpio_get_IgnoreAndReturn(0);  // Alert GPIO succeeds
 
 	// Mock successful pgood allocation (lines 274)
@@ -642,13 +906,12 @@ void test_ltm4700_init_pgood_success(void)
 
 	init_param.i2c_init = &i2c_init;
 	init_param.pgood_params = pgood_params;
-	init_param.id = ID_LTM4700;
 
 	// Mock successful setup through device detection
 	no_os_calloc_ExpectAndReturn(1, sizeof(struct ltm4700_dev), &mock_dev);
 	no_os_i2c_init_IgnoreAndReturn(0);
 	no_os_i2c_write_IgnoreAndReturn(0);
-	no_os_i2c_read_Stub(fill_ltm4700_special_id);
+	no_os_i2c_read_Stub(fill_complete_device_id_success);
 
 	// Mock successful pgood allocation and GPIO setup
 	no_os_calloc_ExpectAndReturn(2, sizeof(struct no_os_gpio_desc *),
@@ -700,13 +963,12 @@ void test_ltm4700_init_run_alloc_failure(void)
 	init_param.i2c_init = &i2c_init;
 	init_param.alert_param = &alert_param;
 	init_param.run_params = run_params;  // This triggers run path
-	init_param.id = ID_LTM4700;
 
 	// Mock successful setup until run allocation
 	no_os_calloc_ExpectAndReturn(1, sizeof(struct ltm4700_dev), &mock_dev);
 	no_os_i2c_init_IgnoreAndReturn(0);
 	no_os_i2c_write_IgnoreAndReturn(0);
-	no_os_i2c_read_Stub(fill_ltm4700_special_id);  // Device detection
+	no_os_i2c_read_Stub(fill_complete_device_id_success);  // Complete device ID
 	no_os_gpio_get_IgnoreAndReturn(0);  // Alert GPIO succeeds
 
 	// Note: No pgood_params, so pgood path is skipped
@@ -750,13 +1012,12 @@ void test_ltm4700_init_run_gpio_failure(void)
 	init_param.i2c_init = &i2c_init;
 	init_param.alert_param = &alert_param;
 	init_param.run_params = run_params;
-	init_param.id = ID_LTM4700;
 
 	// Mock successful setup until GPIO get
 	no_os_calloc_ExpectAndReturn(1, sizeof(struct ltm4700_dev), &mock_dev);
 	no_os_i2c_init_IgnoreAndReturn(0);
 	no_os_i2c_write_IgnoreAndReturn(0);
-	no_os_i2c_read_Stub(fill_ltm4700_special_id);
+	no_os_i2c_read_Stub(fill_complete_device_id_success);
 	no_os_gpio_get_IgnoreAndReturn(0);  // Alert GPIO succeeds
 
 	// Mock successful run allocation (lines 291)
@@ -799,13 +1060,12 @@ void test_ltm4700_init_run_success(void)
 
 	init_param.i2c_init = &i2c_init;
 	init_param.run_params = run_params;
-	init_param.id = ID_LTM4700;
 
 	// Mock successful setup through device detection
 	no_os_calloc_ExpectAndReturn(1, sizeof(struct ltm4700_dev), &mock_dev);
 	no_os_i2c_init_IgnoreAndReturn(0);
 	no_os_i2c_write_IgnoreAndReturn(0);
-	no_os_i2c_read_Stub(fill_ltm4700_special_id);
+	no_os_i2c_read_Stub(fill_complete_device_id_success);
 
 	// Mock successful run allocation and GPIO setup
 	no_os_calloc_ExpectAndReturn(2, sizeof(struct no_os_gpio_desc *),
@@ -827,44 +1087,6 @@ void test_ltm4700_init_run_success(void)
 	// Should succeed through run path but may fail later - that's OK for testing
 	// The important thing is we exercised lines 297-304
 	TEST_ASSERT_TRUE(result <= 0);  // Allow any result since we tested the run path
-}
-
-/**
- * @brief Specific test for LTM4777 detection to force lines 256-258 coverage
- * Note: This tests a potentially unreachable case due to masking logic
- */
-void test_ltm4700_force_ltm4777_case(void)
-{
-	struct ltm4700_dev *device = NULL;
-	struct ltm4700_init_param init_param = {0};
-	struct no_os_i2c_init_param i2c_init = {0};
-	struct ltm4700_dev mock_dev = {0};
-
-	// Setup minimal parameters (no GPIO to avoid complications)
-	i2c_init.device_id = 0;
-	i2c_init.slave_address = 0x5A;
-	init_param.i2c_init = &i2c_init;
-	init_param.id = ID_LTM4700;
-
-	// Mock setup
-	no_os_calloc_ExpectAndReturn(1, sizeof(struct ltm4700_dev), &mock_dev);
-	no_os_i2c_init_IgnoreAndReturn(0);
-
-	// Try returning 0x4131 directly to see if it somehow works
-	no_os_i2c_write_IgnoreAndReturn(0);
-	no_os_i2c_read_Stub(fill_ltm4777_direct);
-
-	// Since this may succeed (if LTM4777 detected), we need to handle both cases
-	// If it detects LTM4777, it will try to continue and fail elsewhere
-	// Mock potential next steps
-	no_os_calloc_IgnoreAndReturn(NULL);  // pgood_descs allocation might fail
-	no_os_i2c_remove_IgnoreAndReturn(0);
-	no_os_free_Ignore();
-
-	int result = ltm4700_init(&device, &init_param);
-	// Could be -ENOMEM if pgood allocation fails, or success if all goes well
-	// The important thing is exercising the LTM4777 case
-	TEST_ASSERT_TRUE(result <= 0);  // Allow any error or success
 }
 
 /**
@@ -893,13 +1115,12 @@ void test_ltm4700_init_fault_alloc_failure(void)
 	init_param.i2c_init = &i2c_init;
 	init_param.alert_param = &alert_param;
 	init_param.fault_params = fault_params;  // This triggers fault path
-	init_param.id = ID_LTM4700;
 
 	// Mock successful early steps
 	no_os_calloc_ExpectAndReturn(1, sizeof(struct ltm4700_dev), &mock_dev);
 	no_os_i2c_init_IgnoreAndReturn(0);
 	no_os_crc8_populate_msb_Ignore();
-	no_os_i2c_read_Stub(fill_ltm4700_special_id);  // Device detection
+	no_os_i2c_read_Stub(fill_complete_device_id_success);  // Complete device ID
 	no_os_i2c_write_IgnoreAndReturn(0);  // Handle any I2C writes during init
 	no_os_gpio_get_IgnoreAndReturn(0);  // Alert GPIO succeeds
 
@@ -944,13 +1165,12 @@ void test_ltm4700_init_fault_gpio_failure(void)
 	init_param.i2c_init = &i2c_init;
 	init_param.alert_param = &alert_param;
 	init_param.fault_params = fault_params;  // This triggers fault path
-	init_param.id = ID_LTM4700;
 
 	// Mock successful early steps
 	no_os_calloc_ExpectAndReturn(1, sizeof(struct ltm4700_dev), &mock_dev);
 	no_os_i2c_init_IgnoreAndReturn(0);
 	no_os_crc8_populate_msb_Ignore();
-	no_os_i2c_read_Stub(fill_ltm4700_special_id);  // Device detection
+	no_os_i2c_read_Stub(fill_complete_device_id_success);  // Complete device ID
 	no_os_i2c_write_IgnoreAndReturn(0);  // Handle any I2C writes during init
 	no_os_gpio_get_IgnoreAndReturn(0);  // Alert GPIO succeeds
 
@@ -998,13 +1218,12 @@ void test_ltm4700_init_fault_success(void)
 	init_param.i2c_init = &i2c_init;
 	init_param.alert_param = &alert_param;
 	init_param.fault_params = fault_params;  // This triggers fault path
-	init_param.id = ID_LTM4700;
 
 	// Mock successful early steps
 	no_os_calloc_ExpectAndReturn(1, sizeof(struct ltm4700_dev), &mock_dev);
 	no_os_i2c_init_IgnoreAndReturn(0);
 	no_os_crc8_populate_msb_Ignore();
-	no_os_i2c_read_Stub(fill_ltm4700_special_id);  // Device detection
+	no_os_i2c_read_Stub(fill_complete_device_id_success);  // Device detection
 	no_os_i2c_write_IgnoreAndReturn(0);  // Handle any I2C writes during init
 	no_os_gpio_get_IgnoreAndReturn(0);  // Alert GPIO succeeds
 
@@ -1408,7 +1627,6 @@ void test_ltm4700_read_word_data_linear16_format(void)
 	struct ltm4700_dev dev = {0};
 	struct no_os_i2c_desc mock_i2c_desc = {0};
 	int data;
-	uint8_t mock_read_data[2] = {0x00, 0x10};  // 0x1000 in little-endian
 
 	// Setup device with valid parameters
 	dev.i2c_desc = &mock_i2c_desc;
@@ -4173,12 +4391,6 @@ void test_ltm4700_read_word_data_negative_exponent_lin11(void)
 	no_os_i2c_write_IgnoreAndReturn(0);  // Page setting
 	no_os_i2c_write_IgnoreAndReturn(0);  // Command write
 
-	// Create a callback to return LINEAR11 data with negative exponent
-	// LINEAR11 format: bits[15:11] = exponent, bits[10:0] = mantissa
-	// Use exponent = -3 (represented as 0x1D in 5-bit two's complement = 29)
-	// Use mantissa = 800 (positive value)
-	uint16_t lin11_data_negative_exp = (29 << 11) |
-					   800;  // Exponent -3, mantissa 800
 	no_os_i2c_read_Stub(fill_word_data_negative_exp);
 
 	// Call read_word_data with a non-voltage command to trigger LINEAR11 conversion
@@ -4439,13 +4651,12 @@ void test_ltm4700_init_error_run_path_verification(void)
 	init_param.i2c_init = &i2c_init;
 	init_param.alert_param = &alert_param;
 	init_param.run_params = run_params;
-	init_param.id = ID_LTM4700;
 
 	// Mock successful setup until we trigger the error condition
 	no_os_calloc_ExpectAndReturn(1, sizeof(struct ltm4700_dev), &mock_dev);
 	no_os_i2c_init_IgnoreAndReturn(0);
 	no_os_i2c_write_IgnoreAndReturn(0);
-	no_os_i2c_read_Stub(fill_ltm4700_special_id);
+	no_os_i2c_read_Stub(fill_complete_device_id_success);
 	no_os_gpio_get_IgnoreAndReturn(0);  // Alert GPIO succeeds
 
 	// Mock run_descs allocation succeeding (num_channels = 2 for LTM4700)

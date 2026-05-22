@@ -30,8 +30,10 @@
 :files:
   :test:
     - test/test_ltm4700.c
+    - test/test_iio_ltm4700.c
   :source:
     - ../../../../drivers/power/ltm4700/ltm4700.c
+    - ../../../../drivers/power/ltm4700/iio_ltm4700.c
   :support: []
 
 :defines:
@@ -53,11 +55,14 @@
   :plugins:
     - :ignore
     - :callback
+    - :array
+    - :return_thru_ptr
   :includes:
     - no_os_i2c.h
     - no_os_alloc.h
     - no_os_gpio.h
     - no_os_crc8.h
+    - ltm4700.h
   :treat_as:
     uint8:    HEX8
     uint16:   HEX16
