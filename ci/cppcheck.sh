@@ -51,7 +51,16 @@ parse_cppcheck_options() {
 }
 
 run_cppcheck() {
-	cppcheck -j${NUM_JOBS} --quiet --force --error-exitcode=1 --enable=warning,style,performance $CPPCHECK_OPTIONS .
+	cppcheck -j${NUM_JOBS} \
+		--quiet \
+		--force \
+		--error-exitcode=1 \
+		--enable=warning,style,performance,portability \
+		--inconclusive \
+		-I./include \
+		-I./drivers \
+		$CPPCHECK_OPTIONS \
+		.
 }
 
 build_cppheck
