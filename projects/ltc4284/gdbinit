@@ -1,0 +1,6 @@
+target remote localhost:50000
+load /home/cj/no-OS/build/ltc4284.elf
+file /home/cj/no-OS/build/ltc4284.elf
+monitor reset halt
+tb main
+c
