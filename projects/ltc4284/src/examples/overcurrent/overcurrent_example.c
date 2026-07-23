@@ -96,158 +96,158 @@
 
 static void print_startup_summary(struct ltc4284_dev *dev)
 {
-        uint8_t cfg1 = 0, ctrl2 = 0;
-        uint32_t trip_ma;
+	uint8_t cfg1 = 0, ctrl2 = 0;
+	uint32_t trip_ma;
 
-        ltc4284_read_byte(dev, LTC4284_REG_CONFIG_1, &cfg1);
-        ltc4284_read_byte(dev, LTC4284_REG_CONTROL_2, &ctrl2);
+	ltc4284_read_byte(dev, LTC4284_REG_CONFIG_1, &cfg1);
+	ltc4284_read_byte(dev, LTC4284_REG_CONTROL_2, &ctrl2);
 
-        /* Steady-state trip current in mA: V_ILIM_mV * 1e6 / R_sense_uohm */
-        trip_ma = (uint32_t)OC_ILIM_MV * 1000000UL / dev->rsense_uohm;
+	/* Steady-state trip current in mA: V_ILIM_mV * 1e6 / R_sense_uohm */
+	trip_ma = (uint32_t)OC_ILIM_MV * 1000000UL / dev->rsense_uohm;
 
-        pr_info("==== LTC4284 OC Demo ====\n");
-        pr_info("  I2C address     : 0x%02X\n", dev->i2c_addr);
-        pr_info("  RSENSE          : %lu uohm\n",
-               (unsigned long)dev->rsense_uohm);
-        pr_info("  VPWR divider    : %u:1\n", dev->vpwr_divider);
-        pr_info("  CONFIG_1        : 0x%02X (after programming)\n", cfg1);
-        pr_info("  CONTROL_2       : 0x%02X (after programming)\n", ctrl2);
-        pr_info("  V_ILIM          : %u mV\n", OC_ILIM_MV);
-        pr_info("  V_ILIM(FAST)    : %u mV (auto 2x)\n", OC_ILIM_MV * 2);
-        pr_info("  Trip (steady)   : ~%lu mA\n", (unsigned long)trip_ma);
-        pr_info("  Trip (fast)     : ~%lu mA\n", (unsigned long)(trip_ma * 2));
-        pr_info("  OC retry policy : %s\n",
-               OC_RETRY_POLICY == LTC4284_RETRY_LATCH_OFF ? "latch off" :
-               OC_RETRY_POLICY == LTC4284_RETRY_1         ? "1 retry then latch" :
-               OC_RETRY_POLICY == LTC4284_RETRY_7         ? "7 retries then latch" :
-               "unlimited retries");
-        pr_info("=========================\n\n");
+	pr_info("==== LTC4284 OC Demo ====\n");
+	pr_info("  I2C address     : 0x%02X\n", dev->i2c_addr);
+	pr_info("  RSENSE          : %lu uohm\n",
+		(unsigned long)dev->rsense_uohm);
+	pr_info("  VPWR divider    : %u:1\n", dev->vpwr_divider);
+	pr_info("  CONFIG_1        : 0x%02X (after programming)\n", cfg1);
+	pr_info("  CONTROL_2       : 0x%02X (after programming)\n", ctrl2);
+	pr_info("  V_ILIM          : %u mV\n", OC_ILIM_MV);
+	pr_info("  V_ILIM(FAST)    : %u mV (auto 2x)\n", OC_ILIM_MV * 2);
+	pr_info("  Trip (steady)   : ~%lu mA\n", (unsigned long)trip_ma);
+	pr_info("  Trip (fast)     : ~%lu mA\n", (unsigned long)(trip_ma * 2));
+	pr_info("  OC retry policy : %s\n",
+		OC_RETRY_POLICY == LTC4284_RETRY_LATCH_OFF ? "latch off" :
+		OC_RETRY_POLICY == LTC4284_RETRY_1         ? "1 retry then latch" :
+		OC_RETRY_POLICY == LTC4284_RETRY_7         ? "7 retries then latch" :
+		"unlimited retries");
+	pr_info("=========================\n\n");
 }
 
 static void decode_faults(uint8_t faults)
 {
-        char buf[128];
-        int n = 0;
+	char buf[128];
+	int n = 0;
 
-        if (!faults)
-                return;
+	if (!faults)
+		return;
 
-        n += snprintf(buf + n, sizeof(buf) - n, "FAULT 0x%02X:", faults);
-        if (faults & LTC4284_FAULT_OC)
-                n += snprintf(buf + n, sizeof(buf) - n, " OC");
-        if (faults & LTC4284_FAULT_UV)
-                n += snprintf(buf + n, sizeof(buf) - n, " UV");
-        if (faults & LTC4284_FAULT_OV)
-                n += snprintf(buf + n, sizeof(buf) - n, " OV");
-        if (faults & LTC4284_FAULT_FET_BAD)
-                n += snprintf(buf + n, sizeof(buf) - n, " FET_BAD");
-        if (faults & LTC4284_FAULT_FET_SHORT)
-                n += snprintf(buf + n, sizeof(buf) - n, " FET_SHORT");
-        if (faults & LTC4284_FAULT_POWER_BAD)
-                n += snprintf(buf + n, sizeof(buf) - n, " POWER_FAILED");
-        if (faults & LTC4284_FAULT_PGI)
-                n += snprintf(buf + n, sizeof(buf) - n, " PGI");
-        if (faults & LTC4284_FAULT_EXT)
-                n += snprintf(buf + n, sizeof(buf) - n, " EXT");
+	n += snprintf(buf + n, sizeof(buf) - n, "FAULT 0x%02X:", faults);
+	if (faults & LTC4284_FAULT_OC)
+		n += snprintf(buf + n, sizeof(buf) - n, " OC");
+	if (faults & LTC4284_FAULT_UV)
+		n += snprintf(buf + n, sizeof(buf) - n, " UV");
+	if (faults & LTC4284_FAULT_OV)
+		n += snprintf(buf + n, sizeof(buf) - n, " OV");
+	if (faults & LTC4284_FAULT_FET_BAD)
+		n += snprintf(buf + n, sizeof(buf) - n, " FET_BAD");
+	if (faults & LTC4284_FAULT_FET_SHORT)
+		n += snprintf(buf + n, sizeof(buf) - n, " FET_SHORT");
+	if (faults & LTC4284_FAULT_POWER_BAD)
+		n += snprintf(buf + n, sizeof(buf) - n, " POWER_FAILED");
+	if (faults & LTC4284_FAULT_PGI)
+		n += snprintf(buf + n, sizeof(buf) - n, " PGI");
+	if (faults & LTC4284_FAULT_EXT)
+		n += snprintf(buf + n, sizeof(buf) - n, " EXT");
 
-        printf("  ** %s **\n", buf);
+	printf("  ** %s **\n", buf);
 }
 
 int example_main(void)
 {
-        struct ltc4284_dev *dev;
-        struct no_os_uart_desc *uart;
-        uint32_t vin_mv, iin_ma, vout_mv, power_mw;
-        uint8_t sys, faults, prev_faults = 0;
-        bool fet_was_on = true;
-        int ret;
+	struct ltc4284_dev *dev;
+	struct no_os_uart_desc *uart;
+	uint32_t vin_mv, iin_ma, vout_mv, power_mw;
+	uint8_t sys, faults, prev_faults = 0;
+	bool fet_was_on = true;
+	int ret;
 
-        ret = no_os_uart_init(&uart, &ltc4284_uart_ip);
-        if (ret) {
-                pr_err("UART init failed: %d\n", ret);
-                return ret;
-        }
-        no_os_uart_stdio(uart);
+	ret = no_os_uart_init(&uart, &ltc4284_uart_ip);
+	if (ret) {
+		pr_err("UART init failed: %d\n", ret);
+		return ret;
+	}
+	no_os_uart_stdio(uart);
 
-        ret = ltc4284_init(&dev, &ltc4284_ip);
-        if (ret) {
-                pr_err("LTC4284 init failed: %d\n", ret);
-                return ret;
-        }
+	ret = ltc4284_init(&dev, &ltc4284_ip);
+	if (ret) {
+		pr_err("LTC4284 init failed: %d\n", ret);
+		return ret;
+	}
 
-        /* Program the OC profile */
-        ret = ltc4284_set_ilim_mv(dev, OC_ILIM_MV);
-        if (ret) {
-                pr_err("set_ilim failed: %d\n", ret);
-                goto out;
-        }
+	/* Program the OC profile */
+	ret = ltc4284_set_ilim_mv(dev, OC_ILIM_MV);
+	if (ret) {
+		pr_err("set_ilim failed: %d\n", ret);
+		goto out;
+	}
 
-        ret = ltc4284_set_foldback(dev, OC_FOLDBACK);
-        if (ret) {
-                pr_err("set_foldback failed: %d\n", ret);
-                goto out;
-        }
+	ret = ltc4284_set_foldback(dev, OC_FOLDBACK);
+	if (ret) {
+		pr_err("set_foldback failed: %d\n", ret);
+		goto out;
+	}
 
-        ret = ltc4284_set_oc_retry(dev, OC_RETRY_POLICY);
-        if (ret) {
-                pr_err("set_oc_retry failed: %d\n", ret);
-                goto out;
-        }
+	ret = ltc4284_set_oc_retry(dev, OC_RETRY_POLICY);
+	if (ret) {
+		pr_err("set_oc_retry failed: %d\n", ret);
+		goto out;
+	}
 
-        print_startup_summary(dev);
+	print_startup_summary(dev);
 
-        /* Ensure FET on (usually already on by EEPROM default) */
-        ret = ltc4284_enable_fet(dev, true);
-        if (ret) {
-                pr_err("enable_fet failed: %d\n", ret);
-                goto out;
-        }
-        no_os_mdelay(300); /* Wait for PG to assert */
+	/* Ensure FET on (usually already on by EEPROM default) */
+	ret = ltc4284_enable_fet(dev, true);
+	if (ret) {
+		pr_err("enable_fet failed: %d\n", ret);
+		goto out;
+	}
+	no_os_mdelay(300); /* Wait for PG to assert */
 
-        ltc4284_read_status(dev, &sys);
-        pr_info("Post-enable STATUS: 0x%02X (FET_ON=%u PG=%u)\n\n", sys,
-                !!(sys & LTC4284_SYSTEM_STATUS_FET_ON_STATUS),
-                !!(sys & LTC4284_SYSTEM_STATUS_PG_STATUS));
+	ltc4284_read_status(dev, &sys);
+	pr_info("Post-enable STATUS: 0x%02X (FET_ON=%u PG=%u)\n\n", sys,
+		!!(sys & LTC4284_SYSTEM_STATUS_FET_ON_STATUS),
+		!!(sys & LTC4284_SYSTEM_STATUS_PG_STATUS));
 
-        pr_info("Monitoring (bring the e-load above the trip point to observe OC):\n");
-        pr_info("---------------------------------------------------------------\n");
+	pr_info("Monitoring (bring the e-load above the trip point to observe OC):\n");
+	pr_info("---------------------------------------------------------------\n");
 
-        while(1) {
-                ltc4284_read_vin(dev, &vin_mv);
-                ltc4284_read_iin(dev, &iin_ma);
-                ltc4284_read_vout(dev, &vout_mv);
-                ltc4284_read_power(dev, &power_mw);
-                ltc4284_read_status(dev, &sys);
-                ltc4284_get_fault(dev, &faults);
+	while (1) {
+		ltc4284_read_vin(dev, &vin_mv);
+		ltc4284_read_iin(dev, &iin_ma);
+		ltc4284_read_vout(dev, &vout_mv);
+		ltc4284_read_power(dev, &power_mw);
+		ltc4284_read_status(dev, &sys);
+		ltc4284_get_fault(dev, &faults);
 
-                pr_info("VIN=%6lu mV | IIN=%6lu mA | VOUT=%6lu mV | P=%8lu mW | FET=%u PG=%u\n",
-                        (unsigned long)vin_mv,
-                        (unsigned long)iin_ma,
-                        (unsigned long)vout_mv,
-                        (unsigned long)power_mw,
-                        !!(sys & LTC4284_SYSTEM_STATUS_FET_ON_STATUS),
-                        !!(sys & LTC4284_SYSTEM_STATUS_PG_STATUS));
+		pr_info("VIN=%6lu mV | IIN=%6lu mA | VOUT=%6lu mV | P=%8lu mW | FET=%u PG=%u\n",
+			(unsigned long)vin_mv,
+			(unsigned long)iin_ma,
+			(unsigned long)vout_mv,
+			(unsigned long)power_mw,
+			!!(sys & LTC4284_SYSTEM_STATUS_FET_ON_STATUS),
+			!!(sys & LTC4284_SYSTEM_STATUS_PG_STATUS));
 
-                /* Narrate state transitions */
-                if (faults && faults != prev_faults) {
-                        decode_faults(faults);
-                        pr_info("  FET turned off. Waiting for auto-retry...\n");
-                        ltc4284_clear_faults(dev);
-                }
+		/* Narrate state transitions */
+		if (faults && faults != prev_faults) {
+			decode_faults(faults);
+			pr_info("  FET turned off. Waiting for auto-retry...\n");
+			ltc4284_clear_faults(dev);
+		}
 
-                bool fet_on = !!(sys & LTC4284_SYSTEM_STATUS_FET_ON_STATUS);
-                if (fet_on && !fet_was_on)
-                        pr_info("  --> Retry succeeded. FET back on.\n");
-                if (!fet_on && fet_was_on) {
-                        pr_info("  --> FET is OFF.\n");
-                }
+		bool fet_on = !!(sys & LTC4284_SYSTEM_STATUS_FET_ON_STATUS);
+		if (fet_on && !fet_was_on)
+			pr_info("  --> Retry succeeded. FET back on.\n");
+		if (!fet_on && fet_was_on) {
+			pr_info("  --> FET is OFF.\n");
+		}
 
-                prev_faults = faults;
-                fet_was_on = fet_on;
-                no_os_mdelay(LOOP_PERIOD_MS);
-        }
+		prev_faults = faults;
+		fet_was_on = fet_on;
+		no_os_mdelay(LOOP_PERIOD_MS);
+	}
 
 out:
-        ltc4284_remove(dev);
-        return ret;
+	ltc4284_remove(dev);
+	return ret;
 }

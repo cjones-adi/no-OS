@@ -73,79 +73,90 @@
 
 static void decode_faults(uint8_t faults)
 {
-        char buf[128];
-        int n = 0;
+	char buf[128];
+	int n = 0;
 
-        if (!faults)
-                return;
+	if (!faults)
+		return;
 
-        n += snprintf(buf + n, sizeof(buf) - n, "FAULT 0x%02X:", faults);
-        if (faults & LTC4284_FAULT_OC)          n += snprintf(buf + n, sizeof(buf) - n, " OC");
-        if (faults & LTC4284_FAULT_UV)          n += snprintf(buf + n, sizeof(buf) - n, " UV");
-        if (faults & LTC4284_FAULT_OV)          n += snprintf(buf + n, sizeof(buf) - n, " OV");
-        if (faults & LTC4284_FAULT_FET_BAD)     n += snprintf(buf + n, sizeof(buf) - n, " FET_BAD");
-        if (faults & LTC4284_FAULT_FET_SHORT)   n += snprintf(buf + n, sizeof(buf) - n, " FET_SHORT");
-        if (faults & LTC4284_FAULT_POWER_BAD)   n += snprintf(buf + n, sizeof(buf) - n, " POWER_FAILED");
-        if (faults & LTC4284_FAULT_PGI)         n += snprintf(buf + n, sizeof(buf) - n, " PGI");
-        if (faults & LTC4284_FAULT_EXT)         n += snprintf(buf + n, sizeof(buf) - n, " EXT");
-        printf("  ** %s **\n", buf);
+	n += snprintf(buf + n, sizeof(buf) - n, "FAULT 0x%02X:", faults);
+	if (faults & LTC4284_FAULT_OC)          n += snprintf(buf + n, sizeof(buf) - n,
+				" OC");
+	if (faults & LTC4284_FAULT_UV)          n += snprintf(buf + n, sizeof(buf) - n,
+				" UV");
+	if (faults & LTC4284_FAULT_OV)          n += snprintf(buf + n, sizeof(buf) - n,
+				" OV");
+	if (faults & LTC4284_FAULT_FET_BAD)     n += snprintf(buf + n, sizeof(buf) - n,
+				" FET_BAD");
+	if (faults & LTC4284_FAULT_FET_SHORT)   n += snprintf(buf + n, sizeof(buf) - n,
+				" FET_SHORT");
+	if (faults & LTC4284_FAULT_POWER_BAD)   n += snprintf(buf + n, sizeof(buf) - n,
+				" POWER_FAILED");
+	if (faults & LTC4284_FAULT_PGI)         n += snprintf(buf + n, sizeof(buf) - n,
+				" PGI");
+	if (faults & LTC4284_FAULT_EXT)         n += snprintf(buf + n, sizeof(buf) - n,
+				" EXT");
+	printf("  ** %s **\n", buf);
 }
 
 int example_main(void)
 {
-        struct ltc4284_dev *dev;
-        struct no_os_uart_desc *uart;
-        uint8_t sys, faults;
-        int iter = 0;
-        int ret;
+	struct ltc4284_dev *dev;
+	struct no_os_uart_desc *uart;
+	uint8_t sys, faults;
+	int iter = 0;
+	int ret;
 
-        ret = no_os_uart_init(&uart, &ltc4284_uart_ip);
-        if (ret) return ret;
-        no_os_uart_stdio(uart);
+	ret = no_os_uart_init(&uart, &ltc4284_uart_ip);
+	if (ret) return ret;
+	no_os_uart_stdio(uart);
 
-        ret = ltc4284_init(&dev, &ltc4284_ip);
-        if (ret) { pr_err("init failed: %d\n", ret); return ret; }
+	ret = ltc4284_init(&dev, &ltc4284_ip);
+	if (ret) {
+		pr_err("init failed: %d\n", ret);
+		return ret;
+	}
 
-        ltc4284_set_ilim_mv(dev, OC_ILIM_MV);
-        ltc4284_set_foldback(dev, OC_FOLDBACK);
-        ltc4284_set_oc_retry(dev, OC_RETRY_POLICY);
+	ltc4284_set_ilim_mv(dev, OC_ILIM_MV);
+	ltc4284_set_foldback(dev, OC_FOLDBACK);
+	ltc4284_set_oc_retry(dev, OC_RETRY_POLICY);
 
-        pr_info("==== LTC4284 OC Smoke Test ====\n");
-        pr_info("  Injecting OC fault every %d ms via FAULT register write.\n",
-               INJECT_PERIOD_MS);
-        pr_info("  Retry policy: 1 retry then latch off.\n");
-        pr_info("===============================\n\n");
+	pr_info("==== LTC4284 OC Smoke Test ====\n");
+	pr_info("  Injecting OC fault every %d ms via FAULT register write.\n",
+		INJECT_PERIOD_MS);
+	pr_info("  Retry policy: 1 retry then latch off.\n");
+	pr_info("===============================\n\n");
 
-        ltc4284_enable_fet(dev, true);
-        no_os_mdelay(300);
+	ltc4284_enable_fet(dev, true);
+	no_os_mdelay(300);
 
-        while (1) {
-                iter++;
+	while (1) {
+		iter++;
 
-                /* Read current chip state */
-                ltc4284_read_status(dev, &sys);
-                ltc4284_get_fault(dev, &faults);
+		/* Read current chip state */
+		ltc4284_read_status(dev, &sys);
+		ltc4284_get_fault(dev, &faults);
 
-                printf("[iter %d]  STATUS=0x%02X (FET_ON=%u PG=%u)\n",
-                       iter, sys,
-                       !!(sys & LTC4284_SYSTEM_STATUS_FET_ON_STATUS),
-                       !!(sys & LTC4284_SYSTEM_STATUS_PG_STATUS));
+		printf("[iter %d]  STATUS=0x%02X (FET_ON=%u PG=%u)\n",
+		       iter, sys,
+		       !!(sys & LTC4284_SYSTEM_STATUS_FET_ON_STATUS),
+		       !!(sys & LTC4284_SYSTEM_STATUS_PG_STATUS));
 
-                if (faults) {
-                        decode_faults(faults);
-                        printf("  --> clearing faults + re-enabling FET.\n");
-                        ltc4284_clear_faults(dev);
-                        ltc4284_enable_fet(dev, true);
-                }
+		if (faults) {
+			decode_faults(faults);
+			printf("  --> clearing faults + re-enabling FET.\n");
+			ltc4284_clear_faults(dev);
+			ltc4284_enable_fet(dev, true);
+		}
 
-                /* Inject a synthetic OC fault */
-                printf("  --> INJECTING OC fault (writing 0x04 to FAULT)\n");
-                ltc4284_write_byte(dev, LTC4284_REG_FAULT,
-                                   LTC4284_FAULT_OC_FAULT_BIT);
+		/* Inject a synthetic OC fault */
+		printf("  --> INJECTING OC fault (writing 0x04 to FAULT)\n");
+		ltc4284_write_byte(dev, LTC4284_REG_FAULT,
+				   LTC4284_FAULT_OC_FAULT_BIT);
 
-                no_os_mdelay(INJECT_PERIOD_MS);
-        }
+		no_os_mdelay(INJECT_PERIOD_MS);
+	}
 
-        ltc4284_remove(dev);
-        return 0;
+	ltc4284_remove(dev);
+	return 0;
 }

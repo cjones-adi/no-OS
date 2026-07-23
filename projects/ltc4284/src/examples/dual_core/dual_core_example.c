@@ -145,7 +145,7 @@ static int init_ipc(void)
 
 	/* Register callback for RISC-V doorbell */
 	ret = no_os_ipc_register_callback(ipc_desc, NO_OS_IPC_CHAN_HOST,
-	                                   ltc4284_alert_callback, NULL);
+					  ltc4284_alert_callback, NULL);
 	if (ret) {
 		printf("[ARM] ERROR: IPC callback registration failed (%d)\r\n", ret);
 		return ret;
