@@ -11,6 +11,13 @@ config LTC4284_BASIC_EXAMPLE
 	  energy, temperature) and decodes fault bits. Suitable for both
 	  ARM and RISC-V cores.
 
+config LTC4284_IIO_EXAMPLE
+	bool "IIO example"
+	depends on IIO
+	help
+	  Demonstrates IIO integration with LTC4284 telemetry. Requires
+	  CONFIG_IIO=y. Suitable for both ARM and RISC-V cores.
+
 config LTC4284_OVERCURRENT_EXAMPLE
 	bool "Overcurrent protection example"
 	help

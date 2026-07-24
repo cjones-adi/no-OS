@@ -17,6 +17,16 @@ if(CONFIG_LTC4284_BASIC_EXAMPLE)
 	)
 endif()
 
+# IIO example
+if(CONFIG_LTC4284_IIO_EXAMPLE)
+	target_sources(ltc4284 PRIVATE
+		${CMAKE_CURRENT_SOURCE_DIR}/src/examples/iio/iio_example.c
+	)
+	target_include_directories(ltc4284 PRIVATE
+		${CMAKE_CURRENT_SOURCE_DIR}/src/examples/iio
+	)
+endif()
+
 # Overcurrent example
 if(CONFIG_LTC4284_OVERCURRENT_EXAMPLE)
 	target_sources(ltc4284 PRIVATE
@@ -54,31 +64,44 @@ target_link_libraries(ltc4284 no-os)
 if(CONFIG_LTC4284_DUAL_CORE_EXAMPLE)
 	include(maxim_coprocessor)
 	maxim_add_riscv_coprocessor(ltc4284
-		SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/examples/dual_core/dual_core_example_riscv.c
+		SOURCES
+			${CMAKE_CURRENT_SOURCE_DIR}/src/examples/dual_core/dual_core_example_riscv.c
+			${CMAKE_CURRENT_SOURCE_DIR}/src/examples/dual_core/maxim_sys_riscv_stubs.c
 		INCLUDES
 			${CMAKE_CURRENT_SOURCE_DIR}/src/examples/dual_core
 			${CMAKE_SOURCE_DIR}/include
 			${CMAKE_SOURCE_DIR}/drivers/platform/maxim/max${TARGET_NUM}
 		NOOS_INCLUDES
-			${CMAKE_SOURCE_DIR}/drivers/power
+			${CMAKE_SOURCE_DIR}/drivers/power/ltc4284
 		NOOS_DRIVERS
 			# no-OS API layer for RISC-V core
 			${CMAKE_SOURCE_DIR}/drivers/api/no_os_gpio.c
 			${CMAKE_SOURCE_DIR}/drivers/api/no_os_irq.c
+			${CMAKE_SOURCE_DIR}/drivers/api/no_os_i2c.c
+			${CMAKE_CURRENT_SOURCE_DIR}/src/examples/dual_core/no_os_mutex_stubs.c
 			${CMAKE_SOURCE_DIR}/util/no_os_util.c
 			${CMAKE_SOURCE_DIR}/util/no_os_alloc.c
+			# LTC4284 driver (runs on RISC-V)
+			${CMAKE_SOURCE_DIR}/drivers/power/ltc4284/ltc4284.c
 			# Maxim platform drivers for RISC-V
 			${CMAKE_SOURCE_DIR}/drivers/platform/maxim/max${TARGET_NUM}/maxim_gpio.c
+			${CMAKE_SOURCE_DIR}/drivers/platform/maxim/max${TARGET_NUM}/maxim_i2c.c
 			${CMAKE_SOURCE_DIR}/drivers/platform/maxim/max${TARGET_NUM}/maxim_delay.c
 			# MXC PeriphDrivers (RV32-compiled)
 			${MAXIM_LIBRARIES}/PeriphDrivers/Source/GPIO/gpio_me15.c
 			${MAXIM_LIBRARIES}/PeriphDrivers/Source/GPIO/gpio_reva.c
 			${MAXIM_LIBRARIES}/PeriphDrivers/Source/GPIO/gpio_common.c
-			${MAXIM_LIBRARIES}/PeriphDrivers/Source/SYS/sys_me15.c
+			# sys_me15.c excluded - incompatible with RISC-V (missing MCR register members)
 			${MAXIM_LIBRARIES}/PeriphDrivers/Source/SYS/pins_me15.c
 			${MAXIM_LIBRARIES}/PeriphDrivers/Source/SYS/mxc_delay.c
 			${MAXIM_LIBRARIES}/PeriphDrivers/Source/SYS/mxc_lock.c
-			${MAXIM_LIBRARIES}/PeriphDrivers/Source/SYS/mxc_assert.c)
+			${MAXIM_LIBRARIES}/PeriphDrivers/Source/SYS/mxc_assert.c
+			# I2C PeriphDrivers for RISC-V
+			${MAXIM_LIBRARIES}/PeriphDrivers/Source/I2C/i2c_me15.c
+			${MAXIM_LIBRARIES}/PeriphDrivers/Source/I2C/i2c_reva.c
+			# ICC PeriphDrivers for RISC-V (instruction cache)
+			${MAXIM_LIBRARIES}/PeriphDrivers/Source/ICC/icc_me18.c
+			${MAXIM_LIBRARIES}/PeriphDrivers/Source/ICC/icc_reva.c)
 endif()
 
 # Platform SDK configuration

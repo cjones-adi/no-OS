@@ -37,7 +37,7 @@
 #include "ltc4284.h"
 #include "no_os_delay.h"
 #include "no_os_print_log.h"
-
+#include "no_os_error.h"
 #include "no_os_i2c.h"
 #include "maxim_i2c.h"
 
@@ -75,11 +75,11 @@ static bool validate_power_reading(uint32_t vin_mv, uint32_t iin_ma,
 	error_pct = ((int64_t)power_mw - calculated_power) * 100 / calculated_power;
 
 	if (abs(error_pct) > MAX_POWER_DISCREPANCY_PCT) {
-		pr_warn("Power discrepancy: chip=%lu mW, calc=%lu mW (%+ld%%)\n",
-			(unsigned long)power_mw,
-			(unsigned long)calculated_power,
-			(long)error_pct);
-		pr_warn("Check: RSENSE, dividers, or CONFIG_3.VPWR_SELECT setting\n");
+		pr_warning("Power discrepancy: chip=%lu mW, calc=%lu mW (%+ld%%)\n",
+			   (unsigned long)power_mw,
+			   (unsigned long)calculated_power,
+			   (long)error_pct);
+		pr_warning("Check: RSENSE, dividers, or CONFIG_3.VPWR_SELECT setting\n");
 		return false;
 	}
 
@@ -321,7 +321,7 @@ int example_main()
 			power_valid ? "" : " [!]");
 
 		if (!power_valid) {
-			pr_warn("Power validation failed - check configuration\n");
+			pr_warning("Power validation failed - check configuration\n");
 		}
 
 		/* Check for faults with production-safe handling */
@@ -374,9 +374,9 @@ int example_main()
 					break;  /* Exit after max retries */
 				}
 
-				pr_warn("Transient fault (retry %u/%u) - clearing and monitoring\n",
-					transient_fault_count,
-					MAX_TRANSIENT_FAULT_RETRIES);
+				pr_warning("Transient fault (retry %u/%u) - clearing and monitoring\n",
+					   transient_fault_count,
+					   MAX_TRANSIENT_FAULT_RETRIES);
 				ltc4284_clear_faults(ltc4284_dev);
 
 				/* Re-enable FETs (chip's retry mode will handle hardware-level retry) */

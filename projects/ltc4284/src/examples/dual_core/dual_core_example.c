@@ -55,52 +55,79 @@
 
 #include <stdio.h>
 #include <stdint.h>
+#include <errno.h>
 #include "no_os_uart.h"
 #include "no_os_delay.h"
 #include "no_os_ipc.h"
 #include "no_os_barrier.h"
-#include "ltc4284.h"
+#include "no_os_util.h"
+#include "no_os_error.h"
 #include "maxim_ipc.h"
 #include "common_data.h"
 #include "parameters.h"
+#include "mxc_sys.h"
+#include "dual_core_ltc4284_ipc.h"
 
-/* Shared IPC memory for ARM <-> RISC-V communication */
-#define IPC_TABLE_ADDR 0x20110000UL  /* In RISC-V SRAM region */
+/* External symbol from linker script */
+extern uint8_t _riscv_boot;
 
-typedef struct {
-	uint32_t magic;                  /* 0xC0DEC0DE when valid */
-	volatile uint32_t alert_count;   /* Overcurrent event counter from RISC-V */
-	volatile uint32_t last_alert_ms; /* Timestamp of last alert */
-	uint32_t reserved[13];           /* Padding to 64 bytes */
-} ltc4284_ipc_table_t;
-
+/* Pointer to shared IPC memory */
 static volatile ltc4284_ipc_table_t *const g_ipc_table =
-	(volatile ltc4284_ipc_table_t *)IPC_TABLE_ADDR;
-
-#define LTC4284_IPC_MAGIC 0xC0DEC0DEUL
+	(volatile ltc4284_ipc_table_t *)LTC4284_IPC_TABLE_ADDR;
 
 /* IPC descriptor */
 static struct no_os_ipc_desc *ipc_desc;
-
-/* LTC4284 device descriptor */
-extern struct ltc4284_dev *ltc4284_dev;
 
 /* Alert statistics */
 static volatile uint32_t arm_alert_count = 0;
 
 /**
- * @brief IPC doorbell callback - invoked when RISC-V signals an alert
+ * @brief Boot RISC-V coprocessor using SDK function
  */
-static void ltc4284_alert_callback(void *ctx)
+static void boot_riscv_coprocessor(void)
 {
-	(void)ctx;
+	printf("[ARM] Booting RISC-V coprocessor at 0x%08lx...\r\n",
+	       (unsigned long)&_riscv_boot);
 
+	/*
+	 * Note: MXC_SYS_RISCVRun() expects _binary_riscv_bin_start symbol
+	 * from the SDK's dual-core template. Our CMake build uses _riscv_boot.
+	 * We can either:
+	 *   1) Rename the symbol in our linker script
+	 *   2) Use direct register manipulation here
+	 *
+	 * For now, use direct register access matching the SDK implementation.
+	 */
+
+	/* Disable RISC-V core */
+	MXC_GCR->pclkdis1 |= MXC_F_GCR_PCLKDIS1_CPU1;
+
+	/* Set boot address to embedded firmware */
+	/* MXC_FCR is defined in max32690.h but fcr_regs.h needs to be included */
+	*((volatile uint32_t *)(MXC_BASE_FCR + 0x00)) = (uint32_t)&_riscv_boot;
+
+	/* Enable and release RISC-V from reset */
+	MXC_GCR->pclkdis1 &= ~MXC_F_GCR_PCLKDIS1_CPU1;
+	MXC_GCR->rst1 |= MXC_F_GCR_RST1_CPU1;
+
+	printf("[ARM] RISC-V coprocessor booted\r\n");
+}
+
+/**
+ * @brief Check for and handle RISC-V alerts via IPC
+ */
+static void check_riscv_alerts(void)
+{
 	/* Read alert count from shared memory */
 	no_os_barrier_full();
-	arm_alert_count = g_ipc_table->alert_count;
+	uint32_t new_count = g_ipc_table->alert_count;
 
-	printf("\r\n[ARM] !!! OVERCURRENT ALERT from RISC-V (count=%lu) !!!\r\n",
-	       (unsigned long)arm_alert_count);
+	/* Check if alert count increased */
+	if (new_count > arm_alert_count) {
+		arm_alert_count = new_count;
+		printf("\r\n[ARM] !!! OVERCURRENT ALERT from RISC-V (count=%lu) !!!\r\n",
+		       (unsigned long)arm_alert_count);
+	}
 }
 
 /**
@@ -143,57 +170,84 @@ static int init_ipc(void)
 		return ret;
 	}
 
-	/* Register callback for RISC-V doorbell */
-	ret = no_os_ipc_register_callback(ipc_desc, NO_OS_IPC_CHAN_HOST,
-					  ltc4284_alert_callback, NULL);
-	if (ret) {
-		printf("[ARM] ERROR: IPC callback registration failed (%d)\r\n", ret);
-		return ret;
-	}
-
 	printf("[ARM] IPC initialized (doorbell + mailbox)\r\n");
 	return 0;
 }
 
 /**
- * @brief Read and display LTC4284 telemetry
+ * @brief Send command to RISC-V and wait for response
+ */
+static int send_command(uint32_t opcode, uint32_t param1, uint32_t param2)
+{
+	volatile ltc4284_ipc_table_t *tbl = g_ipc_table;
+	uint32_t start_ms;
+	uint32_t expected_seq;
+
+	/* Wait for RISC-V ready */
+	start_ms = 0; /* Simplified timeout for no_os_mdelay */
+	while (tbl->status & LTC4284_STATUS_BUSY) {
+		if (start_ms++ > 100) {
+			printf("[ARM] ERROR: RISC-V busy timeout\r\n");
+			return -ETIMEDOUT;
+		}
+		no_os_udelay(1000);
+	}
+
+	/* Send command */
+	expected_seq = tbl->cmd_sequence + 1;
+	tbl->cmd_opcode = opcode;
+	tbl->cmd_param1 = param1;
+	tbl->cmd_param2 = param2;
+	tbl->cmd_sequence = expected_seq;
+	no_os_barrier_full();
+
+	/* Notify RISC-V */
+	no_os_ipc_notify(ipc_desc, NO_OS_IPC_CHAN_COPROC);
+
+	/* Wait for response */
+	start_ms = 0;
+	while (tbl->rsp_sequence != expected_seq) {
+		if (start_ms++ > 100) {
+			printf("[ARM] ERROR: Response timeout\r\n");
+			return -ETIMEDOUT;
+		}
+		no_os_udelay(1000);
+	}
+
+	no_os_barrier_full();
+	return (tbl->rsp_error_code == 0) ? 0 : -EIO;
+}
+
+/**
+ * @brief Request and display telemetry from RISC-V
  */
 static void display_telemetry(void)
 {
+	volatile ltc4284_ipc_table_t *tbl = g_ipc_table;
 	int ret;
-	uint32_t vin_mv, iin_ma, pin_mw;
-	uint8_t status;
 
-	/* Read voltage */
-	ret = ltc4284_read_vin(ltc4284_dev, &vin_mv);
+	/* Request fresh telemetry */
+	ret = send_command(LTC4284_CMD_READ_TELEMETRY, 0, 0);
 	if (ret) {
-		printf("[ARM] ERROR: Failed to read VIN\r\n");
+		printf("[ARM] ERROR: Telemetry request failed\r\n");
 		return;
 	}
 
-	/* Read current */
-	ret = ltc4284_read_iin(ltc4284_dev, &iin_ma);
-	if (ret) {
-		printf("[ARM] ERROR: Failed to read IIN\r\n");
-		return;
-	}
-
-	/* Calculate power */
-	pin_mw = (vin_mv * iin_ma) / 1000;
-
-	/* Read status */
-	ret = ltc4284_read_status(ltc4284_dev, &status);
-	if (ret) {
-		printf("[ARM] ERROR: Failed to read status\r\n");
-		return;
-	}
-
-	printf("[ARM] VIN=%u.%03uV  IIN=%u.%03uA  PIN=%u.%03uW  Status=0x%02X  Alerts=%lu\r\n",
-	       vin_mv / 1000, vin_mv % 1000,
-	       iin_ma / 1000, iin_ma % 1000,
-	       pin_mw / 1000, pin_mw % 1000,
-	       status,
-	       (unsigned long)arm_alert_count);
+	/* Read from shared memory */
+	no_os_barrier_full();
+	printf("[ARM] VIN=%lu.%03luV  IIN=%lu.%03luA  PIN=%lu.%03luW  VOUT=%lu.%03luV  "
+	       "Status=0x%02X  Energy=%lluJ  Alerts=%lu\r\n",
+	       (unsigned long)(tbl->telemetry.vin_mv / 1000),
+	       (unsigned long)(tbl->telemetry.vin_mv % 1000),
+	       (unsigned long)(tbl->telemetry.iin_ma / 1000),
+	       (unsigned long)(tbl->telemetry.iin_ma % 1000),
+	       (unsigned long)(tbl->telemetry.pin_mw / 1000),
+	       (unsigned long)(tbl->telemetry.pin_mw % 1000),
+	       (unsigned long)(tbl->telemetry.vout_mv / 1000),
+	       (unsigned long)(tbl->telemetry.vout_mv % 1000),
+	       tbl->telemetry.status_reg,
+	       (unsigned long long)(tbl->telemetry.energy_mj / 1000),
+	       (unsigned long)tbl->alert_count);
 }
 
 /**
@@ -202,46 +256,56 @@ static void display_telemetry(void)
 int example_main(void)
 {
 	int ret;
+	uint32_t loop_count = 0;
+	uint32_t start_ms;
 
-	printf("\r\n");
-	printf("====================================================\r\n");
+	printf("\r\n====================================================\r\n");
 	printf("  LTC4284 Dual-Core Monitoring Example (MAX32690)  \r\n");
 	printf("====================================================\r\n");
-	printf("ARM Core:    I2C control and telemetry\r\n");
-	printf("RISC-V Core: Real-time ALERT pin monitoring\r\n");
-	printf("----------------------------------------------------\r\n");
+	printf("ARM Core:    User interface and telemetry display\r\n");
+	printf("RISC-V Core: I2C control and ALERT monitoring\r\n");
+	printf("----------------------------------------------------\r\n\r\n");
 
 	/* Initialize shared IPC table */
 	init_ipc_table();
 
-	/*
-	 * Note: RISC-V core boots automatically from embedded firmware.
-	 * The CMake build system embeds the RISC-V binary in the ARM ELF's
-	 * .riscv_flash section, and the hardware boots it automatically.
-	 */
-	printf("[ARM] RISC-V firmware embedded at _riscv_boot address\r\n");
+	/* Boot RISC-V coprocessor */
+	boot_riscv_coprocessor();
 
-	/* Initialize IPC for inter-core communication */
+	/* Give RISC-V time to initialize */
+	no_os_mdelay(100);
+
+	/* Initialize IPC */
 	ret = init_ipc();
 	if (ret)
 		return ret;
 
-	/* LTC4284 is already initialized in common_data.c */
-	printf("[ARM] LTC4284 I2C address: 0x%02X\r\n", ltc4284_dev->i2c_addr);
+	/* Wait for RISC-V ready signal */
+	printf("[ARM] Waiting for RISC-V initialization...\r\n");
+	start_ms = 0;
+	while (!(g_ipc_table->status & LTC4284_STATUS_READY)) {
+		if (start_ms++ > 5000) {
+			printf("[ARM] ERROR: RISC-V timeout\r\n");
+			return -ETIMEDOUT;
+		}
+		no_os_mdelay(1);
+	}
+	printf("[ARM] RISC-V core ready\r\n\r\n");
 
 	/* Main monitoring loop */
-	printf("\r\n[ARM] Starting monitoring loop...\r\n\r\n");
-
-	uint32_t loop_count = 0;
+	printf("[ARM] Starting telemetry monitoring...\r\n\r\n");
 	while (1) {
-		/* Display telemetry every second */
+		/* Check for alerts from RISC-V */
+		check_riscv_alerts();
+
+		/* Display telemetry */
 		display_telemetry();
 
-		/* Brief status every 10 seconds */
 		if (++loop_count % 10 == 0) {
-			printf("[ARM] --- %lu seconds elapsed, %lu total alerts ---\r\n",
-			       (unsigned long)(loop_count),
-			       (unsigned long)arm_alert_count);
+			printf("[ARM] --- %lu seconds, I2C errors: %lu, failed: %lu ---\r\n",
+			       (unsigned long)loop_count,
+			       (unsigned long)g_ipc_table->i2c_errors,
+			       (unsigned long)g_ipc_table->failed_commands);
 		}
 
 		no_os_mdelay(1000);

@@ -3,12 +3,18 @@
  *   @brief  Shared IPC definitions for LTC4284 dual-core example.
  *   @author Analog Devices Inc.
  *
- * This header defines the shared memory structure and constants used for
+ * This header defines the shared memory structure and IPC protocol used for
  * inter-processor communication between ARM (CPU0) and RISC-V (CPU1) cores
  * in the LTC4284 dual-core monitoring example.
  *
- * Both ARM and RISC-V source files include this header to ensure consistent
- * IPC table layout and magic values.
+ * Architecture:
+ * - ARM (CPU0):  User interface, UART console, telemetry display
+ * - RISC-V (CPU1): LTC4284 I2C driver, telemetry acquisition, ALERT monitoring
+ *
+ * Communication:
+ * - ARM requests telemetry via IPC commands
+ * - RISC-V reads from LTC4284 over I2C and updates shared memory
+ * - RISC-V signals completion via doorbell interrupt
  *
  ******************************************************************************
  * Copyright 2026(c) Analog Devices, Inc.
@@ -44,39 +50,72 @@
 
 #include <stdint.h>
 
-/**
- * LTC4284 IPC shared memory address
- *
- * Located in RISC-V SRAM region (0x20100000-0x20120000) to ensure both cores
- * can access it. The ARM core can read/write anywhere, while the RISC-V core
- * has restricted access to only its dedicated SRAM.
- */
+/* Shared memory address (in RISC-V SRAM region) */
 #define LTC4284_IPC_TABLE_ADDR  0x20110000UL
 
-/**
- * Magic value to validate IPC table initialization
- */
+/* Magic value to validate IPC table initialization */
 #define LTC4284_IPC_MAGIC       0xC0DEC0DEUL
 
-/**
- * Shared IPC table structure
- *
- * This structure resides in shared memory accessible by both ARM and RISC-V.
- * The ARM core initializes it, and both cores read/write fields with proper
- * memory barriers.
- */
+/* Command opcodes (ARM → RISC-V) */
+#define LTC4284_CMD_NOP             0x00  /* No operation (heartbeat) */
+#define LTC4284_CMD_READ_TELEMETRY  0x01  /* Read all telemetry data */
+#define LTC4284_CMD_CLEAR_FAULTS    0x02  /* Clear fault registers */
+#define LTC4284_CMD_ENABLE_FET      0x03  /* Enable/disable FET (param1: 0/1) */
+#define LTC4284_CMD_SHUTDOWN        0xFF  /* Shutdown RISC-V core */
+
+/* Status flags (RISC-V → ARM) */
+#define LTC4284_STATUS_READY   (1 << 0)  /* RISC-V initialized and ready */
+#define LTC4284_STATUS_BUSY    (1 << 1)  /* Processing command */
+#define LTC4284_STATUS_ERROR   (1 << 2)  /* Last command failed */
+#define LTC4284_STATUS_ALERT   (1 << 3)  /* Hardware ALERT pin active */
+
+/* Telemetry data structure */
 typedef struct {
-	/** Magic value (LTC4284_IPC_MAGIC when initialized) */
-	uint32_t magic;
+	uint32_t vin_mv;                 /* Input voltage (millivolts) */
+	uint32_t iin_ma;                 /* Input current (milliamps) */
+	uint32_t pin_mw;                 /* Input power (milliwatts) */
+	uint32_t vout_mv;                /* Output voltage (millivolts) */
+	uint8_t  status_reg;             /* SYSTEM_STATUS register */
+	uint8_t  fault_reg;              /* FAULT register */
+	uint8_t  adc_status;             /* ADC_STATUS register */
+	uint8_t  reserved;
+	uint64_t energy_mj;              /* Energy accumulator (millijoules) */
+	uint32_t timestamp_ms;           /* RISC-V timestamp */
+	uint8_t  raw_reserved[44];       /* Reserved for future expansion */
+} ltc4284_telemetry_t;
 
-	/** Overcurrent alert counter (written by RISC-V, read by ARM) */
-	volatile uint32_t alert_count;
+/* Shared IPC table structure (256 bytes total) */
+typedef struct {
+	/* Header (8 bytes) */
+	uint32_t magic;                      /* LTC4284_IPC_MAGIC when initialized */
+	volatile uint32_t status;            /* Status flags (LTC4284_STATUS_*) */
 
-	/** Timestamp of last alert in milliseconds (written by RISC-V) */
-	volatile uint32_t last_alert_ms;
+	/* ARM → RISC-V Command Queue (16 bytes) */
+	volatile uint32_t cmd_opcode;        /* Command type (LTC4284_CMD_*) */
+	volatile uint32_t cmd_sequence;      /* Increments with each command */
+	volatile uint32_t cmd_param1;        /* Optional parameter 1 */
+	volatile uint32_t cmd_param2;        /* Optional parameter 2 */
 
-	/** Reserved for future use (align to cache line) */
-	uint32_t reserved[13];
+	/* RISC-V → ARM Response (8 bytes) */
+	volatile uint32_t rsp_sequence;      /* Matches cmd_sequence when complete */
+	volatile uint32_t rsp_error_code;    /* 0 = success, non-zero = error code */
+
+	/* Telemetry data (72 bytes) */
+	ltc4284_telemetry_t telemetry;
+
+	/* Alert event log (64 bytes) */
+	volatile uint32_t alert_count;       /* Total alert events */
+	volatile uint32_t last_alert_ms;     /* Timestamp of last alert */
+	uint8_t alert_reserved[56];
+
+	/* Statistics (64 bytes) */
+	volatile uint32_t total_commands;    /* Total commands processed */
+	volatile uint32_t failed_commands;   /* Failed command count */
+	volatile uint32_t i2c_errors;        /* I2C communication errors */
+	uint8_t stats_reserved[52];
+
+	/* Padding to 256 bytes */
+	uint8_t reserved[24];
 } ltc4284_ipc_table_t;
 
 #endif /* _DUAL_CORE_LTC4284_IPC_H_ */
