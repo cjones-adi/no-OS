@@ -35,9 +35,19 @@ endif()
 
 set(_addr "0x${CMAKE_MATCH_1}")
 
-file(WRITE "${OUT_FILE}"
-    "/* Auto-generated -- do not edit. RISC-V flash origin from the ARM map. */\n"
-    "__FlashStart = ${_addr};\n"
-    "__FlashLength = 0x10080000 - __FlashStart;\n")
+# MAX32690 RISC-V SRAM region: 0x20100000-0x20120000 (128 KB)
+set(_sram_origin "0x20100000")
+set(_sram_size "0x20000")
+set(_mailbox_size "0x100")
+set(_pal_nvm_size "0x0")
 
-message(STATUS "coprocessor: RISC-V __FlashStart = ${_addr} (from _riscv_boot)")
+file(WRITE "${OUT_FILE}"
+    "/* Auto-generated -- do not edit. RISC-V flash and SRAM config from ARM map. */\n"
+    "_RISCV_FLASH_ORIGIN = ${_addr};\n"
+    "_RISCV_FLASH_SIZE = 0x10080000 - _RISCV_FLASH_ORIGIN;\n"
+    "_RISCV_SRAM_ORIGIN = ${_sram_origin};\n"
+    "_RISCV_SRAM_SIZE = ${_sram_size};\n"
+    "_MAILBOX_SIZE = ${_mailbox_size};\n"
+    "_PAL_NVM_SIZE = ${_pal_nvm_size};\n")
+
+message(STATUS "coprocessor: RISC-V _RISCV_FLASH_ORIGIN = ${_addr} (from _riscv_boot)")
