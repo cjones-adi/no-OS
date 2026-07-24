@@ -35,6 +35,8 @@
 #ifndef __COMMON_DATA_H__
 #define __COMMON_DATA_H__
 
+#include <stdbool.h>
+#include <stddef.h>
 #include "no_os_uart.h"
 #include "no_os_i2c.h"
 #include "ltc4284.h"

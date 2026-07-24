@@ -35,15 +35,17 @@
 #include "common_data.h"
 #include "parameters.h"
 
+/* CN2 FTDI USB-to-UART Bridge */
 struct no_os_uart_init_param ltc4284_uart_ip = {
 	.device_id = UART_DEVICE_ID,
 	.baud_rate = UART_BAUDRATE,
 	.irq_id = UART_IRQ_ID,
+	.asynchronous_rx = true,
 	.size = UART_SIZE,
 	.parity = UART_PARITY,
 	.stop = UART_STOP,
-	.platform_ops = UART_PLATFORM_OPS,
-	.extra = UART_PLATFORM_EXTRA
+	.platform_ops = &max_uart_ops,
+	.extra = &ltc4284_uart_extra_ip
 };
 
 struct no_os_i2c_init_param ltc4284_i2c_ip = {

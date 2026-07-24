@@ -182,21 +182,22 @@ static int verify_current_limit(struct ltc4284_dev *dev)
 int example_main()
 {
 	struct ltc4284_dev *ltc4284_dev;
-	struct no_os_uart_desc *uart_desc;
-	uint32_t vin_mv, iin_ma, vout_mv;
-	uint32_t power_mw;
-	uint64_t energy_mj;
-	uint8_t status, faults;
+
+	// uint32_t vin_mv, iin_ma, vout_mv;
+	// uint32_t power_mw;
+	// uint64_t energy_mj;
+	// uint8_t status, faults;
 	int ret;
 
-	ret = no_os_uart_init(&uart_desc, &ltc4284_uart_ip);
-	if (ret) {
-		pr_err("UART initialization failed: %d\n", ret);
-		return ret;
+#if 1
+	/* Initialize LTC4284 device */
+	pr_info("LTC4284 UART testing\n");
+	while(1) {
+		// Perform UART communication tests
+		pr_info("-- Looping\n");
+		no_os_mdelay(1500);
 	}
-
-	no_os_uart_stdio(uart_desc);
-
+#else
 	ret = ltc4284_init(&ltc4284_dev, &ltc4284_ip);
 	if (ret) {
 		pr_err("LTC4284 initialization failed: %d\n", ret);
@@ -410,6 +411,6 @@ cleanup:
 		pr_err("Example failed: %d\n", ret);
 	else
 		pr_info("Example completed successfully\n");
-
+#endif
 	return ret;
 }

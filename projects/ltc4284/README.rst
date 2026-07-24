@@ -27,7 +27,7 @@ Hardware Setup
 * PCA9603 I²C level shifter (or equivalent) — required because the DC2470A
   I²C bus is pulled to LTC4284's INTVCC (5V), while the MAX32690 GPIOs are 3.3V
 * -48V power supply
-* USB cable for UART console (on-board CMSIS-DAP)
+* USB cable for UART console (CN2 connector - FTDI USB-to-UART bridge)
 
 **Connections:**
 
@@ -54,6 +54,22 @@ The DC2470A straps ADR1=H (INTVCC) and ADR0=H (INTVCC), selecting address
 .. code-block:: c
 
    .slave_address = LTC4284_I2C_ADDR_6,
+
+**UART Console (CN2):**
+
+The MAX32690EVKIT's CN2 connector provides serial console output via an on-board
+FTDI USB-to-UART bridge chip. The MCU uses its UART2 peripheral, configured at
+115200 baud, 8N1.
+
+On Linux, the console appears as ``/dev/ttyUSB0`` (or similar):
+
+.. code-block:: bash
+
+   # Connect to console
+   screen /dev/ttyUSB0 115200
+
+On Windows, the console appears as a COM port. Use PuTTY or similar terminal
+software with settings: 115200 baud, 8 data bits, no parity, 1 stop bit.
 
 Software Setup
 --------------
