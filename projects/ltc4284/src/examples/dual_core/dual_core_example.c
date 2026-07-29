@@ -66,6 +66,7 @@
 #include "common_data.h"
 #include "parameters.h"
 #include "mxc_sys.h"
+#include "fcr_regs.h"
 #include "dual_core_ltc4284_ipc.h"
 
 /* External symbol from linker script */
@@ -81,6 +82,7 @@ static struct no_os_ipc_desc *ipc_desc;
 /* Alert statistics */
 static volatile uint32_t arm_alert_count = 0;
 
+
 /**
  * @brief Boot RISC-V coprocessor using SDK function
  */
@@ -89,24 +91,17 @@ static void boot_riscv_coprocessor(void)
 	printf("[ARM] Booting RISC-V coprocessor at 0x%08lx...\r\n",
 	       (unsigned long)&_riscv_boot);
 
-	/*
-	 * Note: MXC_SYS_RISCVRun() expects _binary_riscv_bin_start symbol
-	 * from the SDK's dual-core template. Our CMake build uses _riscv_boot.
-	 * We can either:
-	 *   1) Rename the symbol in our linker script
-	 *   2) Use direct register manipulation here
-	 *
-	 * For now, use direct register access matching the SDK implementation.
-	 */
+	/* Matches MXC_SYS_RISCVRun() from sys_me18.c exactly, using our
+	 * _riscv_boot symbol (embedded by maxim_coprocessor.cmake via .incbin)
+	 * instead of the SDK's _binary_riscv_bin_start convention. */
 
-	/* Disable RISC-V core */
+	/* Disable RISC-V clock before configuring boot address */
 	MXC_GCR->pclkdis1 |= MXC_F_GCR_PCLKDIS1_CPU1;
 
-	/* Set boot address to embedded firmware */
-	/* MXC_FCR is defined in max32690.h but fcr_regs.h needs to be included */
-	*((volatile uint32_t *)(MXC_BASE_FCR + 0x00)) = (uint32_t)&_riscv_boot;
+	/* urvbootaddr is at FCR offset 0x10 — must use the struct, not offset 0x00 */
+	MXC_FCR->urvbootaddr = (uint32_t)&_riscv_boot;
 
-	/* Enable and release RISC-V from reset */
+	/* Re-enable clock and pulse reset to start the core */
 	MXC_GCR->pclkdis1 &= ~MXC_F_GCR_PCLKDIS1_CPU1;
 	MXC_GCR->rst1 |= MXC_F_GCR_RST1_CPU1;
 
@@ -125,7 +120,10 @@ static void check_riscv_alerts(void)
 	/* Check if alert count increased */
 	if (new_count > arm_alert_count) {
 		arm_alert_count = new_count;
-		printf("\r\n[ARM] !!! OVERCURRENT ALERT from RISC-V (count=%lu) !!!\r\n",
+		/* This message is triggered by the RISC-V: it detected the ALERT pin,
+		 * wrote the counter to shared memory, and rang the ARM doorbell.
+		 * The ARM woke up, read the counter, and prints this line. */
+		printf("\r\n[RV32->ARM] OVERCURRENT ALERT (RISC-V detected ALERT pin, notified ARM via IPC doorbell, count=%lu)\r\n",
 		       (unsigned long)arm_alert_count);
 	}
 }
@@ -137,13 +135,10 @@ static void init_ipc_table(void)
 {
 	volatile ltc4284_ipc_table_t *tbl = g_ipc_table;
 
-	/* Clear the table */
-	tbl->magic = 0;
-	no_os_barrier_full();
-
-	tbl->alert_count = 0;
-	tbl->last_alert_ms = 0;
-
+	/* Zero the entire table first, then set individual fields */
+	volatile uint32_t *p = (volatile uint32_t *)tbl;
+	for (unsigned i = 0; i < sizeof(*tbl) / sizeof(uint32_t); i++)
+		p[i] = 0;
 	no_os_barrier_full();
 
 	/* Validate the table */
@@ -226,16 +221,17 @@ static void display_telemetry(void)
 	volatile ltc4284_ipc_table_t *tbl = g_ipc_table;
 	int ret;
 
-	/* Request fresh telemetry */
+	/* [ARM->RV32] ARM writes command to shared RAM and rings RISC-V doorbell */
 	ret = send_command(LTC4284_CMD_READ_TELEMETRY, 0, 0);
 	if (ret) {
 		printf("[ARM] ERROR: Telemetry request failed\r\n");
 		return;
 	}
 
-	/* Read from shared memory */
+	/* [RV32] RISC-V woke up, read LTC4284 over I2C, wrote results to shared RAM, rang ARM doorbell
+	 * [ARM] ARM reads those results from shared RAM and prints them below */
 	no_os_barrier_full();
-	printf("[ARM] VIN=%lu.%03luV  IIN=%lu.%03luA  PIN=%lu.%03luW  VOUT=%lu.%03luV  "
+	printf("[ARM<-RV32] VIN=%lu.%03luV  IIN=%lu.%03luA  PIN=%lu.%03luW  VOUT=%lu.%03luV  VDS=%lu.%03luV  "
 	       "Status=0x%02X  Energy=%lluJ  Alerts=%lu\r\n",
 	       (unsigned long)(tbl->telemetry.vin_mv / 1000),
 	       (unsigned long)(tbl->telemetry.vin_mv % 1000),
@@ -245,6 +241,8 @@ static void display_telemetry(void)
 	       (unsigned long)(tbl->telemetry.pin_mw % 1000),
 	       (unsigned long)(tbl->telemetry.vout_mv / 1000),
 	       (unsigned long)(tbl->telemetry.vout_mv % 1000),
+	       (unsigned long)(tbl->telemetry.vds_mv / 1000),
+	       (unsigned long)(tbl->telemetry.vds_mv % 1000),
 	       tbl->telemetry.status_reg,
 	       (unsigned long long)(tbl->telemetry.energy_mj / 1000),
 	       (unsigned long)tbl->alert_count);
@@ -256,7 +254,6 @@ static void display_telemetry(void)
 int example_main(void)
 {
 	int ret;
-	uint32_t loop_count = 0;
 	uint32_t start_ms;
 
 	printf("\r\n====================================================\r\n");
@@ -284,8 +281,14 @@ int example_main(void)
 	printf("[ARM] Waiting for RISC-V initialization...\r\n");
 	start_ms = 0;
 	while (!(g_ipc_table->status & LTC4284_STATUS_READY)) {
+		if (g_ipc_table->status & LTC4284_STATUS_ERROR) {
+			printf("[ARM] ERROR: RISC-V init failed (error code: %lu)\r\n",
+			       (unsigned long)g_ipc_table->rsp_error_code);
+			return -EIO;
+		}
 		if (start_ms++ > 5000) {
-			printf("[ARM] ERROR: RISC-V timeout\r\n");
+			printf("[ARM] ERROR: RISC-V timeout (status=0x%02lx)\r\n",
+			       (unsigned long)g_ipc_table->status);
 			return -ETIMEDOUT;
 		}
 		no_os_mdelay(1);
@@ -300,13 +303,6 @@ int example_main(void)
 
 		/* Display telemetry */
 		display_telemetry();
-
-		if (++loop_count % 10 == 0) {
-			printf("[ARM] --- %lu seconds, I2C errors: %lu, failed: %lu ---\r\n",
-			       (unsigned long)loop_count,
-			       (unsigned long)g_ipc_table->i2c_errors,
-			       (unsigned long)g_ipc_table->failed_commands);
-		}
 
 		no_os_mdelay(1000);
 	}

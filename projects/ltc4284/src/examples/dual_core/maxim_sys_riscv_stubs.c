@@ -36,59 +36,69 @@ uint32_t MXC_SYS_RiscVClockRate(void)
 }
 
 /**
- * @brief Enable a peripheral clock (stub)
+ * @brief Enable a peripheral clock
  *
- * On RISC-V builds, assume all required peripheral clocks are already
- * enabled by the ARM core before the RISC-V boots. This stub does nothing.
+ * PCLKDIS0 holds clocks with enum values 0..31; PCLKDIS1 holds 32..63
+ * (same encoding convention as the reset registers). Clearing a bit in a
+ * PCLKDIS register enables that clock.
+ *
+ * The ARM core never touches I2C0 in the dual-core example, so the I2C0
+ * clock is disabled at reset and must be explicitly enabled here.
  *
  * @param clock Peripheral clock to enable (mxc_sys_periph_clock_t)
  */
 void MXC_SYS_ClockEnable(mxc_sys_periph_clock_t clock)
 {
-	/* No-op: ARM core has already enabled necessary clocks */
-	(void)clock;
+	if ((uint32_t)clock < 32) {
+		MXC_GCR->pclkdis0 &= ~(1U << (uint32_t)clock);
+	} else if ((uint32_t)clock < 64) {
+		MXC_GCR->pclkdis1 &= ~(1U << ((uint32_t)clock - 32));
+	}
 }
 
 /**
- * @brief Disable a peripheral clock (stub)
+ * @brief Disable a peripheral clock (no-op on RISC-V side)
  *
- * On RISC-V builds, clock management is handled by the ARM core.
- * Disabling clocks from RISC-V could interfere with ARM operation.
+ * Disabling clocks from RISC-V could interfere with ARM-owned peripherals
+ * (UART2 console, SEMA). Keep as no-op; the ARM manages its own clocks.
  *
  * @param clock Peripheral clock to disable (mxc_sys_periph_clock_t)
  */
 void MXC_SYS_ClockDisable(mxc_sys_periph_clock_t clock)
 {
-	/* No-op: Don't disable clocks that ARM might be using */
 	(void)clock;
 }
 
 /**
  * @brief Reset a peripheral (wrapped version with RMW protection)
  *
- * The SDK's MXC_SYS_Reset_Periph implementation uses plain writes to GCR->rst1,
- * which clobbers unrelated bits (SMPHR, SIMO) and can corrupt the hardware
- * semaphore or glitch the JTAG TAP.
+ * The SDK encodes which GCR reset register to use in the mxc_sys_reset_t value:
+ *   RESET0 peripherals: raw bit position 0..31  → GCR->rst0
+ *   RESET1 peripherals: bit position + 32       → GCR->rst1 (subtract 32 for mask)
  *
- * This wrapped version uses read-modify-write to preserve other bits.
+ * The SDK's MXC_SYS_Reset_Periph uses plain writes which clobbers unrelated
+ * bits (SMPHR, SIMO) and can corrupt the hardware semaphore. This wrapper
+ * uses read-modify-write to preserve other bits.
  *
  * @param reset Peripheral reset bit (mxc_sys_reset_t)
  * @return E_NO_ERROR on success, E_BAD_PARAM if invalid
  */
 int __wrap_MXC_SYS_Reset_Periph(mxc_sys_reset_t reset)
 {
-	/* Validate reset index */
-	if (reset >= 32) {
+	uint32_t mask;
+
+	if (reset < 32) {
+		/* RESET0 peripheral (e.g. I2C0=16, GPIO0=2, UART0=11) */
+		mask = (1U << reset);
+		MXC_GCR->rst0 |= mask;
+		while (MXC_GCR->rst0 & mask) {}
+	} else if (reset < 64) {
+		/* RESET1 peripheral (e.g. I2C1, I2C2) — bit pos is (reset - 32) */
+		mask = (1U << (reset - 32));
+		MXC_GCR->rst1 |= mask;
+		while (MXC_GCR->rst1 & mask) {}
+	} else {
 		return E_BAD_PARAM;
-	}
-
-	/* Read-modify-write to GCR->rst1 to preserve other bits */
-	uint32_t mask = (1U << reset);
-	MXC_GCR->rst1 |= mask;
-
-	/* Wait for reset to complete */
-	while (MXC_GCR->rst1 & mask) {
-		/* Spin */
 	}
 
 	return E_NO_ERROR;

@@ -71,12 +71,12 @@ static struct ltc4284_dev *ltc4284_dev = NULL;
 
 /* I2C initialization for RISC-V */
 static struct max_i2c_init_param i2c_extra = {
-	.vssel = MXC_GPIO_VSSEL_VDDIO
+	.vssel = MXC_GPIO_VSSEL_VDDIOH
 };
 
 static struct no_os_i2c_init_param i2c_ip = {
-	.device_id = 1,              /* I2C1 bus */
-	.max_speed_hz = 400000,      /* 400 kHz */
+	.device_id = 0,              /* I2C0 bus - matches ARM parameters.h */
+	.max_speed_hz = 100000,      /* 100 kHz - matches ARM I2C_MAX_SPEED */
 	.slave_address = 0x16,       /* LTC4284_I2C_ADDR_6 */
 	.platform_ops = &max_i2c_ops,
 	.extra = &i2c_extra
@@ -100,8 +100,12 @@ static volatile uint32_t local_alert_count = 0;
 
 /**
  * @brief GPIO interrupt handler for LTC4284 ALERT pin
+ *
+ * Must use interrupt("machine") so the compiler emits mret, which
+ * restores mstatus.MIE and re-enables machine-mode interrupts.
+ * MAX32690 startup dispatches directly to this symbol (no wrapper).
  */
-void GPIO0_IRQHandler(void)
+__attribute__((interrupt("machine"))) void GPIO0_IRQHandler(void)
 {
 	/* Check if our pin triggered the interrupt */
 	if (MXC_GPIO_GetFlags(ALERT_GPIO_PORT) & ALERT_GPIO_PIN) {
@@ -131,7 +135,7 @@ static void process_command(void)
 	volatile ltc4284_ipc_table_t *tbl = g_ipc_table;
 	int ret = 0;
 	/* Temporary non-volatile variables for API calls */
-	uint32_t vin_mv, iin_ma, pin_mw, vout_mv;
+	uint32_t vin_mv, iin_ma, pin_mw, vout_mv, vds_mv;
 	uint8_t status_reg, fault_reg;
 	uint64_t energy_mj;
 
@@ -147,6 +151,7 @@ static void process_command(void)
 		if (!ret) ret = ltc4284_read_iin(ltc4284_dev, &iin_ma);
 		if (!ret) ret = ltc4284_read_power(ltc4284_dev, &pin_mw);
 		if (!ret) ret = ltc4284_read_vout(ltc4284_dev, &vout_mv);
+		if (!ret) ret = ltc4284_read_vds(ltc4284_dev, &vds_mv);
 		if (!ret) ret = ltc4284_read_status(ltc4284_dev, &status_reg);
 		if (!ret) ret = ltc4284_get_fault(ltc4284_dev, &fault_reg);
 		if (!ret) ret = ltc4284_read_energy(ltc4284_dev, &energy_mj);
@@ -156,6 +161,7 @@ static void process_command(void)
 			tbl->telemetry.iin_ma = iin_ma;
 			tbl->telemetry.pin_mw = pin_mw;
 			tbl->telemetry.vout_mv = vout_mv;
+			tbl->telemetry.vds_mv = vds_mv;
 			tbl->telemetry.status_reg = status_reg;
 			tbl->telemetry.fault_reg = fault_reg;
 			tbl->telemetry.energy_mj = energy_mj;
@@ -198,15 +204,26 @@ static void process_command(void)
 }
 
 /**
- * @brief SEMA interrupt - ARM doorbell
+ * @brief ARM→RV32 doorbell interrupt (SEMA irq1 fires as CM4_IRQHandler on RV32)
+ *
+ * Must use interrupt("machine") so the compiler emits mret, which restores
+ * mstatus.MIE and re-enables machine-mode interrupts on return.
+ * MAX32690 startup dispatches directly to this symbol with no wrapper.
+ * Without mret the first interrupt masks all subsequent ones permanently.
  */
-void SEMA_IRQHandler(void)
+__attribute__((interrupt("machine"))) void CM4_IRQHandler(void)
 {
-	if (maxim_ipc_raw_pending_coproc()) {
-		maxim_ipc_raw_ack_coproc();
+	/* Ack SEMA first (clears the level signal), then clear Pulpino pending.
+	 * Order matters: if we clear NVIC pending before clearing the SEMA level,
+	 * the Pulpino controller will see the level still asserted and immediately
+	 * re-pend the same interrupt, causing a spurious re-entry. */
+	maxim_ipc_raw_ack_coproc();
+	NVIC_ClearPendingIRQ(CM4_IRQn);
+
+	if (g_ipc_table->cmd_sequence != g_ipc_table->rsp_sequence)
 		process_command();
-		maxim_ipc_raw_ring_host();
-	}
+
+	maxim_ipc_raw_ring_host();
 }
 
 /**
@@ -272,8 +289,8 @@ int main(void)
 	/* Initialize ALERT GPIO interrupt */
 	init_alert_gpio();
 
-	/* Enable SEMA interrupt for IPC */
-	NVIC_EnableIRQ(SEMA_IRQn);
+	/* Enable ARM→RV32 doorbell: SEMA irq1 fires as CM4_IRQn (16) on the RV32 PLIC */
+	NVIC_EnableIRQ(CM4_IRQn);
 	__enable_irq();
 
 	/* Signal ready to ARM */

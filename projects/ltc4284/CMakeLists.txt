@@ -87,17 +87,17 @@ if(CONFIG_LTC4284_DUAL_CORE_EXAMPLE)
 			${CMAKE_SOURCE_DIR}/drivers/platform/maxim/max${TARGET_NUM}/maxim_gpio.c
 			${CMAKE_SOURCE_DIR}/drivers/platform/maxim/max${TARGET_NUM}/maxim_i2c.c
 			${CMAKE_SOURCE_DIR}/drivers/platform/maxim/max${TARGET_NUM}/maxim_delay.c
-			# MXC PeriphDrivers (RV32-compiled)
-			${MAXIM_LIBRARIES}/PeriphDrivers/Source/GPIO/gpio_me15.c
+			# MXC PeriphDrivers (RV32-compiled) — me18 variants match MAX32690
+			${MAXIM_LIBRARIES}/PeriphDrivers/Source/GPIO/gpio_me18.c
 			${MAXIM_LIBRARIES}/PeriphDrivers/Source/GPIO/gpio_reva.c
 			${MAXIM_LIBRARIES}/PeriphDrivers/Source/GPIO/gpio_common.c
-			# sys_me15.c excluded - incompatible with RISC-V (missing MCR register members)
-			${MAXIM_LIBRARIES}/PeriphDrivers/Source/SYS/pins_me15.c
+			# sys_me18.c excluded - ARM-only MCR/MRS instructions; stubs in maxim_sys_riscv_stubs.c
+			${MAXIM_LIBRARIES}/PeriphDrivers/Source/SYS/pins_me18.c
 			${MAXIM_LIBRARIES}/PeriphDrivers/Source/SYS/mxc_delay.c
 			${MAXIM_LIBRARIES}/PeriphDrivers/Source/SYS/mxc_lock.c
 			${MAXIM_LIBRARIES}/PeriphDrivers/Source/SYS/mxc_assert.c
 			# I2C PeriphDrivers for RISC-V
-			${MAXIM_LIBRARIES}/PeriphDrivers/Source/I2C/i2c_me15.c
+			${MAXIM_LIBRARIES}/PeriphDrivers/Source/I2C/i2c_me18.c
 			${MAXIM_LIBRARIES}/PeriphDrivers/Source/I2C/i2c_reva.c
 			# ICC PeriphDrivers for RISC-V (instruction cache)
 			${MAXIM_LIBRARIES}/PeriphDrivers/Source/ICC/icc_me18.c

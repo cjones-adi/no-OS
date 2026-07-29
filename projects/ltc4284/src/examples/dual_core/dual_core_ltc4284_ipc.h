@@ -75,13 +75,14 @@ typedef struct {
 	uint32_t iin_ma;                 /* Input current (milliamps) */
 	uint32_t pin_mw;                 /* Input power (milliwatts) */
 	uint32_t vout_mv;                /* Output voltage (millivolts) */
+	uint32_t vds_mv;                 /* Drain-source voltage (millivolts) */
 	uint8_t  status_reg;             /* SYSTEM_STATUS register */
 	uint8_t  fault_reg;              /* FAULT register */
 	uint8_t  adc_status;             /* ADC_STATUS register */
 	uint8_t  reserved;
 	uint64_t energy_mj;              /* Energy accumulator (millijoules) */
 	uint32_t timestamp_ms;           /* RISC-V timestamp */
-	uint8_t  raw_reserved[44];       /* Reserved for future expansion */
+	uint8_t  raw_reserved[40];       /* Reserved for future expansion */
 } ltc4284_telemetry_t;
 
 /* Shared IPC table structure (256 bytes total) */
