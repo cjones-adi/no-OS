@@ -1,7 +1,7 @@
 /***************************************************************************//**
  *   @file   ltc4284.c
  *   @brief  Implementation of LTC4284 Driver
- *   @author Carlos Jones Jr <carlosjr.jones@analog.com>
+ *   @author Carlos Jones Jr <carlos.jones.jr@analog.com>
  *   @author Christopher de Guzman <christopher.deguzman@analog.com>
 ********************************************************************************
  * Copyright 2026(c) Analog Devices, Inc.
@@ -326,18 +326,26 @@ int ltc4284_read_iin(struct ltc4284_dev *dev, uint32_t *iin_ma)
 }
 
 /**
- * @brief Read output voltage (DRAIN)
+ * @brief Read drain-to-source voltage across the external MOSFET
+ *
+ * Reads the DRAIN ADC register (0x65). The value is V_DRAIN referenced to
+ * VEE (the chip's ground = supply-side -48V), which equals the V_DS across
+ * the external hot-swap MOSFET. Under normal conduction V_DS ~= I * Rds_on
+ * (a few mV to tens of mV). When the FET is off, V_DS rises to approximately
+ * VIN, and inductive transients can push it further and peg the ADC at
+ * full-scale (drain_divider * 2.048 V, e.g. 81.92 V for a 40:1 divider).
+ *
  * @param dev - Device descriptor
- * @param vout_mv - Pointer to store voltage in millivolts
+ * @param vds_mv - Pointer to store V_DS in millivolts
  * @return 0 in case of success, negative error code otherwise
  */
-int ltc4284_read_vout(struct ltc4284_dev *dev, uint32_t *vout_mv)
+int ltc4284_read_vds(struct ltc4284_dev *dev, uint32_t *vds_mv)
 {
 	int ret;
 	uint16_t adc_code;
 	uint32_t v_pin_uv;
 
-	if (!dev || !vout_mv)
+	if (!dev || !vds_mv)
 		return -EINVAL;
 
 	ret = ltc4284_read_word(dev, LTC4284_REG_DRAIN, &adc_code);
@@ -349,7 +357,39 @@ int ltc4284_read_vout(struct ltc4284_dev *dev, uint32_t *vout_mv)
 	 */
 	v_pin_uv = (uint32_t)((uint64_t)adc_code * LTC4284_ADC_SINGLE_ENDED_FS_UV /
 			      LTC4284_ADC_LEVELS);
-	*vout_mv = v_pin_uv * dev->drain_divider / MILLI;
+	*vds_mv = v_pin_uv * dev->drain_divider / MILLI;
+
+	return 0;
+}
+
+/**
+ * @brief Read output bus voltage delivered to the load
+ *
+ * Computed as VIN - V_DS. This is the actual bus voltage the load sees,
+ * not a raw ADC register. When the FET is conducting, VOUT ~= VIN. When
+ * the FET is off, VOUT collapses toward 0 (the load is disconnected).
+ *
+ * @param dev - Device descriptor
+ * @param vout_mv - Pointer to store output voltage in millivolts
+ * @return 0 in case of success, negative error code otherwise
+ */
+int ltc4284_read_vout(struct ltc4284_dev *dev, uint32_t *vout_mv)
+{
+	int ret;
+	uint32_t vin_mv, vds_mv;
+
+	if (!dev || !vout_mv)
+		return -EINVAL;
+
+	ret = ltc4284_read_vin(dev, &vin_mv);
+	if (ret)
+		return ret;
+
+	ret = ltc4284_read_vds(dev, &vds_mv);
+	if (ret)
+		return ret;
+
+	*vout_mv = (vin_mv > vds_mv) ? (vin_mv - vds_mv) : 0;
 
 	return 0;
 }

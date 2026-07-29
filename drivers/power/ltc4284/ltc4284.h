@@ -1,7 +1,7 @@
 /***************************************************************************//**
  *   @file   ltc4284.h
  *   @brief  Header file of LTC4284 Driver
- *   @author Carlos Jones Jr <carlosjr.jones@analog.com>
+ *   @author Carlos Jones Jr <carlos.jones.jr@analog.com>
  *   @author Christopher de Guzman <christopher.deguzman@analog.com>
 ********************************************************************************
  * Copyright 2026(c) Analog Devices, Inc.
@@ -604,6 +604,7 @@ int ltc4284_update_bits(struct ltc4284_dev *dev, uint8_t reg,
 /* Monitoring functions */
 int ltc4284_read_vin(struct ltc4284_dev *dev, uint32_t *vin_mv);
 int ltc4284_read_iin(struct ltc4284_dev *dev, uint32_t *iin_ma);
+int ltc4284_read_vds(struct ltc4284_dev *dev, uint32_t *vds_mv);
 int ltc4284_read_vout(struct ltc4284_dev *dev, uint32_t *vout_mv);
 int ltc4284_read_power(struct ltc4284_dev *dev, uint32_t *power_mw);
 int ltc4284_read_energy(struct ltc4284_dev *dev, uint64_t *energy_mj);
