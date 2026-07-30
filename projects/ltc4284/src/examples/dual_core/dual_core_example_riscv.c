@@ -1,23 +1,26 @@
 /***************************************************************************//**
  *   @file   dual_core_example_riscv.c
- *   @brief  RISC-V RV32 (CPU1) side of LTC4284 dual-core monitoring example.
+ *   @brief  RISC-V RV32 (CPU1) side of LTC4284 dual-core OC demo.
  *   @author Analog Devices Inc.
  *
- * This is the freestanding RISC-V firmware that monitors the LTC4284 ALERT pin
- * in real-time and notifies the ARM core via IPC when overcurrent events occur.
+ * This is the freestanding RISC-V firmware that owns the LTC4284 I2C bus and
+ * ALERT pin, and serves IPC requests from the ARM.
  *
  * RISC-V responsibilities:
- * - Configure GPIO interrupt on LTC4284 ALERT pin (P0.19)
- * - Detect rising edge (overcurrent event)
- * - Increment shared memory alert counter
- * - Ring ARM doorbell via IPC
- * - Minimal latency for hardware protection
+ * - Bring up I2C0 and initialize the LTC4284 driver
+ * - Program the OC profile (V_ILIM, foldback, retry policy) — see OC_*
+ *   macros below
+ * - Clear faults, enable the FET
+ * - Configure GPIO interrupt on LTC4284 ALERT pin (P0.19); ring the ARM
+ *   doorbell on each ALERT edge with minimal latency
+ * - Serve IPC commands from ARM: READ_TELEMETRY, READ_CONFIG_REGS,
+ *   CLEAR_FAULTS, ENABLE_FET, NOP
  *
  * This firmware runs from flash (no SRAM copy) and uses only the RISC-V-
- * dedicated SRAM region (0x20100000-0x20120000). It cannot link the full no-OS
- * runtime, so it uses:
+ * dedicated SRAM region (0x20100000-0x20120000). It cannot link the full
+ * no-OS runtime, so it uses:
  * - Direct SEMA register access for IPC (maxim_ipc_raw_* helpers)
- * - Minimal MXC GPIO driver
+ * - Minimal MXC GPIO / I2C drivers
  * - No malloc, no printf (ARM handles console output)
  *
  ******************************************************************************
@@ -94,6 +97,15 @@ static struct ltc4284_init_param ltc4284_ip = {
 /* LTC4284 ALERT pin: P0.19 (GPIO0, pin 19) */
 #define ALERT_GPIO_PORT     MXC_GPIO0
 #define ALERT_GPIO_PIN      MXC_GPIO_PIN_19
+
+/* --- OC configuration (change these to reprogram trip behavior) ---
+ * With OC_ILIM_MV=15 and RSENSE=312 uOhm on DC2470A:
+ *   Steady-state trip: 15 mV / 312 uOhm  =  ~48 A
+ *   Fast trip:         30 mV / 312 uOhm  =  ~96 A
+ */
+#define OC_ILIM_MV          15                    /* V_ILIM in mV, 15..30 */
+#define OC_FOLDBACK         LTC4284_FB_50         /* Startup foldback */
+#define OC_RETRY_POLICY     LTC4284_RETRY_1       /* 1 retry, then latch */
 
 /* Local alert counter */
 static volatile uint32_t local_alert_count = 0;
@@ -175,6 +187,26 @@ static void process_command(void)
 	case LTC4284_CMD_ENABLE_FET:
 		ret = ltc4284_enable_fet(ltc4284_dev, (bool)param1);
 		break;
+
+	case LTC4284_CMD_READ_CONFIG_REGS: {
+		uint8_t cfg1 = 0, ctrl2 = 0;
+		ret = ltc4284_read_byte(ltc4284_dev, LTC4284_REG_CONFIG_1, &cfg1);
+		if (!ret)
+			ret = ltc4284_read_byte(ltc4284_dev,
+						LTC4284_REG_CONTROL_2, &ctrl2);
+		if (!ret) {
+			tbl->config.cfg1 = cfg1;
+			tbl->config.ctrl2 = ctrl2;
+			tbl->config.ilim_mv = OC_ILIM_MV;
+			tbl->config.foldback_code = OC_FOLDBACK;
+			tbl->config.retry_code = OC_RETRY_POLICY;
+			tbl->config.rsense_uohm = ltc4284_dev->rsense_uohm;
+			tbl->config.trip_ma =
+				(uint32_t)OC_ILIM_MV * 1000000UL /
+				ltc4284_dev->rsense_uohm;
+		}
+		break;
+	}
 
 	case LTC4284_CMD_NOP:
 		break;
@@ -275,6 +307,19 @@ int main(void)
 
 	/* Initialize LTC4284 on I2C1 */
 	ret = ltc4284_init(&ltc4284_dev, &ltc4284_ip);
+	if (ret) {
+		g_ipc_table->status = LTC4284_STATUS_ERROR;
+		g_ipc_table->rsp_error_code = (uint32_t)(-ret);
+		maxim_ipc_raw_ring_host();
+		while (1) __WFI();
+	}
+
+	/* Program OC profile before enabling the FET */
+	ret = ltc4284_set_ilim_mv(ltc4284_dev, OC_ILIM_MV);
+	if (!ret)
+		ret = ltc4284_set_foldback(ltc4284_dev, OC_FOLDBACK);
+	if (!ret)
+		ret = ltc4284_set_oc_retry(ltc4284_dev, OC_RETRY_POLICY);
 	if (ret) {
 		g_ipc_table->status = LTC4284_STATUS_ERROR;
 		g_ipc_table->rsp_error_code = (uint32_t)(-ret);

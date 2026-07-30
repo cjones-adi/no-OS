@@ -57,11 +57,12 @@
 #define LTC4284_IPC_MAGIC       0xC0DEC0DEUL
 
 /* Command opcodes (ARM → RISC-V) */
-#define LTC4284_CMD_NOP             0x00  /* No operation (heartbeat) */
-#define LTC4284_CMD_READ_TELEMETRY  0x01  /* Read all telemetry data */
-#define LTC4284_CMD_CLEAR_FAULTS    0x02  /* Clear fault registers */
-#define LTC4284_CMD_ENABLE_FET      0x03  /* Enable/disable FET (param1: 0/1) */
-#define LTC4284_CMD_SHUTDOWN        0xFF  /* Shutdown RISC-V core */
+#define LTC4284_CMD_NOP                0x00  /* No operation (heartbeat) */
+#define LTC4284_CMD_READ_TELEMETRY     0x01  /* Read all telemetry data */
+#define LTC4284_CMD_CLEAR_FAULTS       0x02  /* Clear fault registers */
+#define LTC4284_CMD_ENABLE_FET         0x03  /* Enable/disable FET (param1: 0/1) */
+#define LTC4284_CMD_READ_CONFIG_REGS   0x04  /* Read CONFIG_1/CONTROL_2 + OC snapshot */
+#define LTC4284_CMD_SHUTDOWN           0xFF  /* Shutdown RISC-V core */
 
 /* Status flags (RISC-V → ARM) */
 #define LTC4284_STATUS_READY   (1 << 0)  /* RISC-V initialized and ready */
@@ -84,6 +85,18 @@ typedef struct {
 	uint32_t timestamp_ms;           /* RISC-V timestamp */
 	uint8_t  raw_reserved[40];       /* Reserved for future expansion */
 } ltc4284_telemetry_t;
+
+/* Config snapshot (populated by CMD_READ_CONFIG_REGS) */
+typedef struct {
+	uint8_t  cfg1;                   /* CONFIG_1 register (after programming) */
+	uint8_t  ctrl2;                  /* CONTROL_2 register (after programming) */
+	uint8_t  ilim_mv;                /* V_ILIM setting in mV (steady-state) */
+	uint8_t  foldback_code;          /* LTC4284_FB_* code */
+	uint8_t  retry_code;             /* LTC4284_RETRY_* code */
+	uint8_t  reserved[3];
+	uint32_t rsense_uohm;            /* Sense resistor value */
+	uint32_t trip_ma;                /* Computed steady-state trip current */
+} ltc4284_config_snapshot_t;
 
 /* Shared IPC table structure (256 bytes total) */
 typedef struct {
@@ -113,7 +126,8 @@ typedef struct {
 	volatile uint32_t total_commands;    /* Total commands processed */
 	volatile uint32_t failed_commands;   /* Failed command count */
 	volatile uint32_t i2c_errors;        /* I2C communication errors */
-	uint8_t stats_reserved[52];
+	ltc4284_config_snapshot_t config;    /* 16 bytes — populated by READ_CONFIG_REGS */
+	uint8_t stats_reserved[36];
 
 	/* Padding to 256 bytes */
 	uint8_t reserved[24];
