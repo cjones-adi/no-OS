@@ -1,7 +1,7 @@
 /***************************************************************************//**
  *   @file   iio_ltc4284.c
  *   @brief  Implementation of LTC4284 IIO Driver
- *   @author Carlos Jones Jr <carlos.jones.jr@analog.com>
+ *   @author Carlos Jones Jr <carlosjr.jones@analog.com>
 ********************************************************************************
  * Copyright 2026(c) Analog Devices, Inc.
  *
